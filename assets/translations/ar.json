@@ -1,0 +1,16 @@
+{
+  "create_an_account": "إنشاء حساب جديد",
+  "user_name": "اسم المستخدم",
+  "phone_number ": "رقم الهاتف",
+  "password": "كلمة المرور",
+  "confirm_password": "تأكيد كلمة المرور",
+  "sign_up": "إنشاء حساب",
+  "or": "أو",
+  "continue_with_google": "تسجيل الدخول باستخدام غوغل",
+  "sign_in": "تسجيل الدخول",
+  "already_have_an_account": "هل لديك حساب مسبقا؟",
+  "sign_in_to_your_account": "تسجيل الدخول الى حسابك",
+  "show": "عرض",
+  "forget_password": "نسيت كلمة المرور؟",
+  "dont_have_an_account": "ليس لديك حساب؟"
+}

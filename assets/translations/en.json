@@ -1,0 +1,16 @@
+{
+  "create_an_account": "Create an account",
+  "user_name": "User name",
+  "phone_number ": "Phone number ",
+  "password": "Password",
+  "confirm_password": "Confirm Password ",
+  "sign_up": "Sign up",
+  "or": "Or",
+  "continue_with_google": "Continue With Google",
+  "sign_in": "Sign in",
+  "already_have_an_account": "Already hava an account?",
+  "sign_in_to_your_account": "Sign in to your account",
+  "show": "Show",
+  "forget_password": "Forget Password?",
+  "dont_have_an_account": "Don't have an account?"
+}
