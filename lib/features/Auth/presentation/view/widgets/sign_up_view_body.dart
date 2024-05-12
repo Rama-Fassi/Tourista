@@ -45,6 +45,7 @@ class SignUpViewBody extends StatelessWidget {
                 const PasswordTextField(),
                 kSizedBox30h,
                 CustomTextFormField(
+                  color: kPrimaryColor,
                   icon: Padding(
                     padding: const EdgeInsets.all(11),
                     child: SvgPicture.asset(Assets.imagesIconsFillLock),
@@ -97,6 +98,7 @@ class UserNameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      color: kPrimaryColor,
       icon: Padding(
         padding: const EdgeInsets.all(8),
         child: SvgPicture.asset(

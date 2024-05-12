@@ -1,7 +1,5 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
 abstract class  LocaleKeys {
   static const create_an_account = 'create_an_account';
   static const user_name = 'user_name';
@@ -17,4 +15,11 @@ abstract class  LocaleKeys {
   static const show = 'show';
   static const forget_password = 'forget_password';
   static const dont_have_an_account = 'dont_have_an_account';
+  static const Skip = 'Skip';
+  static const Next = 'Next';
+  static const welcome_to_Tourista_where_you_can_explore_the_world = 'welcome_to_Tourista_where_you_can_explore_the_world';
+  static const join_to_our_special_trips_for_your_favorite_places_in_the_world = 'join_to_our_special_trips_for_your_favorite_places_in_the_world';
+  static const Plan_your_trip_from_A_to_z_with_us = 'Plan_your_trip_from_A_to_z_with_us';
+  static const Get_Started = 'Get_Started';
+
 }
