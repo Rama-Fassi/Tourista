@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/forget_password_body.dart';
+import 'package:tourista/features/Auth/presentation/views/widgets/forget_password_body.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   const ForgetPasswordView({super.key});
@@ -7,7 +7,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: ForgetPasswordBody(),
+      body: SafeArea(child: ForgetPasswordBody()),
     );
   }
 }

@@ -8,16 +8,19 @@ class CustomTextFormField extends StatelessWidget {
       required this.hintText,
       this.keyboardType,
       this.onChanged,
-      required this.color});
+      required this.color,
+      required this.controller});
   final Widget icon;
   final String hintText;
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
   final Color color;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       keyboardType: keyboardType,
       onChanged: onChanged,
       cursorColor: color,
@@ -35,8 +38,9 @@ class CustomTextFormField extends StatelessWidget {
         focusColor: color,
         prefixIcon: icon,
         hintText: hintText,
-        hintStyle: AppStyles.styleSourceRegular20(context)
-            .copyWith(color: Colors.black.withOpacity(0.54), fontSize: 22),
+        hintStyle: AppStyles.styleSourceRegular20(context).copyWith(
+          color: Colors.black.withOpacity(0.54),
+        ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: color, width: 3),
         ),

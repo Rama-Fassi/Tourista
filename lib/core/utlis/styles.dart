@@ -59,7 +59,7 @@ abstract class AppStyles {
     );
   }
 
-   static TextStyle styleSourceBold25(BuildContext context) {
+  static TextStyle styleSourceBold25(BuildContext context) {
     return GoogleFonts.sourceSans3(
       color: Colors.black,
       fontSize: getResponsiveFontSize(fontSize: 25, context),
@@ -388,7 +388,7 @@ dynamic getScaleFactor(BuildContext context) {
   // double width = physicalWidth / devicePixelRatio;
   double width = MediaQuery.sizeOf(context).width;
   if (width < 800) {
-    return width / 550;
+    return width / 400;
   } else if (width < 1200) {
     return width / 1000;
   } else {
