@@ -60,8 +60,9 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
             const Spacer(),
             CustomButton(
                 onTap: () {
-                  print('${textEditingController.text}llllllllllllllll');
-                  GoRouter.of(context).push(AppRouter.kVerifyView);
+                  print('${number}llllllllllllllll');
+                  GoRouter.of(context)
+                      .push(AppRouter.kVerifyView, extra: number);
                 },
                 text: 'Continue',
                 width: widget.screenWidth * .25,
