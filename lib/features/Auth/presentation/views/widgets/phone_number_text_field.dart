@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class PhoneNumberTextField extends StatelessWidget {
   const PhoneNumberTextField({

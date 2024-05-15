@@ -7,13 +7,13 @@ import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/continue_with_google_button.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/custom_authButton.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/earth_logo.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/or_divider.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/password_text_field.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/phone_number_text_field.dart';
+import 'package:tourista/core/widgets/custom_text_form_field.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/continue_with_google_button.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/custom_authButton.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/earth_logo.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/or_divider.dart';
+import 'package:tourista/core/widgets/password_text_field.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/phone_number_text_field.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});

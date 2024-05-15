@@ -4,7 +4,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/enter_number_column.dart';
+import 'package:tourista/features/forget_password/presentation/views/widgets/enter_number_column.dart';
 
 class EnterNumberCard extends StatefulWidget {
   const EnterNumberCard({

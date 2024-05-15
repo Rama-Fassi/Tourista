@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/enter_number_text_field.dart';
+import 'package:tourista/features/forget_password/presentation/views/widgets/enter_number_text_field.dart';
 
 class EnterNumberColumn extends StatelessWidget {
   const EnterNumberColumn({

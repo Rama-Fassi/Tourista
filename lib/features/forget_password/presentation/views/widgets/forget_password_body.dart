@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/enter_number_card.dart';
+import 'package:tourista/features/forget_password/presentation/views/widgets/enter_number_card.dart';
 
 class ForgetPasswordBody extends StatelessWidget {
   const ForgetPasswordBody({super.key});

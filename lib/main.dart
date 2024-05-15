@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/theme_data.dart';
 import './core/translations/codegen_loader.g.dart';
 
 void main() async {
@@ -31,6 +32,7 @@ class Tourista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: themeData(),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

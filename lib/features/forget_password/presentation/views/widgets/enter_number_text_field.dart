@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class EnterNumberTextField extends StatelessWidget {
   const EnterNumberTextField({

@@ -310,7 +310,7 @@ abstract class AppStyles {
   static TextStyle styleIntro23(BuildContext context) {
     return TextStyle(
       color: Colors.black,
-      fontSize: getResponsiveFontSize(fontSize: 35, context),
+      fontSize: getResponsiveFontSize(fontSize: 26, context),
       fontFamily: kFontIntro,
       fontWeight: FontWeight.w700,
     );

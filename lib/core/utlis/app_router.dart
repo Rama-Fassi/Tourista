@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/features/Auth/presentation/views/forget_password.dart';
-import 'package:tourista/features/Auth/presentation/views/sign_in_view.dart';
-import 'package:tourista/features/Auth/presentation/views/sign_up_view.dart';
-import 'package:tourista/features/Auth/presentation/views/verify_view.dart';
+import 'package:tourista/features/forget_password/presentation/views/forget_password.dart';
+import 'package:tourista/features/auth/presentation/views/sign_in_view.dart';
+import 'package:tourista/features/auth/presentation/views/sign_up_view.dart';
+import 'package:tourista/features/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 

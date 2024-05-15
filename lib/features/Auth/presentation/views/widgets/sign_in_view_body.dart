@@ -5,12 +5,12 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/continue_with_google_button.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/custom_authButton.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/earth_logo.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/or_divider.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/password_text_field.dart';
-import 'package:tourista/features/Auth/presentation/views/widgets/phone_number_text_field.dart';
+import 'package:tourista/core/widgets/password_text_field.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/continue_with_google_button.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/custom_authButton.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/earth_logo.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/or_divider.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/phone_number_text_field.dart';
 
 class SignInViewBody extends StatelessWidget {
   const SignInViewBody({super.key});
