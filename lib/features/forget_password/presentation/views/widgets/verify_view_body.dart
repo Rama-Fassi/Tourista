@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/enter_verify_code_section.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/verify_button_and_range.dart';
@@ -16,26 +18,28 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double screenheight = MediaQuery.sizeOf(context).height;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         EnterVerifyCodeSection(
             screenWidth: screenWidth, controller: controller),
-        Gap(screenWidth * .08),
+        Gap(screenheight * .04),
         Text(
-          'Didn’t Receive the Code ?',
+          LocaleKeys.DidntRecieveTheCode.tr(),
           style: AppStyles.styleInterMedium14(context)
               .copyWith(color: Colors.grey),
         ),
-        Gap(screenWidth * .02),
+        Gap(screenheight * .01),
         Text(
-          'Resend Code',
+          LocaleKeys.ResendPassword.tr(),
           style: AppStyles.styleInterBold16(context)
               .copyWith(color: kPrimaryColor),
         ),
-        Gap(screenWidth * .4),
+        Gap(screenheight * .25),
         VerifyRangeAndButton(
           screenWidth: screenWidth,
           numberOfSteps: '1 of 2',

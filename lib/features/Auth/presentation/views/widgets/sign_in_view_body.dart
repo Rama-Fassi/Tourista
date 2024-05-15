@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -63,8 +62,7 @@ class SignInViewBody extends StatelessWidget {
               kSizedBox10h,
               GestureDetector(
                 onTap: () {
-                  GoRouter.of(context)
-                      .pushReplacement(AppRouter.kForgetPassword);
+                  GoRouter.of(context).push(AppRouter.kForgetPassword);
                 },
                 child: Align(
                   alignment: Alignment.bottomRight,

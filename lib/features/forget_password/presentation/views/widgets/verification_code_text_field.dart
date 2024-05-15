@@ -17,12 +17,12 @@ class VeriificationCodeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
       child: PinCodeTextField(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         keyboardType: TextInputType.number,
         appContext: context,
-        length: 6,
+        length: 4,
         controller: controller,
         cursorColor: kPrimaryColor,
         pastedTextStyle: const TextStyle(color: kPrimaryColor),
@@ -30,7 +30,7 @@ class VeriificationCodeTextField extends StatelessWidget {
         textStyle: AppStyles.styleInterSemiBold18(context),
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         pinTheme: PinTheme(
-            fieldWidth: screenWidth * .1,
+            fieldWidth: screenWidth * .13,
             activeColor: kPrimaryColor,
             selectedColor: kPrimaryColor,
             inactiveColor: Colors.black,

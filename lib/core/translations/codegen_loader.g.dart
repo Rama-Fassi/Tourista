@@ -34,7 +34,18 @@ class CodegenLoader extends AssetLoader{
   "welcome_to_Tourista_where_you_can_explore_the_world": "أهلا بك في Tourista! حيث يمكنك استكشاف العام",
   "join_to_our_special_trips_for_your_favorite_places_in_the_world": "انضم إلى رحلاتنا المميزة الموجهة إلى أماكنك المفضلة",
   "Plan_your_trip_from_A_to_z_with_us": "خطط لرحلاتك من البداية إلى النهاية معنا!",
-  "Get_Started": "إبدأ"
+  "Get_Started": "إبدأ",
+  "forgetPassword": "هل نسيت كلمة المرور",
+  "enter_your_mobile_number": "أدخل رقم هاتفك",
+  "verify": "للتأكيد",
+  "pleaseEnterTheCode": "الرجاء أدخال الرمز الذي ارسلناه إليك",
+  "CreateANewPassword": "إنشاء كلمة مرور جديدة",
+  "NewPassword": "كلمة المرور الجديدة",
+  "ShowPassowrd": "عرض كلمة المرور",
+  "DidntRecieveTheCode": "ألم تتلق كود؟",
+  "continueButton": "التالي",
+  "DontWorry": "لا تقلق , سيصلك كود للتجقق...",
+  "ResendPassword": "إعادة إرسال الكود"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -53,10 +64,21 @@ static const Map<String,dynamic> en = {
   "dont_have_an_account": "Don't have an account?",
   "Skip": "Skip",
   "Next": "Next",
-  "welcome_to_Tourista_where_you_can_explore_the_world": "Welcome to Tourista!  where you can explore the world",
+  "welcome_to_Tourista_where_you_can_explore_the_world": "Welcome to Tourista !  where you can explore the world",
   "join_to_our_special_trips_for_your_favorite_places_in_the_world": "Join to our special trips for your favorite places in the world",
   "Plan_your_trip_from_A_to_z_with_us": "Plan your trip from A to z with us!",
-  "Get_Started": "Get Started"
+  "Get_Started": "Get Started",
+  "forgetPassword": "forget password",
+  "enter_your_mobile_number": "Enter Your Mobile Number",
+  "verify": "Verify",
+  "pleaseEnterTheCode": "Please enter the code we sent to you",
+  "CreateANewPassword": "Create a New Password",
+  "NewPassword": "New Password",
+  "ShowPassowrd": "Show Password",
+  "DidntRecieveTheCode": "Didn't Recieve the Code ?",
+  "continueButton": "Continue",
+  "DontWorry": "Don't Worry , you Will receive a Verification Code ...",
+  "ResendPassword": "Resend Code"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

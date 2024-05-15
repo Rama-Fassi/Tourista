@@ -388,7 +388,7 @@ dynamic getScaleFactor(BuildContext context) {
   // double width = physicalWidth / devicePixelRatio;
   double width = MediaQuery.sizeOf(context).width;
   if (width < 800) {
-    return width / 400;
+    return width / 470;
   } else if (width < 1200) {
     return width / 1000;
   } else {

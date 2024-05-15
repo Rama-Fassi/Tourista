@@ -21,5 +21,16 @@ abstract class  LocaleKeys {
   static const join_to_our_special_trips_for_your_favorite_places_in_the_world = 'join_to_our_special_trips_for_your_favorite_places_in_the_world';
   static const Plan_your_trip_from_A_to_z_with_us = 'Plan_your_trip_from_A_to_z_with_us';
   static const Get_Started = 'Get_Started';
+  static const forgetPassword = 'forgetPassword';
+  static const enter_your_mobile_number = 'enter_your_mobile_number';
+  static const verify = 'verify';
+  static const pleaseEnterTheCode = 'pleaseEnterTheCode';
+  static const CreateANewPassword = 'CreateANewPassword';
+  static const NewPassword = 'NewPassword';
+  static const ShowPassowrd = 'ShowPassowrd';
+  static const DidntRecieveTheCode = 'DidntRecieveTheCode';
+  static const continueButton = 'continueButton';
+  static const DontWorry = 'DontWorry';
+  static const ResendPassword = 'ResendPassword';
 
 }

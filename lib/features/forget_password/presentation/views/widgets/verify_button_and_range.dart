@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 
@@ -44,11 +46,11 @@ class VerifyRangeAndButton extends StatelessWidget {
         ),
         Gap(screenWidth * .02),
         CustomButton(
-            text: 'Verify',
+            text: LocaleKeys.verify.tr(),
             width: screenWidth * .80,
             borderRadius: 10,
             height: screenWidth * .15,
-            style: AppStyles.styleInterBold16(context)
+            style: AppStyles.styleInterBold20(context)
                 .copyWith(color: Colors.white),
             color: kPrimaryColor),
       ],
