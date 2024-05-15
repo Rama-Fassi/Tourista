@@ -44,7 +44,7 @@ class GoogleButton extends StatelessWidget {
               kSizedBox15w,
               Text(
                 LocaleKeys.continue_with_google.tr(),
-                style: AppStyles.styleInterBold25(context)
+                style: AppStyles.styleInterBold20(context)
                     .copyWith(color: Colors.black.withOpacity(0.54)),
               )
             ],

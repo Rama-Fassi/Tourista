@@ -5,6 +5,10 @@ class Assets {
   /// assets/images/earth_logo.svg
   static const String imagesEarthLogo = "assets/images/earth_logo.svg";
 
+  /// Assets for imagesForegetPassword
+  /// assets/images/foreget_password.svg
+  static const String imagesForegetPassword = "assets/images/foreget_password.svg";
+
   /// Assets for imagesIconsFillLock
   /// assets/images/icons/fillLock.svg
   static const String imagesIconsFillLock = "assets/images/icons/fillLock.svg";

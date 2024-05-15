@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
-import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 
 void main() async {
@@ -14,7 +13,7 @@ void main() async {
   await Hive.openBox(kOnboarding);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(
     EasyLocalization(
       path: 'assets/translations',
@@ -36,6 +35,7 @@ class Tourista extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: themeData(),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

@@ -7,7 +7,7 @@ class CustomAuthButton extends StatelessWidget {
   const CustomAuthButton({
     super.key,
     required this.screenWidth,
-   required this.text,
+    required this.text,
   });
 
   final double screenWidth;

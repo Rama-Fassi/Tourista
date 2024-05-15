@@ -1,21 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/continue_with_google_button.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/custom_authButton.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/earth_logo.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/or_divider.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/password_text_field.dart';
-import 'package:tourista/features/Auth/presentation/view/widgets/phone_number_text_field.dart';
+import 'package:tourista/core/widgets/password_text_field.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/continue_with_google_button.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/custom_authButton.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/earth_logo.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/or_divider.dart';
+import 'package:tourista/features/auth/presentation/views/widgets/phone_number_text_field.dart';
 
 class SignInViewBody extends StatelessWidget {
   const SignInViewBody({super.key});

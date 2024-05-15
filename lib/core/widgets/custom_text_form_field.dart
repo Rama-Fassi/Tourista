@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -9,18 +7,23 @@ class CustomTextFormField extends StatelessWidget {
       required this.icon,
       required this.hintText,
       this.keyboardType,
-      this.onChanged});
+      this.onChanged,
+      required this.color,
+      required this.controller});
   final Widget icon;
   final String hintText;
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
+  final Color color;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       keyboardType: keyboardType,
       onChanged: onChanged,
-      cursorColor: kYellowColor.withOpacity(0.50),
+      cursorColor: color,
       validator: (data) {
         if (data!.isEmpty) {
           return 'field is required';
@@ -29,17 +32,17 @@ class CustomTextFormField extends StatelessWidget {
       },
       style: const TextStyle(fontSize: 20),
       decoration: InputDecoration(
-        hoverColor: kPrimaryColor,
+        hoverColor: color,
         focusedBorder: UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: kYellowColor.withOpacity(0.5), width: 3)),
-        focusColor: kPrimaryColor,
+            borderSide: BorderSide(color: color, width: 3)),
+        focusColor: color,
         prefixIcon: icon,
         hintText: hintText,
-        hintStyle: AppStyles.styleSourceRegular20(context)
-            .copyWith(color: Colors.black.withOpacity(0.54), fontSize: 22),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: kPrimaryColor, width: 3),
+        hintStyle: AppStyles.styleSourceRegular20(context).copyWith(
+          color: Colors.black.withOpacity(0.54),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: color, width: 3),
         ),
       ),
     );

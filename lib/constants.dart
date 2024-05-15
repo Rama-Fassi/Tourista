@@ -4,7 +4,6 @@ const kName = 'Tourista';
 const kOnboarding = 'onboarding';
 const kFontIntro = "source-serif-pro";
 
-
 const kTransitionDuration = Duration(milliseconds: 200);
 const kPrimaryColor = Color(0xff338E63);
 const kGreenColor = Color(0xffA0D8B3);
@@ -18,7 +17,6 @@ const kSizedBox30h = SizedBox(height: 30);
 const kSizedBox40h = SizedBox(height: 40);
 const kSizedBox50h = SizedBox(height: 50);
 
-
 const kSizedBox5w = SizedBox(width: 5);
 
 const kSizedBox10w = SizedBox(width: 10);
@@ -26,4 +24,3 @@ const kSizedBox15w = SizedBox(width: 15);
 const kSizedBox30w = SizedBox(width: 30);
 const kSizedBox40w = SizedBox(width: 40);
 const kSizedBox50w = SizedBox(width: 50);
-

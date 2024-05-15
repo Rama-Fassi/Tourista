@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/onboarding/views/widgets/dots_indicator.dart';
@@ -52,7 +54,7 @@ class _OnbaordingViewBodyState extends State<OnbaordingViewBody> {
                               .pushReplacement(AppRouter.kHomeView);
                         },
                         child: Text(
-                          'Skip',
+                          LocaleKeys.Skip.tr(),
                           style:
                               AppStyles.styleSourceSemiBold28(context).copyWith(
                             color: Colors.white,
@@ -69,7 +71,7 @@ class _OnbaordingViewBodyState extends State<OnbaordingViewBody> {
                               curve: Curves.linear);
                         },
                         child: Text(
-                          'Next',
+                          LocaleKeys.Next.tr(),
                           style: AppStyles.styleSourceSemiBold28(context)
                               .copyWith(color: Colors.white),
                         ),
@@ -78,12 +80,12 @@ class _OnbaordingViewBodyState extends State<OnbaordingViewBody> {
                   )
                 : GestureDetector(
                     onTap: () {
-                      GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                      GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
                       Hive.box(kOnboarding).put('bool', true);
                     },
                     child: Center(
                       child: Text(
-                        'Get Started',
+                        LocaleKeys.Get_Started.tr(),
                         style: AppStyles.styleInterBold30(context).copyWith(
                           color: Colors.white,
                         ),
