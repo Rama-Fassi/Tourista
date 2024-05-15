@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 
 void main() async {
@@ -10,6 +12,9 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(
     EasyLocalization(
       path: 'assets/translations',

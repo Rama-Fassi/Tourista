@@ -21,9 +21,7 @@ class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
+    return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
@@ -84,7 +82,7 @@ class SignUpViewBody extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      
     );
   }
 }

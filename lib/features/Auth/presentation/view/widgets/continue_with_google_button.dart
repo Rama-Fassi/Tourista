@@ -8,8 +8,8 @@ import 'package:tourista/core/utlis/styles.dart';
 
 // ignore: must_be_immutable
 class GoogleButton extends StatelessWidget {
-  GoogleButton({super.key});
-  Function()? onTap;
+  GoogleButton({super.key, this.onTap});
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
