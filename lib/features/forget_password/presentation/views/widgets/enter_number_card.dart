@@ -71,8 +71,13 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
               listener: (context, state) {
                 if (state is ForgetPasswordSuccess) {
                   isLoading = false;
-                  GoRouter.of(context).push(AppRouter.kVerifyView,
-                      extra: state.forgetPasswordModel.userId);
+                  GoRouter.of(context).push(
+                    AppRouter.kVerifyView,
+                    extra: {
+                      "userId": state.forgetPasswordModel.userId,
+                      "phoneNumber": number
+                    },
+                  );
                 } else if (state is ForgetPasswordFailure) {
                   isLoading = false;
                   customSnackBar(context, state.errMessage);

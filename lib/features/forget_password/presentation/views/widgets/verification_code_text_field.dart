@@ -27,7 +27,7 @@ class VeriificationCodeTextField extends StatelessWidget {
         cursorColor: kPrimaryColor,
         pastedTextStyle: const TextStyle(color: kPrimaryColor),
         cursorHeight: 18,
-        textStyle: AppStyles.styleInterSemiBold18(context),
+        textStyle: AppStyles.styleInterBold25(context),
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         pinTheme: PinTheme(
             fieldWidth: screenWidth * .13,

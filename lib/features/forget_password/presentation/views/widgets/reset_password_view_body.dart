@@ -21,7 +21,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Spacer(),
+        const Spacer(),
         CreateANewPasswordColumn(
           screenheight: screenheight,
           screenWidth: screenWidth,
@@ -32,13 +32,13 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
           flex: 13,
         ),
         VerifyRangeAndButton(
-            userId: widget.userId,
+            onTap: () {},
             screenheight: screenheight,
             screenWidth: screenWidth,
             numberOfSteps: "2 of 2",
             start: 0,
             end: 1),
-        Spacer()
+        const Spacer()
       ],
     );
   }

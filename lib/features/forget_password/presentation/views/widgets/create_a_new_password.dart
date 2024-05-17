@@ -25,7 +25,7 @@ class CreateANewPasswordColumn extends StatefulWidget {
 }
 
 class _CreateANewPasswordColumnState extends State<CreateANewPasswordColumn> {
-  bool showPass = true;
+  bool showPass = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
