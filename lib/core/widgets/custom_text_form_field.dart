@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
       required this.hintText,
       this.keyboardType,
       this.onChanged,
+      this.showPass = false,
       required this.color,
       required this.controller});
   final Widget icon;
@@ -16,10 +17,12 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Color color;
   final TextEditingController controller;
+  final bool showPass;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: showPass,
       controller: controller,
       keyboardType: keyboardType,
       onChanged: onChanged,
@@ -34,7 +37,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hoverColor: color,
         focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: color, width: 3)),
+            borderSide: BorderSide(color: color, width: 2)),
         focusColor: color,
         prefixIcon: icon,
         hintText: hintText,
@@ -42,7 +45,7 @@ class CustomTextFormField extends StatelessWidget {
           color: Colors.black.withOpacity(0.54),
         ),
         enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: color, width: 3),
+          borderSide: BorderSide(color: color, width: 2),
         ),
       ),
     );

@@ -22,69 +22,68 @@ class SignUpViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Column(
-              children: [
-                kSizedBox20h,
-                const EartLogo(),
-                kSizedBox20h,
-                Text(
-                  LocaleKeys.create_an_account.tr(),
-                  style: AppStyles.styleInterBold30(context)
-                      .copyWith(color: kPrimaryColor),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+          child: Column(
+            children: [
+              kSizedBox20h,
+              const EartLogo(),
+              kSizedBox20h,
+              Text(
+                LocaleKeys.create_an_account.tr(),
+                style: AppStyles.styleInterBold30(context)
+                    .copyWith(color: kPrimaryColor),
+              ),
+              kSizedBox30h,
+              const UserNameTextField(),
+              kSizedBox30h,
+              const PhoneNumberTextField(),
+              kSizedBox30h,
+              const PasswordTextField(),
+              kSizedBox30h,
+              CustomTextFormField(
+                controller: TextEditingController(),
+                color: kPrimaryColor,
+                icon: Padding(
+                  padding: const EdgeInsets.all(11),
+                  child: SvgPicture.asset(Assets.imagesIconsFillLock),
                 ),
-                kSizedBox30h,
-                const UserNameTextField(),
-                kSizedBox30h,
-                const PhoneNumberTextField(),
-                kSizedBox30h,
-                const PasswordTextField(),
-                kSizedBox30h,
-                CustomTextFormField(
-                  controller: TextEditingController(),
-                  color: kPrimaryColor,
-                  icon: Padding(
-                    padding: const EdgeInsets.all(11),
-                    child: SvgPicture.asset(Assets.imagesIconsFillLock),
+                hintText: LocaleKeys.confirm_password.tr(),
+              ),
+              kSizedBox40h,
+              CustomAuthButton(
+                screenWidth: screenWidth,
+                text: LocaleKeys.sign_up.tr(),
+              ),
+              kSizedBox20h,
+              const ORDivider(),
+              kSizedBox20h,
+              GoogleButton(),
+              kSizedBox20h,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    LocaleKeys.already_have_an_account.tr(),
+                    style: AppStyles.styleSourceSemiBold20(context)
+                        .copyWith(color: Colors.black),
                   ),
-                  hintText: LocaleKeys.confirm_password.tr(),
-                ),
-                kSizedBox40h,
-                CustomAuthButton(
-                  screenWidth: screenWidth,
-                  text: LocaleKeys.sign_up.tr(),
-                ),
-                kSizedBox20h,
-                const ORDivider(),
-                kSizedBox20h,
-                GoogleButton(),
-                kSizedBox20h,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      LocaleKeys.already_have_an_account.tr(),
-                      style: AppStyles.styleSourceSemiBold20(context)
-                          .copyWith(color: Colors.black),
-                    ),
-                    //  kSizedBox5w,
-                    TextButton(
-                      child: Text(LocaleKeys.sign_in.tr(),
-                          style: AppStyles.styleSourceBold20(context)
-                              .copyWith(color: kPrimaryColor, fontSize: 18)),
-                      onPressed: () {
-                        GoRouter.of(context).push(AppRouter.kSignIN);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  //  kSizedBox5w,
+                  TextButton(
+                    child: Text(LocaleKeys.sign_in.tr(),
+                        style: AppStyles.styleSourceBold20(context)
+                            .copyWith(color: kPrimaryColor, fontSize: 18)),
+                    onPressed: () {
+                      GoRouter.of(context).push(AppRouter.kSignIN);
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-      
+      ),
     );
   }
 }

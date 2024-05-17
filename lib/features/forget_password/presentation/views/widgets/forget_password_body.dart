@@ -39,7 +39,9 @@ class ForgetPasswordBody extends StatelessWidget {
                 ),
               ),
               Gap(screenheight * .03),
-              EnterNumberCard(screenWidth: screenWidth)
+              EnterNumberCard(
+                screenWidth: screenWidth,
+              )
             ],
           ),
         ),

@@ -68,7 +68,7 @@ static const Map<String,dynamic> en = {
   "join_to_our_special_trips_for_your_favorite_places_in_the_world": "Join to our special trips for your favorite places in the world",
   "Plan_your_trip_from_A_to_z_with_us": "Plan your trip from A to z with us!",
   "Get_Started": "Get Started",
-  "forgetPassword": "forget password",
+  "forgetPassword": "Forget Password",
   "enter_your_mobile_number": "Enter Your Mobile Number",
   "verify": "Verify",
   "pleaseEnterTheCode": "Please enter the code we sent to you",

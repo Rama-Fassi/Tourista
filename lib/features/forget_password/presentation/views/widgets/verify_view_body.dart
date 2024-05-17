@@ -26,7 +26,9 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         EnterVerifyCodeSection(
-            screenWidth: screenWidth, controller: controller),
+            screenheight: screenheight,
+            screenWidth: screenWidth,
+            controller: controller),
         Gap(screenheight * .04),
         Text(
           LocaleKeys.DidntRecieveTheCode.tr(),
@@ -41,6 +43,7 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
         ),
         Gap(screenheight * .25),
         VerifyRangeAndButton(
+          screenheight: screenheight,
           screenWidth: screenWidth,
           numberOfSteps: '1 of 2',
           start: 0,

@@ -53,7 +53,10 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
             )
           ]),
       child: Padding(
-        padding: const EdgeInsets.only(top: 18, right: 16, bottom: 26),
+        padding: const EdgeInsets.only(
+          top: 18,
+          right: 16,
+        ),
         child: Row(
           children: [
             EnterNumberColumn(

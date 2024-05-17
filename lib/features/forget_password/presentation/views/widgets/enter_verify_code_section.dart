@@ -10,27 +10,28 @@ class EnterVerifyCodeSection extends StatelessWidget {
     super.key,
     required this.screenWidth,
     required this.controller,
+    required this.screenheight,
   });
 
-  final double screenWidth;
+  final double screenWidth, screenheight;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Gap(screenWidth * .13),
+        Gap(screenheight * .05),
         Text(
           LocaleKeys.verify.tr(),
           style: AppStyles.styleInterBold25(context).copyWith(fontSize: 28),
         ),
-        Gap(screenWidth * .04),
+        Gap(screenheight * .02),
         Text(
           LocaleKeys.pleaseEnterTheCode.tr(),
           style: AppStyles.styleInterMedium14(context)
               .copyWith(color: Colors.grey),
         ),
-        Gap(screenWidth * .16),
+        Gap(screenheight * .08),
         VeriificationCodeTextField(
             controller: controller, screenWidth: screenWidth),
       ],

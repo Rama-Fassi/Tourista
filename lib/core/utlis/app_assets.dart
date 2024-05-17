@@ -13,9 +13,17 @@ class Assets {
   /// assets/images/icons/fillLock.svg
   static const String imagesIconsFillLock = "assets/images/icons/fillLock.svg";
 
+  /// Assets for imagesIconsFillLockBlack
+  /// assets/images/icons/fillLockBlack.svg
+  static const String imagesIconsFillLockBlack = "assets/images/icons/fillLockBlack.svg";
+
   /// Assets for imagesIconsGoogleLogo
   /// assets/images/icons/GoogleLogo.svg
   static const String imagesIconsGoogleLogo = "assets/images/icons/GoogleLogo.svg";
+
+  /// Assets for imagesIconsLockBlack
+  /// assets/images/icons/lockBlack.svg
+  static const String imagesIconsLockBlack = "assets/images/icons/lockBlack.svg";
 
   /// Assets for imagesIconsOutlineLock
   /// assets/images/icons/outlineLock.svg
