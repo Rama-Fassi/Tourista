@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/enter_number_column.dart';
 
 class EnterNumberCard extends StatefulWidget {
@@ -41,6 +44,7 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLoading = false;
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
@@ -63,19 +67,39 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
               textEditingController: textEditingController,
             ),
             const Spacer(),
-            CustomButton(
-                onTap: () {
-                  print('${number}llllllllllllllll');
-                  GoRouter.of(context)
-                      .push(AppRouter.kVerifyView, extra: number);
-                },
-                text: LocaleKeys.continueButton.tr(),
-                width: widget.screenWidth * .25,
-                borderRadius: 8,
-                height: 46,
-                style: AppStyles.styleSourceBold20(context)
-                    .copyWith(color: Colors.white),
-                color: kPrimaryColor)
+            BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+              listener: (context, state) {
+                if (state is ForgetPasswordSuccess) {
+                  isLoading = false;
+                  GoRouter.of(context).push(AppRouter.kVerifyView,
+                      extra: state.forgetPasswordModel.userId);
+                } else if (state is ForgetPasswordFailure) {
+                  isLoading = false;
+                  customSnackBar(context, state.errMessage);
+                } else if (state is ForgetPasswordLoading) {
+                  isLoading = true;
+                }
+              },
+              builder: (context, state) {
+                return isLoading == true
+                    ? Center(
+                        child: CircularProgressIndicator(
+                        color: kPrimaryColor,
+                      ))
+                    : CustomButton(
+                        onTap: () {
+                          BlocProvider.of<ForgetPasswordCubit>(context)
+                              .forgetPasswordCubitFun(phoneNumber: number);
+                        },
+                        text: LocaleKeys.continueButton.tr(),
+                        width: widget.screenWidth * .25,
+                        borderRadius: 8,
+                        height: 46,
+                        style: AppStyles.styleSourceBold20(context)
+                            .copyWith(color: Colors.white),
+                        color: kPrimaryColor);
+              },
+            ),
           ],
         ),
       ),

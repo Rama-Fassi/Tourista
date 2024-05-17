@@ -8,8 +8,8 @@ import 'package:tourista/features/forget_password/presentation/views/widgets/ent
 import 'package:tourista/features/forget_password/presentation/views/widgets/verify_button_and_range.dart';
 
 class VerifyViewBody extends StatefulWidget {
-  const VerifyViewBody({super.key});
-
+  const VerifyViewBody({super.key, required this.userId});
+  final int userId;
   @override
   State<VerifyViewBody> createState() => _VerifyViewBodyState();
 }
@@ -48,6 +48,7 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
           numberOfSteps: '1 of 2',
           start: 0,
           end: 0.5,
+          userId: widget.userId,
         )
       ],
     );

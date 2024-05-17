@@ -5,8 +5,8 @@ import 'package:tourista/core/utlis/functions/verify_app_bar.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/reset_password_view_body.dart';
 
 class ResetPasswordView extends StatelessWidget {
-  const ResetPasswordView({super.key});
-
+  const ResetPasswordView({super.key, required this.userId});
+  final int userId;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -14,7 +14,9 @@ class ResetPasswordView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar:
             verifyAppBar(context, appBarText: LocaleKeys.forgetPassword.tr()),
-        body: const ResetPasswordViewBody(),
+        body: ResetPasswordViewBody(
+          userId: userId,
+        ),
       ),
     );
   }

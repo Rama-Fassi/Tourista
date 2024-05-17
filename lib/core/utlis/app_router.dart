@@ -1,8 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/features/forget_password/data/repos/forget_password_impl.dart';
+import 'package:tourista/features/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/presentation/views/sign_up_view.dart';
@@ -60,17 +64,24 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kForgetPassword,
-        builder: (context, state) => const ForgetPasswordView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ForgetPasswordCubit(getIt.get<ForgetPasswordRepoImpl>()),
+          child: const ForgetPasswordView(),
+        ),
       ),
       GoRoute(
         path: kVerifyView,
         builder: (context, state) => VerifyView(
+          userId: state.extra as int,
           appBarText: LocaleKeys.forgetPassword.tr(),
         ),
       ),
       GoRoute(
           path: kResetPassword,
-          builder: (context, state) => const ResetPasswordView()),
+          builder: (context, state) => const ResetPasswordView(
+                userId: 1,
+              )),
     ],
   );
 }

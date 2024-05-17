@@ -16,11 +16,13 @@ class VerifyRangeAndButton extends StatelessWidget {
     required this.start,
     required this.end,
     required this.screenheight,
+    required this.userId,
   });
 
   final double screenWidth, screenheight;
   final String numberOfSteps;
   final double start, end;
+  final int userId;
 
   @override
   Widget build(BuildContext context) {

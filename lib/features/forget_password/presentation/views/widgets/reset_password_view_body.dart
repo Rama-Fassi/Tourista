@@ -3,8 +3,8 @@ import 'package:tourista/features/forget_password/presentation/views/widgets/cre
 import 'package:tourista/features/forget_password/presentation/views/widgets/verify_button_and_range.dart';
 
 class ResetPasswordViewBody extends StatefulWidget {
-  const ResetPasswordViewBody({super.key});
-
+  const ResetPasswordViewBody({super.key, required this.userId});
+  final int userId;
   @override
   State<ResetPasswordViewBody> createState() => _ResetPasswordViewBodyState();
 }
@@ -32,6 +32,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
           flex: 13,
         ),
         VerifyRangeAndButton(
+            userId: widget.userId,
             screenheight: screenheight,
             screenWidth: screenWidth,
             numberOfSteps: "2 of 2",
