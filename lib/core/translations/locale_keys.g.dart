@@ -32,5 +32,8 @@ abstract class  LocaleKeys {
   static const continueButton = 'continueButton';
   static const DontWorry = 'DontWorry';
   static const ResendPassword = 'ResendPassword';
+  static const congratulations = 'congratulations';
+  static const passwordResetSuccessfuly = 'passwordResetSuccessfuly';
+  static const ok = 'ok';
 
 }

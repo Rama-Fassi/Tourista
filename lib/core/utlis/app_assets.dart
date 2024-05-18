@@ -53,6 +53,10 @@ class Assets {
   /// assets/images/slogan.svg
   static const String imagesSlogan = "assets/images/slogan.svg";
 
+  /// Assets for imagesSuccessReset
+  /// assets/images/successReset.svg
+  static const String imagesSuccessReset = "assets/images/successReset.svg";
+
   /// Assets for imagesTouristaLogoGreen
   /// assets/images/tourista_logo_green.svg
   static const String imagesTouristaLogoGreen = "assets/images/tourista_logo_green.svg";

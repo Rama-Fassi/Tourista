@@ -29,5 +29,8 @@
   "DidntRecieveTheCode": "Didn't Recieve the Code ?",
   "continueButton": "Continue",
   "DontWorry": "Don't Worry , you Will receive a Verification Code ...",
-  "ResendPassword": "Resend Code"
+  "ResendPassword": "Resend Code",
+  "congratulations": "Congratulations!",
+  "passwordResetSuccessfuly": "Password Reset successful You’ll be redirected to the Home screen now",
+  "ok": "Ok"
 }

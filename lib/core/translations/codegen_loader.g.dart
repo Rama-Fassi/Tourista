@@ -45,7 +45,10 @@ class CodegenLoader extends AssetLoader{
   "DidntRecieveTheCode": "ألم تتلق كود؟",
   "continueButton": "التالي",
   "DontWorry": "لا تقلق , سيصلك كود للتجقق...",
-  "ResendPassword": "إعادة إرسال الكود"
+  "ResendPassword": "إعادة إرسال الكود",
+  "congratulations": "تهانينا!",
+  "passwordResetSuccessfuly": "تم تعديل كلمة المرور بنجاح سيتم الانتقال إلى الصفحة الرئيسية الآن",
+  "ok": "تم"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -78,7 +81,10 @@ static const Map<String,dynamic> en = {
   "DidntRecieveTheCode": "Didn't Recieve the Code ?",
   "continueButton": "Continue",
   "DontWorry": "Don't Worry , you Will receive a Verification Code ...",
-  "ResendPassword": "Resend Code"
+  "ResendPassword": "Resend Code",
+  "congratulations": "Congratulations!",
+  "passwordResetSuccessfuly": "Password Reset successful You’ll be redirected to the Home screen now",
+  "ok": "Ok"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

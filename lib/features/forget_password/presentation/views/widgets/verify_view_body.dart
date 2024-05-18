@@ -8,6 +8,7 @@ import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/forget_password/presentation/manager/verify_code_cubit/verify_code_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/enter_verify_code_section.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/verify_button_and_range.dart';
@@ -20,15 +21,11 @@ class VerifyViewBody extends StatefulWidget {
 }
 
 class _VerifyViewBodyState extends State<VerifyViewBody> {
-  TextEditingController controller = TextEditingController();
+  late TextEditingController controller;
   String number = '';
   @override
   void initState() {
-    controller = TextEditingController();
-    controller.addListener(() {
-      number = controller.text;
-      setState(() {});
-    });
+    listenNumber();
     super.initState();
   }
 
@@ -69,24 +66,11 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
         Gap(screenheight * .25),
         BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
           listener: (context, state) {
-            if (state is VerifyCodeSuccess) {
-              isLoading = false;
-              GoRouter.of(context)
-                  .push(AppRouter.kResetPassword, extra: widget.userId);
-            } else if (state is VerifyCodeFailure) {
-              isLoading = false;
-              customSnackBar(context, state.errMessage);
-            } else if (state is VerifyCodeLoading) {
-              isLoading = true;
-            }
+            isLoading = checkStates(state, isLoading, context);
           },
           builder: (context, state) {
             return isLoading == true
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      color: kPrimaryColor,
-                    ),
-                  )
+                ? const LoadingWidget()
                 : VerifyRangeAndButton(
                     onTap: () {
                       BlocProvider.of<VerifyCodeCubit>(context)
@@ -103,5 +87,27 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
         )
       ],
     );
+  }
+
+  bool checkStates(
+      VerifyCodeState state, bool isLoading, BuildContext context) {
+    if (state is VerifyCodeSuccess) {
+      isLoading = false;
+      GoRouter.of(context).push(AppRouter.kResetPassword, extra: widget.userId);
+    } else if (state is VerifyCodeFailure) {
+      isLoading = false;
+      customSnackBar(context, state.errMessage);
+    } else if (state is VerifyCodeLoading) {
+      isLoading = true;
+    }
+    return isLoading;
+  }
+
+  void listenNumber() {
+    controller = TextEditingController();
+    controller.addListener(() {
+      number = controller.text;
+      setState(() {});
+    });
   }
 }

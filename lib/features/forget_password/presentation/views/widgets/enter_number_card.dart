@@ -8,6 +8,7 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/enter_number_column.dart';
 
@@ -28,11 +29,7 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
   String number = '';
   @override
   void initState() {
-    textEditingController = TextEditingController();
-    textEditingController.addListener(() {
-      number = textEditingController.text;
-      setState(() {});
-    });
+    listenNumber();
     super.initState();
   }
 
@@ -69,28 +66,11 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
             const Spacer(),
             BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
               listener: (context, state) {
-                if (state is ForgetPasswordSuccess) {
-                  isLoading = false;
-                  GoRouter.of(context).push(
-                    AppRouter.kVerifyView,
-                    extra: {
-                      "userId": state.forgetPasswordModel.userId,
-                      "phoneNumber": number
-                    },
-                  );
-                } else if (state is ForgetPasswordFailure) {
-                  isLoading = false;
-                  customSnackBar(context, state.errMessage);
-                } else if (state is ForgetPasswordLoading) {
-                  isLoading = true;
-                }
+                isLoading = checkStates(state, isLoading, context);
               },
               builder: (context, state) {
                 return isLoading == true
-                    ? Center(
-                        child: CircularProgressIndicator(
-                        color: kPrimaryColor,
-                      ))
+                    ? const LoadingWidget()
                     : CustomButton(
                         onTap: () {
                           BlocProvider.of<ForgetPasswordCubit>(context)
@@ -109,5 +89,28 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
         ),
       ),
     );
+  }
+
+  bool checkStates(
+      ForgetPasswordState state, bool isLoading, BuildContext context) {
+    if (state is ForgetPasswordSuccess) {
+      isLoading = false;
+      GoRouter.of(context)
+          .push(AppRouter.kVerifyView, extra: state.forgetPasswordModel.userId);
+    } else if (state is ForgetPasswordFailure) {
+      isLoading = false;
+      customSnackBar(context, state.errMessage);
+    } else if (state is ForgetPasswordLoading) {
+      isLoading = true;
+    }
+    return isLoading;
+  }
+
+  void listenNumber() {
+    textEditingController = TextEditingController();
+    textEditingController.addListener(() {
+      number = textEditingController.text;
+      setState(() {});
+    });
   }
 }

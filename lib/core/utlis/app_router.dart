@@ -7,12 +7,14 @@ import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/features/forget_password/data/repos/forget_password_impl.dart';
 import 'package:tourista/features/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
+import 'package:tourista/features/forget_password/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/manager/verify_code_cubit/verify_code_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/forget_password/presentation/views/reset_password_view.dart';
 import 'package:tourista/features/forget_password/presentation/views/verify_view.dart';
+import 'package:tourista/features/home/presentation/views/home_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
@@ -84,9 +86,17 @@ abstract class AppRouter {
       ),
       GoRoute(
           path: kResetPassword,
-          builder: (context, state) => const ResetPasswordView(
-                userId: 1,
+          builder: (context, state) => BlocProvider(
+                create: (context) =>
+                    ResetPasswordCubit(getIt.get<ForgetPasswordRepoImpl>()),
+                child: ResetPasswordView(
+                  userId: state.extra as int,
+                ),
               )),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const HomeView(),
+      ),
     ],
   );
 }
