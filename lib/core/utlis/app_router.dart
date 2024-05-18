@@ -79,7 +79,7 @@ abstract class AppRouter {
           create: (context) =>
               VerifyCodeCubit(getIt.get<ForgetPasswordRepoImpl>()),
           child: VerifyView(
-            userId: state.extra as int,
+            number: state.extra as Map<String, dynamic>,
             appBarText: LocaleKeys.forgetPassword.tr(),
           ),
         ),

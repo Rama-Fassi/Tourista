@@ -34,12 +34,6 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
   }
 
   @override
-  void dispose() {
-    textEditingController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     bool isLoading = false;
     return Container(
@@ -66,7 +60,7 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
             const Spacer(),
             BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
               listener: (context, state) {
-                isLoading = checkStates(state, isLoading, context);
+                isLoading = checkStates(state, isLoading, context, number);
               },
               builder: (context, state) {
                 return isLoading == true
@@ -91,12 +85,14 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
     );
   }
 
-  bool checkStates(
-      ForgetPasswordState state, bool isLoading, BuildContext context) {
+  bool checkStates(ForgetPasswordState state, bool isLoading,
+      BuildContext context, String number) {
     if (state is ForgetPasswordSuccess) {
       isLoading = false;
-      GoRouter.of(context)
-          .push(AppRouter.kVerifyView, extra: state.forgetPasswordModel.userId);
+      GoRouter.of(context).push(AppRouter.kVerifyView, extra: {
+        'userId': state.forgetPasswordModel.userId,
+        'phoneNumber': number
+      });
     } else if (state is ForgetPasswordFailure) {
       isLoading = false;
       customSnackBar(context, state.errMessage);

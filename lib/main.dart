@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/core/utlis/simple_bloc_observer.dart';
 import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 
@@ -17,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = SimpleBlocObserver();
   setUpServiceLocator();
   runApp(
     EasyLocalization(

@@ -5,17 +5,21 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
+import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
+import 'package:tourista/features/forget_password/data/repos/forget_password_impl.dart';
 import 'package:tourista/features/forget_password/presentation/manager/verify_code_cubit/verify_code_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/enter_verify_code_section.dart';
 import 'package:tourista/features/forget_password/presentation/views/widgets/verify_button_and_range.dart';
 
 class VerifyViewBody extends StatefulWidget {
-  const VerifyViewBody({super.key, required this.userId});
+  const VerifyViewBody({super.key, required this.userId, required this.number});
   final int userId;
+  final String number;
   @override
   State<VerifyViewBody> createState() => _VerifyViewBodyState();
 }
@@ -23,6 +27,7 @@ class VerifyViewBody extends StatefulWidget {
 class _VerifyViewBodyState extends State<VerifyViewBody> {
   late TextEditingController controller;
   String number = '';
+
   @override
   void initState() {
     listenNumber();
@@ -30,16 +35,12 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenheight = MediaQuery.sizeOf(context).height;
     bool isLoading = false;
+    print(widget.number);
+    print(widget.userId);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +57,10 @@ class _VerifyViewBodyState extends State<VerifyViewBody> {
         ),
         Gap(screenheight * .01),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            ForgetPasswordRepoImpl(getIt.get<ApiServer>())
+                .forgetPassword(phoneNumber: widget.number);
+          },
           child: Text(
             LocaleKeys.ResendPassword.tr(),
             style: AppStyles.styleInterBold16(context)

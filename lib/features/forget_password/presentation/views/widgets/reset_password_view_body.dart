@@ -34,12 +34,6 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenheight = MediaQuery.sizeOf(context).height;
