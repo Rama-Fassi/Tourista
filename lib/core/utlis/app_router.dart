@@ -85,14 +85,15 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-          path: kResetPassword,
-          builder: (context, state) => BlocProvider(
-                create: (context) =>
-                    ResetPasswordCubit(getIt.get<ForgetPasswordRepoImpl>()),
-                child: ResetPasswordView(
-                  userId: state.extra as int,
-                ),
-              )),
+        path: kResetPassword,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ResetPasswordCubit(getIt.get<ForgetPasswordRepoImpl>()),
+          child: ResetPasswordView(
+            userId: state.extra as int,
+          ),
+        ),
+      ),
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),

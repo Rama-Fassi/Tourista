@@ -26,7 +26,7 @@ class ApiServer {
   Future<Map<String, dynamic>> post(
       {required String endPoint, @required dynamic body, String? token}) async {
     Map<String, String> headers = {};
-    headers.addAll({'Content-Type': 'application/json'});
+    headers.addAll({"Accept": "application/json"});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
