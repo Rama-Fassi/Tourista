@@ -19,7 +19,7 @@ class AuthRepoImpl implements AuthRepo {
     required String confirmPassword,
   }) async {
     try {
-      Map<String, dynamic> registerData =
+      var registerData =
           await apiService.post(endPoint: 'register', data: {
         "name": name,
         "phone": phone,

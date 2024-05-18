@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/Auth/presentation/view_models/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/confirm_password_text_field.dart';
@@ -54,8 +55,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             BlocConsumer<SignUpCubit, SignUpState>(
               listener: (context, state) {
                 if (state is SignUpSuccess) {
+                  isLoading = false;
                   GoRouter.of(context).push(AppRouter.kForgetPassword);
-                } else if (state is SignUpFailure) {}
+                } else if (state is SignUpFailure) {
+                  isLoading = false;
+                  customSnackBar(context, state.errMessage);
+                } else {
+                  isLoading = true;
+                  CircularProgressIndicator();
+                }
               },
               builder: (context, state) {
                 return CustomAuthButton(
@@ -63,10 +71,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   width: screenWidth * .80,
                   onTap: () {
                     BlocProvider.of<SignUpCubit>(context).signUp(
-                        name: 'name',
-                        phone: '0985392515',
-                        password: "password",
-                        confirmPassword: "confirmPassword");
+                        name: "Rama Fassi",
+                        phone: "0985392515",
+                        password: "123456789",
+                        confirmPassword:"123456789" );
                   },
                 );
               },
