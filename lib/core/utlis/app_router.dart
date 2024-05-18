@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/features/home_page/presentation/views/home_page_view.dart';
 import 'package:tourista/features/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/presentation/views/sign_up_view.dart';
@@ -61,6 +62,10 @@ abstract class AppRouter {
       GoRoute(
         path: kVerifyView,
         builder: (context, state) => const VerifyView(),
+      ),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const HomePageView(),
       ),
     ],
   );
