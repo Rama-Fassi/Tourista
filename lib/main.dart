@@ -10,6 +10,7 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locateer.dart';
 import 'package:tourista/features/Auth/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
@@ -50,6 +51,13 @@ class Tourista extends StatelessWidget {
             getIt.get<AuthRepoImpl>(),
           ),
         ),
+
+          BlocProvider(
+          create: (context) => SignInCubit(
+            getIt.get<AuthRepoImpl>(),
+          ),
+        ),
+        
       ],
       child: MaterialApp.router(
         theme: themeData(),

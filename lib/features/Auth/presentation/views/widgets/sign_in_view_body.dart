@@ -1,10 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/Auth/presentation/view_models/google_sign_in_cubit/google_sign_in_cubit.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/custom_auth_button.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/earth_logo_with_text.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/forget_passord_button.dart';
@@ -38,6 +44,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
+    bool isLoading = false;
 
     return SingleChildScrollView(
       child: Padding(
@@ -59,10 +66,42 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             Gap(screenheight * .005),
             const ForgetPasswordButton(),
             Gap(screenheight * 0.03),
-            CustomAuthButton(
-              text: LocaleKeys.sign_in.tr(),
-              width: screenWidth * .80,
+            BlocConsumer<SignInCubit, SignInState>(
+              listener: (context, state) {
+                if (state is SignInSuccess) {
+                  isLoading = false;
+
+                  GoRouter.of(context).push(AppRouter.kHomeView);
+                } else if (state is SignInFailure) {
+                  isLoading = false;
+
+                  customSnackBar(context, state.errMessage);
+                } else {
+                  isLoading = true;
+                }
+              },
+              builder: (context, state) {
+                return isLoading == true
+                    ? const SpinKitPouringHourGlassRefined(
+                        color: kGreenColor,
+                        size: 60,
+                      )
+                    : CustomAuthButton(
+                        text: LocaleKeys.sign_in.tr(),
+                        width: screenWidth * .80,
+                        onTap: () {
+                          BlocProvider.of<SignInCubit>(context).signIn(
+                            phone: phoneNumber,
+                            password: password,
+                          );
+                        },
+                      );
+              },
             ),
+            //CustomAuthButton(
+            //  text: LocaleKeys.sign_in.tr(),
+           //   width: screenWidth * .80,
+          //  ),
             Gap(screenheight * .07),
             const ORDivider(),
             Gap(screenheight * .02),

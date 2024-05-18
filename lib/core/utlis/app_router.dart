@@ -16,6 +16,8 @@ abstract class AppRouter {
   static const kForgetPassword = '/forgetPasswordView';
   static const kOnboarduingView = '/onboardingView';
   static const kVerifyView = '/verifyView';
+    static const kVerifySignUpView = '/verifySignUpView';
+
 
   static final router = GoRouter(
     routes: [

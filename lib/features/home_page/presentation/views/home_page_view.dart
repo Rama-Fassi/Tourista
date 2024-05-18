@@ -11,15 +11,26 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Center(
-        child: TextButton(
-            onPressed: () async {
-              GoogleSignIn googleSignIn = GoogleSignIn();
-              googleSignIn.disconnect();
-              await FirebaseAuth.instance.signOut();
-              GoRouter.of(context).push(AppRouter.kSignIN);
-            },
-            child: const Text('Log Out')),
+      body: Column(
+        children: [
+           Center(
+            child: TextButton(
+                onPressed: ()  {
+                  GoRouter.of(context).push(AppRouter.kSignIN);
+                },
+                child: const Text('Log Out')),
+          ),
+          Center(
+            child: TextButton(
+                onPressed: () async {
+                  GoogleSignIn googleSignIn = GoogleSignIn();
+                  googleSignIn.disconnect();
+                  await FirebaseAuth.instance.signOut();
+                  GoRouter.of(context).push(AppRouter.kSignIN);
+                },
+                child: const Text('Log Out from google')),
+          ),
+        ],
       ),
     ));
   }
