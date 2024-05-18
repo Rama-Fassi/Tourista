@@ -1,13 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:tourista/core/errors/failures.dart';
-import 'package:tourista/core/utlis/api_service.dart';
+import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/Auth/data/models/register_model.dart';
 import 'package:tourista/features/Auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  
-  final ApiService apiService;
+  final ApiServer apiService;
 
   AuthRepoImpl(this.apiService);
 
@@ -19,8 +18,7 @@ class AuthRepoImpl implements AuthRepo {
     required String confirmPassword,
   }) async {
     try {
-      var registerData =
-          await apiService.post(endPoint: 'register', data: {
+      var registerData = await apiService.post(endPoint: 'register', data: {
         "name": name,
         "phone": phone,
         "password": password,
@@ -37,6 +35,4 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
- 
 }

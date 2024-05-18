@@ -8,13 +8,13 @@ import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class PhoneNumberTextField extends StatelessWidget {
   const PhoneNumberTextField({
-    super.key,
+    super.key, required this.controller,
   });
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: TextEditingController(),
+      controller: controller,
       color: kPrimaryColor,
       keyboardType: TextInputType.number,
       icon: Padding(

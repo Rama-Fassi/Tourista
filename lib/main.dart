@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/core/utlis/api_service.dart';
+import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locateer.dart';

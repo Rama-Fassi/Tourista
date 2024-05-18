@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class ApiService {
-
+class ApiServer {
   final _baseUrl = 'http://192.168.1.39:8000/api/';
   final Dio _dio;
 
-  ApiService(this._dio);
+  ApiServer(this._dio);
 
   Future<Map<String, dynamic>> get({
     required String endPoint,
@@ -20,7 +19,6 @@ class ApiService {
 
     var response = await _dio.get(
       '$_baseUrl$endPoint',
-
       options: Options(
         headers: headers,
       ),
@@ -32,7 +30,7 @@ class ApiService {
       {required String endPoint, required dynamic data, String? token}) async {
     Map<String, String> headers = {};
 
-    headers.addAll({'Content-Type': 'application/json'});
+    headers.addAll({"Accept": "application/json"});
 
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
@@ -51,7 +49,6 @@ class ApiService {
       {required String endPoint,
       @required dynamic body,
       @required String? token}) async {
-        
     Map<String, String> headers = {};
     headers.addAll({
       'Content-Type': 'application/json',

@@ -8,13 +8,14 @@ import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class PasswordTextField extends StatelessWidget {
   const PasswordTextField({
-    super.key,
+    super.key, required this.controller,
   });
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: TextEditingController(),
+      controller: controller,
       color: kPrimaryColor,
       icon: Padding(
         padding: const EdgeInsets.all(11),

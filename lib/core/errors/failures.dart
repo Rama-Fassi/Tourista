@@ -16,12 +16,9 @@ class ServerFailure extends Failure {
         return ServerFailure('Send timedout with ApiServer');
       case DioExceptionType.receiveTimeout:
         return ServerFailure('Receive timedout with ApiServer');
-
       case DioExceptionType.badResponse:
-        // return ServerFailure.fromResponse(
-        //   dioException.response!.statusCode!, dioException.response!.data);
-        return ServerFailure("from response exception");
-        
+        return ServerFailure.fromResponse(
+            dioException.response!.statusCode!, dioException.response!.data);
       case DioExceptionType.cancel:
         return ServerFailure('Request to ApiServer was canceld');
       case DioExceptionType.badCertificate:
@@ -36,8 +33,8 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response["message"]["errors"]);
+    if (statusCode == 400 || statusCode == 401 || statusCode == 422) {
+      return ServerFailure(response["message"]);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later');
     } else if (statusCode == 500) {

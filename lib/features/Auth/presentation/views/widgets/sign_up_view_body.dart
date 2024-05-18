@@ -29,9 +29,26 @@ class SignUpViewBody extends StatefulWidget {
 }
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
+  late TextEditingController userNameController;
+  late TextEditingController phoneNumberController;
+  late TextEditingController passwordController;
+
+  late TextEditingController confirmPasswordController;
+
+  String name = '';
+  String phoneNumber = '';
+  String password = '';
+
+  String confirmPassword = '';
+
+  @override
+  void initState() {
+    listenController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isLoading = false;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
@@ -44,37 +61,39 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               data: LocaleKeys.create_an_account.tr(),
             ),
             Gap(screenheight * 0.02),
-            const UserNameTextField(),
+            UserNameTextField(
+              textEditingController: userNameController,
+            ),
             Gap(screenheight * 0.03),
-            const PhoneNumberTextField(),
+            PhoneNumberTextField(
+              controller: phoneNumberController,
+            ),
             Gap(screenheight * 0.03),
-            const PasswordTextField(),
+            PasswordTextField(
+              controller: passwordController,
+            ),
             Gap(screenheight * 0.03),
-            const ConfirmPasswordTextField(),
+            ConfirmPasswordTextField(
+              controller: confirmPasswordController,
+            ),
             Gap(screenheight * .04),
             BlocConsumer<SignUpCubit, SignUpState>(
               listener: (context, state) {
                 if (state is SignUpSuccess) {
-                  isLoading = false;
                   GoRouter.of(context).push(AppRouter.kForgetPassword);
-                } else if (state is SignUpFailure) {
-                  isLoading = false;
-                  customSnackBar(context, state.errMessage);
-                } else {
-                  isLoading = true;
-                  CircularProgressIndicator();
-                }
-              },
+                }},
+             
+          
               builder: (context, state) {
                 return CustomAuthButton(
                   text: LocaleKeys.sign_up.tr(),
                   width: screenWidth * .80,
                   onTap: () {
                     BlocProvider.of<SignUpCubit>(context).signUp(
-                        name: "Rama Fassi",
-                        phone: "0985392515",
-                        password: "123456789",
-                        confirmPassword:"123456789" );
+                        name: name,
+                        phone: phoneNumber,
+                        password: password,
+                        confirmPassword: confirmPassword);
                   },
                 );
               },
@@ -99,4 +118,31 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       ),
     );
   }
+
+  void listenController() {
+    userNameController = TextEditingController();
+    userNameController.addListener(() {
+      name = userNameController.text;
+      setState(() {});
+    });
+
+    phoneNumberController = TextEditingController();
+    phoneNumberController.addListener(() {
+      phoneNumber = phoneNumberController.text;
+      setState(() {});
+    });
+
+    passwordController = TextEditingController();
+    passwordController.addListener(() {
+      password = passwordController.text;
+      setState(() {});
+    });
+
+    confirmPasswordController = TextEditingController();
+    confirmPasswordController.addListener(() {
+      confirmPassword = confirmPasswordController.text;
+      setState(() {});
+    });
+  }
+
 }

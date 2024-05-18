@@ -9,13 +9,13 @@ import '../../../../../constants.dart';
 
 class ConfirmPasswordTextField extends StatelessWidget {
   const ConfirmPasswordTextField({
-    super.key,
+    super.key, required this.controller,
   });
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: TextEditingController(),
+      controller: controller,
       color: kPrimaryColor,
       icon: Padding(
         padding: const EdgeInsets.all(11),

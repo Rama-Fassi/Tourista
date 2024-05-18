@@ -8,13 +8,13 @@ import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class UserNameTextField extends StatelessWidget {
   const UserNameTextField({
-    super.key,
+    super.key, required this.textEditingController,
   });
-
+  final TextEditingController textEditingController;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: TextEditingController(),
+      controller: textEditingController,
       color: kPrimaryColor,
       icon: Padding(
         padding: const EdgeInsets.all(8),

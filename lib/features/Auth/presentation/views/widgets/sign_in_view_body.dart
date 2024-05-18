@@ -14,8 +14,25 @@ import 'package:tourista/features/auth/presentation/views/widgets/continue_with_
 import 'package:tourista/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:tourista/features/auth/presentation/views/widgets/phone_number_text_field.dart';
 
-class SignInViewBody extends StatelessWidget {
+class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
+
+  @override
+  State<SignInViewBody> createState() => _SignInViewBodyState();
+}
+
+class _SignInViewBodyState extends State<SignInViewBody> {
+  late TextEditingController phoneNumberController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    listenController();
+    super.initState();
+  }
+
+  String phoneNumber = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +49,13 @@ class SignInViewBody extends StatelessWidget {
               data: LocaleKeys.sign_in_to_your_account.tr(),
             ),
             Gap(screenheight * 0.09),
-            const PhoneNumberTextField(),
+            PhoneNumberTextField(
+              controller: phoneNumberController,
+            ),
             Gap(screenheight * 0.04),
-            const PasswordTextField(),
+            PasswordTextField(
+              controller: passwordController,
+            ),
             Gap(screenheight * .005),
             const ForgetPasswordButton(),
             Gap(screenheight * 0.03),
@@ -62,5 +83,19 @@ class SignInViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void listenController() {
+    phoneNumberController = TextEditingController();
+    phoneNumberController.addListener(() {
+      phoneNumber = phoneNumberController.text;
+      setState(() {});
+    });
+
+    passwordController = TextEditingController();
+    passwordController.addListener(() {
+      password = passwordController.text;
+      setState(() {});
+    });
   }
 }
