@@ -12,7 +12,6 @@ class AuthRepoImpl implements AuthRepo {
 
   AuthRepoImpl(this.apiService);
 
-
   @override
   Future<Either<Failure, RegisterModel>> signUp({
     required String name,
@@ -21,7 +20,7 @@ class AuthRepoImpl implements AuthRepo {
     required String confirmPassword,
   }) async {
     try {
-      var registerData = await apiService.post(endPoint: 'register', data: {
+      var registerData = await apiService.post(endPoint: 'register', body: {
         "name": name,
         "phone": phone,
         "password": password,
@@ -38,11 +37,12 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, SignInModel>> signIn({required String phone, required String password}) async {
+  Future<Either<Failure, SignInModel>> signIn(
+      {required String phone, required String password}) async {
     try {
-      var signInData = await apiService.post(endPoint: 'login', data: {
+      var signInData = await apiService.post(endPoint: 'login', body: {
         "phone": phone,
         "password": password,
       });
@@ -56,18 +56,20 @@ class AuthRepoImpl implements AuthRepo {
       }
       return left(ServerFailure(e.toString()));
     }
-    
   }
 
   @override
-  Future<Either<Failure, VerifySignUpModel>> verifySignUp({required String userId, required String code}) async{
-     try  {
-      var verifySignUpData = await apiService.post(endPoint: 'verifyCode', data: {
+  Future<Either<Failure, VerifySignUpModel>> verifySignUp(
+      {required String userId, required String code}) async {
+    try {
+      var verifySignUpData =
+          await apiService.post(endPoint: 'verifyCode', body: {
         "user_id": userId,
         "code": code,
       });
 
-      VerifySignUpModel verifySignUpModel = VerifySignUpModel.fromJson(verifySignUpData);
+      VerifySignUpModel verifySignUpModel =
+          VerifySignUpModel.fromJson(verifySignUpData);
 
       return right(verifySignUpModel);
     } catch (e) {

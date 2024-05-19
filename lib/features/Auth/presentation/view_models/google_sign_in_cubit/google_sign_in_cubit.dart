@@ -35,6 +35,4 @@ class GoogleSignInCubit extends Cubit<GoogleSignInState> {
     // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
   }
-
-  
 }
