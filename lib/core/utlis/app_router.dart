@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
@@ -37,7 +38,12 @@ abstract class AppRouter {
         path: kSignUp,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const SignUPView(),
+          child: BlocProvider(
+            create: (context) => SignUpCubit(
+              getIt.get<AuthRepoImpl>(),
+            ),
+            child: const SignUPView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity:
@@ -63,7 +69,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kSignIN,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => SignInCubit(
+            getIt.get<AuthRepoImpl>(),
+          ),
+          child: const SignInView(),
+        ),
       ),
       GoRoute(
         path: kForgetPassword,

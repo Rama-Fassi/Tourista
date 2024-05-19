@@ -42,9 +42,9 @@ class _EnterNumberCardState extends State<EnterNumberCard> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(.3),
+              color: Colors.grey.withOpacity(.1),
               blurRadius: 4,
-              offset: const Offset(0, -8),
+              offset: const Offset(0, -6),
             )
           ]),
       child: Padding(

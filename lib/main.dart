@@ -12,10 +12,12 @@ import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 
 void main() async {
+  setUpServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
+  await Hive.openBox(kToken);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

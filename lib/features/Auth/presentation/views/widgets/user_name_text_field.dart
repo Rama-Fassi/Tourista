@@ -6,21 +6,23 @@ import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
-class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({
-    super.key,
+class UserNameTextField extends StatelessWidget {
+  const UserNameTextField({
+    super.key, required this.textEditingController,
   });
-
+  final TextEditingController textEditingController;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      controller: TextEditingController(),
+      controller: textEditingController,
       color: kPrimaryColor,
       icon: Padding(
-        padding: const EdgeInsets.all(11),
-        child: SvgPicture.asset(Assets.imagesIconsOutlineLock),
+        padding: const EdgeInsets.all(8),
+        child: SvgPicture.asset(
+          Assets.imagesIconsPerson,
+        ),
       ),
-      hintText: LocaleKeys.password.tr(),
+      hintText: LocaleKeys.user_name.tr(),
     );
   }
 }
