@@ -17,7 +17,7 @@ class VerifyView extends StatelessWidget {
             style: AppStyles.styleInterSemiBold16(context),
           ),
         ),
-        body: VerifyViewBody(),
+        body: const VerifyViewBody(),
       ),
     );
   }

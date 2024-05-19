@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/features/home_page/presentation/views/home_page_view.dart';
+import 'package:tourista/core/utlis/service_locateer.dart';
+import 'package:tourista/features/Auth/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
+import 'package:tourista/features/home/presentation/views/home_view.dart';
 import 'package:tourista/features/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/presentation/views/sign_up_view.dart';
@@ -16,8 +21,7 @@ abstract class AppRouter {
   static const kForgetPassword = '/forgetPasswordView';
   static const kOnboarduingView = '/onboardingView';
   static const kVerifyView = '/verifyView';
-    static const kVerifySignUpView = '/verifySignUpView';
-
+  static const kVerifySignUpView = '/verifySignUpView';
 
   static final router = GoRouter(
     routes: [
@@ -29,7 +33,12 @@ abstract class AppRouter {
         path: kSignUp,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const SignUPView(),
+          child: BlocProvider(
+            create: (context) => SignUpCubit(
+              getIt.get<AuthRepoImpl>(),
+            ),
+            child: const SignUPView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity:
@@ -55,7 +64,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kSignIN,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => SignInCubit(
+            getIt.get<AuthRepoImpl>(),
+          ),
+          child: const SignInView(),
+        ),
       ),
       GoRoute(
         path: kForgetPassword,
@@ -67,7 +81,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomePageView(),
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );

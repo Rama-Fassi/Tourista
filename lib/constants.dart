@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 const kName = 'Tourista';
 const kOnboarding = 'onboarding';
+const kToken = 'token';
+const kTokenRef = 'tokenRef';
+
+
 const kFontIntro = "source-serif-pro";
 
 const kTransitionDuration = Duration(milliseconds: 200);

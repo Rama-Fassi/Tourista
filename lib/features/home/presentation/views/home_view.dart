@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 
-class HomePageView extends StatelessWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,9 @@ class HomePageView extends StatelessWidget {
         child: Scaffold(
       body: Column(
         children: [
-           Center(
+          Center(
             child: TextButton(
-                onPressed: ()  {
+                onPressed: () {
                   GoRouter.of(context).push(AppRouter.kSignIN);
                 },
                 child: const Text('Log Out')),

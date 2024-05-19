@@ -10,7 +10,6 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/Auth/presentation/view_models/google_sign_in_cubit/google_sign_in_cubit.dart';
 import 'package:tourista/features/Auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
-import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/custom_auth_button.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/earth_logo_with_text.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/forget_passord_button.dart';
