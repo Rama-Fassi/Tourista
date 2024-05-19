@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/features/forget_password/data/models/reset_password_model.dart';
 import 'package:tourista/features/forget_password/data/repos/forget_password_repo.dart';
 
@@ -18,6 +20,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     result.fold((failure) {
       emit(ResetPasswordFailure(errMessage: failure.errMessage));
     }, (resetPasswordModel) {
+      Hive.box(kToken).put(kTokenRef, resetPasswordModel.token);
       emit(ResetPasswordSuccess(resetPasswordModel: resetPasswordModel));
     });
   }

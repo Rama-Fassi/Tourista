@@ -117,7 +117,8 @@ Future<dynamic> showSuccessDialog(BuildContext context) {
             Center(
               child: CustomButton(
                   onTap: () {
-                    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                    GoRouter.of(context).push(AppRouter.kHomeView);
                   },
                   text: LocaleKeys.ok.tr(),
                   width: MediaQuery.sizeOf(context).width * .2,

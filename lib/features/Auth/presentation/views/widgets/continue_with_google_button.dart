@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
@@ -41,7 +42,7 @@ class GoogleButton extends StatelessWidget {
               SvgPicture.asset(
                 Assets.imagesIconsGoogleLogo,
               ),
-              kSizedBox15w,
+              Gap(15),
               Text(
                 LocaleKeys.continue_with_google.tr(),
                 style: AppStyles.styleInterBold20(context)
