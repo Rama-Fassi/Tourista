@@ -12,7 +12,7 @@ class SignInCubit extends Cubit<SignInState> {
 
   final AuthRepo authRepo;
 
-  signIn({
+  Future<void> signIn({
     required String phone,
     required String password,
   }) async {

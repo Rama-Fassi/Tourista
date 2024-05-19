@@ -70,7 +70,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 if (state is SignInSuccess) {
                   isLoading = false;
 
-                  GoRouter.of(context).push(AppRouter.kHomeView);
+                  GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                 } else if (state is SignInFailure) {
                   isLoading = false;
 
@@ -99,8 +99,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             ),
             //CustomAuthButton(
             //  text: LocaleKeys.sign_in.tr(),
-           //   width: screenWidth * .80,
-          //  ),
+            //   width: screenWidth * .80,
+            //  ),
             Gap(screenheight * .07),
             const ORDivider(),
             Gap(screenheight * .02),

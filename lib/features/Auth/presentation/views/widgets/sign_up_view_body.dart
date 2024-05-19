@@ -86,7 +86,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 if (state is SignUpSuccess) {
                   isLoading = false;
 
-                  GoRouter.of(context).push(AppRouter.kForgetPassword);
+                  GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                 } else if (state is SignUpFailure) {
                   isLoading = false;
 

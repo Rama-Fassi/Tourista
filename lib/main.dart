@@ -22,7 +22,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = SimpleBlocObserver();
-  setUpServiceLocator();
+
   runApp(
     EasyLocalization(
       path: 'assets/translations',

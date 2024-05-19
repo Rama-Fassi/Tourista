@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
+import 'package:tourista/features/Auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/auth/data/repos/auth_repo_impl.dart';
-import 'package:tourista/features/auth/presentation/view_models/sign_in_cubit/sign_in_cubit.dart';
-import 'package:tourista/features/auth/presentation/view_models/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/forget_password/data/repos/forget_password_impl.dart';
 import 'package:tourista/features/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:tourista/features/forget_password/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
@@ -41,9 +41,7 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
           child: BlocProvider(
-            create: (context) => SignUpCubit(
-              getIt.get<AuthRepoImpl>(),
-            ),
+            create: (context) => SignUpCubit(getIt.get<AuthRepoImpl>()),
             child: const SignUPView(),
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -72,9 +70,7 @@ abstract class AppRouter {
       GoRoute(
         path: kSignIN,
         builder: (context, state) => BlocProvider(
-          create: (context) => SignInCubit(
-            getIt.get<AuthRepoImpl>(),
-          ),
+          create: (context) => SignInCubit(getIt.get<AuthRepoImpl>()),
           child: const SignInView(),
         ),
       ),
