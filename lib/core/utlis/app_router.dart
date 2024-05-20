@@ -17,7 +17,7 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
-import 'package:tourista/features/navigation_bar/navigation_bar_scaffold.dart';
+import 'package:tourista/core/widgets/navigation_bar_scaffold.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 

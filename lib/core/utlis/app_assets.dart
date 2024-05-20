@@ -37,6 +37,10 @@ class Assets {
   /// assets/images/icons/phone.svg
   static const String imagesIconsPhone = "assets/images/icons/phone.svg";
 
+  /// Assets for imagesIconsReadyTripIcon
+  /// assets/images/icons/readyTripIcon.svg
+  static const String imagesIconsReadyTripIcon = "assets/images/icons/readyTripIcon.svg";
+
   /// Assets for imagesIntro1
   /// assets/images/intro1.png
   static const String imagesIntro1 = "assets/images/intro1.png";
