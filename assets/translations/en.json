@@ -32,5 +32,10 @@
   "ResendPassword": "Resend Code",
   "congratulations": "Congratulations!",
   "passwordResetSuccessfuly": "Password Reset successful You’ll be redirected to the Home screen now",
-  "ok": "Ok"
+  "ok": "Ok",
+  "planYourTrip": "Plan Your Trip",
+  "selectYourLocation": "Select your location",
+  "enterDestination": "Enter destination",
+  "selectDates": "Select Dates",
+  "enterPersonNumber": "Enter person number"
 }

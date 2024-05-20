@@ -9,6 +9,10 @@ class Assets {
   /// assets/images/foreget_password.svg
   static const String imagesForegetPassword = "assets/images/foreget_password.svg";
 
+  /// Assets for imagesIconsEnterDestination
+  /// assets/images/icons/enterDestination.svg
+  static const String imagesIconsEnterDestination = "assets/images/icons/enterDestination.svg";
+
   /// Assets for imagesIconsFillLock
   /// assets/images/icons/fillLock.svg
   static const String imagesIconsFillLock = "assets/images/icons/fillLock.svg";
@@ -40,6 +44,14 @@ class Assets {
   /// Assets for imagesIconsReadyTripIcon
   /// assets/images/icons/readyTripIcon.svg
   static const String imagesIconsReadyTripIcon = "assets/images/icons/readyTripIcon.svg";
+
+  /// Assets for imagesIconsSelectDates
+  /// assets/images/icons/selectDates.svg
+  static const String imagesIconsSelectDates = "assets/images/icons/selectDates.svg";
+
+  /// Assets for imagesIconsSelectLocation
+  /// assets/images/icons/selectLocation.svg
+  static const String imagesIconsSelectLocation = "assets/images/icons/selectLocation.svg";
 
   /// Assets for imagesIntro1
   /// assets/images/intro1.png

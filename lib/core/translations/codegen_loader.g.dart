@@ -48,7 +48,12 @@ class CodegenLoader extends AssetLoader{
   "ResendPassword": "إعادة إرسال الكود",
   "congratulations": "تهانينا!",
   "passwordResetSuccessfuly": "تم تعديل كلمة المرور بنجاح سيتم الانتقال إلى الصفحة الرئيسية الآن",
-  "ok": "تم"
+  "ok": "تم",
+  "planYourTrip": "خطط لرحلتك",
+  "selectYourLocation": "حدد موقعك الحالي",
+  "enterDestination": "حدد وجهتك",
+  "selectDates": "حدد التاريخ",
+  "enterPersonNumber": "حدد عدد الأشخاص"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -84,7 +89,12 @@ static const Map<String,dynamic> en = {
   "ResendPassword": "Resend Code",
   "congratulations": "Congratulations!",
   "passwordResetSuccessfuly": "Password Reset successful You’ll be redirected to the Home screen now",
-  "ok": "Ok"
+  "ok": "Ok",
+  "planYourTrip": "Plan Your Trip",
+  "selectYourLocation": "Select your location",
+  "enterDestination": "Enter destination",
+  "selectDates": "Select Dates",
+  "enterPersonNumber": "Enter person number"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

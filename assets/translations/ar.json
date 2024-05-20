@@ -32,5 +32,10 @@
   "ResendPassword": "إعادة إرسال الكود",
   "congratulations": "تهانينا!",
   "passwordResetSuccessfuly": "تم تعديل كلمة المرور بنجاح سيتم الانتقال إلى الصفحة الرئيسية الآن",
-  "ok": "تم"
+  "ok": "تم",
+  "planYourTrip": "خطط لرحلتك",
+  "selectYourLocation": "حدد موقعك الحالي",
+  "enterDestination": "حدد وجهتك",
+  "selectDates": "حدد التاريخ",
+  "enterPersonNumber": "حدد عدد الأشخاص"
 }
