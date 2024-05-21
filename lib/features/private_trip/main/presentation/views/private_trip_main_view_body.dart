@@ -23,7 +23,7 @@ class PrivatTripMainViewBody extends StatefulWidget {
 class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
   DateTime? startDate;
   DateTime? endDate;
-  int selectedNumber = 1;
+  int selectedNumber = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +41,33 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
       TableRowWidget(
         onTap: () async {
           var results = await createCalendar(context);
-          checkOnDate(results, startDate, endDate);
+          if (results != null && results.isNotEmpty) {
+            startDate = results[0];
+            endDate = results[1];
+            setState(() {});
+          }
         },
-        text: LocaleKeys.selectDates.tr(),
+        text: (startDate == null && endDate == null)
+            ? LocaleKeys.selectDates.tr()
+            : "${startDate}".substring(0, 10) +
+                " _ ${endDate}".substring(0, 13),
         image: Assets.imagesIconsSelectDates,
       ),
       TableRowWidget(
         onTap: () {
           showPersonNumberBottomSheet(context);
         },
-        text: LocaleKeys.enterPersonNumber.tr(),
+        text: selectedNumber == 0
+            ? LocaleKeys.enterPersonNumber.tr()
+            : '${selectedNumber} Person',
       ),
       CustomButton(
         onTap: () {
           GoRouter.of(context).push(AppRouter.kPrivateTripTapBar);
           // Access the selected number here
           print('Selected number: $selectedNumber');
+          print("Selected start date: $startDate");
+          print("Selected end date: $endDate");
         },
         text: LocaleKeys.continueButton.tr(),
         width: MediaQuery.of(context).size.width,
@@ -81,22 +92,6 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         const Spacer(flex: 4),
       ],
     );
-  }
-
-  void checkOnDate(
-      List<DateTime?>? results, DateTime? startDate, DateTime? endDate) {
-    if (results != null && results.isNotEmpty) {
-      // Access the selected value from the results variable
-      startDate = results[0];
-      endDate = results[1];
-
-      // Do something with the selected dates
-      print("Selected start date: $startDate");
-      print("Selected end date: $endDate");
-    } else {
-      // Handle the case when no date is selected
-      print("No date selected");
-    }
   }
 
   Future<List<DateTime?>?> createCalendar(BuildContext context) {
@@ -130,6 +125,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
                     LocaleKeys.enterPersonNumber.tr(),
                     style: AppStyles.styleInterSemiBold18(context),
                   ),
+                  Spacer(),
                   SelectNumberWidget(
                     onNumberChanged: (int number) {
                       setState(() {
