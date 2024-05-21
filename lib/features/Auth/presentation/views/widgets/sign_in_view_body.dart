@@ -93,7 +93,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   return isLoading == true
                       ? const SpinKitThreeBounce(
                           color: kGreenColor,
-                          size: 40,
+                          size: 30,
                         )
                       : CustomAuthButton(
                           text: LocaleKeys.sign_in.tr(),

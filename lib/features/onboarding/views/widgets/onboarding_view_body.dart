@@ -80,7 +80,7 @@ class _OnbaordingViewBodyState extends State<OnbaordingViewBody> {
                   )
                 : GestureDetector(
                     onTap: () {
-                      GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
+                      GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
                       Hive.box(kOnboarding).put('bool', true);
                     },
                     child: Center(

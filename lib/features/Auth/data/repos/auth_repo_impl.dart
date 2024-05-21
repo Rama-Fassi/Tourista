@@ -87,8 +87,8 @@ class AuthRepoImpl implements AuthRepo {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) {
     } else {
-      String name = googleUser.displayName ?? "";
-      String email = googleUser.email ?? "";
+      String? name = googleUser.displayName;
+      String? email = googleUser.email;
       print(name);
       print(email);
     }
@@ -106,5 +106,11 @@ class AuthRepoImpl implements AuthRepo {
     print(accessToken);
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+  
+  @override
+  Future sentSignInWithGoogleInfo({String? userName, String? email, String? accessToken, String? idToken, String? userId}) {
+    // TODO: implement sentSignInWithGoogleInfo
+    throw UnimplementedError();
   }
 }

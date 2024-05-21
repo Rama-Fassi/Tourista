@@ -24,4 +24,14 @@ abstract class AuthRepo {
   });
 
   Future<UserCredential> signInWithGoogle();
+
+
+    Future sentSignInWithGoogleInfo ({
+       String? userName,
+       String? email,
+      String? accessToken,
+      String? idToken,
+      String? userId,
+    });
+
 }
