@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tourista/core/utlis/functions/verify_app_bar.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/verify_sign_up_body.dart';
 
-class VerifySignUpCode extends StatelessWidget {
-  const VerifySignUpCode({super.key});
-
-  @override
+class VerifySignUpView extends StatelessWidget {
+  const VerifySignUpView({super.key, required this.signUpInfo});
+   final Map<String, dynamic> signUpInfo;
+   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
-        body: VerifySignUpBody(),
+        resizeToAvoidBottomInset: false,
+        appBar: verifyAppBar(context, appBarText: 'Confirm Code'),
+        body:  VerifySignUpBody(userid: signUpInfo['userId'], userName: signUpInfo['userName'], phoneNumber: signUpInfo['phoneNumber'], password: signUpInfo['password'], confirmPassword: signUpInfo['confirmPassword'],
+        ),
       ),
     );
   }

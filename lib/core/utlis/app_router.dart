@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/features/Auth/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
+import 'package:tourista/features/Auth/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
@@ -29,6 +31,7 @@ abstract class AppRouter {
   static const kOnboarduingView = '/onboardingView';
   static const kVerifyView = '/verifyView';
   static const kResetPassword = '/resetPassword';
+  static const kVerifySignUpView = '/verifySignUpView';
 
   static final router = GoRouter(
     routes: [
@@ -106,6 +109,16 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kVerifySignUpView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              VerifySignUpCubit(getIt.get<AuthRepoImpl>()),
+          child: VerifySignUpView(
+            signUpInfo: state.extra as Map<String, dynamic>,
+          ),
+        ),
       ),
     ],
   );

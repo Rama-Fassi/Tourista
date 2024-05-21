@@ -7,15 +7,17 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
+import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/confirm_password_text_field.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/custom_auth_button.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/earth_logo_with_text.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/password_text_field.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/taxt_with_text_button.dart';
 import 'package:tourista/features/Auth/presentation/views/widgets/user_name_text_field.dart';
-import 'package:tourista/features/auth/presentation/manager/google_sign_in_cubit/google_sign_in_cubit.dart';
+import 'package:tourista/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/auth/presentation/views/widgets/continue_with_google_button.dart';
 import 'package:tourista/features/auth/presentation/views/widgets/or_divider.dart';
@@ -42,6 +44,8 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   String password = '';
 
   String confirmPassword = '';
+  bool showPass = true;
+  bool confShowPass = true;
 
   @override
   void initState() {
@@ -68,17 +72,27 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             UserNameTextField(
               textEditingController: userNameController,
             ),
-            Gap(screenheight * 0.03),
+            Gap(screenheight * 0.02),
             PhoneNumberTextField(
               controller: phoneNumberController,
             ),
-            Gap(screenheight * 0.03),
+            Gap(screenheight * 0.02),
             PasswordTextField(
+              showPass: showPass,
+              onTap: () {
+                showPass = !showPass;
+                setState(() {});
+              },
               controller: passwordController,
             ),
-            Gap(screenheight * 0.03),
+            Gap(screenheight * 0.02),
             ConfirmPasswordTextField(
               controller: confirmPasswordController,
+              showPass: confShowPass,
+              onTap: () {
+                confShowPass = !confShowPass;
+                setState(() {});
+              },
             ),
             Gap(screenheight * .04),
             BlocConsumer<SignUpCubit, SignUpState>(
@@ -86,7 +100,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 if (state is SignUpSuccess) {
                   isLoading = false;
 
-                  GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                  GoRouter.of(context)
+                      .pushReplacement(AppRouter.kVerifySignUpView, extra: {
+                    'userId': state.registerModel.userId,
+                    'userName': name,
+                    'phoneNumber': phoneNumber,
+                    'password': password,
+                    'confirmPassword': confirmPassword,
+                  });
                 } else if (state is SignUpFailure) {
                   isLoading = false;
 
@@ -97,9 +118,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               },
               builder: (context, state) {
                 return isLoading == true
-                    ? const SpinKitPouringHourGlassRefined(
+                    ? const SpinKitThreeBounce(
                         color: kGreenColor,
-                        size: 60,
+                        size: 40,
                       )
                     : CustomAuthButton(
                         text: LocaleKeys.sign_up.tr(),
@@ -119,7 +140,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             Gap(screenheight * .02),
             GoogleButton(
               onTap: () {
-                GoogleSignInCubit().signInWithGoogle();
+                AuthRepoImpl(getIt.get<ApiServer>()).signInWithGoogle();
               },
             ),
             Gap(screenheight * .02),

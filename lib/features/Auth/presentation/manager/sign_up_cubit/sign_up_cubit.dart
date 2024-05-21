@@ -10,7 +10,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   final AuthRepo authRepo;
 
-   signUp({
+Future<void>   signUp({
     required String name,
     required String phone,
     required String password,
@@ -21,6 +21,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     result.fold((failure) {
       emit(SignUpFailure(failure.errMessage));
     }, (registerModel) {
+      
       emit(SignUpSuccess(registerModel: registerModel));
     });
   }

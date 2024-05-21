@@ -4,17 +4,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/widgets/custom_text_form_field.dart';
+import 'package:tourista/features/Auth/presentation/views/widgets/show_pass_button.dart';
 
 import '../../../../../constants.dart';
 
 class ConfirmPasswordTextField extends StatelessWidget {
-  const ConfirmPasswordTextField({
-    super.key, required this.controller,
+    ConfirmPasswordTextField({
+    super.key, required this.controller, this.onTap, required this.showPass
   });
   final TextEditingController controller;
+    bool showPass = false;
+  final Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      showPass: showPass,
+      suffix: ShowPasswordButton(onTap: onTap, showPass: showPass),
       controller: controller,
       color: kPrimaryColor,
       icon: Padding(
@@ -25,3 +30,5 @@ class ConfirmPasswordTextField extends StatelessWidget {
     );
   }
 }
+
+

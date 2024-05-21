@@ -7,7 +7,7 @@ import 'package:tourista/core/utlis/styles.dart';
 class VeriificationCodeTextField extends StatelessWidget {
   const VeriificationCodeTextField({
     super.key,
-    required this.controller,
+     required this.controller,
     required this.screenWidth,
   });
 
