@@ -24,18 +24,36 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
   DateTime? startDate;
   DateTime? endDate;
   int selectedNumber = 0;
+  dynamic selectedcity;
+  dynamic enterCity;
 
   @override
   Widget build(BuildContext context) {
     List<Widget> tableList = [
       TableRowWidget(
-        onTap: () {},
-        text: LocaleKeys.selectYourLocation.tr(),
+        onTap: () async {
+          var result =
+              await GoRouter.of(context).push(AppRouter.kSelectLocationView);
+          setState(() {
+            selectedcity = result;
+          });
+        },
+        text: selectedcity == null
+            ? LocaleKeys.selectYourLocation.tr()
+            : "${selectedcity['city']}",
         image: Assets.imagesIconsSelectLocation,
       ),
       TableRowWidget(
-        onTap: () {},
-        text: LocaleKeys.enterDestination.tr(),
+        onTap: () async {
+          var result =
+              await GoRouter.of(context).push(AppRouter.kEnterDestinationView);
+          setState(() {
+            enterCity = result;
+          });
+        },
+        text: enterCity == null
+            ? LocaleKeys.enterDestination.tr()
+            : "${enterCity['city']}",
         image: Assets.imagesIconsEnterDestination,
       ),
       TableRowWidget(
