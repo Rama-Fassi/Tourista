@@ -148,7 +148,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 data: LocaleKeys.already_have_an_account.tr(),
                 textButtondata: LocaleKeys.sign_in.tr(),
                 onPressed: () {
-                  GoRouter.of(context).push(AppRouter.kSignIN);
+                  GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
                 }),
           ],
         ),

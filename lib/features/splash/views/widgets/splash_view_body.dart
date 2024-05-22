@@ -53,12 +53,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-  //  GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
+        //  GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
         Hive.box(kOnboarding).get('bool') == null || false
-           ? GoRouter.of(context).pushReplacement(AppRouter.kOnboarduingView)
-         : Hive.box(kToken).get(kTokenRef) == null
-           ? GoRouter.of(context).pushReplacement(AppRouter.kSignIN)
-           : GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+            ? GoRouter.of(context).pushReplacement(AppRouter.kOnboarduingView)
+            : Hive.box(kToken).get(kTokenRef) == null
+                ? GoRouter.of(context).pushReplacement(AppRouter.kSignIN)
+                : GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
         context.setLocale(const Locale('en'));
 
         // Get.to(() => const HomeView(),

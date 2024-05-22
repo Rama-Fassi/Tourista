@@ -10,6 +10,7 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/auth/forget_password/presentation/manager/reset_password_cubit/reset_password_cubit.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/widgets/create_a_new_password.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/widgets/reset_succefully_widget.dart';
@@ -56,19 +57,21 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
             isLoading = checkStates(state, isLoading, context);
           },
           builder: (context, state) {
-            return VerifyRangeAndButton(
-                onTap: () {
-                  BlocProvider.of<ResetPasswordCubit>(context)
-                      .resetPasswordCubitFun(
-                          password: password,
-                          confirmPassword: confirmPassword,
-                          userId: widget.userId);
-                },
-                screenheight: screenheight,
-                screenWidth: screenWidth,
-                numberOfSteps: "2 of 2",
-                start: 0,
-                end: 1);
+            return isLoading == true
+                ? LoadingWidget()
+                : VerifyRangeAndButton(
+                    onTap: () {
+                      BlocProvider.of<ResetPasswordCubit>(context)
+                          .resetPasswordCubitFun(
+                              password: password,
+                              confirmPassword: confirmPassword,
+                              userId: widget.userId);
+                    },
+                    screenheight: screenheight,
+                    screenWidth: screenWidth,
+                    numberOfSteps: "2 of 2",
+                    start: 0,
+                    end: 1);
           },
         ),
         const Spacer()
