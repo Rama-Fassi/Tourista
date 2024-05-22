@@ -10,7 +10,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   final AuthRepo authRepo;
 
-  signUp({
+  Future<void> signUp({
     required String name,
     required String phone,
     required String password,

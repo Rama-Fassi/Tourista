@@ -10,7 +10,8 @@ class CustomTextFormField extends StatelessWidget {
       this.onChanged,
       this.showPass = false,
       required this.color,
-      required this.controller});
+      required this.controller,
+      this.suffix});
   final Widget icon;
   final String hintText;
   final Function(String)? onChanged;
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color color;
   final TextEditingController controller;
   final bool showPass;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
             borderSide: BorderSide(color: color, width: 2)),
         focusColor: color,
         prefixIcon: icon,
+        suffix: suffix,
         hintText: hintText,
         hintStyle: AppStyles.styleSourceRegular20(context).copyWith(
           color: Colors.black.withOpacity(0.54),

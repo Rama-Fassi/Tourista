@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/register_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/sign_in_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/verify_sign_up_model.dart';
-
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -61,7 +62,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, VerifySignUpModel>> verifySignUp(
-      {required String userId, required String code}) async {
+      {required int userId, required String code}) async {
     try {
       var verifySignUpData =
           await apiService.post(endPoint: 'verifyCode', body: {
@@ -79,5 +80,42 @@ class AuthRepoImpl implements AuthRepo {
       }
       return left(ServerFailure(e.toString()));
     }
+  }
+
+  @override
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser == null) {
+    } else {
+      String? name = googleUser.displayName;
+      String? email = googleUser.email;
+      print(name);
+      print(email);
+    }
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    String? accessToken = googleAuth?.accessToken;
+    print(accessToken);
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  @override
+  Future sentSignInWithGoogleInfo(
+      {String? userName,
+      String? email,
+      String? accessToken,
+      String? idToken,
+      String? userId}) {
+    // TODO: implement sentSignInWithGoogleInfo
+    throw UnimplementedError();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/register_model.dart';
@@ -18,7 +19,17 @@ abstract class AuthRepo {
   });
 
   Future<Either<Failure, VerifySignUpModel>> verifySignUp({
-    required String userId,
+    required int userId,
     required String code,
+  });
+
+  Future<UserCredential> signInWithGoogle();
+
+  Future sentSignInWithGoogleInfo({
+    String? userName,
+    String? email,
+    String? accessToken,
+    String? idToken,
+    String? userId,
   });
 }
