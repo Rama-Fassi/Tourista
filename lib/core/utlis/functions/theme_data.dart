@@ -6,8 +6,8 @@ ThemeData themeData() {
       colorScheme: const ColorScheme(
     brightness: Brightness.light,
     primary: kPrimaryColor,
-    onPrimary: kPrimaryColor,
-    secondary: Colors.black,
+    onPrimary: Colors.white,
+    secondary: Color(0xffADD2C1),
     onSecondary: Colors.black,
     error: Colors.black,
     onError: Colors.black,

@@ -19,6 +19,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/reset_
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/home/presentation/views/home_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TapBar.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -29,6 +30,7 @@ abstract class AppRouter {
   static const kOnboarduingView = '/onboardingView';
   static const kVerifyView = '/verifyView';
   static const kResetPassword = '/resetPassword';
+  static const kPrivateTripTapBar = '/privateTreipTopB';
 
   static final router = GoRouter(
     routes: [
@@ -105,7 +107,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const NavigationBArScaffold(),
+      ),
+      GoRoute(
+        path: kPrivateTripTapBar,
+        builder: (context, state) => const PrivateTripTapBar(),
       ),
     ],
   );
