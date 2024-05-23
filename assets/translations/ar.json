@@ -44,5 +44,10 @@
   "whereFrom": "من أين؟",
   "whereTo": "إلى أين؟",
   "cabinClass": "فئة التذكرة",
-  "search": "ابحث"
+  "search": "ابحث",
+  "Hide": "إخفاء",
+  "Flights": "رحلات الجوية",
+  "Stays": "أماكن الإقامة",
+  "Activities": "النشاطات",
+  "The_plan": "الخطة النهائية"
 }

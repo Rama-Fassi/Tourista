@@ -44,5 +44,10 @@
   "whereFrom": "Where from?",
   "whereTo": "Where to?",
   "cabinClass": "Cabin class",
-  "search": "Search"
+  "search": "Search",
+  "Hide": "Hide",
+  "Flights": "Flights",
+  "Stays": "Stays",
+  "Activities": "Activites",
+  "The_plan": "The Plan"
 }
