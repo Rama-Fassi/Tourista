@@ -5,6 +5,6 @@ class AttractionsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('attraction'));
+    return const Center(child: Text('attraction'));
   }
 }

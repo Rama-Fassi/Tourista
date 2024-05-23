@@ -9,6 +9,10 @@ class Assets {
   /// assets/images/foreget_password.svg
   static const String imagesForegetPassword = "assets/images/foreget_password.svg";
 
+  /// Assets for imagesIconsActivities
+  /// assets/images/icons/activities.svg
+  static const String imagesIconsActivities = "assets/images/icons/activities.svg";
+
   /// Assets for imagesIconsEnterDestination
   /// assets/images/icons/enterDestination.svg
   static const String imagesIconsEnterDestination = "assets/images/icons/enterDestination.svg";
@@ -20,6 +24,10 @@ class Assets {
   /// Assets for imagesIconsFillLockBlack
   /// assets/images/icons/fillLockBlack.svg
   static const String imagesIconsFillLockBlack = "assets/images/icons/fillLockBlack.svg";
+
+  /// Assets for imagesIconsFlights
+  /// assets/images/icons/flights.svg
+  static const String imagesIconsFlights = "assets/images/icons/flights.svg";
 
   /// Assets for imagesIconsGoogleLogo
   /// assets/images/icons/GoogleLogo.svg
@@ -52,6 +60,14 @@ class Assets {
   /// Assets for imagesIconsSelectLocation
   /// assets/images/icons/selectLocation.svg
   static const String imagesIconsSelectLocation = "assets/images/icons/selectLocation.svg";
+
+  /// Assets for imagesIconsStays
+  /// assets/images/icons/stays.svg
+  static const String imagesIconsStays = "assets/images/icons/stays.svg";
+
+  /// Assets for imagesIconsThePlan
+  /// assets/images/icons/thePlan.svg
+  static const String imagesIconsThePlan = "assets/images/icons/thePlan.svg";
 
   /// Assets for imagesIntro1
   /// assets/images/intro1.png
