@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/private_trip/flights/presentation/views/flights_view.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 
 class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key});
@@ -85,7 +85,7 @@ class PrivateTripTapBar extends StatelessWidget {
                 ),
               ),
               body: const TabBarView(children: [
-                FligtsView(),
+                FligtsViewBody(),
                 Icon(Icons.home),
                 Icon(Icons.local_activity),
                 Icon(Icons.start),
