@@ -21,7 +21,7 @@ class EartLogoWithText extends StatelessWidget {
           width: 85,
           height: 105,
         ),
-        Gap(30),
+        const Gap(30),
         Text(
           data,
           style: AppStyles.styleInterBold25(context)

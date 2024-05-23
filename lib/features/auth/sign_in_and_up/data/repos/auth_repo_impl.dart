@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
@@ -89,8 +90,12 @@ class AuthRepoImpl implements AuthRepo {
     } else {
       String? name = googleUser.displayName;
       String? email = googleUser.email;
-      print(name);
-      print(email);
+
+      if (kDebugMode) {
+        print(name);
+              print(email);
+
+      }
     }
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
@@ -103,7 +108,9 @@ class AuthRepoImpl implements AuthRepo {
     );
 
     String? accessToken = googleAuth?.accessToken;
-    print(accessToken);
+    if (kDebugMode) {
+      print(accessToken);
+    }
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -115,7 +122,6 @@ class AuthRepoImpl implements AuthRepo {
       String? accessToken,
       String? idToken,
       String? userId}) {
-    // TODO: implement sentSignInWithGoogleInfo
     throw UnimplementedError();
   }
 }

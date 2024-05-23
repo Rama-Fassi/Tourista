@@ -41,7 +41,7 @@ class GoogleButton extends StatelessWidget {
               SvgPicture.asset(
                 Assets.imagesIconsGoogleLogo,
               ),
-              Gap(15),
+              const Gap(15),
               Text(
                 LocaleKeys.continue_with_google.tr(),
                 style: AppStyles.styleInterBold20(context)
