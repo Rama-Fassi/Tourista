@@ -42,5 +42,10 @@ abstract class  LocaleKeys {
   static const enterDestination = 'enterDestination';
   static const selectDates = 'selectDates';
   static const enterPersonNumber = 'enterPersonNumber';
+  static const Hide = 'Hide';
+  static const Flights = 'Flights';
+  static const Stays = 'Stays';
+  static const Activities = 'Activities';
+  static const The_plan = 'The_plan';
 
 }

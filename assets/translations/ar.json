@@ -37,5 +37,10 @@
   "selectYourLocation": "حدد موقعك الحالي",
   "enterDestination": "حدد وجهتك",
   "selectDates": "حدد التاريخ",
-  "enterPersonNumber": "حدد عدد الأشخاص"
+  "enterPersonNumber": "حدد عدد الأشخاص",
+  "Hide": "إخفاء",
+  "Flights": "رحلات الجوية",
+  "Stays": "أماكن الإقامة",
+  "Activities": "النشاطات",
+  "The_plan": "الخطة النهائية"
 }

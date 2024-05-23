@@ -37,5 +37,10 @@
   "selectYourLocation": "Select your location",
   "enterDestination": "Enter destination",
   "selectDates": "Select Dates",
-  "enterPersonNumber": "Enter person number"
+  "enterPersonNumber": "Enter person number",
+  "Hide": "Hide",
+  "Flights": "Flights",
+  "Stays": "Stays",
+  "Activities": "Activites",
+  "The_plan": "The Plan"
 }
