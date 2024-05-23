@@ -74,7 +74,7 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
           activeIndex = index;
         });
       },
-      inactiveColor: kPrimaryColor.withOpacity(.5),
+      inactiveColor: kPrimaryColor.withOpacity(.4),
       activeColor: kPrimaryColor,
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.softEdge,

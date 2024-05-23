@@ -53,7 +53,14 @@ class CodegenLoader extends AssetLoader{
   "selectYourLocation": "حدد موقعك الحالي",
   "enterDestination": "حدد وجهتك",
   "selectDates": "حدد التاريخ",
-  "enterPersonNumber": "حدد عدد الأشخاص"
+  "enterPersonNumber": "حدد عدد الأشخاص",
+  "person": "أشخاص",
+  "roundTrip": "ذهاب و إياب",
+  "oneWay": "باتجاه واحد",
+  "whereFrom": "من أين؟",
+  "whereTo": "إلى أين؟",
+  "cabinClass": "فئة التذكرة",
+  "search": "ابحث"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -94,7 +101,14 @@ static const Map<String,dynamic> en = {
   "selectYourLocation": "Select your location",
   "enterDestination": "Enter destination",
   "selectDates": "Select Dates",
-  "enterPersonNumber": "Enter person number"
+  "enterPersonNumber": "Enter person number",
+  "person": "person",
+  "roundTrip": "Round Trip",
+  "oneWay": "One Way",
+  "whereFrom": "Where from?",
+  "whereTo": "Where to?",
+  "cabinClass": "Cabin class",
+  "search": "Search"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

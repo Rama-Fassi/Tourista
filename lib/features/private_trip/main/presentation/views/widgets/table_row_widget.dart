@@ -5,9 +5,14 @@ import 'package:tourista/core/utlis/styles.dart';
 
 class TableRowWidget extends StatelessWidget {
   const TableRowWidget(
-      {super.key, required this.text, this.image, required this.onTap});
+      {super.key,
+      required this.text,
+      this.image,
+      required this.onTap,
+      required this.padding});
   final String text;
   final String? image;
+  final double padding;
   final void Function() onTap;
 
   @override
@@ -15,7 +20,7 @@ class TableRowWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(18),
+        padding: EdgeInsets.all(padding),
         child: Row(
           children: [
             image == null

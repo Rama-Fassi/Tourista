@@ -13,6 +13,14 @@ class Assets {
   /// assets/images/icons/activities.svg
   static const String imagesIconsActivities = "assets/images/icons/activities.svg";
 
+  /// Assets for imagesIconsAirport
+  /// assets/images/icons/airport.svg
+  static const String imagesIconsAirport = "assets/images/icons/airport.svg";
+
+  /// Assets for imagesIconsCabinClass
+  /// assets/images/icons/cabinClass.svg
+  static const String imagesIconsCabinClass = "assets/images/icons/cabinClass.svg";
+
   /// Assets for imagesIconsEnterDestination
   /// assets/images/icons/enterDestination.svg
   static const String imagesIconsEnterDestination = "assets/images/icons/enterDestination.svg";
@@ -68,6 +76,14 @@ class Assets {
   /// Assets for imagesIconsThePlan
   /// assets/images/icons/thePlan.svg
   static const String imagesIconsThePlan = "assets/images/icons/thePlan.svg";
+
+  /// Assets for imagesIconsWhereFrom
+  /// assets/images/icons/where_from.svg
+  static const String imagesIconsWhereFrom = "assets/images/icons/where_from.svg";
+
+  /// Assets for imagesIconsWhereTo
+  /// assets/images/icons/where_to.svg
+  static const String imagesIconsWhereTo = "assets/images/icons/where_to.svg";
 
   /// Assets for imagesIntro1
   /// assets/images/intro1.png

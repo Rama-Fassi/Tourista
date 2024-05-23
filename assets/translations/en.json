@@ -37,5 +37,12 @@
   "selectYourLocation": "Select your location",
   "enterDestination": "Enter destination",
   "selectDates": "Select Dates",
-  "enterPersonNumber": "Enter person number"
+  "enterPersonNumber": "Enter person number",
+  "person": "person",
+  "roundTrip": "Round Trip",
+  "oneWay": "One Way",
+  "whereFrom": "Where from?",
+  "whereTo": "Where to?",
+  "cabinClass": "Cabin class",
+  "search": "Search"
 }

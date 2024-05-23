@@ -9,7 +9,7 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan_table.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/select_number_widget.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
@@ -31,6 +31,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
   Widget build(BuildContext context) {
     List<Widget> tableList = [
       TableRowWidget(
+        padding: 18,
         onTap: () async {
           var result =
               await GoRouter.of(context).push(AppRouter.kSelectLocationView);
@@ -44,6 +45,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         image: Assets.imagesIconsSelectLocation,
       ),
       TableRowWidget(
+        padding: 18,
         onTap: () async {
           var result =
               await GoRouter.of(context).push(AppRouter.kEnterDestinationView);
@@ -57,6 +59,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         image: Assets.imagesIconsEnterDestination,
       ),
       TableRowWidget(
+        padding: 18,
         onTap: () async {
           var results = await createCalendar(context);
           if (results != null && results.isNotEmpty) {
@@ -72,6 +75,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         image: Assets.imagesIconsSelectDates,
       ),
       TableRowWidget(
+        padding: 18,
         onTap: () {
           showPersonNumberBottomSheet(context);
         },
@@ -105,7 +109,10 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         const Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: PlanTable(tableList: tableList),
+          child: PlanAndPlaneTable(
+            tableList: tableList,
+            rowNumber: 5,
+          ),
         ),
         const Spacer(flex: 4),
       ],

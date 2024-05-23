@@ -37,5 +37,12 @@
   "selectYourLocation": "حدد موقعك الحالي",
   "enterDestination": "حدد وجهتك",
   "selectDates": "حدد التاريخ",
-  "enterPersonNumber": "حدد عدد الأشخاص"
+  "enterPersonNumber": "حدد عدد الأشخاص",
+  "person": "أشخاص",
+  "roundTrip": "ذهاب و إياب",
+  "oneWay": "باتجاه واحد",
+  "whereFrom": "من أين؟",
+  "whereTo": "إلى أين؟",
+  "cabinClass": "فئة التذكرة",
+  "search": "ابحث"
 }
