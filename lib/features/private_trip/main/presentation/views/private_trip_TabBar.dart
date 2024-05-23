@@ -5,14 +5,9 @@ import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view.dart';
 
-class PrivateTripTapBar extends StatefulWidget {
+class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key});
 
-  @override
-  State<PrivateTripTapBar> createState() => _PrivateTripTapBarState();
-}
-
-class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
