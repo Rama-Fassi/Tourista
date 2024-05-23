@@ -22,7 +22,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/verify
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TapBar.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
