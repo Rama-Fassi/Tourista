@@ -1,9 +1,9 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const create_an_account = 'create_an_account';
   static const user_name = 'user_name';
-  static const phone_number = 'phone_number ';
+  static const phone_number  = 'phone_number ';
   static const password = 'password';
   static const confirm_password = 'confirm_password';
   static const sign_up = 'sign_up';
@@ -17,12 +17,9 @@ abstract class LocaleKeys {
   static const dont_have_an_account = 'dont_have_an_account';
   static const Skip = 'Skip';
   static const Next = 'Next';
-  static const welcome_to_Tourista_where_you_can_explore_the_world =
-      'welcome_to_Tourista_where_you_can_explore_the_world';
-  static const join_to_our_special_trips_for_your_favorite_places_in_the_world =
-      'join_to_our_special_trips_for_your_favorite_places_in_the_world';
-  static const Plan_your_trip_from_A_to_z_with_us =
-      'Plan_your_trip_from_A_to_z_with_us';
+  static const welcome_to_Tourista_where_you_can_explore_the_world = 'welcome_to_Tourista_where_you_can_explore_the_world';
+  static const join_to_our_special_trips_for_your_favorite_places_in_the_world = 'join_to_our_special_trips_for_your_favorite_places_in_the_world';
+  static const Plan_your_trip_from_A_to_z_with_us = 'Plan_your_trip_from_A_to_z_with_us';
   static const Get_Started = 'Get_Started';
   static const forgetPassword = 'forgetPassword';
   static const enter_your_mobile_number = 'enter_your_mobile_number';
@@ -55,4 +52,18 @@ abstract class LocaleKeys {
   static const Stays = 'Stays';
   static const Activities = 'Activities';
   static const The_plan = 'The_plan';
+  static const cancel = 'cancel';
+  static const economy = 'economy';
+  static const premiumEconomy = 'premiumEconomy';
+  static const business = 'business';
+  static const firstClass = 'firstClass';
+  static const flightsFound = 'flightsFound';
+  static const priceMyChange = 'priceMyChange';
+  static const best = 'best';
+  static const fastest = 'fastest';
+  static const direct = 'direct';
+  static const included = 'included';
+  static const forAllTravellers = 'forAllTravellers';
+  static const Add_To_The_plan = 'Add_To_The_plan';
+
 }

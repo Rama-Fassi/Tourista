@@ -49,5 +49,18 @@
   "Flights": "Flights",
   "Stays": "Stays",
   "Activities": "Activites",
-  "The_plan": "The Plan"
+  "The_plan": "The Plan",
+  "cancel": "Cancel",
+  "economy": "Economy",
+  "premiumEconomy": "Premium economy",
+  "business": "Business",
+  "firstClass": "First class",
+  "flightsFound": "flights found",
+  "priceMyChange": "Price may change if there are additional baggage fees",
+  "best": "Best",
+  "fastest": "Fastest",
+  "direct": "Direct",
+  "included": "Included: personal item, cabin bag, checked bag",
+  "forAllTravellers": "for all travellers",
+  "Add_To_The_plan": "Add To The Plan"
 }

@@ -26,7 +26,7 @@ class _FlightsWayState extends State<FlightsWay> {
               LocaleKeys.roundTrip.tr(),
               style: AppStyles.styleInterSemiBold18(context),
             ),
-            value: LocaleKeys.roundTrip.tr(),
+            value: 'RoundTrip',
             groupValue: flightWay,
             onChanged: (value) {
               setState(() {
@@ -42,7 +42,7 @@ class _FlightsWayState extends State<FlightsWay> {
               LocaleKeys.oneWay.tr(),
               style: AppStyles.styleInterSemiBold18(context),
             ),
-            value: LocaleKeys.oneWay.tr(),
+            value: 'OneWay',
             groupValue: flightWay,
             onChanged: (value) {
               setState(() {

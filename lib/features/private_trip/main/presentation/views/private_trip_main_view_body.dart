@@ -9,8 +9,8 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/widgets/person_number_bottom_sheet.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/widgets/select_number_widget.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
 class PrivatTripMainViewBody extends StatefulWidget {
@@ -81,7 +81,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         },
         text: selectedNumber == 0
             ? LocaleKeys.enterPersonNumber.tr()
-            : '${selectedNumber} Person',
+            : '$selectedNumber ${LocaleKeys.person.tr()}',
       ),
       CustomButton(
         onTap: () {
@@ -136,32 +136,12 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return FractionallySizedBox(
-          widthFactor: 1.0,
-          heightFactor: 0.2,
-          child: Container(
-            padding: EdgeInsets.all(16),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.enterPersonNumber.tr(),
-                    style: AppStyles.styleInterSemiBold18(context),
-                  ),
-                  Spacer(),
-                  SelectNumberWidget(
-                    onNumberChanged: (int number) {
-                      setState(() {
-                        selectedNumber = number;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+        return PersonNumberBottomSheet(
+          onNumberChanged: (int number) {
+            setState(() {
+              selectedNumber = number;
+            });
+          },
         );
       },
     );

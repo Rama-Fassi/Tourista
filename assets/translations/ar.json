@@ -49,5 +49,18 @@
   "Flights": "رحلات الجوية",
   "Stays": "أماكن الإقامة",
   "Activities": "النشاطات",
-  "The_plan": "الخطة النهائية"
+  "The_plan": "الخطة النهائية",
+  "cancel": "الغاء",
+  "economy": "اقتصادية",
+  "premiumEconomy": "رفيعة المستوى",
+  "business": "درجة رجال الأعمال",
+  "firstClass": "الدرجة الأولى",
+  "flightsFound": "تذكرة ",
+  "priceMyChange": "السعر ممكن أن يتغير في حال وجود أمتعة إضافية",
+  "best": "الأفضل",
+  "fastest": "الأسرع",
+  "direct": "مباشرة",
+  "included": "متضمنة: الأمتعة الشخصية ,حقيبة الشحن",
+  "forAllTravellers": "لكل المسافرين",
+  "Add_To_The_plan": "إضافة الى الخطة"
 }

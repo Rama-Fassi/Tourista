@@ -1,12 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class CabinCalssRadioListTile extends StatefulWidget {
   const CabinCalssRadioListTile({
     super.key,
     required this.onCabinChanged,
+    required this.onValueChanged,
   });
   final ValueChanged<String> onCabinChanged;
+  final ValueChanged<String> onValueChanged;
   @override
   State<CabinCalssRadioListTile> createState() =>
       _CabinCalssRadioListTileState();
@@ -14,13 +18,20 @@ class CabinCalssRadioListTile extends StatefulWidget {
 
 class _CabinCalssRadioListTileState extends State<CabinCalssRadioListTile> {
   String? cabinClass;
+
   @override
   Widget build(BuildContext context) {
     List<String> cabinClassNamelist = [
+      LocaleKeys.economy.tr(),
+      LocaleKeys.premiumEconomy.tr(),
+      LocaleKeys.business.tr(),
+      LocaleKeys.firstClass.tr()
+    ];
+    List<String> valueList = [
       'Economy',
-      'Premium economy',
+      'PremiumEconomy',
       'Business',
-      'First class'
+      'FirstClass'
     ];
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,12 +43,13 @@ class _CabinCalssRadioListTileState extends State<CabinCalssRadioListTile> {
               style:
                   AppStyles.styleInterMedium18(context).copyWith(fontSize: 16),
             ),
-            value: cabinClassNamelist[index],
+            value: valueList[index],
             groupValue: cabinClass,
             onChanged: (value) {
               setState(() {
                 cabinClass = value;
-                widget.onCabinChanged(cabinClass!);
+                widget.onCabinChanged(cabinClassNamelist[index]);
+                widget.onValueChanged(cabinClass!);
               });
             },
           );

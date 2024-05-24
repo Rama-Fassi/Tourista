@@ -17,6 +17,10 @@ class Assets {
   /// assets/images/icons/airport.svg
   static const String imagesIconsAirport = "assets/images/icons/airport.svg";
 
+  /// Assets for imagesIconsArrowRightLeft
+  /// assets/images/icons/arrow_right_left.svg
+  static const String imagesIconsArrowRightLeft = "assets/images/icons/arrow_right_left.svg";
+
   /// Assets for imagesIconsCabinClass
   /// assets/images/icons/cabinClass.svg
   static const String imagesIconsCabinClass = "assets/images/icons/cabinClass.svg";
@@ -44,6 +48,18 @@ class Assets {
   /// Assets for imagesIconsLockBlack
   /// assets/images/icons/lockBlack.svg
   static const String imagesIconsLockBlack = "assets/images/icons/lockBlack.svg";
+
+  /// Assets for imagesIconsLuggage1
+  /// assets/images/icons/luggage1.svg
+  static const String imagesIconsLuggage1 = "assets/images/icons/luggage1.svg";
+
+  /// Assets for imagesIconsLuggage2
+  /// assets/images/icons/luggage2.svg
+  static const String imagesIconsLuggage2 = "assets/images/icons/luggage2.svg";
+
+  /// Assets for imagesIconsLuggage3
+  /// assets/images/icons/luggage3.svg
+  static const String imagesIconsLuggage3 = "assets/images/icons/luggage3.svg";
 
   /// Assets for imagesIconsOutlineLock
   /// assets/images/icons/outlineLock.svg
