@@ -13,3 +13,11 @@ const kGreenColor = Color(0xffA0D8B3);
 const kBlueColor = Color(0xffC6E2EF);
 const kDarkBlueColor = Color(0xff003680);
 Color kYellowColor = const Color(0xffFFD34E);
+
+
+
+ var kboxShadow = BoxShadow( 
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 3,
+            offset: const Offset(8, 0), // changes position of shadow
+          );

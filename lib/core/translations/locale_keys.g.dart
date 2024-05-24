@@ -47,5 +47,7 @@ abstract class  LocaleKeys {
   static const Stays = 'Stays';
   static const Activities = 'Activities';
   static const The_plan = 'The_plan';
+  static const Add_Activities = 'Add_Activities';
+  static const Add_To_The_plan = 'Add_To_The_plan';
 
 }

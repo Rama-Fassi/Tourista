@@ -58,7 +58,9 @@ class CodegenLoader extends AssetLoader{
   "Flights": "رحلات الجوية",
   "Stays": "أماكن الإقامة",
   "Activities": "النشاطات",
-  "The_plan": "الخطة النهائية"
+  "The_plan": "الخطة النهائية",
+  "Add_Activities": "إضافة نشاطات",
+  "Add_To_The_plan": "إضافة الى الخطة"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -104,7 +106,11 @@ static const Map<String,dynamic> en = {
   "Flights": "Flights",
   "Stays": "Stays",
   "Activities": "Activites",
-  "The_plan": "The Plan"
+  "The_plan": "The Plan",
+  "Add_Activities": "Add Activities",
+  "Add_To_The_plan": "Add To The Plan"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
+
+

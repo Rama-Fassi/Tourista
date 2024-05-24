@@ -53,6 +53,10 @@ class Assets {
   /// assets/images/icons/readyTripIcon.svg
   static const String imagesIconsReadyTripIcon = "assets/images/icons/readyTripIcon.svg";
 
+  /// Assets for imagesIconsRoundedPlus
+  /// assets/images/icons/RoundedPlus.svg
+  static const String imagesIconsRoundedPlus = "assets/images/icons/RoundedPlus.svg";
+
   /// Assets for imagesIconsSelectDates
   /// assets/images/icons/selectDates.svg
   static const String imagesIconsSelectDates = "assets/images/icons/selectDates.svg";
