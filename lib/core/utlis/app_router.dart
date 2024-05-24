@@ -22,6 +22,8 @@ import 'package:tourista/features/auth/forget_password/presentation/views/verify
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
@@ -40,6 +42,8 @@ abstract class AppRouter {
   static const kSelectLocationView = '/selectLocationView';
   static const kEnterDestinationView = '/enterDestinationView';
   static const kTicketsView = '/ticketsView';
+  static const kWhereFromAirportView = '/whereFromAirportView';
+  static const kWhereToAirportView = '/whereToAirportView';
 
   static final router = GoRouter(
     routes: [
@@ -152,6 +156,38 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
           child: const EnterDestinationView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1), // Slide in from bottom
+                end: const Offset(0, 0), // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kWhereFromAirportView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: const WhereFromAirprotView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1), // Slide in from bottom
+                end: const Offset(0, 0), // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kWhereToAirportView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: const WhereToAirportView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

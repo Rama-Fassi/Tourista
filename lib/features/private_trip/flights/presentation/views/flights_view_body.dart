@@ -8,6 +8,7 @@ import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/widgets/airports_table_widget.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/cabin_class_radio_list_tile.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/flight_way.dart';
 
@@ -24,6 +25,8 @@ class FligtsViewBody extends StatefulWidget {
 class _FligtsViewBodyState extends State<FligtsViewBody> {
   String? cabinClass;
   String? flightWay;
+  String? whereFromAirport;
+  String? whereToAirport;
   @override
   Widget build(BuildContext context) {
     List<Widget> tableList = [
@@ -32,7 +35,18 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
           flightWay = value;
         },
       ),
-      Text('data'),
+      AirprtsTableWiddget(
+        onWhereFromChanged: (String value) {
+          setState(() {
+            whereFromAirport = value;
+          });
+        },
+        onWhereToChanged: (String value) {
+          setState(() {
+            whereToAirport = value;
+          });
+        },
+      ),
       TableRowWidget(
         padding: 14,
         text: cabinClass == null ? LocaleKeys.cabinClass.tr() : "$cabinClass",
@@ -43,10 +57,13 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
       ),
       CustomButton(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.kTicketsView);
           print(flightWay);
+          print(whereFromAirport);
+          print(whereToAirport);
+          print(cabinClass);
+          GoRouter.of(context).push(AppRouter.kTicketsView);
         },
-        text: LocaleKeys.continueButton.tr(),
+        text: LocaleKeys.search.tr(),
         width: MediaQuery.of(context).size.width,
         borderRadius: 10,
         height: MediaQuery.of(context).size.height * .075,
@@ -55,14 +72,14 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
         color: kPrimaryColor,
       ),
     ];
-    return Center(
-        child: Padding(
-      padding: const EdgeInsets.all(16),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: 16, vertical: MediaQuery.sizeOf(context).height * .165),
       child: PlanAndPlaneTable(
         tableList: tableList,
         rowNumber: 4,
       ),
-    ));
+    );
   }
 
   Future<dynamic> showCabinClass(BuildContext context) {
