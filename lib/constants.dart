@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
 const kName = 'Tourista';
 const kOnboarding = 'onboarding';
-const kToken = 'token';
+const kTokenBox = 'token';
 const kTokenRef = 'tokenRef';
 
 const kFontIntro = "source-serif-pro";
-
+String kToken = Hive.box(kTokenBox).get(kTokenRef);
 const kTransitionDuration = Duration(milliseconds: 200);
 const kPrimaryColor = Color(0xff338E63);
 const kGreenColor = Color(0xffA0D8B3);

@@ -4,13 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/private_trip/main/data/models/all_city_model/the_city.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/icon_container.dart';
 
 class CitySelectLocationCard extends StatelessWidget {
   const CitySelectLocationCard({
     super.key,
+    required this.theCity,
   });
-
+  final TheCity theCity;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,12 +29,12 @@ class CitySelectLocationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Damascus',
+              theCity.name!,
               style: AppStyles.styleInterSemiBold18(context)
                   .copyWith(fontSize: 15.5),
             ),
             Text(
-              'Capital of Syria',
+              theCity.country!,
               style: AppStyles.styleInterMedium16(context),
             )
           ],

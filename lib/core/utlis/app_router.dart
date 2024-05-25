@@ -24,6 +24,8 @@ import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
+import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
@@ -139,7 +141,10 @@ abstract class AppRouter {
         path: kSelectLocationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const SelectLocationView(),
+          child: BlocProvider(
+            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
+            child: const SelectLocationView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -155,7 +160,10 @@ abstract class AppRouter {
         path: kEnterDestinationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const EnterDestinationView(),
+          child: BlocProvider(
+            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
+            child: const EnterDestinationView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

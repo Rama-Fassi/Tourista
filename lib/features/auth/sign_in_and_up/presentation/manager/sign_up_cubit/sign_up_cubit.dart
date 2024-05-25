@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/register_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
