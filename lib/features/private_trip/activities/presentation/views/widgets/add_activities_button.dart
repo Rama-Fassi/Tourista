@@ -23,7 +23,7 @@ class AddActivitiesButton extends StatelessWidget {
       height: 50,
       child: OutlinedButton.icon(
         onPressed: () {
-          GoRouter.of(context).push(AppRouter.kAddActivitiesView);
+          GoRouter.of(context).push(AppRouter.kActivitiesView);
         },
         icon: SvgPicture.asset(
           Assets.imagesIconsRoundedPlus,

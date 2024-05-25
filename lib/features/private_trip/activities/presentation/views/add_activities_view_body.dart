@@ -19,7 +19,7 @@ class AddActivitiesViewBody extends StatelessWidget {
         AddToPlanButton(
           screenWidth: screenWidth,
           onTap: () {
-            GoRouter.of(context).push(AppRouter.kAddActivitiesView);
+            GoRouter.of(context).push(AppRouter.kActivitiesView);
           },
         ),
       ],
