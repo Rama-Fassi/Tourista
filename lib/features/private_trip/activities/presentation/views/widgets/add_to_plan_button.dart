@@ -16,17 +16,25 @@ class AddToPlanButton extends StatelessWidget {
   final Function() onTap;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: CustomButton(
-        text: LocaleKeys.Add_To_The_plan.tr(),
-        width: screenWidth * .8,
-        borderRadius: 5,
-        height: 50,
-        style:
-            AppStyles.styleSourceBold20(context).copyWith(color: Colors.white),
-        color: kPrimaryColor,
-        onTap: onTap,
+    return Container(
+      width: screenWidth,
+      height: 80,
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        kboxShadow,
+      ]),
+      child: Padding(
+        padding:
+            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 13),
+        child: CustomButton(
+          text: LocaleKeys.Add_To_The_plan.tr(),
+          width: screenWidth * .6,
+          borderRadius: 5,
+          height: 50,
+          style: AppStyles.styleSourceBold20(context)
+              .copyWith(color: Colors.white),
+          color: kPrimaryColor,
+          onTap: onTap,
+        ),
       ),
     );
   }

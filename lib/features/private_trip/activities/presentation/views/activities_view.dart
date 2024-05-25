@@ -8,7 +8,7 @@ class AddActivitiesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
         child: Scaffold(
-      body: AddActivitiesViewBody(),
+      body: ActivitiesViewBody(),
     ));
   }
 }

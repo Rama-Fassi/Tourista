@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AddActivitiesViewBody extends StatelessWidget {
-  const AddActivitiesViewBody({super.key});
+class ActivitiesViewBody extends StatelessWidget {
+  const ActivitiesViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      child: Text('welcom'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Activit'),
+      ),
+      body: Text('Hello'),
     );
   }
 }

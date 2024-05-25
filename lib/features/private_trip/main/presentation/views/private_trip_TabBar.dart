@@ -5,7 +5,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/activities_view_body.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
@@ -62,7 +62,7 @@ class PrivateTripTapBar extends StatelessWidget {
         body: const TabBarView(children: [
           FligtsViewBody(),
           StaysViewBody(),
-          ActivitiesViewBody(),
+          AddActivitiesViewBody(),
           ThePlanViewBody()
         ]),
       ),
