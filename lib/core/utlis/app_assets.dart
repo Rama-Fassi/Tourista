@@ -121,6 +121,10 @@ class Assets {
   /// assets/images/successReset.svg
   static const String imagesSuccessReset = "assets/images/successReset.svg";
 
+  /// Assets for imagesTestAirline
+  /// assets/images/test_airline.png
+  static const String imagesTestAirline = "assets/images/test_airline.png";
+
   /// Assets for imagesTouristaLogoGreen
   /// assets/images/tourista_logo_green.svg
   static const String imagesTouristaLogoGreen = "assets/images/tourista_logo_green.svg";
