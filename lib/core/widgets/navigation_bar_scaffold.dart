@@ -1,10 +1,14 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
+import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/features/attractions/presentation/views/attractions_view_body.dart';
 import 'package:tourista/features/my_trips/presentation/views/my_trips_view_body.dart';
+import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
@@ -33,14 +37,17 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
       Icons.account_circle_outlined
     ];
     return SafeArea(
-        child: Scaffold(
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: floatingActionButton(),
-            bottomNavigationBar: animatedBottomNavigationaBar(iconList),
-            body: activeIndex == -1
-                ? const ReadyTripMainViewBody()
-                : navList.elementAt(activeIndex)));
+        child: BlocProvider(
+      create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+      child: Scaffold(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: floatingActionButton(),
+          bottomNavigationBar: animatedBottomNavigationaBar(iconList),
+          body: activeIndex == -1
+              ? const ReadyTripMainViewBody()
+              : navList.elementAt(activeIndex)),
+    ));
   }
 
   FloatingActionButton floatingActionButton() {

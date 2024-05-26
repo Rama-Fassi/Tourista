@@ -34,7 +34,7 @@ class MainRepoImpl implements MainRepo {
       required String idTo,
       required String dateOfTrip,
       required String dateEndOfTrip,
-      required int personNumber}) async {
+      required String personNumber}) async {
     try {
       var data = await apiServer.post(
           endPoint: 'createTrip',
@@ -46,6 +46,7 @@ class MainRepoImpl implements MainRepo {
             'numOfPersons': personNumber
           },
           token: kToken);
+
       CreateTripModel createTripModel = CreateTripModel.fromJson(data);
       return right(createTripModel);
     } catch (e) {

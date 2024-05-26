@@ -24,6 +24,7 @@ import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
+import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
@@ -126,7 +127,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kPrivateTripTapBar,
-        builder: (context, state) => const PrivateTripTapBar(),
+        builder: (context, state) => PrivateTripTapBar(
+          createTripModel: state.extra as CreateTripModel,
+        ),
       ),
       GoRoute(
         path: kVerifySignUpView,

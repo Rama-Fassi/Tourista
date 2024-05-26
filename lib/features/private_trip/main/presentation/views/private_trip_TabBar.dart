@@ -7,13 +7,14 @@ import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
+import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 
 class PrivateTripTapBar extends StatelessWidget {
-  const PrivateTripTapBar({super.key});
-
+  const PrivateTripTapBar({super.key, required this.createTripModel});
+  final CreateTripModel createTripModel;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,11 +60,13 @@ class PrivateTripTapBar extends StatelessWidget {
                       ]),
                 ),
               ),
-              body: const TabBarView(children: [
-                FligtsViewBody(),
-                StaysViewBody(),
-                ActivitiesViewBody(),
-                ThePlanViewBody()
+              body: TabBarView(children: [
+                FligtsViewBody(
+                  createTripModel: createTripModel,
+                ),
+                const StaysViewBody(),
+                const ActivitiesViewBody(),
+                const ThePlanViewBody()
               ]),
             )));
   }

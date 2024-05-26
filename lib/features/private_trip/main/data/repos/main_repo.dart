@@ -10,5 +10,5 @@ abstract class MainRepo {
       required String idTo,
       required String dateOfTrip,
       required String dateEndOfTrip,
-      required int personNumber});
+      required String personNumber});
 }

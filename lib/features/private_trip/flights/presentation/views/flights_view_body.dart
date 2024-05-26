@@ -10,12 +10,13 @@ import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/airports_table_widget.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/cabin_class_bottom_sheet.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/flight_way.dart';
+import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
 class FligtsViewBody extends StatefulWidget {
-  const FligtsViewBody({super.key});
-
+  const FligtsViewBody({super.key, required this.createTripModel});
+  final CreateTripModel createTripModel;
   @override
   State<FligtsViewBody> createState() => _FligtsViewBodyState();
 }

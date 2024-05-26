@@ -1,14 +1,18 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/person_number_bottom_sheet.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
@@ -70,8 +74,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
         },
         text: (startDate == null && endDate == null)
             ? LocaleKeys.selectDates.tr()
-            : "${startDate}".substring(0, 10) +
-                " _ ${endDate}".substring(0, 13),
+            : "$startDate".substring(0, 10) + " _ $endDate".substring(0, 13),
         image: Assets.imagesIconsSelectDates,
       ),
       TableRowWidget(
@@ -85,11 +88,13 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
       ),
       CustomButton(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.kPrivateTripTapBar);
-          // Access the selected number here
-          print('Selected number: $selectedNumber');
-          print("Selected start date: $startDate");
-          print("Selected end date: $endDate");
+          BlocProvider.of<CreateTripCubit>(context).createTripCubitFun(
+            idFrom: '${selectedcity['id']}',
+            idTo: '${enterCity['id']}',
+            dateOfTrip: "$startDate".substring(0, 10),
+            dateEndOfTrip: '$endDate'.substring(0, 10),
+            personNumber: '$selectedNumber',
+          );
         },
         text: LocaleKeys.continueButton.tr(),
         width: MediaQuery.of(context).size.width,
@@ -101,21 +106,35 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
       ),
     ];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Spacer(),
-        EartLogoWithText(data: LocaleKeys.planYourTrip.tr()),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: PlanAndPlaneTable(
-            tableList: tableList,
-            rowNumber: 5,
-          ),
-        ),
-        const Spacer(flex: 4),
-      ],
+    return BlocConsumer<CreateTripCubit, CreateTripState>(
+      listener: (context, state) {
+        if (state is CreateTripFailure) {
+          customSnackBar(context, state.errMessage);
+        } else if (state is CreateTripSuccess) {
+          GoRouter.of(context)
+              .push(AppRouter.kPrivateTripTapBar, extra: state.createTripModel);
+        }
+      },
+      builder: (context, state) {
+        return state is CreateTripLoading
+            ? Center(child: Lottie.asset(Assets.imagesLottieEarthLoading))
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  EartLogoWithText(data: LocaleKeys.planYourTrip.tr()),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: PlanAndPlaneTable(
+                      tableList: tableList,
+                      rowNumber: 5,
+                    ),
+                  ),
+                  const Spacer(flex: 4),
+                ],
+              );
+      },
     );
   }
 

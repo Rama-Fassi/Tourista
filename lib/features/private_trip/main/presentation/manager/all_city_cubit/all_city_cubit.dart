@@ -11,11 +11,10 @@ class AllCityCubit extends Cubit<AllCityState> {
   Future<void> getAllCityCubitFun({required String city}) async {
     emit(AllCityLoading());
     var result = await mainRepoImpl.getAllCity(city: city);
-    print(result);
+
     result.fold((failure) {
       emit(AllCityFailure(errMessage: failure.errMessage));
     }, (allCityModel) {
-      print(allCityModel);
       emit(AllCitySuccess(allCityModel: allCityModel));
     });
   }

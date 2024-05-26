@@ -13,7 +13,7 @@ class CreateTripCubit extends Cubit<CreateTripState> {
       required String idTo,
       required String dateOfTrip,
       required String dateEndOfTrip,
-      required int personNumber}) async {
+      required String personNumber}) async {
     emit(CreateTripLoading());
     var result = await mainRepoImpl.createTrip(
         idFrom: idFrom,
@@ -23,6 +23,7 @@ class CreateTripCubit extends Cubit<CreateTripState> {
         personNumber: personNumber);
 
     result.fold((failure) {
+      print(failure.errMessage);
       emit(CreateTripFailure(errMessage: failure.errMessage));
     }, (createTripModel) {
       emit(CreateTripSuccess(createTripModel: createTripModel));
