@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/private_trip/flights/data/models/airport_where_from_model/airport_where_model.dart';
+import 'package:tourista/features/private_trip/flights/data/models/tickets_model/tickets_model.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo.dart';
 
 class FlightsRepoImpl implements FlightsRepo {
@@ -35,6 +37,36 @@ class FlightsRepoImpl implements FlightsRepo {
       );
       AirportWhereModel airportWhereModel = AirportWhereModel.fromJson(data);
       return right(airportWhereModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TicketsModel>> searchForTickets({
+    required int tripId,
+    required int airFromId,
+    required int airToId,
+    required String cabinClass,
+    required String flightsWay,
+  }) async {
+    try {
+      var data = await apiServer.post(
+          endPoint: 'searchForTicket/$tripId',
+          body: {
+            "airport_id1": airFromId,
+            "airport_id2": airToId,
+            "typeOfTicket": cabinClass,
+            "roundOrOne_trip": flightsWay,
+          },
+          token: kToken);
+
+      TicketsModel ticketsModel = TicketsModel.fromJson(data);
+
+      return right(ticketsModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

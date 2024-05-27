@@ -23,7 +23,6 @@ class CreateTripCubit extends Cubit<CreateTripState> {
         personNumber: personNumber);
 
     result.fold((failure) {
-      print(failure.errMessage);
       emit(CreateTripFailure(errMessage: failure.errMessage));
     }, (createTripModel) {
       emit(CreateTripSuccess(createTripModel: createTripModel));

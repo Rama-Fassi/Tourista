@@ -15,8 +15,8 @@ class ChooseAirportsWidget extends StatefulWidget {
   });
   final int tripId;
 
-  final ValueChanged<String> onWhereFromChanged;
-  final ValueChanged<String> onWhereToChanged;
+  final ValueChanged<Map<String, dynamic>> onWhereFromChanged;
+  final ValueChanged<Map<String, dynamic>> onWhereToChanged;
   @override
   State<ChooseAirportsWidget> createState() => _ChooseAirportsWidgetState();
 }
@@ -35,7 +35,7 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
                 .push(AppRouter.kWhereFromAirportView, extra: widget.tripId);
             setState(() {
               whereFromAirport = result;
-              widget.onWhereFromChanged(whereFromAirport['airport']);
+              widget.onWhereFromChanged(whereFromAirport);
             });
           },
           child: Text(
@@ -63,7 +63,7 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
                 .push(AppRouter.kWhereToAirportView, extra: widget.tripId);
             setState(() {
               whereToAirport = result;
-              widget.onWhereToChanged(whereFromAirport['airport']);
+              widget.onWhereToChanged(whereFromAirport);
             });
           },
           child: GestureDetector(

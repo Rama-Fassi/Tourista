@@ -121,6 +121,10 @@ class Assets {
   /// assets/images/lottie/errAnimation.json
   static const String imagesLottieErrAnimation = "assets/images/lottie/errAnimation.json";
 
+  /// Assets for imagesLottieTicketsLoading
+  /// assets/images/lottie/ticketsLoading.json
+  static const String imagesLottieTicketsLoading = "assets/images/lottie/ticketsLoading.json";
+
   /// Assets for imagesSlogan
   /// assets/images/slogan.svg
   static const String imagesSlogan = "assets/images/slogan.svg";

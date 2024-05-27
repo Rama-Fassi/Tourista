@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/airports_table_widget.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/cabin_class_bottom_sheet.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/flight_way.dart';
@@ -26,6 +30,8 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
   String? vlaueCabin;
   String? flightWay;
   String? whereFromAirport;
+  int? whereFromAirportId;
+  int? whereToAirportId;
   String? whereToAirport;
   @override
   Widget build(BuildContext context) {
@@ -36,14 +42,16 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
         },
       ),
       AirprtsTableWiddget(
-        onWhereFromChanged: (String value) {
+        onWhereFromChanged: (Map<String, dynamic> value) {
           setState(() {
-            whereFromAirport = value;
+            whereFromAirport = value['airport'];
+            whereFromAirportId = value['id'];
           });
         },
-        onWhereToChanged: (String value) {
+        onWhereToChanged: (Map<String, dynamic> value) {
           setState(() {
-            whereToAirport = value;
+            whereToAirport = value['airport'];
+            whereToAirportId = value['id'];
           });
         },
         tripId: widget.createTripModel.tripId!.id!,
@@ -58,11 +66,13 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
       ),
       CustomButton(
         onTap: () {
-          print(flightWay);
-          print(whereFromAirport);
-          print(whereToAirport);
-          print(vlaueCabin);
-          GoRouter.of(context).push(AppRouter.kTicketsView);
+          BlocProvider.of<TicketsCubit>(context).searchForTicketCubitFun(
+            airFromId: whereFromAirportId ?? 0,
+            airToId: whereToAirportId ?? 0,
+            tripId: widget.createTripModel.tripId!.id!,
+            cabinClass: cabinClass ?? '',
+            flightsWay: flightWay ?? '',
+          );
         },
         text: LocaleKeys.search.tr(),
         width: MediaQuery.of(context).size.width,
@@ -73,13 +83,34 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
         color: kPrimaryColor,
       ),
     ];
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: 16, vertical: MediaQuery.sizeOf(context).height * .165),
-      child: PlanAndPlaneTable(
-        tableList: tableList,
-        rowNumber: 4,
-      ),
+    return BlocConsumer<TicketsCubit, TicketsState>(
+      listener: (context, state) {
+        if (state is TicketsFailure) {
+          customSnackBar(context, state.errMessage);
+        } else if (state is TicketsSuccess) {
+          GoRouter.of(context).push(AppRouter.kTicketsView, extra: {
+            'tripId': widget.createTripModel,
+            'airFrom': whereFromAirport,
+            'airTo': whereToAirport,
+            'flightWay': flightWay,
+          });
+        }
+      },
+      builder: (context, state) {
+        return state is TicketsLoading
+            ? Center(
+                child: Lottie.asset(Assets.imagesLottieTicketsLoading),
+              )
+            : Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: MediaQuery.sizeOf(context).height * .165),
+                child: PlanAndPlaneTable(
+                  tableList: tableList,
+                  rowNumber: 4,
+                ),
+              );
+      },
     );
   }
 

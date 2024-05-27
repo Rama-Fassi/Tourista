@@ -13,8 +13,8 @@ class AirprtsTableWiddget extends StatelessWidget {
     required this.tripId,
   });
   final int tripId;
-  final ValueChanged<String> onWhereFromChanged;
-  final ValueChanged<String> onWhereToChanged;
+  final ValueChanged<Map<String, dynamic>> onWhereFromChanged;
+  final ValueChanged<Map<String, dynamic>> onWhereToChanged;
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -23,7 +23,7 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
-import 'package:tourista/features/private_trip/flights/presentation/manager/cubit/airport_where_to_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';

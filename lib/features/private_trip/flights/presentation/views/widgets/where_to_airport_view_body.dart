@@ -7,7 +7,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/err_animation.dart';
-import 'package:tourista/features/private_trip/flights/presentation/manager/cubit/airport_where_to_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/airport_card_list_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/cancel_text_widget.dart';
 
