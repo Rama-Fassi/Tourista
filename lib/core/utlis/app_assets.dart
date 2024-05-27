@@ -117,6 +117,10 @@ class Assets {
   /// assets/images/lottie/earthLoading.json
   static const String imagesLottieEarthLoading = "assets/images/lottie/earthLoading.json";
 
+  /// Assets for imagesLottieErrAnimation
+  /// assets/images/lottie/errAnimation.json
+  static const String imagesLottieErrAnimation = "assets/images/lottie/errAnimation.json";
+
   /// Assets for imagesSlogan
   /// assets/images/slogan.svg
   static const String imagesSlogan = "assets/images/slogan.svg";

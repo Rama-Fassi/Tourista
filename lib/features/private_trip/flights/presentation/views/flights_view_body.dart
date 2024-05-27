@@ -46,6 +46,7 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
             whereToAirport = value;
           });
         },
+        tripId: widget.createTripModel.tripId!.id!,
       ),
       TableRowWidget(
         padding: 14,

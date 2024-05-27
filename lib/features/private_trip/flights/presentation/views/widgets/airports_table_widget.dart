@@ -6,10 +6,13 @@ import 'package:tourista/features/private_trip/flights/presentation/views/widget
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/choose_airports_widget.dart';
 
 class AirprtsTableWiddget extends StatelessWidget {
-  const AirprtsTableWiddget(
-      {super.key,
-      required this.onWhereFromChanged,
-      required this.onWhereToChanged});
+  const AirprtsTableWiddget({
+    super.key,
+    required this.onWhereFromChanged,
+    required this.onWhereToChanged,
+    required this.tripId,
+  });
+  final int tripId;
   final ValueChanged<String> onWhereFromChanged;
   final ValueChanged<String> onWhereToChanged;
   @override
@@ -19,6 +22,7 @@ class AirprtsTableWiddget extends StatelessWidget {
         const AirportsIconsColumn(),
         const Gap(10),
         ChooseAirportsWidget(
+          tripId: tripId,
           onWhereFromChanged: onWhereFromChanged,
           onWhereToChanged: onWhereToChanged,
         ),

@@ -21,6 +21,9 @@ import 'package:tourista/features/auth/forget_password/presentation/views/reset_
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
+import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/cubit/airport_where_to_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
@@ -182,7 +185,12 @@ abstract class AppRouter {
         path: kWhereFromAirportView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const WhereFromAirprotView(),
+          child: BlocProvider(
+            create: (context) =>
+                AirportWhereFromCubit(getIt.get<FlightsRepoImpl>())
+                  ..getAirportFromCubitFun(cityId: state.extra as int),
+            child: const WhereFromAirprotView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -198,7 +206,12 @@ abstract class AppRouter {
         path: kWhereToAirportView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const WhereToAirportView(),
+          child: BlocProvider(
+            create: (context) =>
+                AirportWhereToCubit(getIt.get<FlightsRepoImpl>())
+                  ..getAirportToCubitFun(cityId: state.extra as int),
+            child: const WhereToAirportView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

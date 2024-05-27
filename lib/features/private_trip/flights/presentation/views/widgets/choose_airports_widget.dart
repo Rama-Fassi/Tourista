@@ -11,7 +11,10 @@ class ChooseAirportsWidget extends StatefulWidget {
     super.key,
     required this.onWhereFromChanged,
     required this.onWhereToChanged,
+    required this.tripId,
   });
+  final int tripId;
+
   final ValueChanged<String> onWhereFromChanged;
   final ValueChanged<String> onWhereToChanged;
   @override
@@ -29,14 +32,15 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
         GestureDetector(
           onTap: () async {
             var result = await GoRouter.of(context)
-                .push(AppRouter.kWhereFromAirportView);
+                .push(AppRouter.kWhereFromAirportView, extra: widget.tripId);
             setState(() {
               whereFromAirport = result;
               widget.onWhereFromChanged(whereFromAirport['airport']);
             });
           },
           child: Text(
-            whereFromAirport == null
+            whereFromAirport == null ||
+                    whereFromAirport['airport'].toString().isEmpty
                 ? LocaleKeys.whereFrom.tr()
                 : whereFromAirport['airport'],
             style: whereFromAirport == null
@@ -55,8 +59,8 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
         const Gap(10),
         GestureDetector(
           onTap: () async {
-            var result =
-                await GoRouter.of(context).push(AppRouter.kWhereToAirportView);
+            var result = await GoRouter.of(context)
+                .push(AppRouter.kWhereToAirportView, extra: widget.tripId);
             setState(() {
               whereToAirport = result;
               widget.onWhereToChanged(whereFromAirport['airport']);
@@ -64,7 +68,8 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
           },
           child: GestureDetector(
             child: Text(
-              whereToAirport == null
+              whereToAirport == null ||
+                      whereToAirport['airport'].toString().isEmpty
                   ? LocaleKeys.whereTo.tr()
                   : whereToAirport['airport'],
               style: whereToAirport == null

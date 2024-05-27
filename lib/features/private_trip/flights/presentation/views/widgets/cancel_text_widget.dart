@@ -14,7 +14,7 @@ class CancelTextWidget extends StatelessWidget {
       children: [
         Spacer(),
         TextButton(
-            onPressed: () => GoRouter.of(context).pop(),
+            onPressed: () => GoRouter.of(context).pop({"id": 0, "airport": ''}),
             child: Text(
               "Cancel",
               style: AppStyles.styleInterMedium18(context)
