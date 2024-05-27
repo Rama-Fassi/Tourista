@@ -24,6 +24,7 @@ import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/choose_ticket_cubit/choose_ticket_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
@@ -225,7 +226,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kTicketsView,
-        builder: (context, state) =>  TicketsView(ticketsinfo: state.extra as Map<String,dynamic>,),
+        builder: (context, state) => BlocProvider(
+          create: (context) => ChooseTicketCubit(getIt.get<FlightsRepoImpl>()),
+          child: TicketsView(
+            ticketsinfo: state.extra as Map<String, dynamic>,
+          ),
+        ),
       ),
     ],
   );

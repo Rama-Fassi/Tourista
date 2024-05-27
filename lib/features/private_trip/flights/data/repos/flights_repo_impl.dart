@@ -4,6 +4,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/private_trip/flights/data/models/airport_where_from_model/airport_where_model.dart';
+import 'package:tourista/features/private_trip/flights/data/models/choose_ticket_model/choose_ticket_model.dart';
 import 'package:tourista/features/private_trip/flights/data/models/tickets_model/tickets_model.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo.dart';
 
@@ -67,6 +68,24 @@ class FlightsRepoImpl implements FlightsRepo {
       TicketsModel ticketsModel = TicketsModel.fromJson(data);
 
       return right(ticketsModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ChooseTicketModel>> chooseTicket(
+      {required String tripId, required String ticketId}) async {
+    try {
+      var data = await apiServer.post(
+          endPoint: 'choseTicket/$tripId/$ticketId', body: {}, token: kToken);
+
+      ChooseTicketModel chooseTicketModel = ChooseTicketModel.fromJson(data);
+
+      return right(chooseTicketModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

@@ -5,6 +5,8 @@ import 'package:tourista/features/private_trip/flights/presentation/views/widget
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/price_and_add_to_plan.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/sort_by_tickets_row.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/ticket_time_and_airline.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/widgets/ticket_time_and_airline_round.dart';
+import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 
 class RoundTripTicket extends StatelessWidget {
   const RoundTripTicket({
@@ -12,10 +14,15 @@ class RoundTripTicket extends StatelessWidget {
     required this.width,
     required this.height,
     required this.ticket,
+    required this.createTripModel,
+    required this.airFrom,
+    required this.airTo,
   });
   final Ticket ticket;
   final double width;
   final double height;
+  final CreateTripModel createTripModel;
+  final String airFrom, airTo;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +36,19 @@ class RoundTripTicket extends StatelessWidget {
         children: [
           const SortByTicketsRow(),
           Gap(12),
-          // TicketTimeAndAirline(width: width),
+          TicketTimeAndAirline(
+            width: width,
+            ticket: ticket,
+            airFrom: airFrom,
+            airTo: airTo,
+          ),
           Gap(12),
-          // TicketTimeAndAirline(width: width),
+          TicketTimeAndAirlineRound(
+            width: width,
+            ticket: ticket,
+            airFrom: airTo,
+            airTo: airFrom,
+          ),
           Gap(12),
           Divider(
             color: Colors.black.withOpacity(.35),
@@ -41,7 +58,12 @@ class RoundTripTicket extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Luggage(width: width),
-              PriceAndAddToPlan(width: width, height: height)
+              PriceAndAddToPlan(
+                width: width,
+                height: height,
+                ticket: ticket,
+                createTripModel: createTripModel,
+              )
             ],
           )
         ],

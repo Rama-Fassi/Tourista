@@ -37,6 +37,7 @@ class TicketsViewBody extends StatelessWidget {
                 ),
               ),
               TicketsListView(
+                createTripModel: ticketsInfo['tripId'],
                 width: width,
                 height: height,
                 tickets: ticketsInfo['tickets'].tickets,
