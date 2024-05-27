@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/features/private_trip/flights/data/models/tickets_model/ticket.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/luggage.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/price_and_add_to_plan.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/sort_by_tickets_row.dart';
@@ -10,8 +11,9 @@ class RoundTripTicket extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    required this.ticket,
   });
-
+  final Ticket ticket;
   final double width;
   final double height;
 
@@ -27,9 +29,9 @@ class RoundTripTicket extends StatelessWidget {
         children: [
           const SortByTicketsRow(),
           Gap(12),
-          TicketTimeAndAirline(width: width),
+          // TicketTimeAndAirline(width: width),
           Gap(12),
-          TicketTimeAndAirline(width: width),
+          // TicketTimeAndAirline(width: width),
           Gap(12),
           Divider(
             color: Colors.black.withOpacity(.35),

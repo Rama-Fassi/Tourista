@@ -7,21 +7,22 @@ class TicketDuration extends StatelessWidget {
   const TicketDuration({
     super.key,
     required this.width,
+    required this.duratoin,
   });
 
   final double width;
-
+  final String duratoin;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          '4h 19m',
+          '${duratoin.substring(0, 2)}h ${duratoin.substring(3)}min',
           style: AppStyles.styleInterRegular16(context)
               .copyWith(color: Colors.black.withOpacity(.5)),
         ),
         SizedBox(
-            width: width * .5,
+            width: width * .4,
             child: Divider(
               color: Colors.black.withOpacity(.5),
             )),

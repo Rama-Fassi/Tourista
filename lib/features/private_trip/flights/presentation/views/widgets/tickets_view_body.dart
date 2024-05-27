@@ -36,7 +36,13 @@ class TicketsViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              TicketsListView(width: width, height: height)
+              TicketsListView(
+                width: width,
+                height: height,
+                tickets: ticketsInfo['tickets'].tickets,
+                airFrom: ticketsInfo['airFrom'],
+                airTo: ticketsInfo['airTo'],
+              )
             ],
           ),
         )

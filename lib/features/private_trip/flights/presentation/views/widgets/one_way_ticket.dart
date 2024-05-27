@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/features/private_trip/flights/data/models/tickets_model/ticket.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/luggage.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/price_and_add_to_plan.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/sort_by_tickets_row.dart';
@@ -10,10 +11,14 @@ class OneWayTicket extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    required this.ticket,
+    required this.airFrom,
+    required this.airTo,
   });
-
+  final Ticket ticket;
   final double width;
   final double height;
+  final String airFrom, airTo;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,12 @@ class OneWayTicket extends StatelessWidget {
         children: [
           const SortByTicketsRow(),
           Gap(12),
-          TicketTimeAndAirline(width: width),
+          TicketTimeAndAirline(
+            width: width,
+            ticket: ticket,
+            airFrom: airFrom,
+            airTo: airTo,
+          ),
           Gap(12),
           Divider(
             color: Colors.black.withOpacity(.35),
