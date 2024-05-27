@@ -70,7 +70,7 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
             airFromId: whereFromAirportId ?? 0,
             airToId: whereToAirportId ?? 0,
             tripId: widget.createTripModel.tripId!.id!,
-            cabinClass: cabinClass ?? '',
+            cabinClass: vlaueCabin ?? '',
             flightsWay: flightWay ?? '',
           );
         },
@@ -89,10 +89,10 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
           customSnackBar(context, state.errMessage);
         } else if (state is TicketsSuccess) {
           GoRouter.of(context).push(AppRouter.kTicketsView, extra: {
+            'tickets': state.ticketsModel,
             'tripId': widget.createTripModel,
             'airFrom': whereFromAirport,
             'airTo': whereToAirport,
-            'flightWay': flightWay,
           });
         }
       },

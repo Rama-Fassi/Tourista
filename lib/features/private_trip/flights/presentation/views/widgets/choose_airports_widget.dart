@@ -35,7 +35,7 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
                 .push(AppRouter.kWhereFromAirportView, extra: widget.tripId);
             setState(() {
               whereFromAirport = result;
-              widget.onWhereFromChanged(whereFromAirport);
+              widget.onWhereFromChanged(whereFromAirport ?? {});
             });
           },
           child: Text(
@@ -63,7 +63,7 @@ class _ChooseAirportsWidgetState extends State<ChooseAirportsWidget> {
                 .push(AppRouter.kWhereToAirportView, extra: widget.tripId);
             setState(() {
               whereToAirport = result;
-              widget.onWhereToChanged(whereFromAirport);
+              widget.onWhereToChanged(whereToAirport ?? {});
             });
           },
           child: GestureDetector(

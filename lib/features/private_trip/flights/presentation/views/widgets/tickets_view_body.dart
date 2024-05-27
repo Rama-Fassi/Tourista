@@ -1,21 +1,28 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/private_trip/flights/presentation/views/widgets/one_way_ticket.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/widgets/tickets_list_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/tickets_view_app_bar.dart';
 
 class TicketsViewBody extends StatelessWidget {
-  const TicketsViewBody({super.key});
-
+  const TicketsViewBody({super.key, required this.ticketsInfo});
+  final Map<String, dynamic> ticketsInfo;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
     return Column(
       children: [
-        TickesViewAppBar(width: width, height: height),
+        TickesViewAppBar(
+          ticketsNumber: ticketsInfo['tickets'].numberOfFlights,
+          width: width,
+          height: height,
+          airFrom: ticketsInfo['airFrom'],
+          airTo: ticketsInfo['airTo'],
+          dateFrom: ticketsInfo['tickets'].tickets[0].dateOfTicket,
+          dateTo: ticketsInfo['tickets'].tickets[0].dateEndOfTicket,
+        ),
         Expanded(
           child: CustomScrollView(
             slivers: [
@@ -29,14 +36,7 @@ class TicketsViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverList.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: OneWayTicket(width: width, height: height),
-                    );
-                  })
+              TicketsListView(width: width, height: height)
             ],
           ),
         )

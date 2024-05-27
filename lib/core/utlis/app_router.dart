@@ -225,7 +225,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kTicketsView,
-        builder: (context, state) => const TicketsView(),
+        builder: (context, state) =>  TicketsView(ticketsinfo: state.extra as Map<String,dynamic>,),
       ),
     ],
   );

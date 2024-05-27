@@ -13,10 +13,17 @@ class TickesViewAppBar extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
+    required this.airFrom,
+    required this.airTo,
+    required this.dateFrom,
+    required this.dateTo,
+    required this.ticketsNumber,
   });
 
   final double width;
   final double height;
+  final int ticketsNumber;
+  final String airFrom, airTo, dateFrom, dateTo;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,7 @@ class TickesViewAppBar extends StatelessWidget {
                 padding:
                     EdgeInsets.only(top: height * .035, bottom: 10, left: 16),
                 child: Text(
-                  '5  ${LocaleKeys.flightsFound.tr()}',
+                  '$ticketsNumber  ${LocaleKeys.flightsFound.tr()}',
                   style: AppStyles.styleSourceSemiBold20(context)
                       .copyWith(color: Colors.black.withOpacity(.8)),
                 ),
@@ -68,22 +75,22 @@ class TickesViewAppBar extends StatelessWidget {
                     icon: Icon(Icons.arrow_back_ios),
                   ),
                   Text(
-                    'DXB',
+                    airFrom,
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Gap(10),
                   SvgPicture.asset(Assets.imagesIconsArrowRightLeft),
                   Gap(10),
                   Text(
-                    'DXB  .',
+                    '$airTo .',
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Text(
-                    ' 17-5 to',
+                    ' ${dateFrom.substring(5)} to',
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Text(
-                    ' 25-5 ',
+                    ' ${dateTo.substring(5)} ',
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Gap(25),
