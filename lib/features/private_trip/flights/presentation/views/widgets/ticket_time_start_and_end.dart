@@ -18,6 +18,32 @@ class TicketTimeStartAndEnd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String time = ticket.timeOfticket!; // Example time string
+    String date = ticket.dateOfTicket!; // Example date string
+    String duration = "03:45"; // Example duration string
+
+    // Convert time string to DateTime
+    DateTime dateTime = DateTime.parse(date + " " + time);
+
+    // Convert duration string to Duration
+    List<String> durationParts = duration.split(":");
+    int hours = int.parse(durationParts[0]);
+    int minutes = int.parse(durationParts[1]);
+    Duration durationObj = Duration(hours: hours, minutes: minutes);
+
+    // Add duration to the DateTime
+    dateTime = dateTime.add(durationObj);
+
+    // Handle date rollover if the time exceeds 24 hours
+    if (dateTime.hour >= 24) {
+      dateTime = dateTime.add(Duration(days: 1));
+    }
+
+    // Format the resulting DateTime back to desired string format
+    String newTime =
+        "${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
+    String newDate =
+        "${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
     return Row(
       children: [
         TicketsTime(
@@ -32,9 +58,9 @@ class TicketTimeStartAndEnd extends StatelessWidget {
         ),
         Spacer(),
         TicketsTime(
-          time: '17:5',
+          time: newTime,
           airport: airTo,
-          date: '18-5',
+          date: newDate.substring(5),
         ),
       ],
     );
