@@ -31,8 +31,10 @@ class ChooseAirportsWidget extends StatelessWidget {
                 var result = await GoRouter.of(context)
                     .push(AppRouter.kWhereFromAirportView, extra: tripId);
                 whereFromAirport = result;
-                cubit.setWhereFromAirport(whereFromAirport['airport'] ?? '');
-                cubit.setWhereFromAirportId(whereFromAirport['id'] ?? 0);
+                if (whereFromAirport != null) {
+                  cubit.setWhereFromAirport(whereFromAirport['airport']);
+                  cubit.setWhereFromAirportId(whereFromAirport['id']);
+                }
               },
               child: Text(
                 state.whereFromAirport == null ||
@@ -60,8 +62,10 @@ class ChooseAirportsWidget extends StatelessWidget {
                 var result = await GoRouter.of(context)
                     .push(AppRouter.kWhereToAirportView, extra: tripId);
                 whereToAirport = result;
-                cubit.setWhereToAirport(whereToAirport['airport'] ?? '');
-                cubit.setWhereToAirportId(whereToAirport['id'] ?? 0);
+                if (whereToAirport != null) {
+                  cubit.setWhereToAirport(whereToAirport['airport']);
+                  cubit.setWhereToAirportId(whereToAirport['id']);
+                }
               },
               child: GestureDetector(
                 child: Text(

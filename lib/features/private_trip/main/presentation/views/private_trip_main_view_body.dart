@@ -18,20 +18,10 @@ import 'package:tourista/features/private_trip/main/presentation/views/widgets/p
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
-class PrivatTripMainViewBody extends StatefulWidget {
+class PrivatTripMainViewBody extends StatelessWidget {
   const PrivatTripMainViewBody({Key? key}) : super(key: key);
 
-  @override
-  State<PrivatTripMainViewBody> createState() => _PrivatTripMainViewBodyState();
-}
-
-class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
   // DateTime? startDate;
-  // DateTime? endDate;
-  // int selectedNumber = 0;
-  // dynamic selectedcity;
-  // dynamic enterCity;
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PrivateTripCubit, PrivateTripState>(
@@ -43,9 +33,8 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
             onTap: () async {
               var result = await GoRouter.of(context)
                   .push(AppRouter.kSelectLocationView);
-              setState(() {
-                cubit.setSelectedCity(result ?? {});
-              });
+
+              cubit.setSelectedCity(result ?? {});
             },
             text: state.selectedcity?['city'] == null
                 ? LocaleKeys.selectYourLocation.tr()
@@ -57,9 +46,8 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
             onTap: () async {
               var result = await GoRouter.of(context)
                   .push(AppRouter.kEnterDestinationView);
-              setState(() {
-                cubit.setEnterCity(result ?? {});
-              });
+
+              cubit.setEnterCity(result ?? {});
             },
             text: state.enterCity?['city'] == null
                 ? LocaleKeys.enterDestination.tr()
@@ -73,8 +61,6 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
               if (results != null && results.isNotEmpty) {
                 cubit.setStartDate(results[0]);
                 cubit.setEndDate(results[1]);
-
-                setState(() {});
               }
             },
             text: (state.startDate == null && state.endDate == null)
@@ -89,9 +75,7 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
               showPersonNumberBottomSheet(
                 context,
                 (int number) {
-                  setState(() {
-                    cubit.setSelectedNumber(number);
-                  });
+                  cubit.setSelectedNumber(number);
                 },
               );
             },

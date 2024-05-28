@@ -90,6 +90,7 @@ class TickesViewAppBar extends StatelessWidget {
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Text(
+                    overflow: TextOverflow.ellipsis,
                     ' ${dateTo.substring(5)} ',
                     style: AppStyles.styleInterMedium18(context),
                   ),
