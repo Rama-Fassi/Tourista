@@ -9,6 +9,7 @@ import 'package:tourista/features/attractions/presentation/views/attractions_vie
 import 'package:tourista/features/my_trips/presentation/views/my_trips_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/private_trip_cubit/private_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
@@ -37,8 +38,15 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
       Icons.account_circle_outlined
     ];
     return SafeArea(
-        child: BlocProvider(
-      create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+        child: MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => PrivateTripCubit(),
+        ),
+      ],
       child: Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

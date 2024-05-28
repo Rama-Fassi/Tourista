@@ -24,8 +24,13 @@ class PrivateTripTapBar extends StatelessWidget {
     return SafeArea(
         child: DefaultTabController(
             length: 4,
-            child: BlocProvider(
-              create: (context) => TicketsCubit(getIt.get<FlightsRepoImpl>()),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) =>
+                      TicketsCubit(getIt.get<FlightsRepoImpl>()),
+                ),
+              ],
               child: Scaffold(
                 appBar: AppBar(
                   automaticallyImplyLeading: false,

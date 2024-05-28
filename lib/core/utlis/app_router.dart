@@ -14,7 +14,6 @@ import 'package:tourista/features/auth/forget_password/presentation/views/forget
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
@@ -25,6 +24,7 @@ import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_i
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/choose_ticket_cubit/choose_ticket_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/flights/flights_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
@@ -131,17 +131,17 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kPrivateTripTapBar,
-        builder: (context, state) => PrivateTripTapBar(
-          createTripModel: state.extra as CreateTripModel,
+        builder: (context, state) => BlocProvider(
+          create: (context) => FlightsCubit(),
+          child: PrivateTripTapBar(
+            createTripModel: state.extra as CreateTripModel,
+          ),
         ),
       ),
       GoRoute(
         path: kVerifySignUpView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => VerifySignUpCubit(getIt.get<AuthRepoImpl>()),
-          child: VerifySignUpView(
-            signUpInfo: state.extra as Map<String, dynamic>,
-          ),
+        builder: (context, state) => VerifySignUpView(
+          signUpInfo: state.extra as Map<String, dynamic>,
         ),
       ),
       GoRoute(

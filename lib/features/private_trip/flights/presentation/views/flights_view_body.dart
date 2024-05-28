@@ -10,6 +10,7 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/flights/flights_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/airports_table_widget.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/widgets/cabin_class_bottom_sheet.dart';
@@ -26,95 +27,107 @@ class FligtsViewBody extends StatefulWidget {
 }
 
 class _FligtsViewBodyState extends State<FligtsViewBody> {
-  String? cabinClass;
-  String? vlaueCabin;
-  String? flightWay;
-  String? whereFromAirport;
-  int? whereFromAirportId;
-  int? whereToAirportId;
-  String? whereToAirport;
   @override
   Widget build(BuildContext context) {
-    List<Widget> tableList = [
-      FlightsWay(
-        onFlightsWayChanged: (value) {
-          flightWay = value;
-        },
-      ),
-      AirprtsTableWiddget(
-        onWhereFromChanged: (Map<String, dynamic> value) {
-          setState(() {
-            whereFromAirport = value['airport'];
-            whereFromAirportId = value['id'];
-          });
-        },
-        onWhereToChanged: (Map<String, dynamic> value) {
-          setState(() {
-            whereToAirport = value['airport'];
-            whereToAirportId = value['id'];
-          });
-        },
-        tripId: widget.createTripModel.tripId!.id!,
-      ),
-      TableRowWidget(
-        padding: 14,
-        text: cabinClass == null ? LocaleKeys.cabinClass.tr() : "$cabinClass",
-        onTap: () {
-          showCabinClass(context);
-        },
-        image: Assets.imagesIconsCabinClass,
-      ),
-      CustomButton(
-        onTap: () {
-          BlocProvider.of<TicketsCubit>(context).searchForTicketCubitFun(
-            airFromId: whereFromAirportId ?? 0,
-            airToId: whereToAirportId ?? 0,
+    return BlocConsumer<FlightsCubit, FlightsState>(
+      listener: (BuildContext context, FlightsState state) {},
+      builder: (context, flightsstate) {
+        final cubit = context.read<FlightsCubit>();
+        List<Widget> tableList = [
+          FlightsWay(
+            onFlightsWayChanged: (value) {
+              cubit.setFlightsWay(value);
+            },
+          ),
+          AirprtsTableWiddget(
+            onWhereFromChanged: (Map<String, dynamic> value) {
+              setState(() {
+                cubit.setWhereFromAirportId(value['id'] ?? 0);
+                cubit.setWhereFromAirport(value['airport'] ?? '');
+              });
+            },
+            onWhereToChanged: (Map<String, dynamic> value) {
+              setState(() {
+                cubit.setWhereToAirport(value['airport'] ?? '');
+                cubit.setWhereToAirportId(value['id'] ?? 0);
+              });
+            },
             tripId: widget.createTripModel.tripId!.id!,
-            cabinClass: vlaueCabin ?? '',
-            flightsWay: flightWay ?? '',
-          );
-        },
-        text: LocaleKeys.search.tr(),
-        width: MediaQuery.of(context).size.width,
-        borderRadius: 10,
-        height: MediaQuery.of(context).size.height * .075,
-        style: AppStyles.styleInterBold20(context)
-            .copyWith(color: Colors.white, fontSize: 20),
-        color: kPrimaryColor,
-      ),
-    ];
-    return BlocConsumer<TicketsCubit, TicketsState>(
-      listener: (context, state) {
-        if (state is TicketsFailure) {
-          customSnackBar(context, state.errMessage);
-        } else if (state is TicketsSuccess) {
-          GoRouter.of(context).push(AppRouter.kTicketsView, extra: {
-            'tickets': state.ticketsModel,
-            'tripId': widget.createTripModel,
-            'airFrom': whereFromAirport,
-            'airTo': whereToAirport,
-          });
-        }
-      },
-      builder: (context, state) {
-        return state is TicketsLoading
-            ? Center(
-                child: Lottie.asset(Assets.imagesLottieTicketsLoading),
-              )
-            : Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: MediaQuery.sizeOf(context).height * .165),
-                child: PlanAndPlaneTable(
-                  tableList: tableList,
-                  rowNumber: 4,
-                ),
+          ),
+          TableRowWidget(
+            padding: 14,
+            text: flightsstate.cabinClass == null
+                ? LocaleKeys.cabinClass.tr()
+                : "${flightsstate.cabinClass}",
+            onTap: () {
+              showCabinClass(context, (String value) {
+                setState(() {
+                  cubit.setCabinClass(value);
+                });
+              }, (String value) {
+                setState(() {
+                  cubit.setVlaueCabin(value);
+                });
+              });
+            },
+            image: Assets.imagesIconsCabinClass,
+          ),
+          CustomButton(
+            onTap: () {
+              BlocProvider.of<TicketsCubit>(context).searchForTicketCubitFun(
+                airFromId: flightsstate.whereFromAirportId ?? 0,
+                airToId: flightsstate.whereToAirportId ?? 0,
+                tripId: widget.createTripModel.tripId!.id!,
+                cabinClass: flightsstate.vlaueCabin ?? '',
+                flightsWay: flightsstate.flightWay ?? '',
               );
+            },
+            text: LocaleKeys.search.tr(),
+            width: MediaQuery.of(context).size.width,
+            borderRadius: 10,
+            height: MediaQuery.of(context).size.height * .075,
+            style: AppStyles.styleInterBold20(context)
+                .copyWith(color: Colors.white, fontSize: 20),
+            color: kPrimaryColor,
+          ),
+        ];
+        return BlocConsumer<TicketsCubit, TicketsState>(
+          listener: (context, state) {
+            if (state is TicketsFailure) {
+              customSnackBar(context, state.errMessage);
+            } else if (state is TicketsSuccess) {
+              GoRouter.of(context).push(AppRouter.kTicketsView, extra: {
+                'tickets': state.ticketsModel,
+                'tripId': widget.createTripModel,
+                'airFrom': flightsstate.whereFromAirport,
+                'airTo': flightsstate.whereToAirport,
+              });
+            }
+          },
+          builder: (context, state) {
+            return state is TicketsLoading
+                ? Center(
+                    child: Lottie.asset(Assets.imagesLottieTicketsLoading),
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: MediaQuery.sizeOf(context).height * .165),
+                    child: PlanAndPlaneTable(
+                      tableList: tableList,
+                      rowNumber: 4,
+                    ),
+                  );
+          },
+        );
       },
     );
   }
 
-  Future<dynamic> showCabinClass(BuildContext context) {
+  Future<dynamic> showCabinClass(
+      BuildContext context,
+      ValueChanged<String> onCabinChanged,
+      ValueChanged<String> onValueChanged) {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -122,16 +135,8 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
         context: context,
         builder: (context) {
           return CabinClassBottomSheet(
-            onCabinChanged: (String value) {
-              setState(() {
-                cabinClass = value;
-              });
-            },
-            onValueChanged: (String value) {
-              setState(() {
-                vlaueCabin = value;
-              });
-            },
+            onCabinChanged: onCabinChanged,
+            onValueChanged: onValueChanged,
           );
         });
   }
