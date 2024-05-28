@@ -18,13 +18,13 @@ class AddToPlanButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth,
-      height: 80,
+      height: 75,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         kboxShadow,
       ]),
       child: Padding(
         padding:
-            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 13),
+            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
         child: CustomButton(
           text: LocaleKeys.Add_To_The_plan.tr(),
           width: screenWidth * .6,

@@ -22,6 +22,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/verify
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activities_view.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/activity_details_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_view_body.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
@@ -41,6 +42,8 @@ abstract class AppRouter {
   static const kSelectLocationView = '/selectLocationView';
   static const kEnterDestinationView = '/enterDestinationView';
   static const kActivitiesView = '/ActivitiesView';
+    static const kActivityDetailsView = '/ActivityDetailsView';
+
 
   static final router = GoRouter(
     routes: [
@@ -167,6 +170,10 @@ abstract class AppRouter {
       GoRoute(
         path: kActivitiesView,
         builder: (context, state) => const ActivitiesView(),
+      ),
+       GoRoute(
+        path: kActivityDetailsView,
+        builder: (context, state) => const ActivityDetails(),
       )
     ],
   );

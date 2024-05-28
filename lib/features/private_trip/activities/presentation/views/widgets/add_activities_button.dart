@@ -19,7 +19,7 @@ class AddActivitiesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: screenWidth * .7,
+      width: screenWidth * .75,
       height: 50,
       child: OutlinedButton.icon(
         onPressed: () {

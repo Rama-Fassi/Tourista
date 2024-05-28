@@ -13,6 +13,10 @@ class Assets {
   /// assets/images/icons/activities.svg
   static const String imagesIconsActivities = "assets/images/icons/activities.svg";
 
+  /// Assets for imagesIconsCirInfo
+  /// assets/images/icons/cirInfo.svg
+  static const String imagesIconsCirInfo = "assets/images/icons/cirInfo.svg";
+
   /// Assets for imagesIconsEnterDestination
   /// assets/images/icons/enterDestination.svg
   static const String imagesIconsEnterDestination = "assets/images/icons/enterDestination.svg";
@@ -32,6 +36,14 @@ class Assets {
   /// Assets for imagesIconsGoogleLogo
   /// assets/images/icons/GoogleLogo.svg
   static const String imagesIconsGoogleLogo = "assets/images/icons/GoogleLogo.svg";
+
+  /// Assets for imagesIconsHour
+  /// assets/images/icons/hour.svg
+  static const String imagesIconsHour = "assets/images/icons/hour.svg";
+
+  /// Assets for imagesIconsHours
+  /// assets/images/icons/hours.svg
+  static const String imagesIconsHours = "assets/images/icons/hours.svg";
 
   /// Assets for imagesIconsLockBlack
   /// assets/images/icons/lockBlack.svg
@@ -57,6 +69,10 @@ class Assets {
   /// assets/images/icons/RoundedPlus.svg
   static const String imagesIconsRoundedPlus = "assets/images/icons/RoundedPlus.svg";
 
+  /// Assets for imagesIconsSearch
+  /// assets/images/icons/search.svg
+  static const String imagesIconsSearch = "assets/images/icons/search.svg";
+
   /// Assets for imagesIconsSelectDates
   /// assets/images/icons/selectDates.svg
   static const String imagesIconsSelectDates = "assets/images/icons/selectDates.svg";
@@ -73,6 +89,22 @@ class Assets {
   /// assets/images/icons/thePlan.svg
   static const String imagesIconsThePlan = "assets/images/icons/thePlan.svg";
 
+  /// Assets for imagesIconsType
+  /// assets/images/icons/type.svg
+  static const String imagesIconsType = "assets/images/icons/type.svg";
+
+  /// Assets for imagesImageActivity
+  /// assets/images/imageActivity.png
+  static const String imagesImageActivity = "assets/images/imageActivity.png";
+
+  /// Assets for imagesImageActivity1
+  /// assets/images/imageActivity1.png
+  static const String imagesImageActivity1 = "assets/images/imageActivity1.png";
+
+  /// Assets for imagesImageActivity2
+  /// assets/images/imageActivity2.png
+  static const String imagesImageActivity2 = "assets/images/imageActivity2.png";
+
   /// Assets for imagesIntro1
   /// assets/images/intro1.png
   static const String imagesIntro1 = "assets/images/intro1.png";
@@ -84,6 +116,10 @@ class Assets {
   /// Assets for imagesIntro3
   /// assets/images/intro3.png
   static const String imagesIntro3 = "assets/images/intro3.png";
+
+  /// Assets for imagesMuseumOfTheFuture09
+  /// assets/images/Museum-of-the-future-09.png
+  static const String imagesMuseumOfTheFuture09 = "assets/images/Museum-of-the-future-09.png";
 
   /// Assets for imagesSlogan
   /// assets/images/slogan.svg
