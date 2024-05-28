@@ -21,6 +21,7 @@ class TicketsTime extends StatelessWidget {
         ),
         Text(
           airport,
+          overflow: TextOverflow.ellipsis,
           style: AppStyles.styleInterMedium18(context),
         ),
         Text(
