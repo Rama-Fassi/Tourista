@@ -17,15 +17,10 @@ import 'package:tourista/features/private_trip/main/presentation/views/widgets/c
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 
-class PrivateTripTapBar extends StatefulWidget {
+class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key, required this.createTripModel});
   final CreateTripModel createTripModel;
 
-  @override
-  State<PrivateTripTapBar> createState() => _PrivateTripTapBarState();
-}
-
-class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -88,7 +83,7 @@ class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
                 BlocProvider.value(
                   value: BlocProvider.of<FlightsCubit>(context),
                   child: FligtsViewBody(
-                    createTripModel: widget.createTripModel,
+                    createTripModel: createTripModel,
                   ),
                 ),
                 const StaysViewBody(),

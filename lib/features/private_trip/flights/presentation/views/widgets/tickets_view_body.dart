@@ -24,7 +24,7 @@ class TicketsViewBody extends StatelessWidget {
           dateFrom: ticketsInfo['tickets'].tickets[0].dateOfTicket,
           dateTo: ticketsInfo['tickets'].tickets[0].dateEndOfTicket,
         ),
-        ticketsInfo['tickets'].tickets.isEmptyconst
+        ticketsInfo['tickets'].tickets.isEmpty
             ? const ErrAnimation(errMessage: 'No Flights Found!!')
             : Expanded(
                 child: CustomScrollView(

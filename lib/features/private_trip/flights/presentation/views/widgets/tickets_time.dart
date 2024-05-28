@@ -20,7 +20,11 @@ class TicketsTime extends StatelessWidget {
           style: AppStyles.styleInterBold20(context).copyWith(fontSize: 17),
         ),
         Text(
-          '$airport.$date',
+          airport,
+          style: AppStyles.styleInterMedium18(context),
+        ),
+        Text(
+          date,
           style: AppStyles.styleInterMedium18(context),
         )
       ],
