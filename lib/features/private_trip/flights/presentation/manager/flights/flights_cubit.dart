@@ -31,15 +31,15 @@ class FlightsCubit extends Cubit<FlightsState> {
     emit(state.copyWith(whereFromAirport: whereFromAirport));
   }
 
-  void setWhereFromAirportId(int whereFromAirportId) {
+  void setWhereFromAirportId(int? whereFromAirportId) {
     emit(state.copyWith(whereFromAirportId: whereFromAirportId));
   }
 
-  void setWhereToAirport(String whereToAirport) {
+  void setWhereToAirport(String? whereToAirport) {
     emit(state.copyWith(whereToAirport: whereToAirport));
   }
 
-  void setWhereToAirportId(int whereToAirportId) {
+  void setWhereToAirportId(int? whereToAirportId) {
     emit(state.copyWith(whereToAirportId: whereToAirportId));
   }
 }

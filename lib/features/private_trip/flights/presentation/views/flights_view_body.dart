@@ -19,14 +19,10 @@ import 'package:tourista/features/private_trip/main/data/models/create_trip_mode
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
-class FligtsViewBody extends StatefulWidget {
+class FligtsViewBody extends StatelessWidget {
   const FligtsViewBody({super.key, required this.createTripModel});
   final CreateTripModel createTripModel;
-  @override
-  State<FligtsViewBody> createState() => _FligtsViewBodyState();
-}
 
-class _FligtsViewBodyState extends State<FligtsViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FlightsCubit, FlightsState>(
@@ -34,25 +30,9 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
       builder: (context, flightsstate) {
         final cubit = context.read<FlightsCubit>();
         List<Widget> tableList = [
-          FlightsWay(
-            onFlightsWayChanged: (value) {
-              cubit.setFlightsWay(value);
-            },
-          ),
+          const FlightsWay(),
           AirprtsTableWiddget(
-            onWhereFromChanged: (Map<String, dynamic> value) {
-              setState(() {
-                cubit.setWhereFromAirportId(value['id'] ?? 0);
-                cubit.setWhereFromAirport(value['airport'] ?? '');
-              });
-            },
-            onWhereToChanged: (Map<String, dynamic> value) {
-              setState(() {
-                cubit.setWhereToAirport(value['airport'] ?? '');
-                cubit.setWhereToAirportId(value['id'] ?? 0);
-              });
-            },
-            tripId: widget.createTripModel.tripId!.id!,
+            tripId: createTripModel.tripId!.id!,
           ),
           TableRowWidget(
             padding: 14,
@@ -61,13 +41,9 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
                 : "${flightsstate.cabinClass}",
             onTap: () {
               showCabinClass(context, (String value) {
-                setState(() {
-                  cubit.setCabinClass(value);
-                });
+                cubit.setCabinClass(value);
               }, (String value) {
-                setState(() {
-                  cubit.setVlaueCabin(value);
-                });
+                cubit.setVlaueCabin(value);
               });
             },
             image: Assets.imagesIconsCabinClass,
@@ -77,7 +53,7 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
               BlocProvider.of<TicketsCubit>(context).searchForTicketCubitFun(
                 airFromId: flightsstate.whereFromAirportId ?? 0,
                 airToId: flightsstate.whereToAirportId ?? 0,
-                tripId: widget.createTripModel.tripId!.id!,
+                tripId: createTripModel.tripId!.id!,
                 cabinClass: flightsstate.vlaueCabin ?? '',
                 flightsWay: flightsstate.flightWay ?? '',
               );
@@ -98,7 +74,7 @@ class _FligtsViewBodyState extends State<FligtsViewBody> {
             } else if (state is TicketsSuccess) {
               GoRouter.of(context).push(AppRouter.kTicketsView, extra: {
                 'tickets': state.ticketsModel,
-                'tripId': widget.createTripModel,
+                'tripId': createTripModel,
                 'airFrom': flightsstate.whereFromAirport,
                 'airTo': flightsstate.whereToAirport,
               });

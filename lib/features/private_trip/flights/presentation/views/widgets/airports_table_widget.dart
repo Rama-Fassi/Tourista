@@ -8,13 +8,10 @@ import 'package:tourista/features/private_trip/flights/presentation/views/widget
 class AirprtsTableWiddget extends StatelessWidget {
   const AirprtsTableWiddget({
     super.key,
-    required this.onWhereFromChanged,
-    required this.onWhereToChanged,
     required this.tripId,
   });
   final int tripId;
-  final ValueChanged<Map<String, dynamic>> onWhereFromChanged;
-  final ValueChanged<Map<String, dynamic>> onWhereToChanged;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,8 +20,6 @@ class AirprtsTableWiddget extends StatelessWidget {
         const Gap(10),
         ChooseAirportsWidget(
           tripId: tripId,
-          onWhereFromChanged: onWhereFromChanged,
-          onWhereToChanged: onWhereToChanged,
         ),
       ],
     );
