@@ -1,114 +1,139 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan_table.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/widgets/select_number_widget.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/private_trip_cubit/private_trip_cubit.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/widgets/person_number_bottom_sheet.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/widgets/plan-and_plane_table.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/table_row_widget.dart';
 
-class PrivatTripMainViewBody extends StatefulWidget {
+class PrivatTripMainViewBody extends StatelessWidget {
   const PrivatTripMainViewBody({Key? key}) : super(key: key);
 
-  @override
-  State<PrivatTripMainViewBody> createState() => _PrivatTripMainViewBodyState();
-}
-
-class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
-  DateTime? startDate;
-  DateTime? endDate;
-  int selectedNumber = 0;
-  dynamic selectedcity;
-  dynamic enterCity;
-
+  // DateTime? startDate;
   @override
   Widget build(BuildContext context) {
-    List<Widget> tableList = [
-      TableRowWidget(
-        onTap: () async {
-          var result =
-              await GoRouter.of(context).push(AppRouter.kSelectLocationView);
-          setState(() {
-            selectedcity = result;
-          });
-        },
-        text: selectedcity == null
-            ? LocaleKeys.selectYourLocation.tr()
-            : "${selectedcity['city']}",
-        image: Assets.imagesIconsSelectLocation,
-      ),
-      TableRowWidget(
-        onTap: () async {
-          var result =
-              await GoRouter.of(context).push(AppRouter.kEnterDestinationView);
-          setState(() {
-            enterCity = result;
-          });
-        },
-        text: enterCity == null
-            ? LocaleKeys.enterDestination.tr()
-            : "${enterCity['city']}",
-        image: Assets.imagesIconsEnterDestination,
-      ),
-      TableRowWidget(
-        onTap: () async {
-          var results = await createCalendar(context);
-          if (results != null && results.isNotEmpty) {
-            startDate = results[0];
-            endDate = results[1];
-            setState(() {});
-          }
-        },
-        text: (startDate == null && endDate == null)
-            ? LocaleKeys.selectDates.tr()
-            : "${startDate}".substring(0, 10) +
-                " _ ${endDate}".substring(0, 13),
-        image: Assets.imagesIconsSelectDates,
-      ),
-      TableRowWidget(
-        onTap: () {
-          showPersonNumberBottomSheet(context);
-        },
-        text: selectedNumber == 0
-            ? LocaleKeys.enterPersonNumber.tr()
-            : '${selectedNumber} Person',
-      ),
-      CustomButton(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.kPrivateTripTapBar);
-          // Access the selected number here
-          print('Selected number: $selectedNumber');
-          print("Selected start date: $startDate");
-          print("Selected end date: $endDate");
-        },
-        text: LocaleKeys.continueButton.tr(),
-        width: MediaQuery.of(context).size.width,
-        borderRadius: 10,
-        height: MediaQuery.of(context).size.height * .08,
-        style: AppStyles.styleInterBold20(context)
-            .copyWith(color: Colors.white, fontSize: 21),
-        color: kPrimaryColor,
-      ),
-    ];
+    return BlocBuilder<PrivateTripCubit, PrivateTripState>(
+      builder: (context, state) {
+        final cubit = context.read<PrivateTripCubit>();
+        List<Widget> tableList = [
+          TableRowWidget(
+            padding: 18,
+            onTap: () async {
+              var result = await GoRouter.of(context)
+                  .push(AppRouter.kSelectLocationView);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Spacer(),
-        EartLogoWithText(data: LocaleKeys.planYourTrip.tr()),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: PlanTable(tableList: tableList),
-        ),
-        const Spacer(flex: 4),
-      ],
+              cubit.setSelectedCity(result ?? {});
+            },
+            text: state.selectedcity?['city'] == null
+                ? LocaleKeys.selectYourLocation.tr()
+                : "${state.selectedcity['city']}",
+            image: Assets.imagesIconsSelectLocation,
+          ),
+          TableRowWidget(
+            padding: 18,
+            onTap: () async {
+              var result = await GoRouter.of(context)
+                  .push(AppRouter.kEnterDestinationView);
+
+              cubit.setEnterCity(result ?? {});
+            },
+            text: state.enterCity?['city'] == null
+                ? LocaleKeys.enterDestination.tr()
+                : "${state.enterCity['city']}",
+            image: Assets.imagesIconsEnterDestination,
+          ),
+          TableRowWidget(
+            padding: 18,
+            onTap: () async {
+              var results = await createCalendar(context);
+              if (results != null && results.isNotEmpty) {
+                cubit.setStartDate(results[0]);
+                cubit.setEndDate(results[1]);
+              }
+            },
+            text: (state.startDate == null && state.endDate == null)
+                ? LocaleKeys.selectDates.tr()
+                : "${state.startDate}".substring(0, 10) +
+                    " _ ${state.endDate}".substring(0, 13),
+            image: Assets.imagesIconsSelectDates,
+          ),
+          TableRowWidget(
+            padding: 18,
+            onTap: () {
+              showPersonNumberBottomSheet(
+                context,
+                (int number) {
+                  cubit.setSelectedNumber(number);
+                },
+              );
+            },
+            text: state.selectedNumber == 0
+                ? LocaleKeys.enterPersonNumber.tr()
+                : '${state.selectedNumber} ${LocaleKeys.person.tr()}',
+          ),
+          CustomButton(
+            onTap: () {
+              BlocProvider.of<CreateTripCubit>(context).createTripCubitFun(
+                idFrom: '${state.selectedcity['id']}',
+                idTo: '${state.enterCity['id']}',
+                dateOfTrip: "${state.startDate}".substring(0, 10),
+                dateEndOfTrip: '${state.endDate}'.substring(0, 10),
+                personNumber: '${state.selectedNumber}',
+              );
+            },
+            text: LocaleKeys.continueButton.tr(),
+            width: MediaQuery.of(context).size.width,
+            borderRadius: 10,
+            height: MediaQuery.of(context).size.height * .08,
+            style: AppStyles.styleInterBold20(context)
+                .copyWith(color: Colors.white, fontSize: 21),
+            color: kPrimaryColor,
+          ),
+        ];
+
+        return BlocConsumer<CreateTripCubit, CreateTripState>(
+          listener: (context, state) {
+            if (state is CreateTripFailure) {
+              customSnackBar(context, state.errMessage);
+            } else if (state is CreateTripSuccess) {
+              GoRouter.of(context).push(AppRouter.kPrivateTripTapBar,
+                  extra: state.createTripModel);
+            }
+          },
+          builder: (context, state) {
+            return state is CreateTripLoading
+                ? Center(child: Lottie.asset(Assets.imagesLottieEarthLoading))
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      EartLogoWithText(data: LocaleKeys.planYourTrip.tr()),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: PlanAndPlaneTable(
+                          tableList: tableList,
+                          rowNumber: 5,
+                        ),
+                      ),
+                      const Spacer(flex: 4),
+                    ],
+                  );
+          },
+        );
+      },
     );
   }
 
@@ -124,38 +149,13 @@ class _PrivatTripMainViewBodyState extends State<PrivatTripMainViewBody> {
     );
   }
 
-  void showPersonNumberBottomSheet(BuildContext context) {
+  void showPersonNumberBottomSheet(
+      BuildContext context, ValueChanged<int> onNumberChanged) {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return FractionallySizedBox(
-          widthFactor: 1.0,
-          heightFactor: 0.2,
-          child: Container(
-            padding: EdgeInsets.all(16),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.enterPersonNumber.tr(),
-                    style: AppStyles.styleInterSemiBold18(context),
-                  ),
-                  Spacer(),
-                  SelectNumberWidget(
-                    onNumberChanged: (int number) {
-                      setState(() {
-                        selectedNumber = number;
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return PersonNumberBottomSheet(onNumberChanged: onNumberChanged);
       },
     );
   }

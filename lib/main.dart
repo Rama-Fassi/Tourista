@@ -17,7 +17,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
-  await Hive.openBox(kToken);
+  await Hive.openBox(kTokenBox);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

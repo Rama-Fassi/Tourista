@@ -14,16 +14,25 @@ import 'package:tourista/features/auth/forget_password/presentation/views/forget
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
+import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/choose_ticket_cubit/choose_ticket_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/manager/flights/flights_cubit.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/tickets_view.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
+import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
+import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
+import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
+import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activities_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activity_details_view.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_view_body.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
@@ -41,6 +50,9 @@ abstract class AppRouter {
   static const kVerifySignUpView = '/verifySignUpView';
   static const kSelectLocationView = '/selectLocationView';
   static const kEnterDestinationView = '/enterDestinationView';
+  static const kTicketsView = '/ticketsView';
+  static const kWhereFromAirportView = '/whereFromAirportView';
+  static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
     static const kActivityDetailsView = '/ActivityDetailsView';
 
@@ -124,22 +136,27 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kPrivateTripTapBar,
-        builder: (context, state) => const PrivateTripTapBar(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => FlightsCubit(),
+          child: PrivateTripTapBar(
+            createTripModel: state.extra as CreateTripModel,
+          ),
+        ),
       ),
       GoRoute(
         path: kVerifySignUpView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => VerifySignUpCubit(getIt.get<AuthRepoImpl>()),
-          child: VerifySignUpView(
-            signUpInfo: state.extra as Map<String, dynamic>,
-          ),
+        builder: (context, state) => VerifySignUpView(
+          signUpInfo: state.extra as Map<String, dynamic>,
         ),
       ),
       GoRoute(
         path: kSelectLocationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const SelectLocationView(),
+          child: BlocProvider(
+            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
+            child: const SelectLocationView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -155,7 +172,10 @@ abstract class AppRouter {
         path: kEnterDestinationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const EnterDestinationView(),
+          child: BlocProvider(
+            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
+            child: const EnterDestinationView(),
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -165,6 +185,57 @@ abstract class AppRouter {
               child: child,
             );
           },
+        ),
+      ),
+      GoRoute(
+        path: kWhereFromAirportView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: BlocProvider(
+            create: (context) =>
+                AirportWhereFromCubit(getIt.get<FlightsRepoImpl>())
+                  ..getAirportFromCubitFun(cityId: state.extra as int),
+            child: const WhereFromAirprotView(),
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1), // Slide in from bottom
+                end: const Offset(0, 0), // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kWhereToAirportView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: BlocProvider(
+            create: (context) =>
+                AirportWhereToCubit(getIt.get<FlightsRepoImpl>())
+                  ..getAirportToCubitFun(cityId: state.extra as int),
+            child: const WhereToAirportView(),
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1), // Slide in from bottom
+                end: const Offset(0, 0), // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kTicketsView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ChooseTicketCubit(getIt.get<FlightsRepoImpl>()),
+          child: TicketsView(
+            ticketsinfo: state.extra as Map<String, dynamic>,
+          ),
         ),
       ),
       GoRoute(

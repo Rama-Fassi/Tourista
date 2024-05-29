@@ -1,7 +1,5 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
 abstract class  LocaleKeys {
   static const create_an_account = 'create_an_account';
   static const user_name = 'user_name';
@@ -42,11 +40,30 @@ abstract class  LocaleKeys {
   static const enterDestination = 'enterDestination';
   static const selectDates = 'selectDates';
   static const enterPersonNumber = 'enterPersonNumber';
+  static const person = 'person';
+  static const roundTrip = 'roundTrip';
+  static const oneWay = 'oneWay';
+  static const whereFrom = 'whereFrom';
+  static const whereTo = 'whereTo';
+  static const cabinClass = 'cabinClass';
+  static const search = 'search';
   static const Hide = 'Hide';
   static const Flights = 'Flights';
   static const Stays = 'Stays';
   static const Activities = 'Activities';
   static const The_plan = 'The_plan';
+  static const cancel = 'cancel';
+  static const economy = 'economy';
+  static const premiumEconomy = 'premiumEconomy';
+  static const business = 'business';
+  static const firstClass = 'firstClass';
+  static const flightsFound = 'flightsFound';
+  static const priceMyChange = 'priceMyChange';
+  static const best = 'best';
+  static const fastest = 'fastest';
+  static const direct = 'direct';
+  static const included = 'included';
+  static const forAllTravellers = 'forAllTravellers';
   static const Add_Activities = 'Add_Activities';
   static const Add_To_The_plan = 'Add_To_The_plan';
 

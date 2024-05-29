@@ -1,10 +1,7 @@
 part of 'verify_signup_cubit.dart';
 
-sealed class VerifySignUpState extends Equatable {
+sealed class VerifySignUpState {
   const VerifySignUpState();
-
-  @override
-  List<Object> get props => [];
 }
 
 final class VerifySignupInitial extends VerifySignUpState {}

@@ -20,7 +20,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     result.fold((failure) {
       emit(ResetPasswordFailure(errMessage: failure.errMessage));
     }, (resetPasswordModel) {
-      Hive.box(kToken).put(kTokenRef, resetPasswordModel.token);
+      Hive.box(kTokenBox).put(kTokenRef, resetPasswordModel.token);
       emit(ResetPasswordSuccess(resetPasswordModel: resetPasswordModel));
     });
   }
