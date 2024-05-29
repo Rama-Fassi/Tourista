@@ -13,21 +13,22 @@ class TicketsTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           time,
           style: AppStyles.styleInterBold20(context).copyWith(fontSize: 17),
         ),
         Text(
-          airport,
-          overflow: TextOverflow.ellipsis,
+          date,
           style: AppStyles.styleInterMedium18(context),
         ),
         Text(
-          date,
-          style: AppStyles.styleInterMedium18(context),
-        )
+          airport,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppStyles.styleInterMedium12(context),
+        ),
       ],
     );
   }

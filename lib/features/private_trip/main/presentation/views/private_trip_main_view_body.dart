@@ -60,7 +60,7 @@ class PrivatTripMainViewBody extends StatelessWidget {
               var results = await createCalendar(context);
               if (results != null && results.isNotEmpty) {
                 cubit.setStartDate(results[0]);
-                cubit.setEndDate(results[1]);
+                cubit.setEndDate(results.length != 1 ? results[1] : results[0]);
               }
             },
             text: (state.startDate == null && state.endDate == null)

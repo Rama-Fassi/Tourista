@@ -14,6 +14,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/forget
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
@@ -54,8 +55,7 @@ abstract class AppRouter {
   static const kWhereFromAirportView = '/whereFromAirportView';
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
-    static const kActivityDetailsView = '/ActivityDetailsView';
-
+  static const kActivityDetailsView = '/ActivityDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -145,8 +145,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kVerifySignUpView,
-        builder: (context, state) => VerifySignUpView(
-          signUpInfo: state.extra as Map<String, dynamic>,
+        builder: (context, state) => BlocProvider(
+          create: (context) => VerifySignUpCubit(getIt.get<AuthRepoImpl>()),
+          child: VerifySignUpView(
+            signUpInfo: state.extra as Map<String, dynamic>,
+          ),
         ),
       ),
       GoRoute(
@@ -242,7 +245,7 @@ abstract class AppRouter {
         path: kActivitiesView,
         builder: (context, state) => const ActivitiesView(),
       ),
-       GoRoute(
+      GoRoute(
         path: kActivityDetailsView,
         builder: (context, state) => const ActivityDetails(),
       )
