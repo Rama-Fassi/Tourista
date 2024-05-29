@@ -31,6 +31,8 @@ import 'package:tourista/features/private_trip/flights/presentation/views/where_
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/activities_view.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/activity_details_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
@@ -51,6 +53,9 @@ abstract class AppRouter {
   static const kTicketsView = '/ticketsView';
   static const kWhereFromAirportView = '/whereFromAirportView';
   static const kWhereToAirportView = '/whereToAirportView';
+  static const kActivitiesView = '/ActivitiesView';
+    static const kActivityDetailsView = '/ActivityDetailsView';
+
 
   static final router = GoRouter(
     routes: [
@@ -233,6 +238,14 @@ abstract class AppRouter {
           ),
         ),
       ),
+      GoRoute(
+        path: kActivitiesView,
+        builder: (context, state) => const ActivitiesView(),
+      ),
+       GoRoute(
+        path: kActivityDetailsView,
+        builder: (context, state) => const ActivityDetails(),
+      )
     ],
   );
 }

@@ -1,21 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
-import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/activities_view_body.dart';
-import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
-import 'package:tourista/features/private_trip/flights/presentation/manager/flights/flights_cubit.dart';
-import 'package:tourista/features/private_trip/flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
+import '../../../../../core/utlis/service_locator.dart';
+import '../../../flights/data/repos/flights_repo_impl.dart';
+import '../../../flights/presentation/manager/flights/flights_cubit.dart';
+import '../../../flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
 
 class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key, required this.createTripModel});
@@ -87,7 +87,7 @@ class PrivateTripTapBar extends StatelessWidget {
                   ),
                 ),
                 const StaysViewBody(),
-                const ActivitiesViewBody(),
+                const AddActivitiesViewBody(),
                 const ThePlanViewBody(),
               ],
             ),

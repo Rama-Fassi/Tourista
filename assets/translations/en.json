@@ -50,6 +50,8 @@
   "Stays": "Stays",
   "Activities": "Activites",
   "The_plan": "The Plan",
+  "Add_Activities": "Add Activities",
+  "Add_To_The_plan": "Add To The Plan",
   "cancel": "Cancel",
   "economy": "Economy",
   "premiumEconomy": "Premium economy",
@@ -61,6 +63,5 @@
   "fastest": "Fastest",
   "direct": "Direct",
   "included": "Included: personal item, cabin bag, checked bag",
-  "forAllTravellers": "for all travellers",
-  "Add_To_The_plan": "Add To The Plan"
+  "forAllTravellers": "for all travellers"
 }

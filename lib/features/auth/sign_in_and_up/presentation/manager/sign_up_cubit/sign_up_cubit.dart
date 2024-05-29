@@ -23,6 +23,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         confirmPassword: confirmPassword);
     result.fold((failure) {
       emit(SignUpFailure(failure.errMessage));
+      print('$failure.errMessage');
     }, (registerModel) {
       emit(SignUpSuccess(registerModel: registerModel));
     });
