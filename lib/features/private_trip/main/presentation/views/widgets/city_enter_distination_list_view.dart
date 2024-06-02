@@ -6,8 +6,8 @@ import 'package:tourista/features/private_trip/main/data/models/all_city_model/a
 import 'package:tourista/features/private_trip/main/presentation/manager/private_trip_cubit/private_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/city_select_location_card.dart';
 
-class CitySelectLocationListView extends StatelessWidget {
-  const CitySelectLocationListView({
+class CityEnterDistinationListView extends StatelessWidget {
+  const CityEnterDistinationListView({
     super.key,
     required this.allCityModel,
   });
@@ -24,7 +24,7 @@ class CitySelectLocationListView extends StatelessWidget {
               child: GestureDetector(
                   onTap: () {
                     GoRouter.of(context).pop();
-                    cubit.setSelectedCity({
+                    cubit.setEnterCity({
                       "id": allCityModel.theCities![index].id,
                       "city": allCityModel.theCities![index].name
                     });

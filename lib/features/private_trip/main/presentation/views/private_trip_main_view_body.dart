@@ -30,11 +30,8 @@ class PrivatTripMainViewBody extends StatelessWidget {
         List<Widget> tableList = [
           TableRowWidget(
             padding: 18,
-            onTap: () async {
-              var result = await GoRouter.of(context)
-                  .push(AppRouter.kSelectLocationView);
-
-              cubit.setSelectedCity(result ?? {});
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSelectLocationView);
             },
             text: state.selectedcity?['city'] == null
                 ? LocaleKeys.selectYourLocation.tr()
@@ -43,11 +40,8 @@ class PrivatTripMainViewBody extends StatelessWidget {
           ),
           TableRowWidget(
             padding: 18,
-            onTap: () async {
-              var result = await GoRouter.of(context)
-                  .push(AppRouter.kEnterDestinationView);
-
-              cubit.setEnterCity(result ?? {});
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kEnterDestinationView);
             },
             text: state.enterCity?['city'] == null
                 ? LocaleKeys.enterDestination.tr()

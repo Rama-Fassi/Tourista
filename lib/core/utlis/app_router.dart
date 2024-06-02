@@ -30,8 +30,6 @@ import 'package:tourista/features/private_trip/flights/presentation/views/ticket
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
-import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
-import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activities_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activity_details_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
@@ -156,10 +154,7 @@ abstract class AppRouter {
         path: kSelectLocationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
-            child: const SelectLocationView(),
-          ),
+          child: const SelectLocationView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -175,10 +170,7 @@ abstract class AppRouter {
         path: kEnterDestinationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
-            child: const EnterDestinationView(),
-          ),
+          child: const EnterDestinationView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
