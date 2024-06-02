@@ -12,7 +12,7 @@ class HotelMainCardPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width * .3,
+      width: width * .31,
       child: AspectRatio(
           aspectRatio: 2.5 / 4.75,
           child: ClipRRect(

@@ -82,7 +82,8 @@ class CodegenLoader extends AssetLoader{
   "Add_To_The_plan": "إضافة الى الخطة",
   "sort": "تصنيف",
   "map": "خرائط غوغل",
-  "properties": "فندق"
+  "properties": "فندق",
+  "averagePrice": "السعر الوسطي"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -152,7 +153,8 @@ static const Map<String,dynamic> en = {
   "forAllTravellers": "for all travellers",
   "sort": "Sort",
   "map": "Map",
-  "properties": "Properties"
+  "properties": "Properties",
+  "averagePrice": "Average price"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

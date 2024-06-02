@@ -18,9 +18,9 @@ class HotelMainCardTitleAndReviewColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HotelMainCardTitle(width: width),
-        Gap(4),
+        const Gap(4),
         StarsMainRow(),
-        Gap(8),
+        const Gap(4),
         HotelMainReviewRow()
       ],
     );

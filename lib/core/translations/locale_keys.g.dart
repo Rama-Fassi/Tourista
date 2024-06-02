@@ -69,5 +69,6 @@ abstract class  LocaleKeys {
   static const sort = 'sort';
   static const map = 'map';
   static const properties = 'properties';
+  static const averagePrice = 'averagePrice';
 
 }
