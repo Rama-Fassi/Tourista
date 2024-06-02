@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tourista/features/private_trip/stays/presentation/views/hotel_main_card_title_and_review_column.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_card_title_and_review_column.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_card_photo.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_card_price_and_description.dart';
 

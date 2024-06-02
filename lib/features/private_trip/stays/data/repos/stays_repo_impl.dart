@@ -13,9 +13,8 @@ class StaysRepoImpl implements StaysRepo {
   Future<Either<Failure, HotelsModel>> fetchHotels(
       {required int tripId}) async {
     try {
-      var data = await apiServer.post(
+      var data = await apiServer.get(
         endPoint: 'cityHotels/$tripId',
-        body: {},
       );
 
       HotelsModel hotelsModel = HotelsModel.fromJson(data);

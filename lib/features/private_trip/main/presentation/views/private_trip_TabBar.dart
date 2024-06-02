@@ -10,6 +10,8 @@ import 'package:tourista/features/private_trip/activities/presentation/views/add
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
+import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
+import 'package:tourista/features/private_trip/stays/presentation/manager/hotels_cubit/hotels_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 import '../../../../../core/utlis/service_locator.dart';
@@ -34,6 +36,9 @@ class PrivateTripTapBar extends StatelessWidget {
             BlocProvider(
               create: (context) => FlightsCubit(),
             ),
+            BlocProvider(
+                create: (context) => HotelsCubit(getIt.get<StaysRepoImpl>())
+                  ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id!))
           ],
           child: Scaffold(
             appBar: AppBar(
