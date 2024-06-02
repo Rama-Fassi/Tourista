@@ -230,7 +230,7 @@ abstract class AppStyles {
   static TextStyle styleQuickSemiBold16(BuildContext context) {
     return GoogleFonts.quicksand(
       color: Colors.white,
-      fontSize: getResponsiveFontSize(fontSize: 16, context),
+      fontSize: getResponsiveFontSize(fontSize: 18, context),
       fontWeight: FontWeight.w600,
     );
   }

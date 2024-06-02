@@ -63,5 +63,8 @@
   "fastest": "Fastest",
   "direct": "Direct",
   "included": "Included: personal item, cabin bag, checked bag",
-  "forAllTravellers": "for all travellers"
+  "forAllTravellers": "for all travellers",
+  "sort": "Sort",
+  "map": "Map",
+  "properties": "Properties"
 }

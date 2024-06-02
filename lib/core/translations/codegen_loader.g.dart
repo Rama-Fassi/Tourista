@@ -79,7 +79,10 @@ class CodegenLoader extends AssetLoader{
   "included": "متضمنة: الأمتعة الشخصية ,حقيبة الشحن",
   "forAllTravellers": "لكل المسافرين",
   "Add_Activities": "إضافة انشطة",
-  "Add_To_The_plan": "إضافة الى الخطة"
+  "Add_To_The_plan": "إضافة الى الخطة",
+  "sort": "تصنيف",
+  "map": "خرائط غوغل",
+  "properties": "فندق"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -146,7 +149,10 @@ static const Map<String,dynamic> en = {
   "fastest": "Fastest",
   "direct": "Direct",
   "included": "Included: personal item, cabin bag, checked bag",
-  "forAllTravellers": "for all travellers"
+  "forAllTravellers": "for all travellers",
+  "sort": "Sort",
+  "map": "Map",
+  "properties": "Properties"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
