@@ -9,34 +9,47 @@ import 'icon_with_text_row.dart';
 class ActivityTextsDetails extends StatelessWidget {
   const ActivityTextsDetails({
     super.key,
+    required this.activityName,
+    required this.activityOpeningHours,
+    required this.activityRecmmendTime,
+    required this.activityTybe,
+    required this.activityAbout,
   });
+  final String? activityName;
+  final String? activityOpeningHours;
+  final String? activityRecmmendTime;
+  final String? activityTybe;
+  final String? activityAbout;
 
   @override
   Widget build(BuildContext context) {
+    String tybe = '';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Museum of The Future',
+          activityName!,
           // overflow: TextOverflow.ellipsis,
           style: AppStyles.styleQuickBold25(context)
               .copyWith(color: kPrimaryColor),
           textAlign: TextAlign.left,
         ),
         const Gap(20),
-        const IconWithTextRow(
+        IconWithTextRow(
           assetName: Assets.imagesIconsHours,
-          data: "Opening Hours 10:00-16:00",
+          data: "Opening Hours: $activityOpeningHours",
         ),
         const Gap(15),
-        const IconWithTextRow(
+        IconWithTextRow(
           assetName: Assets.imagesIconsHour,
-          data: "Recommended time : 2 for 4 hours",
+          data: "Recommended time: $activityRecmmendTime Hours",
         ),
         const Gap(15),
-        const IconWithTextRow(
+        IconWithTextRow(
           assetName: Assets.imagesIconsType,
-          data: "Entertainment Activity ",
+          data: activityTybe == null
+              ? 'General Activity'
+              : "$activityTybe Activity ",
         ),
         const Gap(20),
         const Divider(
@@ -54,7 +67,7 @@ class ActivityTextsDetails extends StatelessWidget {
         ),
         const Gap(15),
         Text(
-          'one of the largest waterparks in the Middle East and features variety of thrilling water slides, rides, and attractions for visitors of all ages. Aquaventure Waterpark also includes a private beach, river rides, splash areas for kids, and opportunities for swimming and sunbathing one of the largest waterparks in the Middle East and features variety of thrilling water slides, rides, and attractions for visitors of all ages. Aquaventure Waterpark also includes a private beach, river rides, splash areas for kids, and opportunities for swimming and sunbathing one of the largest waterparks in the Middle East and features variety of thrilling water slides, rides, and attractions for visitors of all ages. Aquaventure Waterpark also includes a private beach, river rides, splash areas for kids, and opportunities for swimming and sunbathing water slides, rides, and attractions for visitors of all ages. Aquaventure Waterpark also includes a private beach, river rides, splash areas for kids, and opportunities for swimming and sunbathing',
+          activityAbout!,
           style: AppStyles.styleSourceSemiBold20(context),
         )
       ],

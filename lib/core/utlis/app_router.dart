@@ -20,6 +20,8 @@ import 'package:tourista/features/auth/forget_password/presentation/views/reset_
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
+import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
@@ -38,6 +40,8 @@ import 'package:tourista/features/private_trip/main/presentation/views/enter_des
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
+import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
+
 abstract class AppRouter {
   static const kHomeView = '/homeView';
   static const kSignUp = '/signUpView';
@@ -54,8 +58,7 @@ abstract class AppRouter {
   static const kWhereFromAirportView = '/whereFromAirportView';
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
-    static const kActivityDetailsView = '/ActivityDetailsView';
-
+  static const kActivityDetailsView = '/ActivityDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -240,11 +243,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kActivitiesView,
-        builder: (context, state) => const ActivitiesView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>  ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+          child:  ActivitiesView(tripId: state.extra as int,),
+        ),
       ),
-       GoRoute(
+      GoRoute(
         path: kActivityDetailsView,
-        builder: (context, state) => const ActivityDetails(),
+        builder: (context, state) =>  ActivityDetails(activityModel: state.extra as ActivityModel,),
       )
     ],
   );

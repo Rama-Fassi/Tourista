@@ -1,14 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/widgets/add_to_plan_button.dart';
 
-import '../../../../../../core/utlis/app_assets.dart';
 import 'activity_texts_details.dart';
 
 class ActivityDetailsViewBody extends StatefulWidget {
-  const ActivityDetailsViewBody({super.key});
-
+  const ActivityDetailsViewBody({super.key, required this.activityModel});
+  final ActivityModel activityModel;
   @override
   State<ActivityDetailsViewBody> createState() =>
       _ActivityDetailsViewBodyState();
@@ -21,20 +23,15 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    List<Widget> images = [
-      Image.asset(
-        Assets.imagesImageActivity1,
+    List<Widget> images =
+        (widget.activityModel.images as List<dynamic>).map((imageData) {
+      return CachedNetworkImage(
+        imageUrl: '$kPhotoBAseUrl$imageData',
         fit: BoxFit.cover,
-      ),
-      Image.asset(
-        Assets.imagesImageActivity2,
-        fit: BoxFit.cover,
-      ),
-      Image.asset(
-        Assets.imagesImageActivity,
-        fit: BoxFit.cover,
-      ),
-    ];
+        fadeInDuration: const Duration(milliseconds: 200),
+      );
+    }).toList();
+
     return Stack(alignment: Alignment.bottomCenter, children: [
       SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -46,9 +43,9 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
               child: imagesPageViewWithCounter(images, screenWidth, context),
             ),
             const Gap(10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: ActivityTextsDetails(),
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: ActivityTextsDetails(activityName: widget.activityModel.name, activityOpeningHours: widget.activityModel.openingHours, activityRecmmendTime: widget.activityModel.recommendedTime, activityTybe: widget.activityModel.type, activityAbout: widget.activityModel.description,),
             ),
             const Gap(100),
           ],

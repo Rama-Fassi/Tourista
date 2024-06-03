@@ -36,6 +36,7 @@ class PrivatTripMainViewBody extends StatelessWidget {
 
               cubit.setSelectedCity(result ?? {});
             },
+
             text: state.selectedcity?['city'] == null
                 ? LocaleKeys.selectYourLocation.tr()
                 : "${state.selectedcity['city']}",

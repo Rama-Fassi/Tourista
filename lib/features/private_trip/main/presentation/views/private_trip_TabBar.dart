@@ -6,15 +6,15 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/private_trip/activities/data/repos/activities_repo_impl.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
-
 import '../../../../../core/utlis/service_locator.dart';
-import '../../../activities/presentation/views/widgets/activities_view_body.dart';
 import '../../../flights/data/repos/flights_repo_impl.dart';
 import '../../../flights/presentation/manager/flights/flights_cubit.dart';
 import '../../../flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
@@ -22,7 +22,6 @@ import '../../../flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
 class PrivateTripTapBar extends StatefulWidget {
   const PrivateTripTapBar({super.key, required this.createTripModel});
   final CreateTripModel createTripModel;
-
   @override
   State<PrivateTripTapBar> createState() => _PrivateTripTapBarState();
 }
@@ -41,6 +40,11 @@ class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
             BlocProvider(
               create: (context) => FlightsCubit(),
             ),
+            
+         BlocProvider(
+              create: (context) => ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+            
           ],
           child: Scaffold(
             appBar: AppBar(
@@ -94,7 +98,9 @@ class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
                   ),
                 ),
                 const StaysViewBody(),
-                const AddActivitiesViewBody(),
+                AddActivitiesViewBody(
+                  createTripModel: widget.createTripModel,
+                ),
                 const ThePlanViewBody(),
               ],
             ),

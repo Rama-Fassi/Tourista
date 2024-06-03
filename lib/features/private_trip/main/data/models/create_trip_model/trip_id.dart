@@ -2,7 +2,7 @@ import 'from_city.dart';
 import 'to_city.dart';
 
 class TripId {
-	int? id;
+	int id;
 	int? userId;
 	int? from;
 	int? to;
@@ -14,7 +14,7 @@ class TripId {
 	ToCity? toCity;
 
 	TripId({
-		this.id, 
+		required this.id, 
 		this.userId, 
 		this.from, 
 		this.to, 
@@ -27,7 +27,7 @@ class TripId {
 	});
 
 	factory TripId.fromJson(Map<String, dynamic> json) => TripId(
-				id: json['id'] as int?,
+				id: json['id'] as int,
 				userId: json['user_id'] as int?,
 				from: json['from'] as int?,
 				to: json['to'] as int?,

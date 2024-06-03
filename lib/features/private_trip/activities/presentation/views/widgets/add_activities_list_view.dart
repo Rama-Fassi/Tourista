@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import '../../../../main/data/models/create_trip_model/create_trip_model.dart';
+import '../../../data/models/tourism_activities/activity_model.dart';
 import 'add_activities_column.dart';
 
 class AddActivitiesListView extends StatefulWidget {
-  const AddActivitiesListView({super.key, required this.screenWidth});
+  const AddActivitiesListView(
+      {super.key, required this.screenWidth, required this.createTripModel});
+  final CreateTripModel createTripModel;
 
   final double screenWidth;
 
@@ -13,24 +17,28 @@ class AddActivitiesListView extends StatefulWidget {
 }
 
 class _AddActivitiesListViewState extends State<AddActivitiesListView> {
-  final String _startDateString = '2024-5-25';
+  String? _startDateString;
   DateTime _startDate = DateTime.now();
-  final String _endDateString = '2024-6-2';
+  String? _endDateString;
   DateTime _endDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
+    _startDateString = widget.createTripModel.tripId!.dateOfTrip;
+    _endDateString = widget.createTripModel.tripId!.dateEndOfTrip;
     _parseStartDate();
   }
 
   void _parseStartDate() {
-    _startDate = DateFormat('yyyy-MM-dd').parse(_startDateString);
-    _endDate = DateFormat('yyyy-MM-dd').parse(_endDateString);
+    _startDate = DateFormat('yyyy-MM-dd').parse(_startDateString!);
+    _endDate = DateFormat('yyyy-MM-dd').parse(_endDateString!);
   }
 
   @override
   Widget build(BuildContext context) {
+
+
     List<DateTime> dateTimes = List.generate(
       (_endDate.difference(_startDate).inDays + 1),
       (i) => _startDate.add(Duration(days: i)),
@@ -45,7 +53,7 @@ class _AddActivitiesListViewState extends State<AddActivitiesListView> {
                 itemBuilder: (context, index) {
                   return AddActivitiesColumn(
                     screenWidth: widget.screenWidth,
-                    data: DateFormat('EEEE d MMMM ').format(dateTimes[index]),
+                    data: DateFormat('EEEE d MMMM ').format(dateTimes[index]), createTripModel: widget.createTripModel, tripId: widget.createTripModel.tripId!.id,
                   );
                 },
                 itemCount: dateTimes.length,
