@@ -35,6 +35,7 @@ import 'package:tourista/features/private_trip/activities/presentation/views/act
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -54,6 +55,7 @@ abstract class AppRouter {
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
   static const kActivityDetailsView = '/ActivityDetailsView';
+  static const kHotelDetailsView = '/hotelDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -240,7 +242,27 @@ abstract class AppRouter {
       GoRoute(
         path: kActivityDetailsView,
         builder: (context, state) => const ActivityDetails(),
-      )
+      ),
+      // GoRoute(
+      //   path: kHotelDetailsView,
+      //   builder: (context, state) => const HotelDetailView(),
+      // ),
+      GoRoute(
+        path: kHotelDetailsView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: const HotelDetailView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
     ],
   );
 }

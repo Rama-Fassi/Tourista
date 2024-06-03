@@ -35,9 +35,9 @@ class Hotel {
         review: json['review'] == null
             ? null
             : Review.fromJson(json['review'] as Map<String, dynamic>),
-        hotelInfo: json['hotel_info'] == null
+        hotelInfo: json['hotel'] == null
             ? null
-            : HotelInfo.fromJson(json['hotel_info'] as Map<String, dynamic>),
+            : HotelInfo.fromJson(json['hotel'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,6 +49,6 @@ class Hotel {
         'features': features,
         'avarageOfPrice': avarageOfPrice,
         'review': review?.toJson(),
-        'hotel_info': hotelInfo?.toJson(),
+        'hotel': hotelInfo?.toJson(),
       };
 }

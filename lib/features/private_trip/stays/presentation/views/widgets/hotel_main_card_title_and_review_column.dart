@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_card_title.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_review_row.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/stars_main_row.dart';
@@ -8,20 +9,28 @@ class HotelMainCardTitleAndReviewColumn extends StatelessWidget {
   const HotelMainCardTitleAndReviewColumn({
     super.key,
     required this.width,
+    required this.hotel,
   });
 
   final double width;
-
+  final Hotel hotel;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HotelMainCardTitle(width: width),
+        HotelMainCardTitle(
+          width: width,
+          hotel: hotel,
+        ),
         const Gap(4),
-        StarsMainRow(),
+        StarsMainRow(
+          hotel: hotel,
+        ),
         const Gap(4),
-        HotelMainReviewRow()
+        HotelMainReviewRow(
+          hotel: hotel,
+        )
       ],
     );
   }
