@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'widgets/custom_colorful_tabBar.dart';
 import 'widgets/custom_search_text_field.dart';
-import 'widgets/tapbar_view_activities_tybe.dart';
+import 'widgets/activities_tabbar_view.dart';
 
 class ActivitiesView extends StatelessWidget {
-  const ActivitiesView({super.key, required this.tripId});
-
-  final int tripId;
+   const ActivitiesView({super.key, required this.activitiesdaysInfo });
+   final Map<String ,dynamic> activitiesdaysInfo ;
+   
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -41,33 +43,33 @@ class ActivitiesView extends StatelessWidget {
           body: TabBarView(
             children: [
               //General
-              TabBarViewForActivitiesTybe(
-                  screenWidth: screenWidth, tripId: tripId, tourismTybe: ''),
+              ActivitiesTabBarView(
+                  screenWidth: screenWidth, tripId: activitiesdaysInfo['tripId'], tourismTybe: '', dayIndex:  activitiesdaysInfo['index'],),
               //Sports
-              TabBarViewForActivitiesTybe(
+              ActivitiesTabBarView(
                   screenWidth: screenWidth,
-                  tripId: tripId,
-                  tourismTybe: 'Sports'),
+                  tripId: activitiesdaysInfo['tripId'],
+                  tourismTybe: 'Sports', dayIndex: activitiesdaysInfo['index'],),
               //Entertainment
-              TabBarViewForActivitiesTybe(
+              ActivitiesTabBarView(
                   screenWidth: screenWidth,
-                  tripId: tripId,
-                  tourismTybe: 'Entertainment'),
+                  tripId: activitiesdaysInfo['tripId'],
+                  tourismTybe: 'Entertainment', dayIndex: activitiesdaysInfo['index'],),
               //Culitural
-              TabBarViewForActivitiesTybe(
+              ActivitiesTabBarView(
                   screenWidth: screenWidth,
-                  tripId: tripId,
-                  tourismTybe: 'Culitural'),
+                  tripId: activitiesdaysInfo['tripId'],
+                  tourismTybe: 'Culitural', dayIndex: activitiesdaysInfo['index'],),
               //Natural
-              TabBarViewForActivitiesTybe(
+              ActivitiesTabBarView(
                   screenWidth: screenWidth,
-                  tripId: tripId,
-                  tourismTybe: 'Natural'),
+                  tripId: activitiesdaysInfo['tripId'],
+                  tourismTybe: 'Natural', dayIndex: activitiesdaysInfo['index'],),
               //Relaxation
-              TabBarViewForActivitiesTybe(
+              ActivitiesTabBarView(
                   screenWidth: screenWidth,
-                  tripId: tripId,
-                  tourismTybe: 'Relaxation'),
+                  tripId: activitiesdaysInfo['tripId'],
+                  tourismTybe: 'Relaxation', dayIndex: activitiesdaysInfo['index'],),
             ],
           ),
         ),

@@ -8,25 +8,20 @@ part 'activities_state.dart';
 class ActivitiesCubit extends Cubit<ActivitiesState> {
   ActivitiesCubit(this.activitiesRepo) : super(ActivitiesInitial());
 
-final ActivitiesRepo activitiesRepo;
+  final ActivitiesRepo activitiesRepo;
 
   Future<void> getTourismPlaces({
     required String tourismTybe,
     required int tripId,
   }) async {
     emit(ActivitiesLoading());
-    var result = await activitiesRepo.getTourismPlaces(tourismTybe: tourismTybe, tripId: tripId);
+    var result = await activitiesRepo.getTourismPlaces(
+        tourismTybe: tourismTybe, tripId: tripId);
     result.fold((failure) {
       emit(ActivitiesFailure(failure.errMessage));
-      print('$failure.errMessage');
+      print(failure.errMessage);
     }, (tourismActivitiesModel) {
-      emit(ActivitiesSuccess(tourismActivitiesModel: tourismActivitiesModel ));
+      emit(ActivitiesSuccess(tourismActivitiesModel: tourismActivitiesModel));
     });
   }
 }
-
-
-
-
-
-

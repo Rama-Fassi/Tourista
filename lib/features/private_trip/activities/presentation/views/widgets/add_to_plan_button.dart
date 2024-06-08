@@ -9,9 +9,9 @@ class AddToPlanButton extends StatelessWidget {
   const AddToPlanButton({
     super.key,
     required this.screenWidth,
-    required this.onTap,
+    required this.onTap,  this.text,
   });
-
+  final String? text;
   final double screenWidth;
   final Function() onTap;
   @override
@@ -24,9 +24,9 @@ class AddToPlanButton extends StatelessWidget {
       ]),
       child: Padding(
         padding:
-            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
+             const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
         child: CustomButton(
-          text: LocaleKeys.Add_To_The_plan.tr(),
+          text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
           width: screenWidth * .6,
           borderRadius: 5,
           height: 50,

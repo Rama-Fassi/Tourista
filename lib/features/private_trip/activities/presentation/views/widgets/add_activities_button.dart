@@ -11,12 +11,13 @@ import 'package:tourista/core/utlis/styles.dart';
 class AddActivitiesButton extends StatelessWidget {
   const AddActivitiesButton({
     super.key,
-    required this.screenWidth, required this.tripId, //required this.createTripModel,
+    required this.screenWidth,
+    required this.tripId, required this.index, //required this.createTripModel,
   });
-  final  int tripId;
+  final int tripId;
 
   final double screenWidth;
-
+  final int index;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -24,7 +25,13 @@ class AddActivitiesButton extends StatelessWidget {
       height: 50,
       child: OutlinedButton.icon(
         onPressed: () {
-          GoRouter.of(context).push(AppRouter.kActivitiesView , extra: tripId);
+          GoRouter.of(context).push(
+            AppRouter.kActivitiesView,
+            extra: {
+              'tripId' : tripId,
+            'index':index
+            }
+          );
         },
         icon: SvgPicture.asset(
           Assets.imagesIconsRoundedPlus,

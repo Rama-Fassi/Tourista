@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../core/utlis/styles.dart';
 import '../../../../../../core/widgets/custom_button.dart';
@@ -16,6 +18,7 @@ class CustomActivityCard extends StatefulWidget {
     required this.activityDescription,
     required this.activityImages,
     required this.activityModel,
+    required this.dayIndex,
   });
 
   final double screenWidth;
@@ -23,31 +26,20 @@ class CustomActivityCard extends StatefulWidget {
   final String? activityName;
   final String? activityDescription;
   final ActivityModel? activityModel;
+  final int? dayIndex;
 
   @override
   State<CustomActivityCard> createState() => _CustomActivityCardState();
 }
 
 class _CustomActivityCardState extends State<CustomActivityCard> {
-  
-  bool _isChecked = false;
-
-void _toggleCheckbox(bool? value) {
-    setState(() {
-      if (value != null) {
-        _isChecked = value;
-      } else {
-        _isChecked = false; 
-      }
-    });
-  }
-
-
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    final cubit = context.read<ActivityCardCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: SizedBox(
@@ -58,10 +50,50 @@ void _toggleCheckbox(bool? value) {
             Align(
               alignment: Alignment.center,
               child: CustomCheckbox(
-                value: _isChecked,
-                onChanged: _toggleCheckbox,
+                value: isChecked,
+                onChanged: (value) {
+                  setState(() {
+                    if (value != null) {
+                      isChecked = value;
+                      if (isChecked) {
+                        // Add the activity data to the state
+                        cubit.setactivitiesCardData(widget.dayIndex!, {
+                          'id': widget.activityModel?.id,
+                          'name': widget.activityName,
+                          'description': widget.activityDescription,
+                          'images': widget.activityImages,
+                        });
+                      } else {
+                        // Optionally, handle the unchecking scenario
+                      }
+                    }
+                  });
+                },
               ),
             ),
+            /*(value) {
+                  setState(() {
+                    if (value != null) {
+                      isChecked = value;
+                      if (isChecked) {
+                        // Add the activity data to the state
+                        cubit.setactivitiesCardData({
+                          widget.activityModel?.id: {
+                            'name': widget.activityName,
+                            'description': widget.activityDescription,
+                            'images': widget.activityImages,
+                            'dayIndex': widget.dayIndex,
+                          }
+                        });
+                        print(cubit.setactivitiesCardData);
+                      } else {
+                        // Optionally, handle the unchecking scenario
+                      }
+                    }
+                  });
+                },
+              ),
+            ),*/
             Container(
               width: MediaQuery.of(context).size.width * .85,
               decoration: BoxDecoration(
@@ -76,7 +108,7 @@ void _toggleCheckbox(bool? value) {
                             bottomLeft: Radius.circular(10)),
                         image: DecorationImage(
                             image: NetworkImage(
-                                '$kPhotoBAseUrl${widget.activityImages!}'),
+                                '$kBaseUrl${widget.activityImages!}'),
                             fit: BoxFit.cover)),
                     width: MediaQuery.of(context).size.width * .3,
                   ),

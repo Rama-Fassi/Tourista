@@ -8,6 +8,7 @@ import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
@@ -40,11 +41,12 @@ class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
             BlocProvider(
               create: (context) => FlightsCubit(),
             ),
-            
-         BlocProvider(
-              create: (context) => ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+            BlocProvider(
+              create: (context) =>
+                  ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
             ),
-            
+
+          
           ],
           child: Scaffold(
             appBar: AppBar(

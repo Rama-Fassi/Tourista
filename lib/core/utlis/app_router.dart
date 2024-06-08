@@ -245,12 +245,12 @@ abstract class AppRouter {
         path: kActivitiesView,
         builder: (context, state) => BlocProvider(
           create: (context) =>  ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
-          child:  ActivitiesView(tripId: state.extra as int,),
+          child:  ActivitiesView(activitiesdaysInfo: state.extra as Map<String ,dynamic>),
         ),
       ),
       GoRoute(
         path: kActivityDetailsView,
-        builder: (context, state) =>  ActivityDetails(activityModel: state.extra as ActivityModel,),
+        builder: (context, state) =>  ActivityDetails(activityModel: state.extra as ActivityModel),
       )
     ],
   );

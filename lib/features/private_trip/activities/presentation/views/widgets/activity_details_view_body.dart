@@ -11,6 +11,7 @@ import 'activity_texts_details.dart';
 class ActivityDetailsViewBody extends StatefulWidget {
   const ActivityDetailsViewBody({super.key, required this.activityModel});
   final ActivityModel activityModel;
+
   @override
   State<ActivityDetailsViewBody> createState() =>
       _ActivityDetailsViewBodyState();
@@ -26,7 +27,7 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
     List<Widget> images =
         (widget.activityModel.images as List<dynamic>).map((imageData) {
       return CachedNetworkImage(
-        imageUrl: '$kPhotoBAseUrl$imageData',
+        imageUrl: '$kBaseUrl$imageData',
         fit: BoxFit.cover,
         fadeInDuration: const Duration(milliseconds: 200),
       );
@@ -43,15 +44,25 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
               child: imagesPageViewWithCounter(images, screenWidth, context),
             ),
             const Gap(10),
-             Padding(
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: ActivityTextsDetails(activityName: widget.activityModel.name, activityOpeningHours: widget.activityModel.openingHours, activityRecmmendTime: widget.activityModel.recommendedTime, activityTybe: widget.activityModel.type, activityAbout: widget.activityModel.description,),
+              child: ActivityTextsDetails(
+                activityName: widget.activityModel.name,
+                activityOpeningHours: widget.activityModel.openingHours,
+                activityRecmmendTime: widget.activityModel.recommendedTime,
+                activityTybe: widget.activityModel.type,
+                activityAbout: widget.activityModel.description,
+              ),
             ),
             const Gap(100),
           ],
         ),
       ),
-      AddToPlanButton(screenWidth: screenWidth, onTap: () {}),
+      AddToPlanButton(
+        screenWidth: screenWidth,
+        onTap: () {},
+        text: 'Select',
+      ),
     ]);
   }
 

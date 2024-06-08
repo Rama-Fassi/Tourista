@@ -10,7 +10,7 @@ class ActivityDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
-      body: ActivityDetailsViewBody(activityModel: activityModel,),
+      body: ActivityDetailsViewBody(activityModel: activityModel),
     ),);
   }
 }

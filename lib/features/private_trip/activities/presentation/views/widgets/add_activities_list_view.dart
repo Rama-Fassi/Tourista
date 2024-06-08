@@ -1,13 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/widgets/add_to_plan_button.dart';
 import '../../../../main/data/models/create_trip_model/create_trip_model.dart';
-import '../../../data/models/tourism_activities/activity_model.dart';
 import 'add_activities_column.dart';
 
 class AddActivitiesListView extends StatefulWidget {
-  const AddActivitiesListView(
-      {super.key, required this.screenWidth, required this.createTripModel});
+  const AddActivitiesListView({
+    super.key,
+    required this.screenWidth,
+    required this.createTripModel,
+  });
   final CreateTripModel createTripModel;
 
   final double screenWidth;
@@ -37,89 +41,44 @@ class _AddActivitiesListViewState extends State<AddActivitiesListView> {
 
   @override
   Widget build(BuildContext context) {
-
-
     List<DateTime> dateTimes = List.generate(
       (_endDate.difference(_startDate).inDays + 1),
       (i) => _startDate.add(Duration(days: i)),
     );
-
-    return Column(
-      children: [
-        Expanded(
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return AddActivitiesColumn(
-                    screenWidth: widget.screenWidth,
-                    data: DateFormat('EEEE d MMMM ').format(dateTimes[index]), createTripModel: widget.createTripModel, tripId: widget.createTripModel.tripId!.id,
-                  );
-                },
-                itemCount: dateTimes.length,
-              )),
-        ),
-        const Gap(80)
-      ],
-    );
-  }
-}
-
-
-
-
-/*
-    Text(
-      DateFormat('EEEE dd MMMM ').format(dateTimes[widget.index]),
-      style: AppStyles.styleInterSemiBold20(context),
-      textAlign: TextAlign.start,
-    );*/
-
-   //  DateListTile(date: dateTimes[widget.index]);
-    /* return ListView.builder(
-      itemCount: dateTimes.length,
-      itemBuilder: (context, index) {
-        return DateListTile(date: dateTimes[index]);
-      },
-    );*/
  
 
-/*class DateListTile extends StatelessWidget {
-  final DateTime date;
+   Map<String, dynamic> activitiesPlan = {"planes": []};
 
-  const DateListTile({Key? key, required this.date}) : super(key: key);
+    return Stack(children: [
+      Align(
+          alignment: Alignment.bottomCenter,
+          child: AddToPlanButton(
+              screenWidth: widget.screenWidth,
+              onTap: () {
 
-  @override
-  Widget build(BuildContext context) {
-    // Get the day name based on the current date
-    String dayName = _getDayName(date);
-
-    return Text(
-      DateFormat('EEEE dd MMMM ').format(date),
-      style: AppStyles.styleInterSemiBold20(context),
-      textAlign: TextAlign.start,
-    );
-  }
-
-  String _getDayName(DateTime date) {
-    switch (date.weekday) {
-      case DateTime.monday:
-        return 'Monday';
-      case DateTime.tuesday:
-        return 'Tuesday';
-      case DateTime.wednesday:
-        return 'Wednesday';
-      case DateTime.thursday:
-        return 'Thursday';
-      case DateTime.friday:
-        return 'Friday';
-      case DateTime.saturday:
-        return 'Saturday';
-      case DateTime.sunday:
-        return 'Sunday';
-      default:
-        return '';
-    }
+                print('from listview');
+              })),
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return AddActivitiesColumn(
+                      index: index,
+                      screenWidth: widget.screenWidth,
+                      data: DateFormat('EEEE d MMMM ').format(dateTimes[index]),
+                      createTripModel: widget.createTripModel,
+                      tripId: widget.createTripModel.tripId!.id,
+                    );
+                  },
+                  itemCount: dateTimes.length,
+                )),
+          ),
+          const Gap(80)
+        ],
+      ),
+    ]);
   }
 }
-*/
