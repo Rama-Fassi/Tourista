@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiServer {
-  final baseUrl = 'http://192.168.1.38:8000/api/';
+  final baseUrl = 'http://192.168.1.39:8000/api/';
 
   //127.0.0.1
 
@@ -29,8 +29,9 @@ class ApiServer {
   }
 
   Future<Map<String, dynamic>> post(
-      {required String endPoint, @required dynamic body, String? token}) async {
+      {required String endPoint, @required dynamic body, String? token ,Map<String, String>? headersfromRepo}) async {
     Map<String, String> headers = {};
+
     headers.addAll({"Accept": "application/json"});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
@@ -39,7 +40,7 @@ class ApiServer {
       '$baseUrl$endPoint',
       data: body,
       options: Options(
-        headers: headers,
+        headers: headersfromRepo ?? headers,
       ),
     );
     return response.data;

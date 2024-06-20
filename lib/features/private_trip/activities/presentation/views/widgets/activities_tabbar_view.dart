@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/widgets/add_to_plan_button.dart';
 import '../../../../../../core/utlis/styles.dart';
+import '../../../../../../core/widgets/add_to_plan_button.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';
 import 'activities_list_view.dart';
 import 'custom_shimmer_activity.dart';

@@ -71,29 +71,7 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                 },
               ),
             ),
-            /*(value) {
-                  setState(() {
-                    if (value != null) {
-                      isChecked = value;
-                      if (isChecked) {
-                        // Add the activity data to the state
-                        cubit.setactivitiesCardData({
-                          widget.activityModel?.id: {
-                            'name': widget.activityName,
-                            'description': widget.activityDescription,
-                            'images': widget.activityImages,
-                            'dayIndex': widget.dayIndex,
-                          }
-                        });
-                        print(cubit.setactivitiesCardData);
-                      } else {
-                        // Optionally, handle the unchecking scenario
-                      }
-                    }
-                  });
-                },
-              ),
-            ),*/
+      
             Container(
               width: MediaQuery.of(context).size.width * .85,
               decoration: BoxDecoration(

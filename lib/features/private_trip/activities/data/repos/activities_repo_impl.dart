@@ -37,8 +37,13 @@ class ActivitiesRepoImpl implements ActivitiesRepo {
   Future<Either<Failure, ActivitiesPlanModel>> postActivitiesPlan(
       {required Map<String, dynamic> body}) async {
     try {
-      var activitiesPlanData =
-          await apiServer.post(endPoint: 'addPlane', body: body);
+      var activitiesPlanData = await apiServer.post(
+          endPoint: 'addPlane',
+          body: body,
+          headersfromRepo: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          });
       ActivitiesPlanModel activitiesPlanModel =
           ActivitiesPlanModel.fromJson(activitiesPlanData);
 

@@ -4,8 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/widgets/add_to_plan_button.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/widgets/custom_add_to_plan_button_activities.dart';
 
+import '../../../../../../core/widgets/add_to_plan_button.dart';
 import 'activity_texts_details.dart';
 
 class ActivityDetailsViewBody extends StatefulWidget {

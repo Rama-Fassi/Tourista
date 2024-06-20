@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'widgets/custom_colorful_tabBar.dart';
 import 'widgets/custom_search_text_field.dart';
 import 'widgets/activities_tabbar_view.dart';
 
 class ActivitiesView extends StatelessWidget {
-   const ActivitiesView({super.key, required this.activitiesdaysInfo });
+
+   const ActivitiesView({
+    super.key, required this.activitiesdaysInfo });
    final Map<String ,dynamic> activitiesdaysInfo ;
    
   @override
