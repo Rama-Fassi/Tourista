@@ -9,11 +9,13 @@ class AddToPlanButton extends StatelessWidget {
   const AddToPlanButton({
     super.key,
     required this.screenWidth,
-    required this.onTap,  this.text,
+    required this.onTap,
+    this.text, this.color,
   });
   final String? text;
   final double screenWidth;
   final Function() onTap;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +26,7 @@ class AddToPlanButton extends StatelessWidget {
       ]),
       child: Padding(
         padding:
-             const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
+            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
         child: CustomButton(
           text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
           width: screenWidth * .6,
@@ -32,8 +34,8 @@ class AddToPlanButton extends StatelessWidget {
           height: 50,
           style: AppStyles.styleSourceBold20(context)
               .copyWith(color: Colors.white),
-          color: kPrimaryColor,
-          onTap: onTap,
+          color: color == null ? kPrimaryColor : color!,
+          onTap:  onTap,
         ),
       ),
     );

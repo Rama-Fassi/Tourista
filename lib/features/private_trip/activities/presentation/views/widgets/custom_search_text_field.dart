@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 
 class CustomSearchTextField extends StatelessWidget {
@@ -11,14 +13,12 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
       onSubmitted: onSubmitted,
       onChanged: onChanged,
       decoration: InputDecoration(
         enabledBorder: buildOutlineInputBorder(),
         focusedBorder: buildOutlineInputBorder(),
-        hintText: 'Search an activity',
-        
+        hintText: LocaleKeys.search_an_activity.tr(),
         suffixIcon: IconButton(
             onPressed: onPressed,
             icon: SvgPicture.asset(

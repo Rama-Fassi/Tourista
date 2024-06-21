@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
@@ -133,7 +135,7 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                                     'dayDate':widget.dayDate,
                                     'dayIndex' : widget.dayIndex});
                               },
-                              text: "Details",
+                              text: LocaleKeys.details.tr(),
                               width: 55,
                               borderRadius: 10,
                               height: 23,

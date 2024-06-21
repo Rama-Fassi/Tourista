@@ -66,5 +66,8 @@ abstract class  LocaleKeys {
   static const forAllTravellers = 'forAllTravellers';
   static const Add_Activities = 'Add_Activities';
   static const Add_To_The_plan = 'Add_To_The_plan';
+  static const added = 'added';
+  static const details = 'details';
+  static const search_an_activity = 'search_an_activity';
 
 }
