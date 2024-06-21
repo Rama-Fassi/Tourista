@@ -1,16 +1,28 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tourista/core/utlis/styles.dart';
+import 'package:flutter/widgets.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/widgets/custom_scroll_view_with_bloc_builder.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_appbar.dart';
 
 class StaysViewBody extends StatelessWidget {
-  const StaysViewBody({super.key});
-
+  const StaysViewBody({super.key, required this.tripId});
+  final int tripId;
   @override
   Widget build(BuildContext context) {
-    return
-   Center(
-        child: Text(
-      "Stays here",
-      style: AppStyles.styleInterBold20(context),
-    ));
+    double width = MediaQuery.sizeOf(context).width;
+    double height = MediaQuery.sizeOf(context).height;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const HotelMainAppBar(),
+        Expanded(
+          child: CustomScrollViewWithBlocBuilder(
+            width: width,
+            height: height,
+            tripId: tripId,
+          ),
+        )
+      ],
+    );
   }
 }

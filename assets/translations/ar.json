@@ -66,5 +66,19 @@
   "Add_To_The_plan": "إضافة الى الخطة",
   "added": "تم الاضافة الى الخطة",
   "details": "تفاصيل",
-  "search_an_activity": "بحث عن نشاط"
+  "search_an_activity": "بحث عن نشاط",
+  "sort": "تصنيف",
+  "map": "خرائط غوغل",
+  "properties": "فندق",
+  "averagePrice": "السعر الوسطي",
+  "checkIn": "تسجيل الدخول",
+  "checkOut": "تسجيل الخروج",
+  "propertyLocation": "موقع الفندق",
+  "guestReviews": "تقييم العملاء",
+  "cleanless": "النظافة",
+  "comfort": "الرفاهية",
+  "facilities": "المرافق",
+  "chooseRoom": "اختر غرفتك",
+  "select": "اختر",
+  "roomSelected": "غرفة مختارة"
 }

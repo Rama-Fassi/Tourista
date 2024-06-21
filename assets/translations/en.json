@@ -66,5 +66,19 @@
   "forAllTravellers": "for all travellers",
   "added": "Added To The Plan",
   "details": "Details",
-  "search_an_activity": "Search an activity"
+  "search_an_activity": "Search an activity",
+  "sort": "Sort",
+  "map": "Map",
+  "properties": "Properties",
+  "averagePrice": "Average price",
+  "checkIn": "Check_in",
+  "checkOut": "Check_out",
+  "propertyLocation": "Property Location",
+  "guestReviews": "Guest reviews",
+  "cleanless": "Cleanliness",
+  "comfort": "Comfort",
+  "facilities": "Facilities",
+  "chooseRoom": "Choose your room",
+  "select": "Select",
+  "roomSelected": "room selected"
 }

@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
-import 'package:tourista/features/private_trip/main/presentation/views/widgets/city_select_location_list_view.dart';
+import 'package:tourista/features/private_trip/main/presentation/views/widgets/city_enter_distination_list_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_enter_text_field.dart';
 
 class EnterDestinationViewBody extends StatelessWidget {
@@ -31,7 +31,7 @@ class EnterDestinationViewBody extends StatelessWidget {
           BlocBuilder<AllCityCubit, AllCityState>(
             builder: (context, state) {
               if (state is AllCitySuccess) {
-                return CitySelectLocationListView(
+                return CityEnterDistinationListView(
                   allCityModel: state.allCityModel,
                 );
               } else if (state is AllCityLoading) {

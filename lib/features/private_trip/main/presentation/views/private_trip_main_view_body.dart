@@ -30,11 +30,8 @@ class PrivatTripMainViewBody extends StatelessWidget {
         List<Widget> tableList = [
           TableRowWidget(
             padding: 18,
-            onTap: () async {
-              var result = await GoRouter.of(context)
-                  .push(AppRouter.kSelectLocationView);
-
-              cubit.setSelectedCity(result ?? {});
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSelectLocationView);
             },
 
             text: state.selectedcity?['city'] == null
@@ -44,11 +41,8 @@ class PrivatTripMainViewBody extends StatelessWidget {
           ),
           TableRowWidget(
             padding: 18,
-            onTap: () async {
-              var result = await GoRouter.of(context)
-                  .push(AppRouter.kEnterDestinationView);
-
-              cubit.setEnterCity(result ?? {});
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kEnterDestinationView);
             },
             text: state.enterCity?['city'] == null
                 ? LocaleKeys.enterDestination.tr()
@@ -61,7 +55,7 @@ class PrivatTripMainViewBody extends StatelessWidget {
               var results = await createCalendar(context);
               if (results != null && results.isNotEmpty) {
                 cubit.setStartDate(results[0]);
-                cubit.setEndDate(results[1]);
+                cubit.setEndDate(results.length != 1 ? results[1] : results[0]);
               }
             },
             text: (state.startDate == null && state.endDate == null)

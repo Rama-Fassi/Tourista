@@ -14,6 +14,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/forget
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
@@ -30,13 +31,15 @@ import 'package:tourista/features/private_trip/flights/presentation/views/ticket
 import 'package:tourista/features/private_trip/flights/presentation/views/where_from_airport_view.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/where_to_airport_view.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
-import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
-import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activities_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/activity_details_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
+import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
+import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
@@ -58,6 +61,8 @@ abstract class AppRouter {
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
   static const kActivityDetailsView = '/ActivityDetailsView';
+  static const kHotelDetailsView = '/hotelDetailsView';
+  static const kAllPhotoView = '/allPhotoView';
 
   static final router = GoRouter(
     routes: [
@@ -147,18 +152,18 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kVerifySignUpView,
-        builder: (context, state) => VerifySignUpView(
-          signUpInfo: state.extra as Map<String, dynamic>,
+        builder: (context, state) => BlocProvider(
+          create: (context) => VerifySignUpCubit(getIt.get<AuthRepoImpl>()),
+          child: VerifySignUpView(
+            signUpInfo: state.extra as Map<String, dynamic>,
+          ),
         ),
       ),
       GoRoute(
         path: kSelectLocationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
-            child: const SelectLocationView(),
-          ),
+          child: const SelectLocationView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -174,10 +179,7 @@ abstract class AppRouter {
         path: kEnterDestinationView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
-            child: const EnterDestinationView(),
-          ),
+          child: const EnterDestinationView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -253,7 +255,45 @@ abstract class AppRouter {
         state.extra as Map<String ,dynamic>,
       //   state.extra as ActivityModel        
 ),
-      )
+      
+      ),
+      GoRoute(
+        path: kHotelDetailsView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: BlocProvider(
+            create: (context) => HotelInfoCubit(),
+            child: HotelDetailView(
+              hotel: state.extra as Hotel,
+            ),
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kAllPhotoView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: AllPhotosView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
     ],
   );
 }

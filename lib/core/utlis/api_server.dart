@@ -16,7 +16,6 @@ class ApiServer {
   }) async {
     Map<String, String> headers = {};
     headers.addAll({"Accept": "application/json"});
-
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }

@@ -13,6 +13,8 @@ import 'package:tourista/features/private_trip/activities/presentation/views/add
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
+import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
+import 'package:tourista/features/private_trip/stays/presentation/manager/hotels_cubit/hotels_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 import '../../../../../core/utlis/service_locator.dart';
@@ -20,14 +22,9 @@ import '../../../flights/data/repos/flights_repo_impl.dart';
 import '../../../flights/presentation/manager/flights/flights_cubit.dart';
 import '../../../flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
 
-class PrivateTripTapBar extends StatefulWidget {
+class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key, required this.createTripModel});
   final CreateTripModel createTripModel;
-  @override
-  State<PrivateTripTapBar> createState() => _PrivateTripTapBarState();
-}
-
-class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +46,9 @@ class _PrivateTripTapBarState extends State<PrivateTripTapBar> {
               create: (context) =>
 ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
 
-          
+           BlocProvider(
+                create: (context) => HotelsCubit(getIt.get<StaysRepoImpl>())
+                  ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id))
           ],
           child: Scaffold(
             appBar: AppBar(
@@ -99,14 +98,16 @@ ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
                 BlocProvider.value(
                   value: BlocProvider.of<FlightsCubit>(context),
                   child: FligtsViewBody(
-                    createTripModel: widget.createTripModel,
+                    createTripModel: createTripModel,
                   ),
                 ),
-                const StaysViewBody(),
-                AddActivitiesViewBody(
-                  createTripModel: widget.createTripModel,
+                StaysViewBody(
+                  tripId: createTripModel.tripId!.id,
                 ),
-                 ThePlanViewBody(createTripModel:  widget.createTripModel,),
+                AddActivitiesViewBody(
+                  createTripModel: createTripModel,
+                ),
+                 ThePlanViewBody(createTripModel:  createTripModel,),
               ],
             ),
           ),

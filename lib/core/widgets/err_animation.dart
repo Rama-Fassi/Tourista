@@ -6,8 +6,10 @@ class ErrAnimation extends StatelessWidget {
   const ErrAnimation({
     super.key,
     required this.errMessage,
+    this.onPressed,
   });
   final String errMessage;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +17,8 @@ class ErrAnimation extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Lottie.asset(Assets.imagesLottieErrAnimation),
-        Text(errMessage)
+        Text(errMessage),
+        TextButton(onPressed: onPressed, child: Text('Retry'))
       ],
     );
   }

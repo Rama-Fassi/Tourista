@@ -7,7 +7,7 @@ ThemeData themeData() {
     brightness: Brightness.light,
     primary: kPrimaryColor,
     onPrimary: Colors.white,
-    secondary: Color(0xffADD2C1),
+    secondary: Colors.white,
     onSecondary: Colors.black,
     error: Colors.black,
     onError: Colors.black,
