@@ -1,6 +1,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAirCondition
+  /// assets/images/airCondition.svg
+  static const String imagesAirCondition = "assets/images/airCondition.svg";
+
   /// Assets for imagesEarthLogo
   /// assets/images/earth_logo.svg
   static const String imagesEarthLogo = "assets/images/earth_logo.svg";
@@ -8,6 +12,18 @@ class Assets {
   /// Assets for imagesForegetPassword
   /// assets/images/foreget_password.svg
   static const String imagesForegetPassword = "assets/images/foreget_password.svg";
+
+  /// Assets for imagesFreeParking
+  /// assets/images/freeParking.svg
+  static const String imagesFreeParking = "assets/images/freeParking.svg";
+
+  /// Assets for imagesFreeWifi
+  /// assets/images/freeWifi.svg
+  static const String imagesFreeWifi = "assets/images/freeWifi.svg";
+
+  /// Assets for imagesHotelFeatures
+  /// assets/images/hotelFeatures.svg
+  static const String imagesHotelFeatures = "assets/images/hotelFeatures.svg";
 
   /// Assets for imagesHotelTest
   /// assets/images/hotelTest.png
@@ -180,6 +196,10 @@ class Assets {
   /// Assets for imagesMuseumOfTheFuture09
   /// assets/images/Museum-of-the-future-09.png
   static const String imagesMuseumOfTheFuture09 = "assets/images/Museum-of-the-future-09.png";
+
+  /// Assets for imagesRestaurant
+  /// assets/images/restaurant.svg
+  static const String imagesRestaurant = "assets/images/restaurant.svg";
 
   /// Assets for imagesSlogan
   /// assets/images/slogan.svg

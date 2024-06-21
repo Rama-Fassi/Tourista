@@ -19,20 +19,17 @@ class CitySelectLocationListView extends StatelessWidget {
       child: ListView.builder(
           itemCount: allCityModel.theCities!.length,
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(12),
-              child: GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).pop();
-                    cubit.setSelectedCity({
-                      "id": allCityModel.theCities![index].id,
-                      "city": allCityModel.theCities![index].name
-                    });
-                  },
-                  child: CitySelectLocationCard(
-                    theCity: allCityModel.theCities![index],
-                  )),
-            );
+            return GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).pop();
+                  cubit.setSelectedCity({
+                    "id": allCityModel.theCities![index].id,
+                    "city": allCityModel.theCities![index].name
+                  });
+                },
+                child: CitySelectLocationCard(
+                  theCity: allCityModel.theCities![index],
+                ));
           }),
     );
   }

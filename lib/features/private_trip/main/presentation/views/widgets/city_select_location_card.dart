@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
@@ -15,17 +14,17 @@ class CitySelectLocationCard extends StatelessWidget {
   final TheCity theCity;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconContainer(
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: ListTile(
+        leading: IconContainer(
           padding: 6,
           icon: SvgPicture.asset(
             Assets.imagesIconsSelectLocation,
             color: kPrimaryColor,
           ),
         ),
-        Gap(16),
-        Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -38,8 +37,35 @@ class CitySelectLocationCard extends StatelessWidget {
               style: AppStyles.styleInterMedium16(context),
             )
           ],
-        )
-      ],
+        ),
+      ),
     );
+
+    //  Row(
+    //   children: [
+    //     IconContainer(
+    //       padding: 6,
+    //       icon: SvgPicture.asset(
+    //         Assets.imagesIconsSelectLocation,
+    //         color: kPrimaryColor,
+    //       ),
+    //     ),
+    //     Gap(16),
+    //     Column(
+    //       crossAxisAlignment: CrossAxisAlignment.start,
+    //       children: [
+    //         Text(
+    //           theCity.name!,
+    //           style: AppStyles.styleInterSemiBold18(context)
+    //               .copyWith(fontSize: 15.5),
+    //         ),
+    //         Text(
+    //           theCity.country!,
+    //           style: AppStyles.styleInterMedium16(context),
+    //         )
+    //       ],
+    //     )
+    //   ],
+    // );
   }
 }

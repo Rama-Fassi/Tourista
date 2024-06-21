@@ -14,7 +14,7 @@ class SelectNumberWidget extends StatefulWidget {
 }
 
 class _SelectNumberWidgetState extends State<SelectNumberWidget> {
-  int selectedNumber = 1;
+  int selectedNumber = 0;
 
   @override
   Widget build(BuildContext context) {

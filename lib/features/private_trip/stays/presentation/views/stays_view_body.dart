@@ -5,8 +5,8 @@ import 'package:tourista/features/private_trip/stays/presentation/views/widgets/
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_appbar.dart';
 
 class StaysViewBody extends StatelessWidget {
-  const StaysViewBody({super.key});
-
+  const StaysViewBody({super.key, required this.tripId});
+  final int tripId;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
@@ -16,7 +16,11 @@ class StaysViewBody extends StatelessWidget {
       children: [
         const HotelMainAppBar(),
         Expanded(
-          child: CustomScrollViewWithBlocBuilder(width: width, height: height),
+          child: CustomScrollViewWithBlocBuilder(
+            width: width,
+            height: height,
+            tripId: tripId,
+          ),
         )
       ],
     );

@@ -35,6 +35,9 @@ import 'package:tourista/features/private_trip/activities/presentation/views/act
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
+import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
+import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
@@ -56,6 +59,7 @@ abstract class AppRouter {
   static const kActivitiesView = '/ActivitiesView';
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
+  static const kAllPhotoView = '/allPhotoView';
 
   static final router = GoRouter(
     routes: [
@@ -243,15 +247,32 @@ abstract class AppRouter {
         path: kActivityDetailsView,
         builder: (context, state) => const ActivityDetails(),
       ),
-      // GoRoute(
-      //   path: kHotelDetailsView,
-      //   builder: (context, state) => const HotelDetailView(),
-      // ),
       GoRoute(
         path: kHotelDetailsView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: const HotelDetailView(),
+          child: BlocProvider(
+            create: (context) => HotelInfoCubit(),
+            child: HotelDetailView(
+              hotel: state.extra as Hotel,
+            ),
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kAllPhotoView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: AllPhotosView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

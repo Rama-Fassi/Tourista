@@ -91,7 +91,9 @@ class PrivateTripTapBar extends StatelessWidget {
                     createTripModel: createTripModel,
                   ),
                 ),
-                const StaysViewBody(),
+                StaysViewBody(
+                  tripId: createTripModel.tripId!.id!,
+                ),
                 const AddActivitiesViewBody(),
                 const ThePlanViewBody(),
               ],

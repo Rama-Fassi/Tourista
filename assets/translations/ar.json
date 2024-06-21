@@ -67,5 +67,15 @@
   "sort": "تصنيف",
   "map": "خرائط غوغل",
   "properties": "فندق",
-  "averagePrice": "السعر الوسطي"
+  "averagePrice": "السعر الوسطي",
+  "checkIn": "تسجيل الدخول",
+  "checkOut": "تسجيل الخروج",
+  "propertyLocation": "موقع الفندق",
+  "guestReviews": "تقييم العملاء",
+  "cleanless": "النظافة",
+  "comfort": "الرفاهية",
+  "facilities": "المرافق",
+  "chooseRoom": "اختر غرفتك",
+  "select": "اختر",
+  "roomSelected": "غرفة مختارة"
 }
