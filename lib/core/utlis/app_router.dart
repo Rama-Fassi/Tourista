@@ -20,7 +20,6 @@ import 'package:tourista/features/auth/forget_password/presentation/views/reset_
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
-import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';

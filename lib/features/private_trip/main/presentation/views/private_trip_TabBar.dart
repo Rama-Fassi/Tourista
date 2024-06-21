@@ -9,7 +9,6 @@ import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_plan_cubit/activities_plan_cubit.dart';
-import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
@@ -107,7 +106,7 @@ ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
                 AddActivitiesViewBody(
                   createTripModel: widget.createTripModel,
                 ),
-                const ThePlanViewBody(),
+                 ThePlanViewBody(createTripModel:  widget.createTripModel,),
               ],
             ),
           ),

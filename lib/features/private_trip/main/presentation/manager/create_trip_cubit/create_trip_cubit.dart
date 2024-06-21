@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
-import 'package:tourista/features/private_trip/main/data/models/create_trip_model/trip_id.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 
 part 'create_trip_state.dart';
