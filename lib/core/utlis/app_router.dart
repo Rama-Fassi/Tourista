@@ -250,7 +250,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kActivityDetailsView,
-        builder: (context, state) =>  ActivityDetails(activityModel: state.extra as ActivityModel),
+        builder: (context, state) =>  ActivityDetails(activityInfo:
+        state.extra as Map<String ,dynamic>,
+      //   state.extra as ActivityModel        
+),
       )
     ],
   );

@@ -14,13 +14,14 @@ class ActivitiesTabBarView extends StatelessWidget {
     required this.tripId,
     required this.tourismTybe,
     required this.dayIndex,
+    required this.dayDate,
   });
 
   final double screenWidth;
   final int tripId;
   final String tourismTybe;
   final int dayIndex;
-
+  final String dayDate;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -33,6 +34,7 @@ class ActivitiesTabBarView extends StatelessWidget {
           return Stack(children: [
             ActivitiesListView(
               dayIndex: dayIndex,
+              dayDate:dayDate,
               screenWidth: screenWidth,
               tourismActivitiesModel: state.tourismActivitiesModel,
             ),
@@ -40,8 +42,10 @@ class ActivitiesTabBarView extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: AddToPlanButton(
                 screenWidth: screenWidth,
-                onTap: () {},
-                text: 'Add',
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                text: 'Add To $dayDate',
               ),
             )
           ]);

@@ -1,18 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
-import 'package:tourista/features/private_trip/activities/presentation/views/widgets/custom_add_to_plan_button_activities.dart';
 
 import '../../../../../../core/widgets/add_to_plan_button.dart';
+import '../../manager/activity_card_cubit/activity_card_cubit.dart';
 import 'activity_texts_details.dart';
 
 class ActivityDetailsViewBody extends StatefulWidget {
-  const ActivityDetailsViewBody({super.key, required this.activityModel});
+  const ActivityDetailsViewBody({
+    super.key,
+    required this.activityModel,
+    required this.dayDate,
+    required this.dayIndex,
+  });
   final ActivityModel activityModel;
-
+  final String dayDate;
+  final int dayIndex;
   @override
   State<ActivityDetailsViewBody> createState() =>
       _ActivityDetailsViewBodyState();
@@ -24,6 +31,8 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+
+    final cubit = context.read<ActivityCardCubit>();
 
     List<Widget> images =
         (widget.activityModel.images as List<dynamic>).map((imageData) {
@@ -61,8 +70,17 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
       ),
       AddToPlanButton(
         screenWidth: screenWidth,
-        onTap: () {},
-        text: 'Select',
+        onTap: () {
+          cubit.setactivitiesCardData(widget.dayIndex, {
+            'id': widget.activityModel.id,
+            'name': widget.activityModel.name,
+            'description': widget.activityModel.description,
+            'images': widget.activityModel.images![0],
+          });
+
+          Navigator.pop(context);
+        },
+        text: 'Add To ${widget.dayDate}',
       ),
     ]);
   }

@@ -106,7 +106,8 @@ class _AddActivitiesListViewState extends State<AddActivitiesListView> {
                                     child: AddActivitiesButton(
                                       index: index,
                                       screenWidth: widget.screenWidth,
-                                      tripId: widget.createTripModel.tripId!.id,
+                                      tripId: widget.createTripModel.tripId!.id, dayDate:                             DateFormat('EEEE d MMMM ').format(dateTimes[index]),
+
                                     ))
                                 : CustomAddedActivityCard(activitiesForDay: activitiesForDay);
                           },

@@ -18,7 +18,7 @@ class CustomActivityCard extends StatefulWidget {
     required this.activityDescription,
     required this.activityImages,
     required this.activityModel,
-    required this.dayIndex,
+    required this.dayIndex, required this.dayDate,
   });
 
   final double screenWidth;
@@ -27,6 +27,7 @@ class CustomActivityCard extends StatefulWidget {
   final String? activityDescription;
   final ActivityModel? activityModel;
   final int? dayIndex;
+  final String dayDate;
 
   @override
   State<CustomActivityCard> createState() => _CustomActivityCardState();
@@ -34,6 +35,20 @@ class CustomActivityCard extends StatefulWidget {
 
 class _CustomActivityCardState extends State<CustomActivityCard> {
   bool isChecked = false;
+  @override
+  void initState() {
+    super.initState();
+
+    final cubit = context.read<ActivityCardCubit>();
+    final activityData = cubit.getActivityCardData(
+        widget.dayIndex!, widget.activityModel?.id ?? 0);
+
+    if (activityData.isNotEmpty) {
+      isChecked = true;
+    } else {
+      isChecked = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,26 +67,25 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
               child: CustomCheckbox(
                 value: isChecked,
                 onChanged: (value) {
+                  isChecked = !isChecked;
                   setState(() {
-                    if (value != null) {
-                      isChecked = value;
-                      if (isChecked) {
-                        // Add the activity data to the state
-                        cubit.setactivitiesCardData(widget.dayIndex!, {
-                          'id': widget.activityModel?.id,
-                          'name': widget.activityName,
-                          'description': widget.activityDescription,
-                          'images': widget.activityImages,
-                        });
-                      } else {
-                        // Optionally, handle the unchecking scenario
-                      }
+                    if (isChecked) {
+                      // Add the activity data to the state
+                      cubit.setactivitiesCardData(widget.dayIndex!, {
+                        'id': widget.activityModel?.id,
+                        'name': widget.activityName,
+                        'description': widget.activityDescription,
+                        'images': widget.activityImages,
+                      });
+                    } else {
+                      // Remove the activity data from the state
+                      cubit.removeActivityCardData(
+                          widget.dayIndex!, widget.activityModel?.id ?? 0);
                     }
                   });
                 },
               ),
             ),
-      
             Container(
               width: MediaQuery.of(context).size.width * .85,
               decoration: BoxDecoration(
@@ -115,7 +129,9 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                               onTap: () {
                                 GoRouter.of(context).push(
                                     AppRouter.kActivityDetailsView,
-                                    extra: widget.activityModel);
+                                    extra:{ 'activityModel': widget.activityModel, 
+                                    'dayDate':widget.dayDate,
+                                    'dayIndex' : widget.dayIndex});
                               },
                               text: "Details",
                               width: 55,

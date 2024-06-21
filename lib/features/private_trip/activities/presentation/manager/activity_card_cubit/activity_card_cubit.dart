@@ -46,4 +46,29 @@ class ActivityCardCubit extends Cubit<ActivityCardState> {
 
    // print(state.activitiesCardData?[dayIndex].toString());
   }
+
+
+
+
+
+
+ void removeActivityCardData(int dayIndex, int activityId) {
+    final updatedData = Map<int, List<Map<String, dynamic>>>.from(
+        state.activitiesCardData ?? {});
+
+    if (updatedData.containsKey(dayIndex)) {
+      updatedData[dayIndex]!.removeWhere((activity) => activity['id'] == activityId);
+      if (updatedData[dayIndex]!.isEmpty) {
+        updatedData.remove(dayIndex);
+      }
+    }
+
+    emit(state.copyWith(activitiesCardData: updatedData));
+  }
+
+List<Map<String, dynamic>> getActivityCardData(int dayIndex, int activityId) {
+  final data = state.activitiesCardData?[dayIndex] ?? [];
+  return data.whereType<Map<String, dynamic>>().where((activity) => activity['id'] == activityId).toList();
 }
+}
+
