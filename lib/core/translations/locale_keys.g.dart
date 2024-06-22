@@ -70,5 +70,15 @@ abstract class  LocaleKeys {
   static const map = 'map';
   static const properties = 'properties';
   static const averagePrice = 'averagePrice';
+  static const checkIn = 'checkIn';
+  static const checkOut = 'checkOut';
+  static const propertyLocation = 'propertyLocation';
+  static const guestReviews = 'guestReviews';
+  static const cleanless = 'cleanless';
+  static const comfort = 'comfort';
+  static const facilities = 'facilities';
+  static const chooseRoom = 'chooseRoom';
+  static const select = 'select';
+  static const roomSelected = 'roomSelected';
 
 }

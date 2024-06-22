@@ -21,13 +21,8 @@ class CustomScrollViewWithBlocBuilder extends StatelessWidget {
   final int tripId;
 
   Future<void> _refreshData(BuildContext context) async {
-    // Perform data fetching or refreshing logic here
-    // For example, you can fetch updated hotel data from an API
-
-    // Delay example to simulate asynchronous data fetching
     await Future.delayed(Duration(seconds: 2));
 
-    // Update the UI by calling the appropriate method from the `BlocProvider`
     BlocProvider.of<HotelsCubit>(context).fetchHotelsCubitFun(tripId: tripId);
   }
 
@@ -50,7 +45,8 @@ class CustomScrollViewWithBlocBuilder extends StatelessWidget {
                   ),
                 ),
                 state.hotelsModel.numberOfHotel == 0
-                    ? ErrAnimation(errMessage: 'No Hotels Found!')
+                    ? SliverToBoxAdapter(
+                        child: ErrAnimation(errMessage: 'No Hotels Found!'))
                     : HotelMainListView(
                         width: width,
                         height: height,

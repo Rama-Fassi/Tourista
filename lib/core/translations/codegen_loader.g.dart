@@ -83,7 +83,17 @@ class CodegenLoader extends AssetLoader{
   "sort": "تصنيف",
   "map": "خرائط غوغل",
   "properties": "فندق",
-  "averagePrice": "السعر الوسطي"
+  "averagePrice": "السعر الوسطي",
+  "checkIn": "تسجيل الدخول",
+  "checkOut": "تسجيل الخروج",
+  "propertyLocation": "موقع الفندق",
+  "guestReviews": "تقييم العملاء",
+  "cleanless": "النظافة",
+  "comfort": "الرفاهية",
+  "facilities": "المرافق",
+  "chooseRoom": "اختر غرفتك",
+  "select": "اختر",
+  "roomSelected": "غرفة مختارة"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -154,7 +164,17 @@ static const Map<String,dynamic> en = {
   "sort": "Sort",
   "map": "Map",
   "properties": "Properties",
-  "averagePrice": "Average price"
+  "averagePrice": "Average price",
+  "checkIn": "Check_in",
+  "checkOut": "Check_out",
+  "propertyLocation": "Property Location",
+  "guestReviews": "Guest reviews",
+  "cleanless": "Cleanliness",
+  "comfort": "Comfort",
+  "facilities": "Facilities",
+  "chooseRoom": "Choose your room",
+  "select": "Select",
+  "roomSelected": "room selected"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

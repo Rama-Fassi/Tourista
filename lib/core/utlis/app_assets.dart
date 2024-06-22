@@ -29,6 +29,10 @@ class Assets {
   /// assets/images/hotelTest.png
   static const String imagesHotelTest = "assets/images/hotelTest.png";
 
+  /// Assets for imagesHotelTestMap
+  /// assets/images/hotelTestMap.svg
+  static const String imagesHotelTestMap = "assets/images/hotelTestMap.svg";
+
   /// Assets for imagesIconsActivities
   /// assets/images/icons/activities.svg
   static const String imagesIconsActivities = "assets/images/icons/activities.svg";
@@ -212,6 +216,10 @@ class Assets {
   /// Assets for imagesTestAirline
   /// assets/images/test_airline.png
   static const String imagesTestAirline = "assets/images/test_airline.png";
+
+  /// Assets for imagesTestMap
+  /// assets/images/testMap.png
+  static const String imagesTestMap = "assets/images/testMap.png";
 
   /// Assets for imagesTouristaLogoGreen
   /// assets/images/tourista_logo_green.svg
