@@ -1,9 +1,13 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/core/widgets/add_to_plan_button.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
+import '../../../../../../constants.dart';
+import '../../../../../../core/utlis/functions/custom_success_snack_bar.dart';
 import '../../../../main/data/models/create_trip_model/create_trip_model.dart';
 import '../../manager/activities_plan_cubit/activities_plan_cubit.dart';
 import '../../manager/activity_card_cubit/activity_card_cubit.dart';
@@ -113,23 +117,33 @@ class _AddActivitiesListViewState extends State<AddActivitiesListView> {
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: BlocBuilder<ActivitiesPlanCubit, ActivitiesPlanState>(
-            builder: (context, state) {
-              if (state is ActivitiesPlanLoading) {
-                return const LoadingWidget();
-              } else if (state is ActivitiesPlanFailure) {
-                return Text(state.errMessage);
-              } else if (state is ActivitiesPlanSuccess) {
-                return const Text('');
-              } else {
-                return AddToPlanButton(
-                  screenWidth: widget.screenWidth,
-                  onTap: () {
-                    BlocProvider.of<ActivitiesPlanCubit>(context)
-                        .postActivitiesPlan(body: activitiesPlan);
-                  },
-                );
+          child: BlocConsumer<ActivitiesPlanCubit, ActivitiesPlanState>(
+            listener: (context, state) {
+              if (state is ActivitiesPlanSuccess) {
+                customSuccessSnackBar(
+                    context, "Activities Added Successfully to the plan");
               }
+            },
+            builder: (context, state) {
+              return BlocBuilder<ActivitiesPlanCubit, ActivitiesPlanState>(
+                builder: (context, state) {
+                  if (state is ActivitiesPlanLoading) {
+                    return const LoadingWidget();
+                  } else if (state is ActivitiesPlanFailure) {
+                    return Text(state.errMessage);
+                  } else if (state is ActivitiesPlanSuccess) {
+                    return Text('');
+                  } else {
+                    return AddToPlanButton(
+                      screenWidth: widget.screenWidth,
+                      onTap: () {
+                        BlocProvider.of<ActivitiesPlanCubit>(context)
+                            .postActivitiesPlan(body: activitiesPlan);
+                      },
+                    );
+                  }
+                },
+              );
             },
           ),
         ),

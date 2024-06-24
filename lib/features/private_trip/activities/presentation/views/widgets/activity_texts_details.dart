@@ -23,7 +23,6 @@ class ActivityTextsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String tybe = '';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

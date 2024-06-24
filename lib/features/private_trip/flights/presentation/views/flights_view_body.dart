@@ -32,7 +32,7 @@ class FligtsViewBody extends StatelessWidget {
         List<Widget> tableList = [
           const FlightsWay(),
           AirprtsTableWiddget(
-            tripId: createTripModel.tripId!.id!,
+            tripId: createTripModel.tripId!.id,
           ),
           TableRowWidget(
             padding: 14,
@@ -53,7 +53,7 @@ class FligtsViewBody extends StatelessWidget {
               BlocProvider.of<TicketsCubit>(context).searchForTicketCubitFun(
                 airFromId: flightsstate.whereFromAirportId ?? 0,
                 airToId: flightsstate.whereToAirportId ?? 0,
-                tripId: createTripModel.tripId!.id!,
+                tripId: createTripModel.tripId!.id,
                 cabinClass: flightsstate.vlaueCabin ?? '',
                 flightsWay: flightsstate.flightWay ?? '',
               );

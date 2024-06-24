@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/register_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/sign_in_model.dart';
+import 'package:tourista/features/auth/sign_in_and_up/data/models/sign_in_with_google_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/verify_sign_up_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
+
+import '../models/sign_out_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final ApiServer apiService;
@@ -83,6 +83,7 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+/*
   @override
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -90,11 +91,10 @@ class AuthRepoImpl implements AuthRepo {
     } else {
       String? name = googleUser.displayName;
       String? email = googleUser.email;
-
+      String? googleUserId = googleUser.id;
       if (kDebugMode) {
         print(name);
-              print(email);
-
+        print(email);
       }
     }
     // Obtain the auth details from the request
@@ -114,14 +114,44 @@ class AuthRepoImpl implements AuthRepo {
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+*/
+  @override
+  Future<Either<Failure, SignInWithGoogleModel>> sentSignInWithGoogleUserInfo({
+    required String name,
+    required String email,
+    required String googleUserId,
+  }) async {
+    try {
+      var signInWithGoogleUserInfo = await apiService.post(
+          endPoint: 'googleRegister',
+          body: {"name": name, "email": email, "google_id": googleUserId});
+
+      SignInWithGoogleModel signInWithGoogleModel =
+          SignInWithGoogleModel.fromJson(signInWithGoogleUserInfo);
+
+      return right(signInWithGoogleModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 
   @override
-  Future sentSignInWithGoogleInfo(
-      {String? userName,
-      String? email,
-      String? accessToken,
-      String? idToken,
-      String? userId}) {
-    throw UnimplementedError();
+  Future<Either<Failure, SignOutModel>> signOut({required String token}) async {
+    try {
+      var signOutData =
+          await apiService.post(endPoint: 'logout', token: token, body: null);
+
+      SignOutModel signOutModel = SignOutModel.fromJson(signOutData);
+
+      return right(signOutModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

@@ -8,6 +8,18 @@ final class SignInWithGoogleInitial extends SignInWithGoogleState {}
 
 class SignInWithGoogleLoading extends SignInWithGoogleState {}
 
-class SignInWithGoogleSuccess extends SignInWithGoogleState {}
+class SignInWithGoogleSuccess extends SignInWithGoogleState {
 
-class SignInWithGoogleFailure extends SignInWithGoogleState {}
+    final GoogleSignInAccount googleUser;
+
+  SignInWithGoogleSuccess({required this.googleUser});
+
+}
+
+class SignInWithGoogleFailure extends SignInWithGoogleState {
+
+   final String errMessage;
+
+  SignInWithGoogleFailure(this.errMessage);
+
+}

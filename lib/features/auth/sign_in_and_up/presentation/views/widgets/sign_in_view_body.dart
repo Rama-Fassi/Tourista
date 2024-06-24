@@ -12,6 +12,7 @@ import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/continue_with_google_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_auth_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
@@ -115,7 +116,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               Gap(screenheight * .02),
               GoogleButton(
                 onTap: () {
-                  AuthRepoImpl(getIt.get<ApiServer>()).signInWithGoogle();
+                  BlocProvider.of<SignInWithGoogleCubit>(context)
+                      .signInWithGoogle();
                 },
               ),
               Gap(screenheight * .02),

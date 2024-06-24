@@ -13,6 +13,7 @@ import 'package:tourista/features/auth/forget_password/presentation/manager/veri
 import 'package:tourista/features/auth/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_in_view.dart';
@@ -103,8 +104,15 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kSignIN,
-        builder: (context, state) => BlocProvider(
-          create: (context) => SignInCubit(getIt.get<AuthRepoImpl>()),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => SignInCubit(getIt.get<AuthRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) => SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+            ),
+          ],
           child: const SignInView(),
         ),
       ),
@@ -245,17 +253,17 @@ abstract class AppRouter {
       GoRoute(
         path: kActivitiesView,
         builder: (context, state) => BlocProvider(
-          create: (context) =>  ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
-          child:  ActivitiesView(activitiesdaysInfo: state.extra as Map<String ,dynamic>),
+          create: (context) => ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+          child: ActivitiesView(
+              activitiesdaysInfo: state.extra as Map<String, dynamic>),
         ),
       ),
       GoRoute(
         path: kActivityDetailsView,
-        builder: (context, state) =>  ActivityDetails(activityInfo:
-        state.extra as Map<String ,dynamic>,
-      //   state.extra as ActivityModel        
-),
-      
+        builder: (context, state) => ActivityDetails(
+          activityInfo: state.extra as Map<String, dynamic>,
+          //   state.extra as ActivityModel
+        ),
       ),
       GoRoute(
         path: kHotelDetailsView,
