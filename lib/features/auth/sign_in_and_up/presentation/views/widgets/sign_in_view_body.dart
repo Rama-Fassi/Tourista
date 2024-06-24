@@ -107,10 +107,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         );
                 },
               ),
-              //CustomAuthButton(
-              //  text: LocaleKeys.sign_in.tr(),
-              //   width: screenWidth * .80,
-              //  ),
+           
               Gap(screenheight * .07),
               const ORDivider(),
               Gap(screenheight * .02),
