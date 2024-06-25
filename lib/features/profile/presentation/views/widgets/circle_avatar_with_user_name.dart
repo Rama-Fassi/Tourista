@@ -18,7 +18,7 @@ class CircleAvatarWithUserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth,
-      height: screenheight * .260,
+      height: screenheight * .215,
       decoration: const BoxDecoration(
         color: kPrimaryColor,
       ),
