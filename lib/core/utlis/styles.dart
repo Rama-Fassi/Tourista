@@ -123,6 +123,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleInterRegular18(BuildContext context) {
+    return GoogleFonts.inter(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 18, context),
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle styleSourceSemiBold16(BuildContext context) {
     return GoogleFonts.sourceSans3(
       color: Colors.black,
@@ -352,6 +360,14 @@ abstract class AppStyles {
     return GoogleFonts.inter(
       color: Colors.black,
       fontSize: getResponsiveFontSize(fontSize: 30, context),
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleInterBold27(BuildContext context) {
+    return GoogleFonts.inter(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 27, context),
       fontWeight: FontWeight.w700,
     );
   }

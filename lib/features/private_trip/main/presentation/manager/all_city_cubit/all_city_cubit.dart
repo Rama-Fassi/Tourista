@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:tourista/features/private_trip/main/data/models/all_city_model/all_city.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
@@ -14,6 +15,9 @@ class AllCityCubit extends Cubit<AllCityState> {
 
     result.fold((failure) {
       emit(AllCityFailure(errMessage: failure.errMessage));
+      if (kDebugMode) {
+        print(failure.errMessage.toString());
+      }
     }, (allCityModel) {
       emit(AllCitySuccess(allCityModel: allCityModel));
     });

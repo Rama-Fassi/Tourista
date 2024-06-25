@@ -12,6 +12,7 @@ import 'package:tourista/features/auth/forget_password/presentation/manager/rese
 import 'package:tourista/features/auth/forget_password/presentation/manager/verify_code_cubit/verify_code_cubit.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sent_google_user_info_cubit/sent_google_user_info_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
@@ -41,9 +42,11 @@ import 'package:tourista/features/private_trip/stays/data/models/hotels_model/ho
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/views/widgets/language_view_body.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
+import '../../features/profile/presentation/views/language_view.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/homeView';
@@ -64,12 +67,18 @@ abstract class AppRouter {
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
+    static const kLanguageView = '/languageView';
+
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
         builder: (context, state) => const SplashView(),
+      ),
+       GoRoute(
+        path:kLanguageView,
+        builder: (context, state) => const LanguageView(),
       ),
       GoRoute(
         path: kSignUp,
@@ -110,7 +119,12 @@ abstract class AppRouter {
               create: (context) => SignInCubit(getIt.get<AuthRepoImpl>()),
             ),
             BlocProvider(
-              create: (context) => SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+              create: (context) =>
+                  SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  SentgoogleUserinfoCubit(getIt.get<AuthRepoImpl>()),
             ),
           ],
           child: const SignInView(),

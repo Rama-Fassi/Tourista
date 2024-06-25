@@ -15,11 +15,12 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
 
       if (googleUser != null) {
         try {
-          await authRepo.sentSignInWithGoogleUserInfo(
+          
+       /*   await authRepo.sentSignInWithGoogleUserInfo(
             email: googleUser.email,
             name: googleUser.displayName!,
             googleUserId: googleUser.id,
-          );
+          );*/
           emit(SignInWithGoogleSuccess(googleUser: googleUser));
         } catch (e) {
           emit(SignInWithGoogleFailure('Error sending user info to server'));

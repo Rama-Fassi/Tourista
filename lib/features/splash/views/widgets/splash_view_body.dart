@@ -59,7 +59,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
             : Hive.box(kTokenBox).get(kTokenRef) == null
                 ? GoRouter.of(context).pushReplacement(AppRouter.kSignIN)
                 : GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-        context.setLocale(const Locale('en'));
 
         // Get.to(() => const HomeView(),
         //     transition: Transition.fade, duration: kTransitionDuration);

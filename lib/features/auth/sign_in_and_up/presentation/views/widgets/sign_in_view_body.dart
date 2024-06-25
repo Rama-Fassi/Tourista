@@ -10,7 +10,9 @@ import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sent_google_user_info_cubit/sent_google_user_info_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/continue_with_google_button.dart';
@@ -107,15 +109,29 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         );
                 },
               ),
-           
               Gap(screenheight * .07),
               const ORDivider(),
               Gap(screenheight * .02),
-              GoogleButton(
-                onTap: () {
-                  BlocProvider.of<SignInWithGoogleCubit>(context)
-                      .signInWithGoogle();
+              BlocListener<SignInWithGoogleCubit, SignInWithGoogleState>(
+                listener: (context, state) {
+                  if (state is SignInWithGoogleSuccess) {
+                    BlocProvider.of<SentgoogleUserinfoCubit>(context)
+                        .sentSignInWithGoogleUserInfo(
+                            nama: state.googleUser.displayName!,
+                            email: state.googleUser.email,
+                            googleUserId: state.googleUser.id);
+                  } else if (state is SignInWithGoogleFailure) {
+                    customSnackBar(context, state.errMessage);
+                  } else {
+                    const LoadingWidget();
+                  }
                 },
+                child: GoogleButton(
+                  onTap: () {
+                    BlocProvider.of<SignInWithGoogleCubit>(context)
+                        .signInWithGoogle();
+                  },
+                ),
               ),
               Gap(screenheight * .02),
               TextWithTextButton(
