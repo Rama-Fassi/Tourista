@@ -5,6 +5,7 @@ import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
 import 'package:tourista/features/profile/data/models/update_name_model.dart';
 import 'package:tourista/features/profile/data/models/update_phone_model.dart';
+import 'package:tourista/features/profile/data/models/user_info_model/user_info_model.dart';
 import 'package:tourista/features/profile/data/models/verify_new_phone_model.dart';
 
 import 'profile_repo.dart';
@@ -86,6 +87,24 @@ class ProfileRepoImpl implements ProfileRepo {
           VerifyNewPhoneModel.fromJson(verifyNewPhoneData);
 
       return right(verifyNewPhoneModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserInfoModel>> getUserInfo({required String token}) async {
+    try {
+      var userInfoData =
+          await apiService.get(endPoint: 'userInfo', token: token);
+
+      UserInfoModel userInfoModel =
+          UserInfoModel.fromJson(userInfoData);
+
+      return right(userInfoModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

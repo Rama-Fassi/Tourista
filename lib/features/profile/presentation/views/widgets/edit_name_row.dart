@@ -11,9 +11,13 @@ import '../../../../../core/utlis/functions/custom_snack_bar.dart';
 import '../../../../../core/widgets/loading_widget.dart';
 
 class EditNameRow extends StatefulWidget {
-  const EditNameRow({super.key, required this.scereenWidth});
+  const EditNameRow({
+    super.key,
+    required this.scereenWidth,
+    required this.username,
+  });
   final double scereenWidth;
-
+  final String username;
   @override
   State<EditNameRow> createState() => _PersonalDetailsViewBodyState();
 }
@@ -22,7 +26,7 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
   bool isEditing = false;
   late TextEditingController controller;
   late FocusNode focusNode;
-  String username = 'Rama';
+  String username = 'here now you are';
   @override
   void initState() {
     super.initState();
