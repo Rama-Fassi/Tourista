@@ -22,30 +22,30 @@ class SignOutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   BlocListener<SignOutCubit, SignOutState>(
-              listener: (context, state) {
-                if (state is SignOutSuccess) {
-                  Hive.box(kTokenBox).delete(kTokenRef);
-                  //await GoogleSignIn().signOut();
+    return BlocListener<SignOutCubit, SignOutState>(
+      listener: (context, state) {
+        if (state is SignOutSuccess) {
+          Hive.box(kTokenBox).delete(kTokenRef);
+          //await GoogleSignIn().signOut();
 
-                  if (kDebugMode) {
-                    print(Hive.box(kTokenBox).get(kTokenRef));
-                  }
-                  GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
-                } else if (state is SignOutFailure) {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                  customSnackBar(context, state.errMessage);
-                } else {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (BuildContext context) {
-                      return const LoadingWidget();
-                    },
-                  );
-                }
-              },
-              child: ProfileTextButton(
+          if (kDebugMode) {
+            print(Hive.box(kTokenBox).get(kTokenRef));
+          }
+          GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
+        } else if (state is SignOutFailure) {
+          Navigator.of(context).popUntil((route) => route.isFirst);
+          customSnackBar(context, state.errMessage);
+        } else {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return const LoadingWidget();
+            },
+          );
+        }
+      },
+      child: ProfileTextButton(
         onPressed: () async {
           ShowConfirmationDialog().showConfirmationDialog(
             titleText: LocaleKeys.Confirmation.tr(),
@@ -54,6 +54,7 @@ class SignOutButton extends StatelessWidget {
             onConfirmPressed: () async {
               await BlocProvider.of<SignOutCubit>(context).signOut();
             },
+            cancel: true,
           );
         },
         width: 23,

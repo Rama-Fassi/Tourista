@@ -8,7 +8,7 @@ class ShowConfirmationDialog {
       {required BuildContext context,
       required String titleText,
       required String contentText,
-      required Function()? onConfirmPressed}) async {
+      required Function()? onConfirmPressed , required bool cancel}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -19,16 +19,19 @@ class ShowConfirmationDialog {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
           actions: <Widget>[
-            TextButton(
+         cancel == true ?   TextButton(
               child: Text(LocaleKeys.cancel.tr()),
               onPressed: () {
                 Navigator.of(context).pop();
               },
-            ),
-            TextButton(
+            ): const Text(''),
+     cancel == true?       TextButton(
               onPressed: onConfirmPressed,
               child: Text(LocaleKeys.confirm.tr()),
-            ),
+            ): TextButton(
+              onPressed: onConfirmPressed,
+              child: Text(LocaleKeys.ok.tr()),
+            ), 
           ],
         );
       },

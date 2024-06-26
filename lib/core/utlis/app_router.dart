@@ -49,7 +49,10 @@ import 'package:tourista/features/splash/views/splash_view.dart';
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import '../../features/profile/data/repos/profile_repo_impl.dart';
 import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
+import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
+import '../../features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
 import '../../features/profile/presentation/views/language_view.dart';
+import '../../features/profile/presentation/views/verify_new_phone_view.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/homeView';
@@ -72,6 +75,7 @@ abstract class AppRouter {
   static const kAllPhotoView = '/allPhotoView';
   static const kLanguageView = '/languageView';
   static const kPersonalDetailsView = '/personalDetailsView';
+  static const kverifyNewPhoneview = '/verifyNewPhoneview';
 
   static final router = GoRouter(
     routes: [
@@ -91,8 +95,22 @@ abstract class AppRouter {
               create: (context) =>
                   UpdateNameCubit(getIt.get<ProfileRepoImpl>()),
             ),
+            BlocProvider(
+              create: (context) =>
+                  UpdatePhoneCubit(getIt.get<ProfileRepoImpl>()),
+            ),
           ],
           child: const PersonalDetailsView(),
+        ),
+      ),
+      GoRoute(
+        path: kverifyNewPhoneview,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              VerifyNewPhoneCubit(getIt.get<ProfileRepoImpl>()),
+          child: VerifyNewPhoneView(
+            updatePhoneinfo: state.extra as Map<String, dynamic>,
+          ),
         ),
       ),
       GoRoute(

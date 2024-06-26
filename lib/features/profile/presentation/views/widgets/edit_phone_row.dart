@@ -4,30 +4,30 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
-import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
+import 'package:tourista/features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
 
 import '../../../../../core/utlis/functions/custom_snack_bar.dart';
-import '../../../../../core/widgets/loading_widget.dart';
 
-class EditNameRow extends StatefulWidget {
-  const EditNameRow({super.key, required this.scereenWidth});
+class EditPhoneRow extends StatefulWidget {
+  const EditPhoneRow({super.key, required this.scereenWidth});
   final double scereenWidth;
 
   @override
-  State<EditNameRow> createState() => _PersonalDetailsViewBodyState();
+  State<EditPhoneRow> createState() => _PersonalDetailsViewBodyState();
 }
 
-class _PersonalDetailsViewBodyState extends State<EditNameRow> {
+class _PersonalDetailsViewBodyState extends State<EditPhoneRow> {
   bool isEditing = false;
   late TextEditingController controller;
   late FocusNode focusNode;
-  String username = 'Rama';
+  String userPhone = '0985392515';
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController(text: username);
+    controller = TextEditingController(text: userPhone);
     focusNode = FocusNode();
   }
 
@@ -49,7 +49,7 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
                   controller: controller,
                   focusNode: focusNode,
                   decoration: InputDecoration(
-                    hintText: 'Enter New Name',
+                    hintText: 'Enter New phone',
                     hintStyle: AppStyles.styleInterRegular18(context),
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -60,40 +60,42 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
                   ),
                   onSubmitted: (newValue) {
                     setState(() {
-                      username = newValue;
+                      userPhone = newValue;
                       isEditing = false;
                       FocusScope.of(context).unfocus();
                     });
                   },
                 )
               : Text(
-                  username,
+                  userPhone,
                   style: AppStyles.styleInterRegular18(context),
                 ),
         ),
-        BlocListener<UpdateNameCubit, UpdateNameState>(
+        BlocListener<UpdatePhoneCubit, UpdatePhoneState>(
           listener: (context, state) {
-            if (state is UpdateNameSuccess) {
-              customSuccessSnackBar(
-                  context, 'Name has been Edit successfully.');
-            } else if (state is UpdateNameFailure) {
+            if (state is UpdatePhoneSuccess) {
+              GoRouter.of(context)
+                  .pushReplacement(AppRouter.kverifyNewPhoneview, extra: {
+                'phoneNumber': state.updatePhoneModel.userPhone,
+              });
+            } else if (state is UpdatePhoneFailure) {
               customSnackBar(context, state.errMessage);
             }
           },
-          child: BlocBuilder<UpdateNameCubit, UpdateNameState>(
+          child: BlocBuilder<UpdatePhoneCubit, UpdatePhoneState>(
             builder: (context, state) {
-              return state is UpdateNameLoading
+              return state is UpdatePhoneLoading
                   ? const LoadingWidget()
                   : TextButton(
                       onPressed: () {
                         setState(() {
                           if (isEditing) {
-                            username = controller.text;
+                            userPhone = controller.text;
                             isEditing = false;
                             FocusScope.of(context).unfocus();
-                            BlocProvider.of<UpdateNameCubit>(context)
-                                .updateName(
-                                    name: username); // Hide the keyboard
+                            BlocProvider.of<UpdatePhoneCubit>(context)
+                                .updatePhone(
+                                    phone: userPhone); // Hide the keyboard
                           } else {
                             isEditing = true;
                             focusNode.requestFocus(); // Show the keyboard

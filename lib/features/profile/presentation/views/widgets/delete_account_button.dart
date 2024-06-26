@@ -55,7 +55,7 @@ class DeleteAccountButton extends StatelessWidget {
             onConfirmPressed: () async {
               await BlocProvider.of<DeleteAccountCubit>(context)
                   .deleteAccount();
-            },
+            }, cancel: true,
           );
         },
         width: 23,
