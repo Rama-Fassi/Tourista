@@ -43,7 +43,6 @@ import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
-import 'package:tourista/features/profile/presentation/views/widgets/language_view_body.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
