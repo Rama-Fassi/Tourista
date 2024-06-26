@@ -117,7 +117,8 @@ class CodegenLoader extends AssetLoader{
   "Select_Your_Preferred_language_to_use": "اختر اللغة المناسبة لك للاستخدام",
   "Confirmation": "للتأكيد",
   "Are_you_sure_you_want_to_sign_out": "هل أنت متأكد انك تريد تسجيل الخروج",
-  "confirm": "تأكيد"
+  "confirm": "تأكيد",
+  "Are_you_sure_you_want_to_delete_your_account": "هل أنت متأكد انك تريد حذف حسابك؟"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -222,7 +223,8 @@ static const Map<String,dynamic> en = {
   "Select_Your_Preferred_language_to_use": "Select Your Preferred language to use",
   "Confirmation": "Confirmation",
   "Are_you_sure_you_want_to_sign_out": "Are you sure you want to sign out?",
-  "confirm": "confirm"
+  "confirm": "confirm",
+  "Are_you_sure_you_want_to_delete_your_account": "Are you sure you want to delete your account?"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

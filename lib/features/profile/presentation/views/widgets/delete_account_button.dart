@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,45 +23,46 @@ class DeleteAccountButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<DeleteAccountCubit, DeleteAccountState>(
-         listener: (context, state) {
-           if (state is DeleteAccountSuccess) {
-             Hive.box(kTokenBox).delete(kTokenRef);
-             //await GoogleSignIn().signOut();
-    
-             if (kDebugMode) {
-               print(Hive.box(kTokenBox).get(kTokenRef));
-             }
-             GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
-           } else if (state is DeleteAccountFailure) {
-             Navigator.of(context).popUntil((route) => route.isFirst);
-             customSnackBar(context, state.errMessage);
-           } else {
-             showDialog(
-               context: context,
-               barrierDismissible: false,
-               builder: (BuildContext context) {
-                 return const LoadingWidget();
-               },
-             );
-           }
-         },
-         child: ProfileTextButton(
-            onPressed: () async {
-     ShowConfirmationDialog().showConfirmationDialog(
-       titleText: LocaleKeys.Confirmation.tr(),
-       contentText: LocaleKeys.Are_you_sure_you_want_to_sign_out.tr(),
-       context: context,
-       onConfirmPressed: () async {
-         await BlocProvider.of<DeleteAccountCubit>(context).deleteAccount();
-       },
-     );
+      listener: (context, state) {
+        if (state is DeleteAccountSuccess) {
+          Hive.box(kTokenBox).delete(kTokenRef);
+          //await GoogleSignIn().signOut();
+
+          if (kDebugMode) {
+            print(Hive.box(kTokenBox).get(kTokenRef));
+          }
+          GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
+        } else if (state is DeleteAccountFailure) {
+          Navigator.of(context).popUntil((route) => route.isFirst);
+          customSnackBar(context, state.errMessage);
+        } else {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return const LoadingWidget();
             },
-            width: 23,
-            height: 23,
-            data:LocaleKeys.Delete_Account.tr(),
-            assetName:Assets.imagesIconsDeleteAccountIcon,
-            
-          ),
-        );
+          );
+        }
+      },
+      child: ProfileTextButton(
+        onPressed: () async {
+          ShowConfirmationDialog().showConfirmationDialog(
+            titleText: LocaleKeys.Confirmation.tr(),
+            contentText:
+                LocaleKeys.Are_you_sure_you_want_to_delete_your_account.tr(),
+            context: context,
+            onConfirmPressed: () async {
+              await BlocProvider.of<DeleteAccountCubit>(context)
+                  .deleteAccount();
+            },
+          );
+        },
+        width: 23,
+        height: 23,
+        data: LocaleKeys.Delete_Account.tr(),
+        assetName: Assets.imagesIconsDeleteAccountIcon,
+      ),
+    );
   }
 }

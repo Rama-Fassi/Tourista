@@ -104,5 +104,6 @@ abstract class  LocaleKeys {
   static const Confirmation = 'Confirmation';
   static const Are_you_sure_you_want_to_sign_out = 'Are_you_sure_you_want_to_sign_out';
   static const confirm = 'confirm';
+  static const Are_you_sure_you_want_to_delete_your_account = 'Are_you_sure_you_want_to_delete_your_account';
 
 }
