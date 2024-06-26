@@ -13,6 +13,9 @@ import 'package:tourista/features/private_trip/main/presentation/views/private_t
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
+import '../../features/profile/data/repos/profile_repo_impl.dart';
+import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
+
 class NavigationBArScaffold extends StatefulWidget {
   const NavigationBArScaffold({super.key});
 
@@ -39,9 +42,11 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     return SafeArea(
         child: MultiBlocProvider(
       providers: [
+       
         BlocProvider(
           create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
         ),
+        
       ],
       child: Scaffold(
           floatingActionButtonLocation:

@@ -42,10 +42,13 @@ import 'package:tourista/features/private_trip/stays/data/models/hotels_model/ho
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/language_view_body.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
+import '../../features/profile/data/repos/profile_repo_impl.dart';
+import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 import '../../features/profile/presentation/views/language_view.dart';
 
 abstract class AppRouter {
@@ -67,8 +70,8 @@ abstract class AppRouter {
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
-    static const kLanguageView = '/languageView';
-
+  static const kLanguageView = '/languageView';
+  static const kPersonalDetailsView = '/personalDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -76,9 +79,21 @@ abstract class AppRouter {
         path: '/',
         builder: (context, state) => const SplashView(),
       ),
-       GoRoute(
-        path:kLanguageView,
+      GoRoute(
+        path: kLanguageView,
         builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kPersonalDetailsView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  UpdateNameCubit(getIt.get<ProfileRepoImpl>()),
+            ),
+          ],
+          child: const PersonalDetailsView(),
+        ),
       ),
       GoRoute(
         path: kSignUp,

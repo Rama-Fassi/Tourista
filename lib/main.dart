@@ -18,6 +18,7 @@ import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:tourista/features/profile/presentation/manager/delete_account_cubit/delete_account_cubit.dart';
 import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
+import 'features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 
 void main() async {
   setUpServiceLocator();
@@ -56,20 +57,14 @@ class Tourista extends StatelessWidget {
         BlocProvider(
           create: (context) => ActivityCardCubit(),
         ),
-     BlocProvider(
-         create: (context) => PrivateTripCubit(),
+        BlocProvider(
+          create: (context) => PrivateTripCubit(),
         ),
         BlocProvider(
           create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
         ),
-  BlocProvider(
-          create: (context) => SignOutCubit(getIt.get<AuthRepoImpl>()),
-        ),
-
-         BlocProvider(
-          create: (context) =>DeleteAccountCubit(getIt.get<ProfileRepoImpl>()),
-        ),
-        
+       
+       
       ],
       child: MaterialApp.router(
         theme: themeData(),

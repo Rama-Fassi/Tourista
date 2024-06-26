@@ -125,6 +125,10 @@ class Assets {
   /// assets/images/icons/Password_and_security_icon.svg
   static const String imagesIconsPasswordAndSecurityIcon = "assets/images/icons/Password_and_security_icon.svg";
 
+  /// Assets for imagesIconsPenEditIcon
+  /// assets/images/icons/pen_edit_icon.svg
+  static const String imagesIconsPenEditIcon = "assets/images/icons/pen_edit_icon.svg";
+
   /// Assets for imagesIconsPerson
   /// assets/images/icons/person.svg
   static const String imagesIconsPerson = "assets/images/icons/person.svg";

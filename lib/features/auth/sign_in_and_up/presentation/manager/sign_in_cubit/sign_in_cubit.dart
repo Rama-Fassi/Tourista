@@ -23,6 +23,8 @@ class SignInCubit extends Cubit<SignInState> {
     }, (signInModel) {
       Hive.box(kTokenBox).put(kTokenRef, signInModel.token);
       print(Hive.box(kTokenBox).get(kTokenRef));
+            print(signInModel);
+
       emit(SignInSuccess(signInModel: signInModel));
     });
   }

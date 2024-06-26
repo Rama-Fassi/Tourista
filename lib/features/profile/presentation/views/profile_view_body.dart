@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:tourista/features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 
 import 'package:tourista/features/profile/presentation/views/widgets/setting_section.dart';
 import 'widgets/circle_avatar_with_user_name.dart';
@@ -17,7 +21,6 @@ class ProfileViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        //   mainAxisAlignment: MainAxisAlignment.s,
         children: [
           CircleAvatarWithUserName(
               screenWidth: screenWidth, screenheight: screenheight),
@@ -34,7 +37,6 @@ class ProfileViewBody extends StatelessWidget {
               ],
             ),
           ),
-       
         ],
       ),
     );
