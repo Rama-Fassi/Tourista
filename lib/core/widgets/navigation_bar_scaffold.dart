@@ -10,9 +10,11 @@ import 'package:tourista/features/my_trips/presentation/views/my_trips_view_body
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
+import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
+import '../../features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 
 class NavigationBArScaffold extends StatefulWidget {
   const NavigationBArScaffold({super.key});
@@ -26,7 +28,11 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     const MyTripsViewBody(),
     const AttractionsViewBody(),
     const PrivatTripMainViewBody(),
-    const ProfileViewBody(),
+    BlocProvider(
+      create: (context) =>
+          GetUserInfoCubit(getIt.get<ProfileRepoImpl>()),
+      child: const ProfileViewBody(),
+    ),
   ];
   int activeIndex = -1;
   @override
@@ -40,11 +46,9 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     return SafeArea(
         child: MultiBlocProvider(
       providers: [
-       
         BlocProvider(
           create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
         ),
-        
       ],
       child: Scaffold(
           floatingActionButtonLocation:

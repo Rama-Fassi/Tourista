@@ -105,5 +105,9 @@ abstract class  LocaleKeys {
   static const Are_you_sure_you_want_to_sign_out = 'Are_you_sure_you_want_to_sign_out';
   static const confirm = 'confirm';
   static const Are_you_sure_you_want_to_delete_your_account = 'Are_you_sure_you_want_to_delete_your_account';
+  static const phone_has_been_modified_successfully = 'phone_has_been_modified_successfully';
+  static const Name_has_been_Edit_successfully = 'Name_has_been_Edit_successfully';
+  static const enter_new_name = 'enter_new_name';
+  static const enter_new_phone_number = 'enter_new_phone_number';
 
 }

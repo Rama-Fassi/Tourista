@@ -4,8 +4,14 @@ import 'package:hive_flutter/adapters.dart';
 const kName = 'Tourista';
 const kOnboarding = 'onboarding';
 const kTokenBox = 'token';
+const kUserInfoBox = 'userinfo';
+const kUserNameRef = 'userNameRef';
+const kUserPhoneRef = 'userphpneRef';
+const kUserEmailRef = 'userEmailRef';
+const kUserPointsRef = 'userUserPointsRef';
+
 const kTokenRef = 'tokenRef';
-const kBaseUrl = 'http://192.168.1.33:8000';
+const kBaseUrl = 'http://192.168.1.34:8000';
 const kFontIntro = "source-serif-pro";
 String kToken = Hive.box(kTokenBox).get(kTokenRef);
 const kTransitionDuration = Duration(milliseconds: 200);

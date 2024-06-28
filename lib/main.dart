@@ -22,6 +22,8 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
   await Hive.openBox(kTokenBox);
+ await Hive.openBox(kUserInfoBox);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

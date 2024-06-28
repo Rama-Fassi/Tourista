@@ -28,6 +28,8 @@ class SentgoogleUserinfoCubit extends Cubit<SentGoogleUserInfoState> {
       print(failure.errMessage.toString());
     }, (signInWithGoogleModel) {
       Hive.box(kTokenBox).put(kTokenRef, signInWithGoogleModel.token);
+      Hive.box(kUserInfoBox).deleteAll([kUserNameRef, kUserPhoneRef]);
+
       if (kDebugMode) {
         print(Hive.box(kTokenBox).get(kTokenRef));
       }

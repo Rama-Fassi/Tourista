@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
@@ -14,10 +17,10 @@ class EditNameRow extends StatefulWidget {
   const EditNameRow({
     super.key,
     required this.scereenWidth,
-    required this.username,
+    this.username,
   });
   final double scereenWidth;
-  final String username;
+  final String? username;
   @override
   State<EditNameRow> createState() => _PersonalDetailsViewBodyState();
 }
@@ -25,12 +28,14 @@ class EditNameRow extends StatefulWidget {
 class _PersonalDetailsViewBodyState extends State<EditNameRow> {
   bool isEditing = false;
   late TextEditingController controller;
+
   late FocusNode focusNode;
-  String username = 'here now you are';
+  late String username = widget.username!;
   @override
   void initState() {
     super.initState();
     controller = TextEditingController(text: username);
+
     focusNode = FocusNode();
   }
 
@@ -52,7 +57,7 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
                   controller: controller,
                   focusNode: focusNode,
                   decoration: InputDecoration(
-                    hintText: 'Enter New Name',
+                    hintText: LocaleKeys.enter_new_name.tr(),
                     hintStyle: AppStyles.styleInterRegular18(context),
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -66,6 +71,8 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
                       username = newValue;
                       isEditing = false;
                       FocusScope.of(context).unfocus();
+                      BlocProvider.of<UpdateNameCubit>(context)
+                          .updateName(name: username);
                     });
                   },
                 )
@@ -78,7 +85,8 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
           listener: (context, state) {
             if (state is UpdateNameSuccess) {
               customSuccessSnackBar(
-                  context, 'Name has been Edit successfully.');
+                  context, LocaleKeys.Name_has_been_Edit_successfully.tr());
+              Hive.box(kUserInfoBox).put(kUserNameRef, username);
             } else if (state is UpdateNameFailure) {
               customSnackBar(context, state.errMessage);
             }
@@ -95,8 +103,7 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
                             isEditing = false;
                             FocusScope.of(context).unfocus();
                             BlocProvider.of<UpdateNameCubit>(context)
-                                .updateName(
-                                    name: username); // Hide the keyboard
+                                .updateName(name: username);
                           } else {
                             isEditing = true;
                             focusNode.requestFocus(); // Show the keyboard

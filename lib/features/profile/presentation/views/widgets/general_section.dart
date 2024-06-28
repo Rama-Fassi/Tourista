@@ -27,10 +27,7 @@ class GeneralSection extends StatelessWidget {
           style: AppStyles.styleInterBold20(context),
         ),
         const Gap(15),
-        BlocProvider(
-          create: (context) => GetUserInfoCubit(getIt.get<ProfileRepoImpl>()),
-          child: const PersonalDetailsButton(),
-        ),
+        const PersonalDetailsButton(),
         const Gap(25),
         ProfileTextButton(
             data: LocaleKeys.password_and_security.tr(),

@@ -109,25 +109,37 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               Gap(screenheight * .07),
               const ORDivider(),
               Gap(screenheight * .02),
-              BlocListener<SignInWithGoogleCubit, SignInWithGoogleState>(
+              BlocListener<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
                 listener: (context, state) {
-                  if (state is SignInWithGoogleSuccess) {
-                    BlocProvider.of<SentgoogleUserinfoCubit>(context)
-                        .sentSignInWithGoogleUserInfo(
-                            nama: state.googleUser.displayName!,
-                            email: state.googleUser.email,
-                            googleUserId: state.googleUser.id);
-                  } else if (state is SignInWithGoogleFailure) {
+                  if (state is SentGoogleUserInfoSuccess) {
+                    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                  } else if (state is SentGoogleUserInfoFailure) {
                     customSnackBar(context, state.errMessage);
                   } else {
                     const LoadingWidget();
                   }
                 },
-                child: GoogleButton(
-                  onTap: () {
-                    BlocProvider.of<SignInWithGoogleCubit>(context)
-                        .signInWithGoogle();
+                child:
+                    BlocListener<SignInWithGoogleCubit, SignInWithGoogleState>(
+                  listener: (context, state) {
+                    if (state is SignInWithGoogleSuccess) {
+                      BlocProvider.of<SentgoogleUserinfoCubit>(context)
+                          .sentSignInWithGoogleUserInfo(
+                              nama: state.googleUser.displayName!,
+                              email: state.googleUser.email,
+                              googleUserId: state.googleUser.id);
+                    } else if (state is SignInWithGoogleFailure) {
+                      customSnackBar(context, state.errMessage);
+                    } else {
+                      const LoadingWidget();
+                    }
                   },
+                  child: GoogleButton(
+                    onTap: () {
+                      BlocProvider.of<SignInWithGoogleCubit>(context)
+                          .signInWithGoogle();
+                    },
+                  ),
                 ),
               ),
               Gap(screenheight * .02),

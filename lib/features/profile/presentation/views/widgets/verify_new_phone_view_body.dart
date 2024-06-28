@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
@@ -77,11 +78,12 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
               ShowConfirmationDialog().showConfirmationDialog(
                   context: context,
                   titleText: LocaleKeys.congratulations.tr(),
-                  contentText: 'phone has been modified successfully.',
+                  contentText:LocaleKeys.phone_has_been_modified_successfully.tr(),
                   onConfirmPressed: () {
                     GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                   },
                   cancel: false);
+              Hive.box(kUserInfoBox).put(kUserPhoneRef, widget.phoneNumber);
             } else if (state is VerifyNewPhoneFailure) {
               isLoading = false;
 
@@ -98,6 +100,8 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
                   )
                 : CustomButton(
                     onTap: () {
+                          
+
                       BlocProvider.of<VerifyNewPhoneCubit>(context)
                           .verifyNewPhone(
                               code: codeNumber, phone: widget.phoneNumber);

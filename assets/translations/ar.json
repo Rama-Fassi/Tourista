@@ -102,5 +102,9 @@
   "Confirmation": "للتأكيد",
   "Are_you_sure_you_want_to_sign_out": "هل أنت متأكد انك تريد تسجيل الخروج",
   "confirm": "تأكيد",
-  "Are_you_sure_you_want_to_delete_your_account": "هل أنت متأكد انك تريد حذف حسابك؟"
+  "Are_you_sure_you_want_to_delete_your_account": "هل أنت متأكد انك تريد حذف حسابك؟",
+  "phone_has_been_modified_successfully": "لقد تم تغيير رقم الهاتف بنجاح",
+  "Name_has_been_Edit_successfully": "لقد تم تغيير الاسم بنجاح",
+  "enter_new_name": "ادخل اسم جديد",
+  "enter_new_phone_number": "ادخل رقم جديد"
 }

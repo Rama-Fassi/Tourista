@@ -46,7 +46,6 @@ import 'package:tourista/features/profile/presentation/views/personal_details_vi
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
-import '../../features/profile/data/models/user_info_model/user_info_model.dart';
 import '../../features/profile/data/repos/profile_repo_impl.dart';
 import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
@@ -100,7 +99,7 @@ abstract class AppRouter {
                   UpdatePhoneCubit(getIt.get<ProfileRepoImpl>()),
             ),
           ],
-          child:  PersonalDetailsView(userInfoModel: state.extra as UserInfoModel,),
+          child: const PersonalDetailsView(),
         ),
       ),
       GoRoute(

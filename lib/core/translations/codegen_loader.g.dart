@@ -118,7 +118,11 @@ class CodegenLoader extends AssetLoader{
   "Confirmation": "للتأكيد",
   "Are_you_sure_you_want_to_sign_out": "هل أنت متأكد انك تريد تسجيل الخروج",
   "confirm": "تأكيد",
-  "Are_you_sure_you_want_to_delete_your_account": "هل أنت متأكد انك تريد حذف حسابك؟"
+  "Are_you_sure_you_want_to_delete_your_account": "هل أنت متأكد انك تريد حذف حسابك؟",
+  "phone_has_been_modified_successfully": "لقد تم تغيير رقم الهاتف بنجاح",
+  "Name_has_been_Edit_successfully": "لقد تم تغيير الاسم بنجاح",
+  "enter_new_name": "ادخل اسم جديد",
+  "enter_new_phone_number": "ادخل رقم جديد"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -224,7 +228,11 @@ static const Map<String,dynamic> en = {
   "Confirmation": "Confirmation",
   "Are_you_sure_you_want_to_sign_out": "Are you sure you want to sign out?",
   "confirm": "confirm",
-  "Are_you_sure_you_want_to_delete_your_account": "Are you sure you want to delete your account?"
+  "Are_you_sure_you_want_to_delete_your_account": "Are you sure you want to delete your account?",
+  "phone_has_been_modified_successfully": "phone has been modified successfully.",
+  "Name_has_been_Edit_successfully": "Name has been Edit successfully.",
+  "enter_new_name": "Enter new name",
+  "enter_new_phone_number": "Enter new phone number"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }
