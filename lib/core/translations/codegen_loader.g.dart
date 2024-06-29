@@ -93,7 +93,20 @@ class CodegenLoader extends AssetLoader{
   "facilities": "المرافق",
   "chooseRoom": "اختر غرفتك",
   "select": "اختر",
-  "roomSelected": "غرفة مختارة"
+  "roomSelected": "غرفة مختارة",
+  "singleBed": "سرير منفرد",
+  "breakfastRoom": "الفطور متوفر , الدفع ضمن الفندق",
+  "freeWifi": "انترنت مجاني",
+  "landmarkView": "اطلالة على المعلم ",
+  "cityView": "اطلالة على المدينة",
+  "airCondition": "تكييف",
+  "flatScreen": "شاشة تلفاز",
+  "privateBathroom": "حمام خاص",
+  "soundProof": "عازل للصوت",
+  "miniBar": "ثلاجة صغيرة",
+  "coffeeMachine": "آلة قهوة",
+  "PriceForOneNight": "السعر لليلة واحدة",
+  "doubleBed": "سرير مزدوج"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -174,7 +187,20 @@ static const Map<String,dynamic> en = {
   "facilities": "Facilities",
   "chooseRoom": "Choose your room",
   "select": "Select",
-  "roomSelected": "room selected"
+  "roomSelected": "room selected",
+  "singleBed": "single bed",
+  "breakfastRoom": "Breakfast available, pay at the property ",
+  "freeWifi": "Free WiFi",
+  "landmarkView": "Landmark view",
+  "cityView": "City view",
+  "airCondition": "Air conditioning",
+  "flatScreen": "Flat-screen TV",
+  "privateBathroom": "Private Bathroom",
+  "soundProof": "Soundproof",
+  "miniBar": "Mini-bar",
+  "coffeeMachine": "Coffee machine",
+  "PriceForOneNight": "Price for one night",
+  "doubleBed": "double bed"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

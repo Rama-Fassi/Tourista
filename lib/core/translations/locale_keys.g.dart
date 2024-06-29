@@ -80,5 +80,18 @@ abstract class  LocaleKeys {
   static const chooseRoom = 'chooseRoom';
   static const select = 'select';
   static const roomSelected = 'roomSelected';
+  static const singleBed = 'singleBed';
+  static const breakfastRoom = 'breakfastRoom';
+  static const freeWifi = 'freeWifi';
+  static const landmarkView = 'landmarkView';
+  static const cityView = 'cityView';
+  static const airCondition = 'airCondition';
+  static const flatScreen = 'flatScreen';
+  static const privateBathroom = 'privateBathroom';
+  static const soundProof = 'soundProof';
+  static const miniBar = 'miniBar';
+  static const coffeeMachine = 'coffeeMachine';
+  static const PriceForOneNight = 'PriceForOneNight';
+  static const doubleBed = 'doubleBed';
 
 }

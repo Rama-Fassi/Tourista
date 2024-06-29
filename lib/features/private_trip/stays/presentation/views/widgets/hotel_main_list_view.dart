@@ -8,11 +8,12 @@ class HotelMainListView extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotels,
+    required this.tripId,
   });
   final List<Hotel> hotels;
   final double width;
   final double height;
-
+  final int tripId;
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
@@ -21,6 +22,7 @@ class HotelMainListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(left: 15, bottom: 12),
           child: HotelMainCard(
+            tripId: tripId,
             width: width,
             height: height,
             hotel: hotels[index],

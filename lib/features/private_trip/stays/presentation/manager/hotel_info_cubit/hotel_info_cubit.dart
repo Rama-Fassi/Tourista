@@ -14,7 +14,12 @@ class HotelInfoCubit extends Cubit<HotelInfoState> {
     emit(state.copyWith(checkOut: date));
   }
 
-  void setRooms(Map<String, List<dynamic>>? rooms) {
-    emit(state.copyWith(rooms: rooms));
+  void setRooms(int roomId, Map<int, dynamic>? rooms) {
+    final updatedRoom = Map<int, dynamic>.from(state.rooms ?? {});
+
+    updatedRoom[roomId] =
+        rooms; // Overwrite the previous value with the new value
+
+    emit(state.copyWith(rooms: updatedRoom));
   }
 }

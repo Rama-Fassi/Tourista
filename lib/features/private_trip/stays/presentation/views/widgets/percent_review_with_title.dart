@@ -33,7 +33,12 @@ class PercentReviewWithTitle extends StatelessWidget {
               const Icon(
                 Icons.arrow_downward_rounded,
                 color: Color(0xffD4111F),
-              )
+              ),
+            Spacer(),
+            Text(
+              '$review',
+              style: AppStyles.styleInterMedium18(context),
+            )
           ],
         ),
         const Gap(12),

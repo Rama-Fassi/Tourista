@@ -77,5 +77,18 @@
   "facilities": "Facilities",
   "chooseRoom": "Choose your room",
   "select": "Select",
-  "roomSelected": "room selected"
+  "roomSelected": "room selected",
+  "singleBed": "single bed",
+  "breakfastRoom": "Breakfast available, pay at the property ",
+  "freeWifi": "Free WiFi",
+  "landmarkView": "Landmark view",
+  "cityView": "City view",
+  "airCondition": "Air conditioning",
+  "flatScreen": "Flat-screen TV",
+  "privateBathroom": "Private Bathroom",
+  "soundProof": "Soundproof",
+  "miniBar": "Mini-bar",
+  "coffeeMachine": "Coffee machine",
+  "PriceForOneNight": "Price for one night",
+  "doubleBed": "double bed"
 }

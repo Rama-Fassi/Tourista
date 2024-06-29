@@ -48,6 +48,7 @@ class CustomScrollViewWithBlocBuilder extends StatelessWidget {
                     ? SliverToBoxAdapter(
                         child: ErrAnimation(errMessage: 'No Hotels Found!'))
                     : HotelMainListView(
+                        tripId: tripId,
                         width: width,
                         height: height,
                         hotels: state.hotelsModel.hotel!,

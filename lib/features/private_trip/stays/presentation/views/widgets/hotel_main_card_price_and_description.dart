@@ -15,10 +15,12 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotel,
+    required this.tripId,
   });
   final Hotel hotel;
   final double width;
   final double height;
+  final int tripId;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +46,8 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
         ),
         const Gap(4),
         CustomButton(
-            onTap: () => GoRouter.of(context)
-                .push(AppRouter.kHotelDetailsView, extra: hotel),
+            onTap: () => GoRouter.of(context).push(AppRouter.kHotelDetailsView,
+                extra: {'tripId': tripId, 'hotel': hotel}),
             text: LocaleKeys.show.tr(),
             width: width * .15,
             borderRadius: 5,

@@ -30,7 +30,7 @@ class _SelectNumberWidgetState extends State<SelectNumberWidget> {
           children: [
             IconButton(
                 onPressed: () {
-                  if (selectedNumber > 1) {
+                  if (selectedNumber > 0) {
                     setState(() {
                       selectedNumber--;
                       widget.onNumberChanged(selectedNumber);

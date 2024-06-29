@@ -316,11 +316,11 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleInterRegular(BuildContext context) {
+  static TextStyle styleInterRegular18(BuildContext context) {
     return GoogleFonts.inter(
       color: Colors.black,
-      fontSize: getResponsiveFontSize(fontSize: 14, context),
-      fontWeight: FontWeight.w700,
+      fontSize: getResponsiveFontSize(fontSize: 18, context),
+      fontWeight: FontWeight.w400,
     );
   }
 
