@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
+import 'package:tourista/features/profile/data/models/add_review_model/add_review_model.dart';
+import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
 import 'package:tourista/features/profile/data/models/update_name_model.dart';
@@ -97,13 +99,13 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, UserInfoModel>> getUserInfo({required String token}) async {
+  Future<Either<Failure, UserInfoModel>> getUserInfo(
+      {required String token}) async {
     try {
       var userInfoData =
           await apiService.get(endPoint: 'userInfo', token: token);
 
-      UserInfoModel userInfoModel =
-          UserInfoModel.fromJson(userInfoData);
+      UserInfoModel userInfoModel = UserInfoModel.fromJson(userInfoData);
 
       return right(userInfoModel);
     } catch (e) {
@@ -115,17 +117,64 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ChangePasswordModel>> changePassword({    required String token,
-required String password, required String newPassword, required String confirnPassword})  async {try {
+  Future<Either<Failure, ChangePasswordModel>> changePassword(
+      {required String token,
+      required String password,
+      required String newPassword,
+      required String confirnPassword}) async {
+    try {
       var changePasswordDate = await apiService
-          .post(endPoint: 'resatPasswordEnternal', token: token, body: {'password': password,
-          'NewPassword' : newPassword,
-          'NewPassword_confirmation' : confirnPassword });
+          .post(endPoint: 'resatPasswordEnternal', token: token, body: {
+        'password': password,
+        'NewPassword': newPassword,
+        'NewPassword_confirmation': confirnPassword
+      });
 
       ChangePasswordModel changePasswordModel =
           ChangePasswordModel.fromJson(changePasswordDate);
 
       return right(changePasswordModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AddReviewModel>> addReview(
+      {required String token,
+      required String review,
+      required String comment}) async {
+    try {
+      var addReviewData = await apiService.post(
+          endPoint: 'addReview',
+          token: token,
+          body: {'review': review, 'comment': comment});
+
+      AddReviewModel addReviewModel = AddReviewModel.fromJson(addReviewData);
+
+      return right(addReviewModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AllReviewsModel>> getAllReviews(
+      {required String token}) async {
+    try {
+      var allReviewsData =
+          await apiService.get(endPoint: 'allReview', token: token);
+
+      AllReviewsModel allReviewsModel =
+          AllReviewsModel.fromJson(allReviewsData);
+
+      return right(allReviewsModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

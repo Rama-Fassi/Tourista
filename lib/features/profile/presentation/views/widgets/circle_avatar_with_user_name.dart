@@ -7,6 +7,7 @@ import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utlis/styles.dart';
+import 'custom_circle_avatar.dart';
 
 class CircleAvatarWithUserName extends StatelessWidget {
   const CircleAvatarWithUserName({
@@ -72,22 +73,7 @@ class CircleAvatarWithUserName extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: kCircleAvatarColoe,
-                          border: Border.all(color: kYellowColor, width: 3),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '',
-                            style: AppStyles.styleInterBold27(context)
-                                .copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                      const CustomCircleAvatar(),
                       const Gap(10),
                       Text(
                         '...',
@@ -159,3 +145,4 @@ class CircleAvatarWithUserName extends StatelessWidget {
     );
   }
 }
+

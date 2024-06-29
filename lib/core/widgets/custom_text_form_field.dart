@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusedBordercolor,
     this.hoverColor,
     this.outlinedborder,
+    this.fontSize,
   });
   final Widget? icon;
   final String hintText;
@@ -29,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color? focusedBordercolor;
   final Color? hoverColor;
   final bool? outlinedborder;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -43,7 +45,7 @@ class CustomTextFormField extends StatelessWidget {
         }
         return null;
       },
-      style: const TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: fontSize ?? 20),
       decoration: outlinedborder == false || outlinedborder == null
           ? InputDecoration(
               hoverColor: hoverColor ?? color,

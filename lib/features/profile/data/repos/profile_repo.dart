@@ -1,5 +1,7 @@
 import 'package:tourista/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:tourista/features/profile/data/models/add_review_model/add_review_model.dart';
+import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
 import 'package:tourista/features/profile/data/models/update_name_model.dart';
@@ -38,5 +40,18 @@ abstract class ProfileRepo {
     required String password,
     required String newPassword,
     required String confirnPassword,
+  });
+
+
+
+   Future<Either<Failure, AddReviewModel>> addReview({
+    required String token,
+    required String review,
+    required String comment,
+  });
+
+
+    Future<Either<Failure, AllReviewsModel>> getAllReviews({
+    required String token,
   });
 }

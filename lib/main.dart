@@ -12,8 +12,11 @@ import 'package:tourista/features/private_trip/activities/presentation/manager/a
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/private_trip_cubit/private_trip_cubit.dart';
+import 'package:tourista/features/profile/presentation/manager/all_reviews_cubit/all_reviews_cubit.dart';
 import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
+import 'features/profile/data/repos/profile_repo_impl.dart';
+import 'features/profile/presentation/manager/add_review_cubit/add_review_cubit.dart';
 
 void main() async {
   setUpServiceLocator();
@@ -22,7 +25,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
   await Hive.openBox(kTokenBox);
- await Hive.openBox(kUserInfoBox);
+  await Hive.openBox(kUserInfoBox);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -60,8 +63,9 @@ class Tourista extends StatelessWidget {
         BlocProvider(
           create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
         ),
-       
-       
+        BlocProvider(
+            create: (context) => AddReviewCubit(getIt.get<ProfileRepoImpl>())),
+        
       ],
       child: MaterialApp.router(
         theme: themeData(),
