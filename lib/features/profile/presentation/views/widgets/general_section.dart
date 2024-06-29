@@ -1,10 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:tourista/core/utlis/service_locator.dart';
-import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
-import 'package:tourista/features/profile/presentation/manager/change_password_cubit/change_password_cubit.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/profile_text_button.dart';
 import '../../../../../core/translations/locale_keys.g.dart';
 import '../../../../../core/utlis/app_assets.dart';

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
-import 'package:tourista/core/utlis/app_router.dart';
 import 'widgets/personal_details_view_body.dart';
 
 class PersonalDetailsView extends StatelessWidget {

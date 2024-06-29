@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/earth_logo_with_text.dart';
 
 class AboutUsViewBody extends StatelessWidget {
   const AboutUsViewBody({super.key, required this.scereenWidth});

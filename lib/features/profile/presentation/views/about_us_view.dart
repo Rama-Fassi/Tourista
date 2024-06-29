@@ -1,9 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../constants.dart';
-import '../../../../core/translations/locale_keys.g.dart';
 import 'widgets/about_us_view_body.dart';
 
 class AboutUsView extends StatelessWidget {

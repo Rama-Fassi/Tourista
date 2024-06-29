@@ -2,17 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
-import 'package:tourista/features/auth/forget_password/presentation/views/widgets/create_a_new_password.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_auth_button.dart';
 import 'package:tourista/features/profile/presentation/manager/change_password_cubit/change_password_cubit.dart';
-
 import '../../../../../core/translations/locale_keys.g.dart';
-import '../../../../../core/utlis/app_assets.dart';
 import '../../../../../core/utlis/functions/custom_success_snack_bar.dart';
 import '../../../../../core/utlis/styles.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';

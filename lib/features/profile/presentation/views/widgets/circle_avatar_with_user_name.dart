@@ -1,12 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
-import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
-
 import '../../../../../constants.dart';
 import '../../../../../core/utlis/styles.dart';
 
@@ -22,7 +20,7 @@ class CircleAvatarWithUserName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late String name;
-    late int points;
+    late int points ;
     if (Hive.box(kUserInfoBox).get(kUserNameRef) == null) {
       BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
     } else {
@@ -37,28 +35,35 @@ class CircleAvatarWithUserName extends StatelessWidget {
           points = state.userInfoModel.user!.points!;
           Hive.box(kUserInfoBox)
               .put(kUserPointsRef, state.userInfoModel.user!.points);
-          print('points: ${Hive.box(kUserInfoBox).get(kUserPointsRef)}');
+          if (kDebugMode) {
+            print('points: ${Hive.box(kUserInfoBox).get(kUserPointsRef)}');
+          }
 
           Hive.box(kUserInfoBox)
               .put(kUserNameRef, state.userInfoModel.user!.name);
-          print(Hive.box(kUserInfoBox).get(kUserNameRef));
+          if (kDebugMode) {
+            print('username: ${Hive.box(kUserInfoBox).get(kUserNameRef)}');
+          }
           Hive.box(kUserInfoBox)
               .put(kUserPhoneRef, state.userInfoModel.user?.normalUser?.phone);
-          print(Hive.box(kUserInfoBox).get(kUserPhoneRef));
+          if (kDebugMode) {
+            print('phoneNumber: ${Hive.box(kUserInfoBox).get(kUserPhoneRef)}');
+          }
           state.userInfoModel.user?.googleUser != null
               ? Hive.box(kUserInfoBox).put(
                   kUserEmailRef, state.userInfoModel.user!.googleUser!.email)
               : Hive.box(kUserInfoBox).put(kUserEmailRef, null);
-          print('email: ${Hive.box(kUserInfoBox).get(kUserEmailRef)}');
+          if (kDebugMode) {
+            print('email: ${Hive.box(kUserInfoBox).get(kUserEmailRef)}');
+          }
         } else if (state is GetUserInfoFailure) {
           customSnackBar(context, state.errMessage);
-        } else{
-        }
+        } else {}
       },
       child: BlocBuilder<GetUserInfoCubit, GetUserInfoState>(
         builder: (context, state) {
           return state is GetUserInfoLoading
-              ?   Container(
+              ? Container(
                   width: screenWidth,
                   height: screenheight * .215,
                   decoration: const BoxDecoration(
@@ -77,7 +82,7 @@ class CircleAvatarWithUserName extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                           '',
+                            '',
                             style: AppStyles.styleInterBold27(context)
                                 .copyWith(color: Colors.white),
                           ),
