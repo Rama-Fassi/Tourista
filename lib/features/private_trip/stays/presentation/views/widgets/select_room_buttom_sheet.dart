@@ -60,6 +60,7 @@ class SelectRoomButtomSheet extends StatelessWidget {
                         cubit.setRooms(room.id!, {
                           room.id!: [num, room.price]
                         });
+                        cubit.getPrice();
                       }
 
                       Navigator.pop(context);
