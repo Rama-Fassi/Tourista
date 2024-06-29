@@ -129,7 +129,7 @@ class _PasswordAndSecurityViewBodyState
                         size: 30,
                       )
                     : CustomAuthButton(
-                        text: 'Confirm',
+                        text: LocaleKeys.confirm.tr(),
                         width: scereenWidth,
                         onTap: () {
                           BlocProvider.of<ChangePasswordCubit>(context)

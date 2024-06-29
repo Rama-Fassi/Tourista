@@ -124,7 +124,10 @@ class CodegenLoader extends AssetLoader{
   "enter_new_name": "ادخل اسم جديد",
   "enter_new_phone_number": "ادخل رقم جديد",
   "password_must_include": "يجب أن تتضمن كلمة المرور الخاصة بك 6 رموز على الاقل ويجب أن تشمل الارقام والحروف والرموز الخاصة",
-  "password_update": "تم تغيير كلمة المرور بنجاح"
+  "password_update": "تم تغيير كلمة المرور بنجاح",
+  "aboutUsText": "مرحبًا بك في تطبيق Tourista الخاص بنا!\nنحن ملتزمون بتوفير تجارب سفر لا تُنسى لعملائنا.\nهدفنا هو جعل السفر أسهل وأكثر متعة وأكثر تميزًا للجميع.\nباستخدام تطبيقنا، يمكنك اكتشاف وجهات جديدة والتخطيط لمسار رحلتك وحجز الرحلات الجوية والإقامة،\nوالعثور على تجارب وأنشطة فريدة للاستمتاع بها أثناء رحلتك.\nسواء كنت مسافرًا بمفردك أو مع عائلتك أو مجموعة من الأصدقاء، فإن تطبيقنا يحتوي على شيء يناسب الجميع.\nابدأ في التخطيط لمغامرتك معنا!\nنحن هنا لمساعدتك على تحقيق ذلك.",
+  "full_name": "الاسم الكامل",
+  "email": "البريد الالكتروني"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -236,7 +239,10 @@ static const Map<String,dynamic> en = {
   "enter_new_name": "Enter new name",
   "enter_new_phone_number": "Enter new phone number",
   "password_must_include": "Your password must include at least 6 character and should include numbers , letters and special characters",
-  "password_update": "The password is updated"
+  "password_update": "The password is updated",
+  "aboutUsText": "Welcome to our Tourista app!\nWe are dedicated to providing unforgettable travel experiences for our customers.\nOur goal is to make traveling easier, more enjoyable, and more memorable for everyone.\nWith our app, you can discover new destinations, plan your itinerary, book flights and accommodations,\nand find unique experiences and activities to enjoy during your trip.\nWhether you're a solo traveler, a family, or a group of friends, our app has something for everyone.\nStart planning your adventure with us!\nWe're here to help you make it happen.",
+  "full_name": "Full Name",
+  "email": "Email"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

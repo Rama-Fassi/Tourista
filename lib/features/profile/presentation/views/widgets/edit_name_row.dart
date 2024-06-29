@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
@@ -86,6 +88,7 @@ class _PersonalDetailsViewBodyState extends State<EditNameRow> {
             if (state is UpdateNameSuccess) {
               customSuccessSnackBar(
                   context, LocaleKeys.Name_has_been_Edit_successfully.tr());
+              GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
               Hive.box(kUserInfoBox).put(kUserNameRef, username);
             } else if (state is UpdateNameFailure) {
               customSnackBar(context, state.errMessage);

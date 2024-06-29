@@ -21,7 +21,7 @@ class PersonalDetailsView extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+            GoRouter.of(context).pop();
           },
         ),
         iconTheme: const IconThemeData(color: Colors.white, size: 25),

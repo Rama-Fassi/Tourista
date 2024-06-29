@@ -111,5 +111,8 @@ abstract class  LocaleKeys {
   static const enter_new_phone_number = 'enter_new_phone_number';
   static const password_must_include = 'password_must_include';
   static const password_update = 'password_update';
+  static const aboutUsText = 'aboutUsText';
+  static const full_name = 'full_name';
+  static const email = 'email';
 
 }

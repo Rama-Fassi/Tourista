@@ -25,6 +25,7 @@ class SentgoogleUserinfoCubit extends Cubit<SentGoogleUserInfoState> {
 
     result.fold((failure) {
       emit(SentGoogleUserInfoFailure(failure.errMessage));
+      print('userId $googleUserId');
       print(failure.errMessage.toString());
     }, (signInWithGoogleModel) {
       Hive.box(kTokenBox).put(kTokenRef, signInWithGoogleModel.token);

@@ -259,6 +259,14 @@ abstract class AppStyles {
     );
   }
 
+    static TextStyle styleSourceRegular23(BuildContext context) {
+    return GoogleFonts.sourceSans3(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 23, context),
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle styleInterSemiBold18(BuildContext context) {
     return GoogleFonts.inter(
       color: Colors.black,

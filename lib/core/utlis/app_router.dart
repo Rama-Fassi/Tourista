@@ -42,8 +42,10 @@ import 'package:tourista/features/private_trip/stays/data/models/hotels_model/ho
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/views/customer_support_view.dart';
 import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
 import 'package:tourista/features/profile/presentation/views/password_and_security_view.dart';
+import 'package:tourista/features/profile/presentation/views/reviews_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
@@ -52,6 +54,7 @@ import '../../features/profile/presentation/manager/change_password_cubit/change
 import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
 import '../../features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
+import '../../features/profile/presentation/views/about_us_view.dart';
 import '../../features/profile/presentation/views/language_view.dart';
 import '../../features/profile/presentation/views/verify_new_phone_view.dart';
 
@@ -77,6 +80,9 @@ abstract class AppRouter {
   static const kLanguageView = '/languageView';
   static const kPersonalDetailsView = '/personalDetailsView';
   static const kPasswordAndSecurityView = '/passwordAndSecurity';
+  static const kAboutUsView = '/aboutUsView';
+  static const kCustomerSupportView = '/customerSupportview';
+  static const kReviewsView = '/reviewsView';
 
   static const kverifyNewPhoneview = '/verifyNewPhoneview';
 
@@ -89,6 +95,18 @@ abstract class AppRouter {
       GoRoute(
         path: kLanguageView,
         builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kAboutUsView,
+        builder: (context, state) => const AboutUsView(),
+      ),
+      GoRoute(
+        path: kCustomerSupportView,
+        builder: (context, state) => const CustomerSupportView(),
+      ),
+      GoRoute(
+        path: kReviewsView,
+        builder: (context, state) => const ReviewsView(),
       ),
       GoRoute(
         path: kPasswordAndSecurityView,
