@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/setting_section.dart';
+import '../../../../core/utlis/service_locator.dart';
+import '../../data/repos/profile_repo_impl.dart';
+import '../manager/change_password_cubit/change_password_cubit.dart';
 import 'widgets/circle_avatar_with_user_name.dart';
 import 'widgets/general_section.dart';
 import 'widgets/help_and_support_section.dart';

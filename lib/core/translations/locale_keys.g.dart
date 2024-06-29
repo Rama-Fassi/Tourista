@@ -109,5 +109,7 @@ abstract class  LocaleKeys {
   static const Name_has_been_Edit_successfully = 'Name_has_been_Edit_successfully';
   static const enter_new_name = 'enter_new_name';
   static const enter_new_phone_number = 'enter_new_phone_number';
+  static const password_must_include = 'password_must_include';
+  static const password_update = 'password_update';
 
 }

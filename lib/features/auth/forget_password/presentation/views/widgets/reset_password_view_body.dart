@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
@@ -84,6 +85,8 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
     if (state is ResetPasswordSuccess) {
       isLoading = false;
       showSuccessDialog(context);
+      Hive.box(kUserInfoBox).deleteAll(
+          [kUserNameRef, kUserPhoneRef, kUserEmailRef, kUserPointsRef]);
     } else if (state is ResetPasswordFailure) {
       isLoading = false;
       customSnackBar(context, state.errMessage);

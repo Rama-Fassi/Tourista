@@ -122,7 +122,9 @@ class CodegenLoader extends AssetLoader{
   "phone_has_been_modified_successfully": "لقد تم تغيير رقم الهاتف بنجاح",
   "Name_has_been_Edit_successfully": "لقد تم تغيير الاسم بنجاح",
   "enter_new_name": "ادخل اسم جديد",
-  "enter_new_phone_number": "ادخل رقم جديد"
+  "enter_new_phone_number": "ادخل رقم جديد",
+  "password_must_include": "يجب أن تتضمن كلمة المرور الخاصة بك 6 رموز على الاقل ويجب أن تشمل الارقام والحروف والرموز الخاصة",
+  "password_update": "تم تغيير كلمة المرور بنجاح"
 };
 static const Map<String,dynamic> en = {
   "create_an_account": "Create an account",
@@ -232,7 +234,9 @@ static const Map<String,dynamic> en = {
   "phone_has_been_modified_successfully": "phone has been modified successfully.",
   "Name_has_been_Edit_successfully": "Name has been Edit successfully.",
   "enter_new_name": "Enter new name",
-  "enter_new_phone_number": "Enter new phone number"
+  "enter_new_phone_number": "Enter new phone number",
+  "password_must_include": "Your password must include at least 6 character and should include numbers , letters and special characters",
+  "password_update": "The password is updated"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

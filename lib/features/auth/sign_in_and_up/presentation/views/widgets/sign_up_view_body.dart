@@ -9,6 +9,9 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
+import 'package:tourista/core/widgets/loading_widget.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sent_google_user_info_cubit/sent_google_user_info_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/confirm_password_text_field.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/continue_with_google_button.dart';
@@ -135,10 +138,37 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             Gap(screenheight * .03),
             const ORDivider(),
             Gap(screenheight * .02),
-            GoogleButton(
-              onTap: () {
-          //      AuthRepoImpl(getIt.get<ApiServer>()).signInWithGoogle();
+            BlocListener<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
+              listener: (context, state) {
+                if (state is SentGoogleUserInfoSuccess) {
+                  GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                } else if (state is SentGoogleUserInfoFailure) {
+                  customSnackBar(context, state.errMessage);
+                } else {
+                  const LoadingWidget();
+                }
               },
+              child: BlocListener<SignInWithGoogleCubit, SignInWithGoogleState>(
+                listener: (context, state) {
+                  if (state is SignInWithGoogleSuccess) {
+                    BlocProvider.of<SentgoogleUserinfoCubit>(context)
+                        .sentSignInWithGoogleUserInfo(
+                            nama: state.googleUser.displayName!,
+                            email: state.googleUser.email,
+                            googleUserId: state.googleUser.id);
+                  } else if (state is SignInWithGoogleFailure) {
+                    customSnackBar(context, state.errMessage);
+                  } else {
+                    const LoadingWidget();
+                  }
+                },
+                child: GoogleButton(
+                  onTap: () {
+                    BlocProvider.of<SignInWithGoogleCubit>(context)
+                        .signInWithGoogle();
+                  },
+                ),
+              ),
             ),
             Gap(screenheight * .02),
             TextWithTextButton(

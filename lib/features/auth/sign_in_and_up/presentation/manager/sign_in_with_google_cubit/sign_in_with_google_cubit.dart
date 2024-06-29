@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
@@ -11,17 +11,21 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
   final AuthRepo authRepo;
 
   Future<void> signInWithGoogle() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+
     try {
       emit(SignInWithGoogleLoading());
+      await googleSignIn.signOut(); // Sign out any previously signed-in user
+
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       // Obtain the auth details from the request
-      //    final GoogleSignInAuthentication? googleAuth =
-      //      await googleUser?.authentication;
+      // final GoogleSignInAuthentication? googleAuth =
+      //    await googleUser?.authentication;
       // Create a new credential
-      //final credential = GoogleAuthProvider.credential(
-      //accessToken: googleAuth?.accessToken,
-      //idToken: googleAuth?.idToken,
-      //);
+      // final credential = GoogleAuthProvider.credential(
+      //  accessToken: googleAuth?.accessToken,
+      //   idToken: googleAuth?.idToken,
+      // );
 
       // Once signed in, return the UserCredential
       //await FirebaseAuth.instance.signInWithCredential(credential);
@@ -35,6 +39,10 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
         emit(SignInWithGoogleFailure('Google Sign-In failed'));
       }
     } catch (e) {
+      if (kDebugMode) {
+        print('Error during Google Sign-In: $e');
+      }
+
       emit(SignInWithGoogleFailure('An error occurred during Google Sign-In'));
     }
   }

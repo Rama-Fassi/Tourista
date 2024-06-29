@@ -18,7 +18,8 @@ class VerifySignUpCubit extends Cubit<VerifySignUpState> {
       emit(VerifySignupFailure(failure.errMessage));
     }, (verifySignUpModel) {
       Hive.box(kTokenBox).put(kTokenRef, verifySignUpModel.token);
-            Hive.box(kUserInfoBox).deleteAll([kUserNameRef, kUserPhoneRef]);
+      Hive.box(kUserInfoBox).deleteAll(
+          [kUserNameRef, kUserPhoneRef, kUserEmailRef, kUserPointsRef]);
 
       print(Hive.box(kTokenBox).get(kTokenRef));
       emit(VerifySignupSuccess(verifySignUpModel: verifySignUpModel));

@@ -43,10 +43,12 @@ import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
+import 'package:tourista/features/profile/presentation/views/password_and_security_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import '../../features/profile/data/repos/profile_repo_impl.dart';
+import '../../features/profile/presentation/manager/change_password_cubit/change_password_cubit.dart';
 import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
 import '../../features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
@@ -74,6 +76,8 @@ abstract class AppRouter {
   static const kAllPhotoView = '/allPhotoView';
   static const kLanguageView = '/languageView';
   static const kPersonalDetailsView = '/personalDetailsView';
+  static const kPasswordAndSecurityView = '/passwordAndSecurity';
+
   static const kverifyNewPhoneview = '/verifyNewPhoneview';
 
   static final router = GoRouter(
@@ -85,6 +89,14 @@ abstract class AppRouter {
       GoRoute(
         path: kLanguageView,
         builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kPasswordAndSecurityView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ChangePasswordCubit(getIt.get<ProfileRepoImpl>()),
+          child: const PasswordAndSecurityView(),
+        ),
       ),
       GoRoute(
         path: kPersonalDetailsView,
@@ -116,8 +128,20 @@ abstract class AppRouter {
         path: kSignUp,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => SignUpCubit(getIt.get<AuthRepoImpl>()),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => SignUpCubit(getIt.get<AuthRepoImpl>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    SentgoogleUserinfoCubit(getIt.get<AuthRepoImpl>()),
+              ),
+            ],
             child: const SignUPView(),
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

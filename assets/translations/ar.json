@@ -106,5 +106,7 @@
   "phone_has_been_modified_successfully": "لقد تم تغيير رقم الهاتف بنجاح",
   "Name_has_been_Edit_successfully": "لقد تم تغيير الاسم بنجاح",
   "enter_new_name": "ادخل اسم جديد",
-  "enter_new_phone_number": "ادخل رقم جديد"
+  "enter_new_phone_number": "ادخل رقم جديد",
+  "password_must_include": "يجب أن تتضمن كلمة المرور الخاصة بك 6 رموز على الاقل ويجب أن تشمل الارقام والحروف والرموز الخاصة",
+  "password_update": "تم تغيير كلمة المرور بنجاح"
 }

@@ -106,5 +106,7 @@
   "phone_has_been_modified_successfully": "phone has been modified successfully.",
   "Name_has_been_Edit_successfully": "Name has been Edit successfully.",
   "enter_new_name": "Enter new name",
-  "enter_new_phone_number": "Enter new phone number"
+  "enter_new_phone_number": "Enter new phone number",
+  "password_must_include": "Your password must include at least 6 character and should include numbers , letters and special characters",
+  "password_update": "The password is updated"
 }

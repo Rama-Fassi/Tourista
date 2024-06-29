@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
+import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
 import 'package:tourista/features/profile/data/models/update_name_model.dart';
 import 'package:tourista/features/profile/data/models/update_phone_model.dart';
@@ -105,6 +106,26 @@ class ProfileRepoImpl implements ProfileRepo {
           UserInfoModel.fromJson(userInfoData);
 
       return right(userInfoModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ChangePasswordModel>> changePassword({    required String token,
+required String password, required String newPassword, required String confirnPassword})  async {try {
+      var changePasswordDate = await apiService
+          .post(endPoint: 'resatPasswordEnternal', token: token, body: {'password': password,
+          'NewPassword' : newPassword,
+          'NewPassword_confirmation' : confirnPassword });
+
+      ChangePasswordModel changePasswordModel =
+          ChangePasswordModel.fromJson(changePasswordDate);
+
+      return right(changePasswordModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

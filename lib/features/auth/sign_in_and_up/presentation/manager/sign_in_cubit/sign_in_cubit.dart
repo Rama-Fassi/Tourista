@@ -22,7 +22,7 @@ class SignInCubit extends Cubit<SignInState> {
       emit(SignInFailure(failure.errMessage));
     }, (signInModel) {
       Hive.box(kTokenBox).put(kTokenRef, signInModel.token);
-      Hive.box(kUserInfoBox).deleteAll([kUserNameRef, kUserPhoneRef]);
+      Hive.box(kUserInfoBox).deleteAll([kUserNameRef, kUserPhoneRef , kUserEmailRef,kUserPointsRef]);
 
       print(Hive.box(kTokenBox).get(kTokenRef));
       print(signInModel);
