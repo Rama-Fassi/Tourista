@@ -114,5 +114,7 @@ abstract class  LocaleKeys {
   static const aboutUsText = 'aboutUsText';
   static const full_name = 'full_name';
   static const email = 'email';
+  static const Frequently_asked_questions = 'Frequently_asked_questions';
+  static const all = 'all';
 
 }

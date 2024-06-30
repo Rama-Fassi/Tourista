@@ -1,6 +1,8 @@
 import 'package:tourista/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tourista/features/profile/data/models/add_review_model/add_review_model.dart';
+import 'package:tourista/features/profile/data/models/all_questions_model/all_questions_model.dart';
+import 'package:tourista/features/profile/data/models/all_questions_with_tybe_model/all_questions_with_tybe_model.dart';
 import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
@@ -54,4 +56,15 @@ abstract class ProfileRepo {
     Future<Either<Failure, AllReviewsModel>> getAllReviews({
     required String token,
   });
+
+  Future<Either<Failure, AllQuestionsModel>> getAllQuestions(
+  );
+
+
+   Future<Either<Failure, AllQuestionsWithTybeModel>> getAllQuestionsWithtybe({
+        required String tybe,
+
+   }
+    
+  );
 }

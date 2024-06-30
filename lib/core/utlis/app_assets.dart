@@ -41,6 +41,10 @@ class Assets {
   /// assets/images/icons/airport.svg
   static const String imagesIconsAirport = "assets/images/icons/airport.svg";
 
+  /// Assets for imagesIconsAllIcon
+  /// assets/images/icons/All_icon.svg
+  static const String imagesIconsAllIcon = "assets/images/icons/All_icon.svg";
+
   /// Assets for imagesIconsArrowRightLeft
   /// assets/images/icons/arrow_right_left.svg
   static const String imagesIconsArrowRightLeft = "assets/images/icons/arrow_right_left.svg";
@@ -84,6 +88,10 @@ class Assets {
   /// Assets for imagesIconsFlights
   /// assets/images/icons/flights.svg
   static const String imagesIconsFlights = "assets/images/icons/flights.svg";
+
+  /// Assets for imagesIconsFlightsSupportIcon
+  /// assets/images/icons/flights_support_icon.svg
+  static const String imagesIconsFlightsSupportIcon = "assets/images/icons/flights_support_icon.svg";
 
   /// Assets for imagesIconsGoogleLogo
   /// assets/images/icons/GoogleLogo.svg

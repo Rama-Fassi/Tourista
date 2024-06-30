@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/profile/data/models/add_review_model/add_review_model.dart';
+import 'package:tourista/features/profile/data/models/all_questions_model/all_questions_model.dart';
+import 'package:tourista/features/profile/data/models/all_questions_with_tybe_model/all_questions_with_tybe_model.dart';
 import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
@@ -175,6 +177,43 @@ class ProfileRepoImpl implements ProfileRepo {
           AllReviewsModel.fromJson(allReviewsData);
 
       return right(allReviewsModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AllQuestionsModel>> getAllQuestions() async {
+    try {
+      var allQuestionsData = await apiService.get(endPoint: 'allQuastions');
+
+      AllQuestionsModel allQuestionsModel =
+          AllQuestionsModel.fromJson(allQuestionsData);
+
+      return right(allQuestionsModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AllQuestionsWithTybeModel>> getAllQuestionsWithtybe({
+    required String tybe,
+  }) async {
+    try {
+      var allQuestionsWithTybeData = await apiService
+          .post(endPoint: 'allQuastionsByType', body: {'type': tybe});
+
+      AllQuestionsWithTybeModel allQuestionsWithTybeModel =
+          AllQuestionsWithTybeModel.fromJson(allQuestionsWithTybeData);
+
+      return right(allQuestionsWithTybeModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

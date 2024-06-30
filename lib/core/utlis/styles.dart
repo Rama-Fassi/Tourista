@@ -50,7 +50,13 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
-
+  static TextStyle styleInterMedium19(BuildContext context) {
+    return GoogleFonts.inter(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 19, context),
+      fontWeight: FontWeight.w500,
+    );
+  }
   static TextStyle styleSourceBold20(BuildContext context) {
     return GoogleFonts.sourceSans3(
       color: Colors.black,
