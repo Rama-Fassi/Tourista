@@ -12,6 +12,7 @@ import 'package:tourista/features/auth/forget_password/presentation/manager/rese
 import 'package:tourista/features/auth/forget_password/presentation/manager/verify_code_cubit/verify_code_cubit.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/forget_password.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sent_google_user_info_cubit/sent_google_user_info_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
@@ -42,9 +43,24 @@ import 'package:tourista/features/private_trip/stays/presentation/manager/room_h
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
+import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
+import 'package:tourista/features/profile/presentation/manager/all_questions_cubit/all_questions_cubit.dart';
+import 'package:tourista/features/profile/presentation/manager/all_questions_with_tybe_cubit/all_questions_with_tybe_cubit.dart';
+import 'package:tourista/features/profile/presentation/views/customer_support_view.dart';
+import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
+import 'package:tourista/features/profile/presentation/views/password_and_security_view.dart';
+import 'package:tourista/features/profile/presentation/views/reviews_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
+import '../../features/profile/data/repos/profile_repo_impl.dart';
+import '../../features/profile/presentation/manager/change_password_cubit/change_password_cubit.dart';
+import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
+import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
+import '../../features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
+import '../../features/profile/presentation/views/about_us_view.dart';
+import '../../features/profile/presentation/views/language_view.dart';
+import '../../features/profile/presentation/views/verify_new_phone_view.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/homeView';
@@ -66,6 +82,14 @@ abstract class AppRouter {
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
   static const kReadyTripDetailsView = '/readyTripDetailsView';
+  static const kLanguageView = '/languageView';
+  static const kPersonalDetailsView = '/personalDetailsView';
+  static const kPasswordAndSecurityView = '/passwordAndSecurity';
+  static const kAboutUsView = '/aboutUsView';
+  static const kCustomerSupportView = '/customerSupportview';
+  static const kReviewsView = '/reviewsView';
+
+  static const kverifyNewPhoneview = '/verifyNewPhoneview';
 
   static final router = GoRouter(
     routes: [
@@ -74,11 +98,87 @@ abstract class AppRouter {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
+        path: kLanguageView,
+        builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kAboutUsView,
+        builder: (context, state) => const AboutUsView(),
+      ),
+      GoRoute(
+        path: kCustomerSupportView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  AllQuestionsCubit(getIt.get<ProfileRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AllQuestionsWithTybeCubit(getIt.get<ProfileRepoImpl>()),
+            ),
+          ],
+          child: const CustomerSupportView(),
+        ),
+      ),
+      GoRoute(
+        path: kReviewsView,
+        builder: (context, state) => ReviewsView(
+          allReviewsModel: state.extra as AllReviewsModel,
+        ),
+      ),
+      GoRoute(
+        path: kPasswordAndSecurityView,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ChangePasswordCubit(getIt.get<ProfileRepoImpl>()),
+          child: const PasswordAndSecurityView(),
+        ),
+      ),
+      GoRoute(
+        path: kPersonalDetailsView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  UpdateNameCubit(getIt.get<ProfileRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  UpdatePhoneCubit(getIt.get<ProfileRepoImpl>()),
+            ),
+          ],
+          child: const PersonalDetailsView(),
+        ),
+      ),
+      GoRoute(
+        path: kverifyNewPhoneview,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              VerifyNewPhoneCubit(getIt.get<ProfileRepoImpl>()),
+          child: VerifyNewPhoneView(
+            updatePhoneinfo: state.extra as Map<String, dynamic>,
+          ),
+        ),
+      ),
+      GoRoute(
         path: kSignUp,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
-          child: BlocProvider(
-            create: (context) => SignUpCubit(getIt.get<AuthRepoImpl>()),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => SignUpCubit(getIt.get<AuthRepoImpl>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    SentgoogleUserinfoCubit(getIt.get<AuthRepoImpl>()),
+              ),
+            ],
             child: const SignUPView(),
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -112,7 +212,12 @@ abstract class AppRouter {
               create: (context) => SignInCubit(getIt.get<AuthRepoImpl>()),
             ),
             BlocProvider(
-              create: (context) => SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+              create: (context) =>
+                  SignInWithGoogleCubit(getIt.get<AuthRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  SentgoogleUserinfoCubit(getIt.get<AuthRepoImpl>()),
             ),
           ],
           child: const SignInView(),

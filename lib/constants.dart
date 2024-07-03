@@ -4,6 +4,12 @@ import 'package:hive_flutter/adapters.dart';
 const kName = 'Tourista';
 const kOnboarding = 'onboarding';
 const kTokenBox = 'token';
+const kUserInfoBox = 'userinfo';
+const kUserNameRef = 'userNameRef';
+const kUserPhoneRef = 'userphpneRef';
+const kUserEmailRef = 'userEmailRef';
+const kUserPointsRef = 'userUserPointsRef';
+
 const kTokenRef = 'tokenRef';
 const kBaseUrl = 'http://192.168.1.38:8000';
 const kFontIntro = "source-serif-pro";
@@ -14,6 +20,8 @@ const kGreenColor = Color(0xffA0D8B3);
 const kBlueColor = Color(0xffC6E2EF);
 const kDarkBlueColor = Color(0xff003680);
 const kYellowColor = Color(0xffFFD34E);
+
+const kCircleAvatarColoe = Color(0xff4A605D);
 
 var kboxShadow = BoxShadow(
   color: Colors.black.withOpacity(0.1),

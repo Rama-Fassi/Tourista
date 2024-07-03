@@ -9,31 +9,32 @@ import '../../../data/repos/auth_repo.dart';
 
 part 'sent_google_user_info_state.dart';
 
-class SentgoogleuserinfoCubit extends Cubit<SentGoogleUserInfoState> {
-  SentgoogleuserinfoCubit(this.authRepo) : super(SentGoogleUserInfoInitial());
+class SentgoogleUserinfoCubit extends Cubit<SentGoogleUserInfoState> {
+  SentgoogleUserinfoCubit(this.authRepo) : super(SentGoogleUserInfoInitial());
 
+  final AuthRepo authRepo;
 
-    final AuthRepo authRepo;
-    
   Future<void> sentSignInWithGoogleUserInfo({
     required String nama,
     required String email,
-      required  String googleUserId,
-
+    required String googleUserId,
   }) async {
     emit(SentGoogleUserInfoLoading());
-    var result = await authRepo.sentSignInWithGoogleUserInfo(name: nama, email: email, googleUserId: googleUserId);
+    var result = await authRepo.sentSignInWithGoogleUserInfo(
+        name: nama, email: email, googleUserId: googleUserId);
 
     result.fold((failure) {
       emit(SentGoogleUserInfoFailure(failure.errMessage));
+      print('userId $googleUserId');
+      print(failure.errMessage.toString());
     }, (signInWithGoogleModel) {
-     Hive.box(kTokenBox).put(kTokenRef, signInWithGoogleModel.token);
-     if (kDebugMode) {
-       print(Hive.box(kTokenBox).get(kTokenRef));
-     }
+      Hive.box(kTokenBox).put(kTokenRef, signInWithGoogleModel.token);
+      Hive.box(kUserInfoBox).deleteAll([kUserNameRef, kUserPhoneRef]);
+
+      if (kDebugMode) {
+        print(Hive.box(kTokenBox).get(kTokenRef));
+      }
       emit(SentGoogleUserInfoSuccess(signInWithGoogleModel));
     });
   }
 }
-
-

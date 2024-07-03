@@ -11,7 +11,11 @@ class VerifySignUpView extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: verifyAppBar(context, appBarText: 'Confirm Code'),
-        body: VerifySignUpBody(
+        body: 
+        
+        
+        
+        VerifySignUpBody(
           userid: signUpInfo['userId'],
           userName: signUpInfo['userName'],
           phoneNumber: signUpInfo['phoneNumber'],

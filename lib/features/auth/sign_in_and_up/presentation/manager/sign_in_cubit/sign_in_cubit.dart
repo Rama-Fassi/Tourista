@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
@@ -19,10 +20,20 @@ class SignInCubit extends Cubit<SignInState> {
     var result = await authRepo.signIn(phone: phone, password: password);
 
     result.fold((failure) {
+      if (kDebugMode) {
+        print(failure.errMessage.toString());
+      }
       emit(SignInFailure(failure.errMessage));
     }, (signInModel) {
       Hive.box(kTokenBox).put(kTokenRef, signInModel.token);
-      print(Hive.box(kTokenBox).get(kTokenRef));
+      Hive.box(kUserInfoBox).deleteAll(
+          [kUserNameRef, kUserPhoneRef, kUserEmailRef, kUserPointsRef]);
+
+      if (kDebugMode) {
+        print(Hive.box(kTokenBox).get(kTokenRef));
+        print(signInModel);
+      }
+
       emit(SignInSuccess(signInModel: signInModel));
     });
   }

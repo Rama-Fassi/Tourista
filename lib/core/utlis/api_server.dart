@@ -69,4 +69,34 @@ class ApiServer {
     );
     return response.data;
   }
+
+
+
+
+
+
+
+  Future<Map<String, dynamic>> delete({
+    required String endPoint,
+    String? token,
+  }) async {
+    Map<String, String> headers = {};
+    headers.addAll({"Accept": "application/json"});
+    if (token != null) {
+      headers.addAll({'Authorization': 'Bearer $token'});
+    }
+
+    var response = await _dio.delete(
+      '$baseUrl$endPoint',
+      options: Options(
+        headers: headers,
+      ),
+    );
+
+    return response.data;
+  }
 }
+
+
+
+

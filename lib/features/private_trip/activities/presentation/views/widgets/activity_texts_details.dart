@@ -59,10 +59,10 @@ class ActivityTextsDetails extends StatelessWidget {
           endIndent: 20,
         ),
         const Gap(10),
-        const IconWithTextRow(
+         IconWithTextRow(
           assetName: Assets.imagesIconsCirInfo,
           data: "About:",
-          color: Color(0xffEA4335),
+          color: const Color(0xffEA4335),
         ),
         const Gap(15),
         Text(

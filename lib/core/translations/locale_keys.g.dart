@@ -1,11 +1,9 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: constant_identifier_names
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const create_an_account = 'create_an_account';
   static const user_name = 'user_name';
-  static const phone_number  = 'phone_number ';
+  static const phone_number = 'phone_number ';
   static const password = 'password';
   static const confirm_password = 'confirm_password';
   static const sign_up = 'sign_up';
@@ -19,9 +17,12 @@ abstract class  LocaleKeys {
   static const dont_have_an_account = 'dont_have_an_account';
   static const Skip = 'Skip';
   static const Next = 'Next';
-  static const welcome_to_Tourista_where_you_can_explore_the_world = 'welcome_to_Tourista_where_you_can_explore_the_world';
-  static const join_to_our_special_trips_for_your_favorite_places_in_the_world = 'join_to_our_special_trips_for_your_favorite_places_in_the_world';
-  static const Plan_your_trip_from_A_to_z_with_us = 'Plan_your_trip_from_A_to_z_with_us';
+  static const welcome_to_Tourista_where_you_can_explore_the_world =
+      'welcome_to_Tourista_where_you_can_explore_the_world';
+  static const join_to_our_special_trips_for_your_favorite_places_in_the_world =
+      'join_to_our_special_trips_for_your_favorite_places_in_the_world';
+  static const Plan_your_trip_from_A_to_z_with_us =
+      'Plan_your_trip_from_A_to_z_with_us';
   static const Get_Started = 'Get_Started';
   static const forgetPassword = 'forgetPassword';
   static const enter_your_mobile_number = 'enter_your_mobile_number';
@@ -98,5 +99,52 @@ abstract class  LocaleKeys {
   static const coffeeMachine = 'coffeeMachine';
   static const PriceForOneNight = 'PriceForOneNight';
   static const doubleBed = 'doubleBed';
-
+  static const checkIn = 'checkIn';
+  static const checkOut = 'checkOut';
+  static const propertyLocation = 'propertyLocation';
+  static const guestReviews = 'guestReviews';
+  static const cleanless = 'cleanless';
+  static const comfort = 'comfort';
+  static const facilities = 'facilities';
+  static const chooseRoom = 'chooseRoom';
+  static const select = 'select';
+  static const roomSelected = 'roomSelected';
+  static const personal_details = 'personal_details';
+  static const password_and_security = 'password_and_security';
+  static const your_Wallet = 'your_Wallet';
+  static const General = 'General';
+  static const Help_and_support = 'Help_and_support';
+  static const Customer_Support = 'Customer_Support';
+  static const Reviews = 'Reviews';
+  static const About_us = 'About_us';
+  static const settings = 'settings';
+  static const Language = 'Language';
+  static const Delete_Account = 'Delete_Account';
+  static const Sign_out = 'Sign_out';
+  static const Name = 'Name';
+  static const Change_password = 'Change_password';
+  static const Current_password = 'Current_password';
+  static const follow_us_on_social_media = 'follow_us_on_social_media';
+  static const Choose_Your_Language = 'Choose_Your_Language';
+  static const Select_Your_Preferred_language_to_use =
+      'Select_Your_Preferred_language_to_use';
+  static const Confirmation = 'Confirmation';
+  static const Are_you_sure_you_want_to_sign_out =
+      'Are_you_sure_you_want_to_sign_out';
+  static const confirm = 'confirm';
+  static const Are_you_sure_you_want_to_delete_your_account =
+      'Are_you_sure_you_want_to_delete_your_account';
+  static const phone_has_been_modified_successfully =
+      'phone_has_been_modified_successfully';
+  static const Name_has_been_Edit_successfully =
+      'Name_has_been_Edit_successfully';
+  static const enter_new_name = 'enter_new_name';
+  static const enter_new_phone_number = 'enter_new_phone_number';
+  static const password_must_include = 'password_must_include';
+  static const password_update = 'password_update';
+  static const aboutUsText = 'aboutUsText';
+  static const full_name = 'full_name';
+  static const email = 'email';
+  static const Frequently_asked_questions = 'Frequently_asked_questions';
+  static const all = 'all';
 }

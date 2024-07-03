@@ -4,11 +4,11 @@ import 'package:gap/gap.dart';
 
 class CustomTabForTabBar extends StatelessWidget {
   const CustomTabForTabBar(
-      {super.key, this.assetName, required this.data, this.color});
+      {super.key, this.assetName, required this.data, this.color, this.iconColor});
   final String? assetName;
   final String data;
   final Color? color;
-
+  final Color? iconColor;
   @override
   Widget build(BuildContext context) {
     return assetName == null
@@ -26,7 +26,10 @@ class CustomTabForTabBar extends StatelessWidget {
         : Tab(
             child: Row(
               children: [
-                SvgPicture.asset(assetName!),
+                SvgPicture.asset(
+                  assetName!,
+                  color: iconColor,
+                ),
                 const Gap(7),
                 Text(data)
               ],

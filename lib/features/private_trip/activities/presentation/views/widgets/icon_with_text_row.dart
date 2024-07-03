@@ -8,7 +8,8 @@ class IconWithTextRow extends StatelessWidget {
   const IconWithTextRow({
     super.key,
     required this.assetName,
-    required this.data, this.color,
+    required this.data,
+    this.color,
   });
   final String assetName;
   final String data;
