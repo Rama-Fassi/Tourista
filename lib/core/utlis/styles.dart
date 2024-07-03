@@ -227,10 +227,10 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle styleQuickSemiBold16(BuildContext context) {
+  static TextStyle styleQuickSemiBold18(BuildContext context) {
     return GoogleFonts.quicksand(
       color: Colors.white,
-      fontSize: getResponsiveFontSize(fontSize: 18, context),
+      fontSize: getResponsiveFontSize(fontSize: 20, context),
       fontWeight: FontWeight.w600,
     );
   }

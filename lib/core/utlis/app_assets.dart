@@ -177,6 +177,10 @@ class Assets {
   /// assets/images/icons/sortBy.svg
   static const String imagesIconsSortBy = "assets/images/icons/sortBy.svg";
 
+  /// Assets for imagesIconsSortDown
+  /// assets/images/icons/sort-down.svg
+  static const String imagesIconsSortDown = "assets/images/icons/sort-down.svg";
+
   /// Assets for imagesIconsStays
   /// assets/images/icons/stays.svg
   static const String imagesIconsStays = "assets/images/icons/stays.svg";
@@ -240,6 +244,30 @@ class Assets {
   /// Assets for imagesMuseumOfTheFuture09
   /// assets/images/Museum-of-the-future-09.png
   static const String imagesMuseumOfTheFuture09 = "assets/images/Museum-of-the-future-09.png";
+
+  /// Assets for imagesPlacesTest
+  /// assets/images/placesTest.png
+  static const String imagesPlacesTest = "assets/images/placesTest.png";
+
+  /// Assets for imagesReadyTripDetailIcon1
+  /// assets/images/readyTripDetailIcon1.svg
+  static const String imagesReadyTripDetailIcon1 = "assets/images/readyTripDetailIcon1.svg";
+
+  /// Assets for imagesReadyTripDetailIcon2
+  /// assets/images/readyTripDetailIcon2.svg
+  static const String imagesReadyTripDetailIcon2 = "assets/images/readyTripDetailIcon2.svg";
+
+  /// Assets for imagesReadyTripsTest1
+  /// assets/images/readyTripsTest1.png
+  static const String imagesReadyTripsTest1 = "assets/images/readyTripsTest1.png";
+
+  /// Assets for imagesReadyTripsTest2
+  /// assets/images/readyTripsTest2.png
+  static const String imagesReadyTripsTest2 = "assets/images/readyTripsTest2.png";
+
+  /// Assets for imagesReadyTripsTest3
+  /// assets/images/readyTripsTest3.png
+  static const String imagesReadyTripsTest3 = "assets/images/readyTripsTest3.png";
 
   /// Assets for imagesRestaurant
   /// assets/images/restaurant.svg
