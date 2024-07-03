@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_detail_view_body.dart';
 
 class HotelDetailView extends StatelessWidget {
-  const HotelDetailView({super.key, required this.hotel});
-  final Hotel hotel;
+  const HotelDetailView({super.key, required this.info});
+
+  final Map<String, dynamic> info;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +21,8 @@ class HotelDetailView extends StatelessWidget {
           backgroundColor: kPrimaryColor,
         ),
         body: HotelDetailViewBody(
-          hotel: hotel,
+          tripId: info['tripId'],
+          hotel: info['hotel'],
         ),
       ),
     );

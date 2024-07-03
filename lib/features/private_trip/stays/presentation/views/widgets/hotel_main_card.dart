@@ -10,10 +10,12 @@ class HotelMainCard extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotel,
+    required this.tripId,
   });
   final Hotel hotel;
   final double width;
   final double height;
+  final int tripId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class HotelMainCard extends StatelessWidget {
                 hotel: hotel,
               ),
               HotelMainCardPriceAndDescription(
+                tripId: tripId,
                 width: width,
                 height: height,
                 hotel: hotel,

@@ -29,9 +29,17 @@ class Assets {
   /// assets/images/hotelTest.png
   static const String imagesHotelTest = "assets/images/hotelTest.png";
 
+  /// Assets for imagesHotelTestMap
+  /// assets/images/hotelTestMap.svg
+  static const String imagesHotelTestMap = "assets/images/hotelTestMap.svg";
+
   /// Assets for imagesIconsActivities
   /// assets/images/icons/activities.svg
   static const String imagesIconsActivities = "assets/images/icons/activities.svg";
+
+  /// Assets for imagesIconsAirConditionRoom
+  /// assets/images/icons/airConditionRoom.svg
+  static const String imagesIconsAirConditionRoom = "assets/images/icons/airConditionRoom.svg";
 
   /// Assets for imagesIconsAirport
   /// assets/images/icons/airport.svg
@@ -41,6 +49,18 @@ class Assets {
   /// assets/images/icons/arrow_right_left.svg
   static const String imagesIconsArrowRightLeft = "assets/images/icons/arrow_right_left.svg";
 
+  /// Assets for imagesIconsBathroomRoom
+  /// assets/images/icons/bathroomRoom.svg
+  static const String imagesIconsBathroomRoom = "assets/images/icons/bathroomRoom.svg";
+
+  /// Assets for imagesIconsBedRoom
+  /// assets/images/icons/bedRoom.svg
+  static const String imagesIconsBedRoom = "assets/images/icons/bedRoom.svg";
+
+  /// Assets for imagesIconsBreakfastRoom
+  /// assets/images/icons/breakfastRoom.svg
+  static const String imagesIconsBreakfastRoom = "assets/images/icons/breakfastRoom.svg";
+
   /// Assets for imagesIconsCabinClass
   /// assets/images/icons/cabinClass.svg
   static const String imagesIconsCabinClass = "assets/images/icons/cabinClass.svg";
@@ -49,9 +69,17 @@ class Assets {
   /// assets/images/icons/cirInfo.svg
   static const String imagesIconsCirInfo = "assets/images/icons/cirInfo.svg";
 
+  /// Assets for imagesIconsCityviewRoom
+  /// assets/images/icons/cityviewRoom.svg
+  static const String imagesIconsCityviewRoom = "assets/images/icons/cityviewRoom.svg";
+
   /// Assets for imagesIconsEnterDestination
   /// assets/images/icons/enterDestination.svg
   static const String imagesIconsEnterDestination = "assets/images/icons/enterDestination.svg";
+
+  /// Assets for imagesIconsFeaturesRoom
+  /// assets/images/icons/featuresRoom.svg
+  static const String imagesIconsFeaturesRoom = "assets/images/icons/featuresRoom.svg";
 
   /// Assets for imagesIconsFillLock
   /// assets/images/icons/fillLock.svg
@@ -61,9 +89,17 @@ class Assets {
   /// assets/images/icons/fillLockBlack.svg
   static const String imagesIconsFillLockBlack = "assets/images/icons/fillLockBlack.svg";
 
+  /// Assets for imagesIconsFlatscreenRoom
+  /// assets/images/icons/flatscreenRoom.svg
+  static const String imagesIconsFlatscreenRoom = "assets/images/icons/flatscreenRoom.svg";
+
   /// Assets for imagesIconsFlights
   /// assets/images/icons/flights.svg
   static const String imagesIconsFlights = "assets/images/icons/flights.svg";
+
+  /// Assets for imagesIconsFreeWifiRoom
+  /// assets/images/icons/freeWifiRoom.svg
+  static const String imagesIconsFreeWifiRoom = "assets/images/icons/freeWifiRoom.svg";
 
   /// Assets for imagesIconsGoogleLogo
   /// assets/images/icons/GoogleLogo.svg
@@ -81,6 +117,10 @@ class Assets {
   /// assets/images/icons/hours.svg
   static const String imagesIconsHours = "assets/images/icons/hours.svg";
 
+  /// Assets for imagesIconsLandmarkviewRoom
+  /// assets/images/icons/landmarkviewRoom.svg
+  static const String imagesIconsLandmarkviewRoom = "assets/images/icons/landmarkviewRoom.svg";
+
   /// Assets for imagesIconsLockBlack
   /// assets/images/icons/lockBlack.svg
   static const String imagesIconsLockBlack = "assets/images/icons/lockBlack.svg";
@@ -96,6 +136,10 @@ class Assets {
   /// Assets for imagesIconsLuggage3
   /// assets/images/icons/luggage3.svg
   static const String imagesIconsLuggage3 = "assets/images/icons/luggage3.svg";
+
+  /// Assets for imagesIconsNosoundRoom
+  /// assets/images/icons/nosoundRoom.svg
+  static const String imagesIconsNosoundRoom = "assets/images/icons/nosoundRoom.svg";
 
   /// Assets for imagesIconsOutlineLock
   /// assets/images/icons/outlineLock.svg
@@ -132,6 +176,10 @@ class Assets {
   /// Assets for imagesIconsSortBy
   /// assets/images/icons/sortBy.svg
   static const String imagesIconsSortBy = "assets/images/icons/sortBy.svg";
+
+  /// Assets for imagesIconsSortDown
+  /// assets/images/icons/sort-down.svg
+  static const String imagesIconsSortDown = "assets/images/icons/sort-down.svg";
 
   /// Assets for imagesIconsStays
   /// assets/images/icons/stays.svg
@@ -197,6 +245,30 @@ class Assets {
   /// assets/images/Museum-of-the-future-09.png
   static const String imagesMuseumOfTheFuture09 = "assets/images/Museum-of-the-future-09.png";
 
+  /// Assets for imagesPlacesTest
+  /// assets/images/placesTest.png
+  static const String imagesPlacesTest = "assets/images/placesTest.png";
+
+  /// Assets for imagesReadyTripDetailIcon1
+  /// assets/images/readyTripDetailIcon1.svg
+  static const String imagesReadyTripDetailIcon1 = "assets/images/readyTripDetailIcon1.svg";
+
+  /// Assets for imagesReadyTripDetailIcon2
+  /// assets/images/readyTripDetailIcon2.svg
+  static const String imagesReadyTripDetailIcon2 = "assets/images/readyTripDetailIcon2.svg";
+
+  /// Assets for imagesReadyTripsTest1
+  /// assets/images/readyTripsTest1.png
+  static const String imagesReadyTripsTest1 = "assets/images/readyTripsTest1.png";
+
+  /// Assets for imagesReadyTripsTest2
+  /// assets/images/readyTripsTest2.png
+  static const String imagesReadyTripsTest2 = "assets/images/readyTripsTest2.png";
+
+  /// Assets for imagesReadyTripsTest3
+  /// assets/images/readyTripsTest3.png
+  static const String imagesReadyTripsTest3 = "assets/images/readyTripsTest3.png";
+
   /// Assets for imagesRestaurant
   /// assets/images/restaurant.svg
   static const String imagesRestaurant = "assets/images/restaurant.svg";
@@ -212,6 +284,10 @@ class Assets {
   /// Assets for imagesTestAirline
   /// assets/images/test_airline.png
   static const String imagesTestAirline = "assets/images/test_airline.png";
+
+  /// Assets for imagesTestMap
+  /// assets/images/testMap.png
+  static const String imagesTestMap = "assets/images/testMap.png";
 
   /// Assets for imagesTouristaLogoGreen
   /// assets/images/tourista_logo_green.svg

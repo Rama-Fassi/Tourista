@@ -9,8 +9,8 @@ class PrivateTripCubit extends Cubit<PrivateTripState> {
           startDate: null,
           endDate: null,
           selectedNumber: 0,
-          selectedcity: null,
-          enterCity: null,
+          selectedcity: {'id': '', 'city': null},
+          enterCity: {'id': '', 'city': null},
         ));
         
   void setStartDate(DateTime? date) {

@@ -36,7 +36,10 @@ class CustomColorfulTabBar extends StatelessWidget {
             data: "Entertainment",
             color: Color(0xffF5F3A9),
           ),
-          const CustomTabForTabBar(data: "Cultural", color: kBlueColor),
+          const CustomTabForTabBar(
+            data: "Cultural",
+            color: kBlueColor,
+          ),
           CustomTabForTabBar(
               data: "Natural", color: kGreenColor.withOpacity(0.7)),
           CustomTabForTabBar(

@@ -32,7 +32,7 @@ class HotelMainReviewRow extends StatelessWidget {
           child: Center(
             child: Text(
               '${rate.toStringAsFixed(1)}',
-              style: AppStyles.styleQuickSemiBold16(context),
+              style: AppStyles.styleQuickSemiBold18(context),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
@@ -13,6 +14,9 @@ class AddToPlanButton extends StatelessWidget {
     this.text, this.color,
   });
   final String? text;
+  const AddToPlanButton(
+      {super.key, required this.screenWidth, required this.onTap, this.price});
+  final double? price;
   final double screenWidth;
   final Function() onTap;
   final Color? color;
@@ -20,7 +24,6 @@ class AddToPlanButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth,
-      height: 75,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         kboxShadow,
       ]),
@@ -36,6 +39,38 @@ class AddToPlanButton extends StatelessWidget {
               .copyWith(color: Colors.white),
           color: color == null ? kPrimaryColor : color!,
           onTap:  onTap,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            price == null
+                ? const SizedBox()
+                : Text(
+                    'Total Price $price',
+                    style: AppStyles.styleInterRegular14(context)
+                        .copyWith(fontSize: 12),
+                  ),
+            price == null
+                ? const SizedBox()
+                : Text(
+                    'For All Nights',
+                    style: AppStyles.styleInterRegular12(context)
+                        .copyWith(fontSize: 12),
+                  ),
+            Gap(6),
+            Center(
+              child: CustomButton(
+                text: LocaleKeys.Add_To_The_plan.tr(),
+                width: screenWidth,
+                borderRadius: 5,
+                height: 50,
+                style: AppStyles.styleSourceBold20(context)
+                    .copyWith(color: Colors.white),
+                color: kPrimaryColor,
+                onTap: onTap,
+              ),
+            ),
+          ],
         ),
       ),
     );

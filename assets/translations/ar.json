@@ -80,5 +80,18 @@
   "facilities": "المرافق",
   "chooseRoom": "اختر غرفتك",
   "select": "اختر",
-  "roomSelected": "غرفة مختارة"
+  "roomSelected": "غرفة مختارة",
+  "singleBed": "سرير منفرد",
+  "breakfastRoom": "الفطور متوفر , الدفع ضمن الفندق",
+  "freeWifi": "انترنت مجاني",
+  "landmarkView": "اطلالة على المعلم ",
+  "cityView": "اطلالة على المدينة",
+  "airCondition": "تكييف",
+  "flatScreen": "شاشة تلفاز",
+  "privateBathroom": "حمام خاص",
+  "soundProof": "عازل للصوت",
+  "miniBar": "ثلاجة صغيرة",
+  "coffeeMachine": "آلة قهوة",
+  "PriceForOneNight": "السعر لليلة واحدة",
+  "doubleBed": "سرير مزدوج"
 }

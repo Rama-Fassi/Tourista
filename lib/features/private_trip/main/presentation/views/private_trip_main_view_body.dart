@@ -83,8 +83,12 @@ class PrivatTripMainViewBody extends StatelessWidget {
               BlocProvider.of<CreateTripCubit>(context).createTripCubitFun(
                 idFrom: '${state.selectedcity['id']}',
                 idTo: '${state.enterCity['id']}',
-                dateOfTrip: "${state.startDate}".substring(0, 10),
-                dateEndOfTrip: '${state.endDate}'.substring(0, 10),
+                dateOfTrip: state.startDate == null
+                    ? ''
+                    : "${state.startDate}".substring(0, 10),
+                dateEndOfTrip: state.endDate == null
+                    ? ''
+                    : '${state.endDate}'.substring(0, 10),
                 personNumber: '${state.selectedNumber}',
               );
             },

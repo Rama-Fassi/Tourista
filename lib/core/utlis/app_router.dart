@@ -37,10 +37,11 @@ import 'package:tourista/features/private_trip/activities/presentation/views/act
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_TabBar.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/enter_destination_view.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/select_location_view.dart';
-import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
-import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
+import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
+import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
@@ -64,6 +65,7 @@ abstract class AppRouter {
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
+  static const kReadyTripDetailsView = '/readyTripDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -270,9 +272,11 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
           child: BlocProvider(
-            create: (context) => HotelInfoCubit(),
+            create: (context) => RoomHotelCubit(getIt.get<StaysRepoImpl>())
+              ..fetchRoomHotelsCubitFun(
+                  hotelId: (state.extra as Map<String, dynamic>)['hotel'].id!),
             child: HotelDetailView(
-              hotel: state.extra as Hotel,
+              info: state.extra as Map<String, dynamic>,
             ),
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -301,6 +305,10 @@ abstract class AppRouter {
             );
           },
         ),
+      ),
+      GoRoute(
+        path: kReadyTripDetailsView,
+        builder: (context, state) => const ReadyTripDetailsView(),
       ),
     ],
   );
