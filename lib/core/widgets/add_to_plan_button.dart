@@ -7,15 +7,15 @@ import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 
 class AddToPlanButton extends StatelessWidget {
-  const AddToPlanButton({
-    super.key,
-    required this.screenWidth,
-    required this.onTap,
-    this.text, this.color,
-  });
-  final String? text;
   const AddToPlanButton(
-      {super.key, required this.screenWidth, required this.onTap, this.price});
+      {super.key,
+      required this.screenWidth,
+      required this.onTap,
+      this.text,
+      this.color,
+      this.price});
+  final String? text;
+
   final double? price;
   final double screenWidth;
   final Function() onTap;
@@ -23,23 +23,10 @@ class AddToPlanButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        kboxShadow,
-      ]),
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: 50, right: 50, top: 13, bottom: 10),
-        child: CustomButton(
-          text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
-          width: screenWidth * .6,
-          borderRadius: 5,
-          height: 50,
-          style: AppStyles.styleSourceBold20(context)
-              .copyWith(color: Colors.white),
-          color: color == null ? kPrimaryColor : color!,
-          onTap:  onTap,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        width: screenWidth,
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          kboxShadow,
+        ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -60,7 +47,7 @@ class AddToPlanButton extends StatelessWidget {
             Gap(6),
             Center(
               child: CustomButton(
-                text: LocaleKeys.Add_To_The_plan.tr(),
+                text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
                 width: screenWidth,
                 borderRadius: 5,
                 height: 50,
@@ -71,8 +58,6 @@ class AddToPlanButton extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
