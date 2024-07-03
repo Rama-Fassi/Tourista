@@ -99,16 +99,6 @@ abstract class LocaleKeys {
   static const coffeeMachine = 'coffeeMachine';
   static const PriceForOneNight = 'PriceForOneNight';
   static const doubleBed = 'doubleBed';
-  static const checkIn = 'checkIn';
-  static const checkOut = 'checkOut';
-  static const propertyLocation = 'propertyLocation';
-  static const guestReviews = 'guestReviews';
-  static const cleanless = 'cleanless';
-  static const comfort = 'comfort';
-  static const facilities = 'facilities';
-  static const chooseRoom = 'chooseRoom';
-  static const select = 'select';
-  static const roomSelected = 'roomSelected';
   static const personal_details = 'personal_details';
   static const password_and_security = 'password_and_security';
   static const your_Wallet = 'your_Wallet';

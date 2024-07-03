@@ -70,12 +70,6 @@ class ApiServer {
     return response.data;
   }
 
-
-
-
-
-
-
   Future<Map<String, dynamic>> delete({
     required String endPoint,
     String? token,
@@ -96,7 +90,3 @@ class ApiServer {
     return response.data;
   }
 }
-
-
-
-

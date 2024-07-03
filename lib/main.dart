@@ -8,12 +8,13 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/simple_bloc_observer.dart';
+import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_out_cubit/sign_out_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/private_trip_cubit/private_trip_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotel_info_cubit/hotel_info_cubit.dart';
-import 'package:tourista/features/profile/presentation/manager/all_reviews_cubit/all_reviews_cubit.dart';
 import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 import 'features/profile/data/repos/profile_repo_impl.dart';
@@ -60,8 +61,6 @@ class Tourista extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => PrivateTripCubit(),
-        BlocProvider(
-          create: (context) => PrivateTripCubit(),
         ),
         BlocProvider(
           create: (context) => AllCityCubit(getIt.get<MainRepoImpl>()),
@@ -74,7 +73,6 @@ class Tourista extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => AddReviewCubit(getIt.get<ProfileRepoImpl>())),
-        
       ],
       child: MaterialApp.router(
         theme: themeData(),

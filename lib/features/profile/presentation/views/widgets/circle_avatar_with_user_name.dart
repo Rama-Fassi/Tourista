@@ -21,19 +21,19 @@ class CircleAvatarWithUserName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late String name;
-    late int points ;
+    //late int points;
     if (Hive.box(kUserInfoBox).get(kUserNameRef) == null) {
       BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
     } else {
       name = Hive.box(kUserInfoBox).get(kUserNameRef);
-      points = Hive.box(kUserInfoBox).get(kUserPointsRef);
+      //  points = Hive.box(kUserInfoBox).get(kUserPointsRef);
     }
 
     return BlocListener<GetUserInfoCubit, GetUserInfoState>(
       listener: (context, state) {
         if (state is GetUserInfoSuccess) {
           name = state.userInfoModel.user!.name!;
-          points = state.userInfoModel.user!.points!;
+          // points = state.userInfoModel.user!.points!;
           Hive.box(kUserInfoBox)
               .put(kUserPointsRef, state.userInfoModel.user!.points);
           if (kDebugMode) {
@@ -145,4 +145,3 @@ class CircleAvatarWithUserName extends StatelessWidget {
     );
   }
 }
-

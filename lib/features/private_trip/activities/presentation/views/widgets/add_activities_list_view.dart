@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/core/widgets/add_to_plan_button.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
-import '../../../../../../constants.dart';
 import '../../../../../../core/utlis/functions/custom_success_snack_bar.dart';
 import '../../../../main/data/models/create_trip_model/create_trip_model.dart';
 import '../../manager/activities_plan_cubit/activities_plan_cubit.dart';
