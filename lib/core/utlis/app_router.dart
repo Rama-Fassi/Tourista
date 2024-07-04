@@ -42,6 +42,7 @@ import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.
 import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/manager/all_reviews_cubit/all_reviews_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
 import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/presentation/manager/all_questions_cubit/all_questions_cubit.dart';
@@ -54,6 +55,7 @@ import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import '../../features/profile/data/repos/profile_repo_impl.dart';
+import '../../features/profile/presentation/manager/add_review_cubit/add_review_cubit.dart';
 import '../../features/profile/presentation/manager/change_password_cubit/change_password_cubit.dart';
 import '../../features/profile/presentation/manager/update_name_cubit/update_name_cubit.dart';
 import '../../features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
@@ -123,8 +125,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kReviewsView,
-        builder: (context, state) => ReviewsView(
-          allReviewsModel: state.extra as AllReviewsModel,
+        builder: (context, state) => BlocProvider(
+          create: (context) => AllReviewsCubit(getIt.get<ProfileRepoImpl>()),
+          child: const ReviewsView(),
         ),
       ),
       GoRoute(

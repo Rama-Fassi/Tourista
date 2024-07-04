@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/custom_circle_avatar.dart';
+
+import '../../../../../core/utlis/app_assets.dart';
 
 class UserReviewPost extends StatelessWidget {
   const UserReviewPost({
@@ -11,16 +14,16 @@ class UserReviewPost extends StatelessWidget {
     required this.circleAvatarName,
     required this.userName,
     required this.starsCount,
-    required this.userCommunt,
-    required this.userCommuntCreatedDate,
+    required this.userComment,
+    required this.userCommentCreatedDate,
   });
 
   final double screenWidth;
   final String circleAvatarName;
   final String userName;
   final int starsCount;
-  final String userCommunt;
-  final String userCommuntCreatedDate;
+  final String userComment;
+  final String userCommentCreatedDate;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,10 +53,14 @@ class UserReviewPost extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: starsCount,
                         itemBuilder: (context, index) {
-                          return const Icon(
-                            Icons.star,
-                            size: 20,
-                            color: Colors.orange,
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Image.asset(
+                              Assets.imagesIconsHeart,
+                              color: Colors.redAccent,
+                              width: 15,
+                              height: 15,
+                            ),
                           );
                         }),
                   ),
@@ -64,19 +71,25 @@ class UserReviewPost extends StatelessWidget {
         ),
         const Gap(15),
         Text(
-          userCommunt,
-          style: AppStyles.styleInterRegular18(context),
-        ),
-        const Gap(25),
-        Text(
-          userCommuntCreatedDate,
-          style: AppStyles.styleInterRegular14(context),
+          userComment,
+          style: AppStyles.styleSourceRegular20(context),
         ),
         const Gap(10),
-        Divider(
-          color: Colors.black.withOpacity(.7),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            userCommentCreatedDate,
+            style: AppStyles.styleInterRegular14(context),
+          ),
         ),
-        const Gap(10),
+        const Gap(5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Divider(
+            color: Colors.black.withOpacity(.7),
+          ),
+        ),
+        const Gap(5),
       ],
     );
   }

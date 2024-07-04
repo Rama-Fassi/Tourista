@@ -15,23 +15,13 @@ class ReviewsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AllReviewsCubit, AllReviewsState>(
-      listener: (context, state) {
-        if (state is AllReviewsSuccess) {
-          GoRouter.of(context)
-              .push(AppRouter.kReviewsView, extra: state.allReviewsModel);
-        } else if (state is AllReviewsFailure) {
-          customSnackBar(context, state.errMessage);
-        }
-      },
-      child: ProfileTextButton(
-          onPressed: () {
-            BlocProvider.of<AllReviewsCubit>(context).getAllReviews();
-          },
-          width: 27,
-          height: 27,
-          data: LocaleKeys.Reviews.tr(),
-          assetName: Assets.imagesIconsCarbonStarReviewIcon),
-    );
+    return ProfileTextButton(
+        onPressed: () {
+          GoRouter.of(context).push(AppRouter.kReviewsView);
+        },
+        width: 27,
+        height: 27,
+        data: LocaleKeys.Reviews.tr(),
+        assetName: Assets.imagesIconsCarbonStarReviewIcon);
   }
 }

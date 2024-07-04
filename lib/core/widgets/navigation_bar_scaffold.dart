@@ -28,11 +28,7 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     const MyTripsViewBody(),
     const AttractionsViewBody(),
     const PrivatTripMainViewBody(),
-    BlocProvider(
-      create: (context) =>
-          GetUserInfoCubit(getIt.get<ProfileRepoImpl>()),
-      child: const ProfileViewBody(),
-    ),
+    const ProfileViewBody(),
   ];
   int activeIndex = -1;
   @override

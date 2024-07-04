@@ -26,7 +26,6 @@ class DeleteAccountButton extends StatelessWidget {
       listener: (context, state) {
         if (state is DeleteAccountSuccess) {
           Hive.box(kTokenBox).delete(kTokenRef);
-          //await GoogleSignIn().signOut();
 
           if (kDebugMode) {
             print(Hive.box(kTokenBox).get(kTokenRef));

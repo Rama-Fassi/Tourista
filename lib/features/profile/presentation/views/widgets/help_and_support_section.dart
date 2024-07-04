@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/features/profile/presentation/manager/add_review_cubit/add_review_cubit.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/customer_support_button.dart';
 import '../../../../../core/translations/locale_keys.g.dart';
 import '../../../../../core/utlis/service_locator.dart';
@@ -29,10 +30,8 @@ class HelpAndSupportSection extends StatelessWidget {
         const Gap(18),
         const CustomerSupportButton(),
         const Gap(25),
-        BlocProvider(
-          create: (context) => AllReviewsCubit(getIt.get<ProfileRepoImpl>()),
-          child: const ReviewsButton(),
-        ),
+    
+        const ReviewsButton(),
         const Gap(25),
         const AboutUsButton(),
       ],

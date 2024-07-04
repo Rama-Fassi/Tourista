@@ -5,6 +5,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/models/sign_in_model.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
 
+
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -24,14 +25,13 @@ class SignInCubit extends Cubit<SignInState> {
         print(failure.errMessage.toString());
       }
       emit(SignInFailure(failure.errMessage));
-    }, (signInModel) {
+    }, (signInModel) async {
       Hive.box(kTokenBox).put(kTokenRef, signInModel.token);
       Hive.box(kUserInfoBox).deleteAll(
           [kUserNameRef, kUserPhoneRef, kUserEmailRef, kUserPointsRef]);
 
       if (kDebugMode) {
-        print(Hive.box(kTokenBox).get(kTokenRef));
-        print(signInModel);
+         print(Hive.box(kTokenBox).get(kTokenRef));
       }
 
       emit(SignInSuccess(signInModel: signInModel));

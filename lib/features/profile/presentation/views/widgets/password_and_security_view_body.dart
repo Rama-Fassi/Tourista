@@ -108,7 +108,7 @@ class _PasswordAndSecurityViewBodyState
               Gap(screenheight * .09),
             ],
           ),
-          BlocListener<ChangePasswordCubit, ChangePasswordState>(
+          BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
             listener: (context, state) {
               if (state is ChangePasswordSuccess) {
                 customSuccessSnackBar(context, LocaleKeys.password_update.tr());
@@ -117,7 +117,7 @@ class _PasswordAndSecurityViewBodyState
                 customSnackBar(context, state.errMessage);
               }
             },
-            child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
+          
               builder: (context, state) {
                 return state is ChangePasswordLoading
                     ? const SpinKitThreeBounce(
@@ -137,7 +137,7 @@ class _PasswordAndSecurityViewBodyState
                       );
               },
             ),
-          ),
+          
         ],
       ),
     );
