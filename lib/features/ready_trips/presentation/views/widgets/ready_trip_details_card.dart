@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class ReadyTripDetailsCard extends StatelessWidget {
@@ -42,11 +44,16 @@ class ReadyTripDetailsCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Text(
-              'see more',
-              style: AppStyles.styleQuickSemiBold18(context)
-                  .copyWith(color: kPrimaryColor.withOpacity(.7)),
-            ),
+            TextButton(
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kEveryPlaceDetail);
+              },
+              child: Text(
+                'see more',
+                style: AppStyles.styleQuickSemiBold18(context)
+                    .copyWith(color: kPrimaryColor.withOpacity(.7)),
+              ),
+            )
           ],
         ),
         Gap(13),

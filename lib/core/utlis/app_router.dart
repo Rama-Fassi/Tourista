@@ -42,6 +42,8 @@ import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.
 import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/ready_trips/presentation/views/apply_the_trip_view.dart';
+import 'package:tourista/features/ready_trips/presentation/views/every_place_detail.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
 import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
 import 'package:tourista/features/profile/presentation/manager/all_questions_cubit/all_questions_cubit.dart';
@@ -88,7 +90,8 @@ abstract class AppRouter {
   static const kAboutUsView = '/aboutUsView';
   static const kCustomerSupportView = '/customerSupportview';
   static const kReviewsView = '/reviewsView';
-
+  static const kEveryPlaceDetail = '/EveryPlaceDetail';
+  static const kApplyTheTripView = '/ApplyTheTripView';
   static const kverifyNewPhoneview = '/verifyNewPhoneview';
 
   static final router = GoRouter(
@@ -414,6 +417,14 @@ abstract class AppRouter {
       GoRoute(
         path: kReadyTripDetailsView,
         builder: (context, state) => const ReadyTripDetailsView(),
+      ),
+      GoRoute(
+        path: kEveryPlaceDetail,
+        builder: (context, state) => const EveryPlaceDetail(),
+      ),
+      GoRoute(
+        path: kApplyTheTripView,
+        builder: (context, state) => const ApplyTheTripView(),
       ),
     ],
   );

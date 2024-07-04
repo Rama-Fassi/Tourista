@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trip_details_card.dart';
@@ -33,6 +35,9 @@ class ReadyTripDetailsListView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             child: CustomButton(
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kApplyTheTripView);
+                },
                 text: 'Apply for this trip',
                 width: MediaQuery.sizeOf(context).width,
                 borderRadius: 24,

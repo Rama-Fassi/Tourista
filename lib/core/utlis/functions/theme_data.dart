@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tourista/constants.dart';
 
 ThemeData themeData() {
   return ThemeData(
       colorScheme: const ColorScheme(
     brightness: Brightness.light,
-    primary: kPrimaryColor,
+    primary: Colors.white,
     onPrimary: Colors.white,
     secondary: Colors.white,
     onSecondary: Colors.black,
