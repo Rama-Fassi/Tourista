@@ -19,25 +19,23 @@ class CabinClassBottomSheet extends StatelessWidget {
     return FractionallySizedBox(
       widthFactor: 1,
       heightFactor: .8,
-      child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                LocaleKeys.cabinClass.tr(),
-                style: AppStyles.styleInterBold25(context)
-                    .copyWith(color: kPrimaryColor),
-              ),
-              const Gap(10),
-              CabinCalssRadioListTile(
-                onCabinChanged: onCabinChanged,
-                onValueChanged: onValueChanged,
-              )
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              LocaleKeys.cabinClass.tr(),
+              style: AppStyles.styleInterBold25(context)
+                  .copyWith(color: kPrimaryColor),
+            ),
+            const Gap(10),
+            CabinCalssRadioListTile(
+              onCabinChanged: onCabinChanged,
+              onValueChanged: onValueChanged,
+            )
+          ],
         ),
       ),
     );

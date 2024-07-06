@@ -7,8 +7,9 @@ import 'package:tourista/core/utlis/styles.dart';
 class VIPFeatures extends StatelessWidget {
   const VIPFeatures({
     super.key,
+    required this.text,
   });
-
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,7 +17,7 @@ class VIPFeatures extends StatelessWidget {
         SvgPicture.asset(Assets.imagesEllipse),
         Gap(8),
         Text(
-          'business class flight ticket',
+          text,
           style: AppStyles.styleSourceRegular20(context),
         )
       ],

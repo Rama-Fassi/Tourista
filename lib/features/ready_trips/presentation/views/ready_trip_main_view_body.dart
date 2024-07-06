@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_app_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar_view.dart';
@@ -34,9 +35,7 @@ class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
           child: ReadyTripsAppBar(),
         ),
         ReadyTripsTabBar(tabController: tabController),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height - 187,
+        Expanded(
           child: TabBarView(
               physics: NeverScrollableScrollPhysics(),
               controller: tabController,

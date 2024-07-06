@@ -1,5 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/all_ready_trips_cubit/all_ready_trips_cubit.dart';
 
 class ReadyTripsTabBar extends StatelessWidget {
   const ReadyTripsTabBar({
@@ -15,7 +19,8 @@ class ReadyTripsTabBar extends StatelessWidget {
       height: 30,
       child: TabBar(
           onTap: (value) {
-            print(value);
+            BlocProvider.of<AllReadyTripsCubit>(context)
+                .getAllReadyTripsFun(classificationId: value + 2);
           },
           overlayColor: const MaterialStatePropertyAll(Colors.white),
           labelColor: Colors.black,
@@ -25,21 +30,21 @@ class ReadyTripsTabBar extends StatelessWidget {
           unselectedLabelColor: Colors.black,
           indicatorColor: Colors.black,
           controller: tabController,
-          tabs: const [
+          tabs: [
             Tab(
-              text: 'General',
+              text: LocaleKeys.General.tr(),
             ),
             Tab(
-              text: 'Mountain',
+              text: LocaleKeys.mountain.tr(),
             ),
             Tab(
-              text: 'Jungle',
+              text: LocaleKeys.jungle.tr(),
             ),
             Tab(
-              text: 'Beach',
+              text: LocaleKeys.beach.tr(),
             ),
             Tab(
-              text: 'Water',
+              text: LocaleKeys.water.tr(),
             )
           ]),
     );

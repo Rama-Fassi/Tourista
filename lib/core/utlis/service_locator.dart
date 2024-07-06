@@ -8,6 +8,7 @@ import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_i
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
 import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -30,9 +31,7 @@ void setUpServiceLocator() {
     ),
   );
 
-
-
-   getIt.registerSingleton<ActivitiesRepoImpl>(
+  getIt.registerSingleton<ActivitiesRepoImpl>(
     ActivitiesRepoImpl(
       getIt.get<ApiServer>(),
     ),
@@ -55,6 +54,11 @@ void setUpServiceLocator() {
   );
   getIt.registerSingleton<StaysRepoImpl>(
     StaysRepoImpl(
+      getIt.get<ApiServer>(),
+    ),
+  );
+  getIt.registerSingleton<ReadyTripsRepoImpl>(
+    ReadyTripsRepoImpl(
       getIt.get<ApiServer>(),
     ),
   );

@@ -11,6 +11,8 @@ import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.da
 import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
+import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/all_ready_trips_cubit/all_ready_trips_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
 class NavigationBArScaffold extends StatefulWidget {
@@ -41,6 +43,11 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
       providers: [
         BlocProvider(
           create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
+                ..getAllReadyTripsFun(),
         ),
       ],
       child: Scaffold(

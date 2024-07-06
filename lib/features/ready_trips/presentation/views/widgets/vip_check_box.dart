@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class VIPCheckBox extends StatefulWidget {
@@ -31,7 +33,7 @@ class _VIPCheckBoxState extends State<VIPCheckBox> {
               setState(() {});
             }),
         Text(
-          'vip ticket ',
+          LocaleKeys.vipTicket.tr(),
           style: AppStyles.styleSourceRegular23(context),
         ),
       ],

@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
@@ -49,7 +51,7 @@ class ReadyTripDetailsCard extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.kEveryPlaceDetail);
               },
               child: Text(
-                'see more',
+                LocaleKeys.seeMore.tr(),
                 style: AppStyles.styleQuickSemiBold18(context)
                     .copyWith(color: kPrimaryColor.withOpacity(.7)),
               ),

@@ -1,9 +1,9 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const create_an_account = 'create_an_account';
   static const user_name = 'user_name';
-  static const phone_number = 'phone_number ';
+  static const phone_number  = 'phone_number ';
   static const password = 'password';
   static const confirm_password = 'confirm_password';
   static const sign_up = 'sign_up';
@@ -17,12 +17,9 @@ abstract class LocaleKeys {
   static const dont_have_an_account = 'dont_have_an_account';
   static const Skip = 'Skip';
   static const Next = 'Next';
-  static const welcome_to_Tourista_where_you_can_explore_the_world =
-      'welcome_to_Tourista_where_you_can_explore_the_world';
-  static const join_to_our_special_trips_for_your_favorite_places_in_the_world =
-      'join_to_our_special_trips_for_your_favorite_places_in_the_world';
-  static const Plan_your_trip_from_A_to_z_with_us =
-      'Plan_your_trip_from_A_to_z_with_us';
+  static const welcome_to_Tourista_where_you_can_explore_the_world = 'welcome_to_Tourista_where_you_can_explore_the_world';
+  static const join_to_our_special_trips_for_your_favorite_places_in_the_world = 'join_to_our_special_trips_for_your_favorite_places_in_the_world';
+  static const Plan_your_trip_from_A_to_z_with_us = 'Plan_your_trip_from_A_to_z_with_us';
   static const Get_Started = 'Get_Started';
   static const forgetPassword = 'forgetPassword';
   static const enter_your_mobile_number = 'enter_your_mobile_number';
@@ -116,18 +113,13 @@ abstract class LocaleKeys {
   static const Current_password = 'Current_password';
   static const follow_us_on_social_media = 'follow_us_on_social_media';
   static const Choose_Your_Language = 'Choose_Your_Language';
-  static const Select_Your_Preferred_language_to_use =
-      'Select_Your_Preferred_language_to_use';
+  static const Select_Your_Preferred_language_to_use = 'Select_Your_Preferred_language_to_use';
   static const Confirmation = 'Confirmation';
-  static const Are_you_sure_you_want_to_sign_out =
-      'Are_you_sure_you_want_to_sign_out';
+  static const Are_you_sure_you_want_to_sign_out = 'Are_you_sure_you_want_to_sign_out';
   static const confirm = 'confirm';
-  static const Are_you_sure_you_want_to_delete_your_account =
-      'Are_you_sure_you_want_to_delete_your_account';
-  static const phone_has_been_modified_successfully =
-      'phone_has_been_modified_successfully';
-  static const Name_has_been_Edit_successfully =
-      'Name_has_been_Edit_successfully';
+  static const Are_you_sure_you_want_to_delete_your_account = 'Are_you_sure_you_want_to_delete_your_account';
+  static const phone_has_been_modified_successfully = 'phone_has_been_modified_successfully';
+  static const Name_has_been_Edit_successfully = 'Name_has_been_Edit_successfully';
   static const enter_new_name = 'enter_new_name';
   static const enter_new_phone_number = 'enter_new_phone_number';
   static const password_must_include = 'password_must_include';
@@ -137,4 +129,24 @@ abstract class LocaleKeys {
   static const email = 'email';
   static const Frequently_asked_questions = 'Frequently_asked_questions';
   static const all = 'all';
+  static const mountain = 'mountain';
+  static const jungle = 'jungle';
+  static const beach = 'beach';
+  static const water = 'water';
+  static const newest = 'newest';
+  static const closet = 'closet';
+  static const pricehightolow = 'pricehightolow';
+  static const pricelowtohigh = 'pricelowtohigh';
+  static const seeMore = 'seeMore';
+  static const apply_for_this_trip = 'apply_for_this_trip';
+  static const seeOnGoogleMap = 'seeOnGoogleMap';
+  static const toApply = 'toApply';
+  static const choose_the_closet_point = 'choose_the_closet_point';
+  static const selectTicketNumber = 'selectTicketNumber';
+  static const  vipTicket = ' vipTicket';
+  static const businessClassFlightTicket = 'businessClassFlightTicket';
+  static const sweetAndBeautifulView = 'sweetAndBeautifulView';
+  static const privateTransportation = 'privateTransportation';
+  static const totalPrice = 'totalPrice';
+
 }

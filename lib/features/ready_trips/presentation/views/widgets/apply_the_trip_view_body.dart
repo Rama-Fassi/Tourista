@@ -17,6 +17,11 @@ class ApplyTheTripViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> features = [
+      LocaleKeys.businessClassFlightTicket.tr(),
+      LocaleKeys.sweetAndBeautifulView.tr(),
+      LocaleKeys.privateTransportation.tr()
+    ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
       child: Column(
@@ -25,7 +30,7 @@ class ApplyTheTripViewBody extends StatelessWidget {
           ApplyToTripAppBar(),
           Gap(45),
           Text(
-            'Choose the closet point to your location:',
+            LocaleKeys.choose_the_closet_point.tr(),
             style: AppStyles.styleInterMedium18(context).copyWith(fontSize: 18),
           ),
           Gap(16),
@@ -39,24 +44,26 @@ class ApplyTheTripViewBody extends StatelessWidget {
               )),
           Gap(40),
           Text(
-            'Number of tickets:',
+            LocaleKeys.selectTicketNumber.tr(),
             style: AppStyles.styleInterMedium18(context).copyWith(fontSize: 18),
           ),
           Gap(20),
           SelectTicketNumberBox(),
           Gap(50),
           Text(
-            'VIP Ticket :',
+            '${LocaleKeys.vipTicket.tr()}:',
             style: AppStyles.styleSourceBold20(context)
                 .copyWith(color: kPrimaryColor, fontSize: 20),
           ),
           Column(
             children: List.generate(
-                3,
+                features.length,
                 (index) => Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 6),
-                      child: VIPFeatures(),
+                      child: VIPFeatures(
+                        text: features[index],
+                      ),
                     )),
           ),
           Gap(8),

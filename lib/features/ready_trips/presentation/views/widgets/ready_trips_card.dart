@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tourista/features/ready_trips/data/models/all_ready_trips_model/the_trip.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_card_column.dart';
 
 class ReadyTripsCard extends StatelessWidget {
-  const ReadyTripsCard({super.key});
-
+  const ReadyTripsCard({super.key, required this.theTrip});
+  final TheTrip theTrip;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +17,9 @@ class ReadyTripsCard extends StatelessWidget {
             boxShadow(-4, 4, -4),
             boxShadow(-4, 4, 4)
           ]),
-      child: ReadyTripsCardColumn(),
+      child: ReadyTripsCardColumn(
+        theTrip: theTrip,
+      ),
     );
   }
 
