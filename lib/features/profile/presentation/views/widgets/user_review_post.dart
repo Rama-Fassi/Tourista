@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/custom_circle_avatar.dart';

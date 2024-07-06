@@ -51,8 +51,6 @@ class AddReviewButton extends StatelessWidget {
                 onTap: () {
                   BlocProvider.of<AddReviewCubit>(context)
                       .addReview(review: rating.toString(), comment: comment);
-                  print(comment);
-                  print(rating);
                 },
                 text: 'Submit Review',
                 width: scereenWidth,

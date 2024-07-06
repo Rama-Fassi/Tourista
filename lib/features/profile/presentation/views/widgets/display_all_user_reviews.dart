@@ -30,8 +30,7 @@ class DisplayAllUserReviews extends StatelessWidget {
                   starsCount: state.allReviewsModel.reviews![index].review ?? 5,
                   userComment:
                       '${state.allReviewsModel.reviews![index].comment}'
-                              .toLowerCase() ??
-                          '',
+                              .toLowerCase(),
                   userCommentCreatedDate:
                       '${state.allReviewsModel.reviews![index].createdAt}'
                           .substring(0, 11),

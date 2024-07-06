@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/add_review_button.dart';
@@ -8,18 +7,9 @@ import 'package:tourista/features/profile/presentation/views/widgets/heart_ratin
 class RatingColumn extends StatefulWidget {
   const RatingColumn({
     super.key,
-    //required this.initialRating,
-    //  required this.onRatingUpdate,
-    //   required this.communtController,
-    //   required this.rating,
-    //   required this.comment,
     required this.scereenWidth,
   });
-  //final double initialRating;
-  // final Function(double) onRatingUpdate;
-//  final TextEditingController communtController;
-  // final double rating;
-  // final String comment;
+
   final double scereenWidth;
 
   @override
@@ -35,9 +25,14 @@ class _RatingColumnState extends State<RatingColumn> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     listenController();
+  }
+@override
+  void dispose() {
+    super.dispose();
+        communtController.dispose();
+
   }
 
   @override

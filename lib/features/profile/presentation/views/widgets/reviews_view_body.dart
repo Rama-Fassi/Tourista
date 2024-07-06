@@ -20,16 +20,7 @@ class ReviewsViewBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: RatingColumn(
-            //  initialRating: rating,
-            // onRatingUpdate: (updatedRating) {
-            //  setState(() {
-            //    rating = updatedRating;
-            //  });
-            //  },
-            //   communtController: communtController,
-            // rating: rating,
-            //  comment: comment,
-            scereenWidth: screenWidth,
+                   scereenWidth: screenWidth,
           ),
         ),
         SliverToBoxAdapter(
