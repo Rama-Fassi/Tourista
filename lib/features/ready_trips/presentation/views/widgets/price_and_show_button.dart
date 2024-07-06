@@ -21,7 +21,7 @@ class PriceAndShowButton extends StatelessWidget {
     return Row(
       children: [
         Text(
-          '${theTrip.discountType} \$',
+          '${theTrip.averagePrice} \$',
           style: AppStyles.styleInterMedium18(context),
         ),
         const Spacer(),

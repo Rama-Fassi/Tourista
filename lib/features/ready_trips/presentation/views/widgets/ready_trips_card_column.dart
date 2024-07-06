@@ -9,14 +9,17 @@ class ReadyTripsCardColumn extends StatelessWidget {
   const ReadyTripsCardColumn({
     super.key,
     required this.theTrip,
+    required this.value,
   });
   final TheTrip theTrip;
+  final int value;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FavWithPhotoReadyTrips(
+          value: value,
           theTrip: theTrip,
         ),
         Padding(

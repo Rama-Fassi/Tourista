@@ -41,7 +41,9 @@ class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
               controller: tabController,
               children: List.generate(
                 5,
-                (index) => ReadyTripsTabBarView(),
+                (index) => ReadyTripsTabBarView(
+                  value: index,
+                ),
               )),
         )
       ],

@@ -8,8 +8,10 @@ class FavWithPhotoReadyTrips extends StatelessWidget {
   const FavWithPhotoReadyTrips({
     super.key,
     required this.theTrip,
+    required this.value,
   });
   final TheTrip theTrip;
+  final int value;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,7 +33,10 @@ class FavWithPhotoReadyTrips extends StatelessWidget {
                         errorWidget: (context, url, error) {
                           return Icon(Icons.error_outline);
                         })))),
-        FavReadyTrips(),
+        FavReadyTrips(
+          value: value,
+          theTrip: theTrip,
+        ),
       ],
     );
   }

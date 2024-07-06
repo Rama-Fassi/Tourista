@@ -8,7 +8,19 @@ import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_t
 import 'package:tourista/features/ready_trips/presentation/views/widgets/shimmer_ready_trips_loading.dart';
 
 class ReadyTripsTabBarView extends StatelessWidget {
-  const ReadyTripsTabBarView({super.key});
+  const ReadyTripsTabBarView({super.key, required this.value});
+  final int value;
+
+  Future<void> _refreshData(BuildContext context) async {
+    await Future.delayed(Duration(seconds: 2));
+
+    if (value == 0) {
+      BlocProvider.of<AllReadyTripsCubit>(context).getAllReadyTripsFun();
+    } else {
+      BlocProvider.of<AllReadyTripsCubit>(context)
+          .getAllReadyTripsFun(classificationId: value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +37,22 @@ class ReadyTripsTabBarView extends StatelessWidget {
                   return ErrAnimation(errMessage: 'There is no trips');
                 }
                 return Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () => _refreshData(context),
                     child: ListView.builder(
-                  itemCount: state.allReadyTripsModel.theTrips!.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 18),
-                      child: ReadyTripsCard(
-                        theTrip: state.allReadyTripsModel.theTrips![index],
-                      ),
-                    );
-                  },
-                ));
+                      itemCount: state.allReadyTripsModel.theTrips!.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 18),
+                          child: ReadyTripsCard(
+                            value: value,
+                            theTrip: state.allReadyTripsModel.theTrips![index],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
               } else if (state is AllReadyTripsLoading) {
                 return Expanded(
                     child: ListView.builder(
@@ -48,9 +65,29 @@ class ReadyTripsTabBarView extends StatelessWidget {
                   },
                 ));
               } else if (state is AllReadyTripsFailure) {
-                return ErrAnimation(errMessage: state.errMessage);
+                return ErrAnimation(
+                    errMessage: state.errMessage,
+                    onPressed: () {
+                      if (value == 0) {
+                        BlocProvider.of<AllReadyTripsCubit>(context)
+                            .getAllReadyTripsFun();
+                      } else {
+                        BlocProvider.of<AllReadyTripsCubit>(context)
+                            .getAllReadyTripsFun(classificationId: value);
+                      }
+                    });
               } else {
-                return ErrAnimation(errMessage: 'Please Try Again ');
+                return ErrAnimation(
+                    errMessage: 'Please Try Again ',
+                    onPressed: () {
+                      if (value == 0) {
+                        BlocProvider.of<AllReadyTripsCubit>(context)
+                            .getAllReadyTripsFun();
+                      } else {
+                        BlocProvider.of<AllReadyTripsCubit>(context)
+                            .getAllReadyTripsFun(classificationId: value);
+                      }
+                    });
               }
             },
           )
