@@ -19,8 +19,13 @@ class ReadyTripsTabBar extends StatelessWidget {
       height: 30,
       child: TabBar(
           onTap: (value) {
-            BlocProvider.of<AllReadyTripsCubit>(context)
-                .getAllReadyTripsFun(classificationId: value + 2);
+            if (value == 0) {
+              BlocProvider.of<AllReadyTripsCubit>(context)
+                  .getAllReadyTripsFun();
+            } else {
+              BlocProvider.of<AllReadyTripsCubit>(context)
+                  .getAllReadyTripsFun(classificationId: value);
+            }
           },
           overlayColor: const MaterialStatePropertyAll(Colors.white),
           labelColor: Colors.black,

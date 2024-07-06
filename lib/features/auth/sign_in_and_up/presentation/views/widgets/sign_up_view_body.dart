@@ -144,16 +144,16 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                 } else if (state is SentGoogleUserInfoFailure) {
                   customSnackBar(context, state.errMessage);
-                } 
+                }
               },
               child:
                   BlocBuilder<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
                 builder: (context, state) {
                   if (state is SentGoogleUserInfoLoading) {
                     return const SpinKitThreeBounce(
-                        color: kGreenColor,
-                        size: 40,
-                      );
+                      color: kGreenColor,
+                      size: 40,
+                    );
                   } else {
                     return BlocListener<SignInWithGoogleCubit,
                         SignInWithGoogleState>(

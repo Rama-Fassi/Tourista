@@ -14,7 +14,6 @@ class PasswordAndSecurityView extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 70,
         titleSpacing: 5,
-  
         iconTheme: const IconThemeData(color: Colors.white, size: 25),
         backgroundColor: kPrimaryColor,
         title: Text(

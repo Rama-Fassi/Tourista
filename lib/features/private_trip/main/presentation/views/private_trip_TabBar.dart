@@ -42,11 +42,11 @@ class PrivateTripTapBar extends StatelessWidget {
               create: (context) =>
                   ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
             ),
-             BlocProvider(
+            BlocProvider(
               create: (context) =>
-ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
-
-           BlocProvider(
+                  ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+            BlocProvider(
                 create: (context) => HotelsCubit(getIt.get<StaysRepoImpl>())
                   ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id))
           ],
@@ -107,7 +107,9 @@ ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
                 AddActivitiesViewBody(
                   createTripModel: createTripModel,
                 ),
-                 ThePlanViewBody(createTripModel:  createTripModel,),
+                ThePlanViewBody(
+                  createTripModel: createTripModel,
+                ),
               ],
             ),
           ),

@@ -10,6 +10,7 @@ import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/ready_trips_details_model.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trip_details_card.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/compact_calendar_widget.dart';
+import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trip_hotel.dart';
 
 class ReadyTripDetailsListView extends StatelessWidget {
   const ReadyTripDetailsListView({
@@ -21,16 +22,28 @@ class ReadyTripDetailsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(child: CompactCalendarWidget()),
+        SliverToBoxAdapter(
+            child: CompactCalendarWidget(
+          readyTripsDetailsModel: readyTripsDetailsModel,
+        )),
         const SliverToBoxAdapter(child: Gap(24)),
+        SliverToBoxAdapter(
+          child: ReadyTripHotel(
+            citiesHotel: readyTripsDetailsModel.publicTrip!.citiesHotel!,
+          ),
+        ),
+        const SliverToBoxAdapter(child: Gap(14)),
         SliverList.builder(
-          itemCount: 3,
+          itemCount: readyTripsDetailsModel.publicTrip!.publicTripPlace!.length,
           itemBuilder: (context, index) {
-            int length = 3;
             return Padding(
               padding: const EdgeInsets.only(bottom: 14),
               child: ReadyTripDetailsCard(
-                isEnd: index == length - 1,
+                tourismPlace: readyTripsDetailsModel
+                    .publicTrip!.publicTripPlace![index].tourismPlace!,
+                isEnd: index ==
+                    readyTripsDetailsModel.publicTrip!.publicTripPlace!.length -
+                        1,
               ),
             );
           },

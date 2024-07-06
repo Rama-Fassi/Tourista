@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
-
 class SelectTicketNumberBox extends StatefulWidget {
   const SelectTicketNumberBox({
     super.key,

@@ -34,7 +34,7 @@ class ActivitiesTabBarView extends StatelessWidget {
           return Stack(children: [
             ActivitiesListView(
               dayIndex: dayIndex,
-              dayDate:dayDate,
+              dayDate: dayDate,
               screenWidth: screenWidth,
               tourismActivitiesModel: state.tourismActivitiesModel,
             ),

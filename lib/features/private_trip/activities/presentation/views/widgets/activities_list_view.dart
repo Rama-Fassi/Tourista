@@ -10,7 +10,8 @@ class ActivitiesListView extends StatelessWidget {
     super.key,
     required this.screenWidth,
     required this.tourismActivitiesModel,
-    required this.dayIndex, required this.dayDate,
+    required this.dayIndex,
+    required this.dayDate,
   });
 
   final double screenWidth;
@@ -34,7 +35,7 @@ class ActivitiesListView extends StatelessWidget {
           // physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return CustomActivityCard(
-              dayDate:dayDate,
+              dayDate: dayDate,
               screenWidth: screenWidth,
               activityName: tourismActivitiesModel.activities![index].name,
               activityDescription:

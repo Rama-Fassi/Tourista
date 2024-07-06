@@ -12,8 +12,6 @@ part 'get_user_info_state.dart';
 class GetUserInfoCubit extends Cubit<GetUserInfoState> {
   GetUserInfoCubit(this.profileRepo) : super(GetUserInfoInitial());
 
-
-  
   final ProfileRepo profileRepo;
 
   Future<void> getUserInfo() async {
@@ -30,8 +28,4 @@ class GetUserInfoCubit extends Cubit<GetUserInfoState> {
       emit(GetUserInfoSuccess(userInfoModel));
     });
   }
-
-
-
-  
 }

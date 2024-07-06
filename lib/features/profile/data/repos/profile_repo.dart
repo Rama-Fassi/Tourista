@@ -44,27 +44,19 @@ abstract class ProfileRepo {
     required String confirnPassword,
   });
 
-
-
-   Future<Either<Failure, AddReviewModel>> addReview({
+  Future<Either<Failure, AddReviewModel>> addReview({
     required String token,
     required String review,
     required String comment,
   });
 
-
-    Future<Either<Failure, AllReviewsModel>> getAllReviews({
+  Future<Either<Failure, AllReviewsModel>> getAllReviews({
     required String token,
   });
 
-  Future<Either<Failure, AllQuestionsModel>> getAllQuestions(
-  );
+  Future<Either<Failure, AllQuestionsModel>> getAllQuestions();
 
-
-   Future<Either<Failure, AllQuestionsWithTybeModel>> getAllQuestionsWithtybe({
-        required String tybe,
-
-   }
-    
-  );
+  Future<Either<Failure, AllQuestionsWithTybeModel>> getAllQuestionsWithtybe({
+    required String tybe,
+  });
 }

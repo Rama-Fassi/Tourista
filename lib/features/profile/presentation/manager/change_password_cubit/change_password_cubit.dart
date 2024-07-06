@@ -19,9 +19,11 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     required String confirnPassword,
   }) async {
     emit(ChangePasswordLoading());
-    var result = await profileRepo.changePassword(token: Hive.box(kTokenBox).get(kTokenRef), password: password, newPassword: newPassword, confirnPassword: confirnPassword);
-
-
+    var result = await profileRepo.changePassword(
+        token: Hive.box(kTokenBox).get(kTokenRef),
+        password: password,
+        newPassword: newPassword,
+        confirnPassword: confirnPassword);
 
     result.fold((failure) {
       emit(ChangePasswordFailure(failure.errMessage));

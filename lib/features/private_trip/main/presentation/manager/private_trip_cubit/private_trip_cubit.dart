@@ -12,7 +12,7 @@ class PrivateTripCubit extends Cubit<PrivateTripState> {
           selectedcity: {'id': '', 'city': null},
           enterCity: {'id': '', 'city': null},
         ));
-        
+
   void setStartDate(DateTime? date) {
     emit(state.copyWith(startDate: date));
   }

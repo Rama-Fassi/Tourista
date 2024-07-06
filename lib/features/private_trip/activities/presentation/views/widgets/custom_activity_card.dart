@@ -20,7 +20,8 @@ class CustomActivityCard extends StatefulWidget {
     required this.activityDescription,
     required this.activityImages,
     required this.activityModel,
-    required this.dayIndex, required this.dayDate,
+    required this.dayIndex,
+    required this.dayDate,
   });
 
   final double screenWidth;
@@ -131,9 +132,11 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                               onTap: () {
                                 GoRouter.of(context).push(
                                     AppRouter.kActivityDetailsView,
-                                    extra:{ 'activityModel': widget.activityModel, 
-                                    'dayDate':widget.dayDate,
-                                    'dayIndex' : widget.dayIndex});
+                                    extra: {
+                                      'activityModel': widget.activityModel,
+                                      'dayDate': widget.dayDate,
+                                      'dayIndex': widget.dayIndex
+                                    });
                               },
                               text: LocaleKeys.details.tr(),
                               width: 55,

@@ -15,9 +15,7 @@ class ThePlanViewBody extends StatelessWidget {
 
     return Column(
       children: [
-
-        
-        Padding( 
+        Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
             height: 30,

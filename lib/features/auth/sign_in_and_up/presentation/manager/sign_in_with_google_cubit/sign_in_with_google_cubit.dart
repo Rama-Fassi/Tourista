@@ -48,8 +48,6 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
   }
 }
 
-
-
 /*
 Future<void> sentSignInWithGoogleUserInfo({
   required String nama,

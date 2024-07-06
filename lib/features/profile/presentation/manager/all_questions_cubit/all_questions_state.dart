@@ -11,12 +11,10 @@ class AllQuestionsSuccess extends AllQuestionsState {
   final AllQuestionsModel allQuestionsModel;
 
   AllQuestionsSuccess(this.allQuestionsModel);
-
 }
 
 class AllQuestionsFailure extends AllQuestionsState {
   final String errMessage;
 
   AllQuestionsFailure(this.errMessage);
-
 }

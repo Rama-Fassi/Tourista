@@ -5,21 +5,16 @@ sealed class AllQuestionsWithTybeState {}
 
 final class AllQuestionsWithTybeInitial extends AllQuestionsWithTybeState {}
 
-
 class AllQuestionsWithTybeLoading extends AllQuestionsWithTybeState {}
 
 class AllQuestionsWithTybeSuccess extends AllQuestionsWithTybeState {
   final AllQuestionsWithTybeModel allQuestionsWithTybeModel;
 
   AllQuestionsWithTybeSuccess(this.allQuestionsWithTybeModel);
-
-
 }
 
 class AllQuestionsWithTybeFailure extends AllQuestionsWithTybeState {
   final String errMessage;
 
   AllQuestionsWithTybeFailure(this.errMessage);
-
-
 }

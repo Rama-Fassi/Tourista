@@ -8,7 +8,8 @@ import 'package:tourista/core/widgets/custom_text_form_field.dart';
 
 class UserNameTextField extends StatelessWidget {
   const UserNameTextField({
-    super.key, required this.textEditingController,
+    super.key,
+    required this.textEditingController,
   });
   final TextEditingController textEditingController;
   @override

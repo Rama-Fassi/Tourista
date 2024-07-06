@@ -4,7 +4,8 @@ import 'package:tourista/core/utlis/styles.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   const CustomCircleAvatar({
-    super.key, this.circleAvatarName,
+    super.key,
+    this.circleAvatarName,
   });
   final String? circleAvatarName;
   @override

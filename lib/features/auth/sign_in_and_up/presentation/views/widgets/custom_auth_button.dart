@@ -7,7 +7,8 @@ class CustomAuthButton extends StatelessWidget {
   const CustomAuthButton({
     super.key,
     required this.text,
-    required this.width, this.onTap,
+    required this.width,
+    this.onTap,
   });
 
   final String text;
@@ -17,7 +18,7 @@ class CustomAuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
-      onTap:onTap ,
+      onTap: onTap,
       text: text,
       // width: width,
       borderRadius: 8,

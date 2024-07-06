@@ -4,7 +4,7 @@ import 'package:tourista/constants.dart';
 
 void customSuccessSnackBar(
   context,
-  String text, 
+  String text,
 ) {
   final snackBar = SnackBar(
     /// need to set following properties for best effect of awesome_snackbar_content

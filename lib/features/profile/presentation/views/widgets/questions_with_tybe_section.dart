@@ -8,7 +8,8 @@ import 'package:tourista/features/profile/presentation/views/widgets/question_an
 class QuestionsWithTybeSection extends StatelessWidget {
   const QuestionsWithTybeSection({
     super.key,
-    required this.screenWidth, required this.tybe,
+    required this.screenWidth,
+    required this.tybe,
   });
 
   final double screenWidth;
@@ -24,15 +25,16 @@ class QuestionsWithTybeSection extends StatelessWidget {
           return Padding(
               padding: const EdgeInsets.all(18.0),
               child: ListView.builder(
-                itemCount: state.allQuestionsWithTybeModel.quastionAndAnswers!.length,
+                itemCount:
+                    state.allQuestionsWithTybeModel.quastionAndAnswers!.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 15.0),
                     child: QuestionAnswerWidget(
                       question: state.allQuestionsWithTybeModel
                           .quastionAndAnswers![index].quastion!,
-                      answer: state
-                          .allQuestionsWithTybeModel.quastionAndAnswers![index].answer!,
+                      answer: state.allQuestionsWithTybeModel
+                          .quastionAndAnswers![index].answer!,
                       screedWidth: screenWidth,
                     ),
                   );

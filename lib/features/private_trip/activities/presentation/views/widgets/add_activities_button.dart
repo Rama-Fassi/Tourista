@@ -13,7 +13,8 @@ class AddActivitiesButton extends StatelessWidget {
     super.key,
     required this.screenWidth,
     required this.tripId,
-    required this.index, required this.dayDate, //required this.createTripModel,
+    required this.index,
+    required this.dayDate, //required this.createTripModel,
   });
   final int tripId;
 
@@ -28,7 +29,7 @@ class AddActivitiesButton extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: () {
           GoRouter.of(context).push(AppRouter.kActivitiesView,
-              extra: {'tripId': tripId, 'index': index , 'dayDate':dayDate});
+              extra: {'tripId': tripId, 'index': index, 'dayDate': dayDate});
         },
         icon: SvgPicture.asset(
           Assets.imagesIconsRoundedPlus,

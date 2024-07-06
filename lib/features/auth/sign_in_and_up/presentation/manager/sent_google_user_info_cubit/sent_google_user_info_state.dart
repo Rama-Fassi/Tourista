@@ -11,12 +11,10 @@ class SentGoogleUserInfoSuccess extends SentGoogleUserInfoState {
   final SignInWithGoogleModel signInWithGoogleModel;
 
   SentGoogleUserInfoSuccess(this.signInWithGoogleModel);
-
 }
 
 class SentGoogleUserInfoFailure extends SentGoogleUserInfoState {
   final String errMessage;
 
-  SentGoogleUserInfoFailure( this.errMessage);
-
+  SentGoogleUserInfoFailure(this.errMessage);
 }

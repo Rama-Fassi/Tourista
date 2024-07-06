@@ -1,21 +1,19 @@
 import 'public_trip.dart';
 
 class ReadyTripsDetailsModel {
-	List<PublicTrip>? publicTrip;
+  PublicTrip? publicTrip;
 
-	ReadyTripsDetailsModel({this.publicTrip});
+  ReadyTripsDetailsModel({this.publicTrip});
 
-	factory ReadyTripsDetailsModel.fromJson(Map<String, dynamic> json) {
-		return ReadyTripsDetailsModel(
-			publicTrip: (json['publicTrip'] as List<dynamic>?)
-						?.map((e) => PublicTrip.fromJson(e as Map<String, dynamic>))
-						.toList(),
-		);
-	}
+  factory ReadyTripsDetailsModel.fromJson(Map<String, dynamic> json) {
+    return ReadyTripsDetailsModel(
+      publicTrip: json['publicTrip'][0] == null
+          ? null
+          : PublicTrip.fromJson(json['publicTrip'][0] as Map<String, dynamic>),
+    );
+  }
 
-
-
-	Map<String, dynamic> toJson() => {
-				'publicTrip': publicTrip?.map((e) => e.toJson()).toList(),
-			};
+  Map<String, dynamic> toJson() => {
+        'publicTrip': publicTrip?.toJson(),
+      };
 }

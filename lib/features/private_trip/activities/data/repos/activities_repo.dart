@@ -10,8 +10,7 @@ abstract class ActivitiesRepo {
     required int tripId,
   });
 
-
   Future<Either<Failure, ActivitiesPlanModel>> postActivitiesPlan({
-    required Map<String,dynamic> body,
+    required Map<String, dynamic> body,
   });
 }

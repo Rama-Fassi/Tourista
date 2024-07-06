@@ -7,7 +7,11 @@ class AllPhotosView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(appBar: AppBar(backgroundColor: kPrimaryColor,),),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: kPrimaryColor,
+        ),
+      ),
     );
   }
 }

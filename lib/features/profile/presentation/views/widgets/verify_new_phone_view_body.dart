@@ -78,7 +78,8 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
               ShowConfirmationDialog().showConfirmationDialog(
                   context: context,
                   titleText: LocaleKeys.congratulations.tr(),
-                  contentText:LocaleKeys.phone_has_been_modified_successfully.tr(),
+                  contentText:
+                      LocaleKeys.phone_has_been_modified_successfully.tr(),
                   onConfirmPressed: () {
                     GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                   },
@@ -100,8 +101,6 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
                   )
                 : CustomButton(
                     onTap: () {
-                          
-
                       BlocProvider.of<VerifyNewPhoneCubit>(context)
                           .verifyNewPhone(
                               code: codeNumber, phone: widget.phoneNumber);

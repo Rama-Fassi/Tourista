@@ -24,8 +24,9 @@ class AboutUsViewBody extends StatelessWidget {
           const Gap(30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text( LocaleKeys.aboutUsText.tr(),
-                  textAlign: TextAlign.center,
+            child: Text(
+              LocaleKeys.aboutUsText.tr(),
+              textAlign: TextAlign.center,
               style: AppStyles.styleSourceRegular23(context),
             ),
           ),

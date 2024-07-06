@@ -2,7 +2,6 @@ part of 'activity_card_cubit.dart';
 
 @immutable
 class ActivityCardState {
-  
   final Map<dynamic, dynamic>? activitiesCardData;
   final int? activityId;
 
@@ -10,13 +9,12 @@ class ActivityCardState {
   final String? activityImage;
   final String? activityDesc;
 
-
-  const ActivityCardState(
-      {required this.activitiesCardData,
-        required this.activityId,
-      required this.activityName,
-      required this.activityImage,
-      required this.activityDesc,
+  const ActivityCardState({
+    required this.activitiesCardData,
+    required this.activityId,
+    required this.activityName,
+    required this.activityImage,
+    required this.activityDesc,
   });
 
   ActivityCardState copyWith({
@@ -25,13 +23,13 @@ class ActivityCardState {
     String? activityImage,
     String? activityDesc,
     Map<dynamic, dynamic>? activitiesCardData,
-    
   }) {
     return ActivityCardState(
       activitiesCardData: activitiesCardData ?? this.activitiesCardData,
-        activityId: activityId ?? this.activityId,
-        activityName: activityName ?? this.activityName,
-        activityImage: activityImage ?? this.activityImage,
-        activityDesc: activityDesc ?? this.activityDesc, );
+      activityId: activityId ?? this.activityId,
+      activityName: activityName ?? this.activityName,
+      activityImage: activityImage ?? this.activityImage,
+      activityDesc: activityDesc ?? this.activityDesc,
+    );
   }
 }
