@@ -65,5 +65,10 @@
         <string>en</string>
         <string>ar</string>
         </array>
+        <key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>whatsapp</string>
+  <string>tel</string>
+</array>
     </dict>
     </plist>

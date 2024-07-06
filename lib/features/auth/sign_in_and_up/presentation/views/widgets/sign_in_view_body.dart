@@ -19,7 +19,7 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/or_divider.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/password_text_field.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/phone_number_text_field.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/taxt_with_text_button.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
 import 'package:tourista/features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 
 import 'active_sign_uin_with_google_button.dart';
@@ -54,6 +54,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       listener: (context, state) {
         if (state is GetUserInfoSuccess) {
           isLoading = false;
+        
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
 
           Hive.box(kUserInfoBox)
               .put(kUserPointsRef, state.userInfoModel.user!.points);
@@ -112,60 +114,55 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 Gap(screenheight * .005),
                 const ForgetPasswordButton(),
                 Gap(screenheight * 0.03),
-                activeSignInButton(isLoading, screenWidth),
+                BlocConsumer<SignInCubit, SignInState>(
+                  listener: (context, state) async {
+                    if (state is SignInSuccess) {
+                      isLoading = false;
+                      await BlocProvider.of<GetUserInfoCubit>(context)
+                          .getUserInfo();
+                    } else if (state is SignInFailure) {
+                      isLoading = false;
+
+                      customSnackBar(context, state.errMessage);
+                    } else {
+                      isLoading = true;
+                    }
+                  },
+                  builder: (context, state) {
+                    return isLoading == true
+                        ? const SpinKitThreeBounce(
+                            color: kGreenColor,
+                            size: 30,
+                          )
+                        : CustomAuthButton(
+                            text: LocaleKeys.sign_in.tr(),
+                            width: screenWidth * .80,
+                            onTap: () {
+                              BlocProvider.of<SignInCubit>(context).signIn(
+                                phone: phoneNumber,
+                                password: password,
+                              );
+                            },
+                          );
+                  },
+                ),
                 Gap(screenheight * .07),
                 const ORDivider(),
-                Gap(screenheight * .02),
+                Gap(screenheight * .03),
                 const ActiveSigninWithGoogleButton(),
-                Gap(screenheight * .02),
-                TextWithTextButton(
+                Gap(screenheight * .03),
+                CustomTextButton(
                   data: LocaleKeys.dont_have_an_account.tr(),
                   textButtondata: LocaleKeys.sign_up.tr(),
                   onPressed: () {
-                    GoRouter.of(context).pushReplacement(AppRouter.kSignUp);
-                  },
+                    GoRouter.of(context).push(AppRouter.kSignUp);
+                  }, mainAxisAlignment: MainAxisAlignment.center,
                 ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  BlocConsumer<SignInCubit, SignInState> activeSignInButton(
-      bool isLoading, double screenWidth) {
-    return BlocConsumer<SignInCubit, SignInState>(
-      listener: (context, state) async {
-        if (state is SignInSuccess) {
-          isLoading = false;
-          await BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-        } else if (state is SignInFailure) {
-          isLoading = false;
-
-          customSnackBar(context, state.errMessage);
-        } else {
-          isLoading = true;
-        }
-      },
-      builder: (context, state) {
-        return isLoading == true
-            ? const SpinKitThreeBounce(
-                color: kGreenColor,
-                size: 30,
-              )
-            : CustomAuthButton(
-                text: LocaleKeys.sign_in.tr(),
-                width: screenWidth * .80,
-                onTap: () {
-                  BlocProvider.of<SignInCubit>(context).signIn(
-                    phone: phoneNumber,
-                    password: password,
-                  );
-                },
-              );
-      },
     );
   }
 

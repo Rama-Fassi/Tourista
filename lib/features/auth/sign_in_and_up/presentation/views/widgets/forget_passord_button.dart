@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/core/widgets/custom_text_button.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
 
 class ForgetPasswordButton extends StatelessWidget {
   const ForgetPasswordButton({
@@ -13,14 +13,11 @@ class ForgetPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: CustomTextButton(
-          data: LocaleKeys.forget_password.tr(),
-          style: AppStyles.styleSourceSemiBold18(context),
-          onPressed: () {
-            GoRouter.of(context).push(AppRouter.kForgetPassword);
-          }),
-    );
+    return CustomTextButton(
+        data: LocaleKeys.forget_password.tr(),
+        style: AppStyles.styleSourceSemiBold18(context),
+        onPressed: () {
+          GoRouter.of(context).push(AppRouter.kForgetPassword);
+        }, mainAxisAlignment: MainAxisAlignment.end,);
   }
 }

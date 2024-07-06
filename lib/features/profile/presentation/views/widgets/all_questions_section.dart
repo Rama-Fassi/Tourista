@@ -24,7 +24,7 @@ class AllQuestionsSection extends StatelessWidget {
             itemCount: state.allQuestionsModel.quastionAndAnswers!.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
                 child: QuestionAnswerWidget(
                   question: state
                       .allQuestionsModel.quastionAndAnswers![index].quastion!,

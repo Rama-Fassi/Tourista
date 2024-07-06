@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class QuestionAnswerWidget extends StatefulWidget {

@@ -11,11 +11,11 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
-import 'package:tourista/core/widgets/custom_text_button.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/widgets/enter_verify_code_section.dart';
 import 'package:tourista/features/profile/presentation/manager/update_phone_cubit/update_phone_cubit.dart';
 import 'package:tourista/features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
 
+import '../../../../auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
 import '../functions/show_confirmation_dialog.dart';
 
 class VerifyNewPhoneViewBody extends StatefulWidget {
@@ -69,6 +69,7 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
             BlocProvider.of<UpdatePhoneCubit>(context)
                 .updatePhone(phone: widget.phoneNumber);
           },
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
         Gap(screenheight * .25),
         BlocConsumer<VerifyNewPhoneCubit, VerifyNewPhoneState>(
@@ -78,7 +79,8 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
               ShowConfirmationDialog().showConfirmationDialog(
                   context: context,
                   titleText: LocaleKeys.congratulations.tr(),
-                  contentText:LocaleKeys.phone_has_been_modified_successfully.tr(),
+                  contentText:
+                      LocaleKeys.phone_has_been_modified_successfully.tr(),
                   onConfirmPressed: () {
                     GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                   },
@@ -100,8 +102,6 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
                   )
                 : CustomButton(
                     onTap: () {
-                          
-
                       BlocProvider.of<VerifyNewPhoneCubit>(context)
                           .verifyNewPhone(
                               code: codeNumber, phone: widget.phoneNumber);

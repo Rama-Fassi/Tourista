@@ -11,7 +11,8 @@ class ProfileTextButton extends StatelessWidget {
       this.width,
       this.height,
       this.textStyle,
-      this.iconColor, this.onPressed});
+      this.iconColor,
+      this.onPressed});
   final String data;
   final String assetName;
   final double? width;
@@ -22,7 +23,7 @@ class ProfileTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed:onPressed,
+      onPressed: onPressed,
       label: Text(
         data,
         style: textStyle ?? AppStyles.styleInterRegular18(context),

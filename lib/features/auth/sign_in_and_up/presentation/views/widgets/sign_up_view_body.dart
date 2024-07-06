@@ -18,7 +18,7 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/or_divider.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/password_text_field.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/phone_number_text_field.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/taxt_with_text_button.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/user_name_text_field.dart';
 
 import '../../../../../profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
@@ -60,7 +60,87 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
-    return BlocListener<GetUserInfoCubit, GetUserInfoState>(
+    return 
+ SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+          child: Column(
+            children: [
+              Gap(screenheight * 0.05),
+              EartLogoWithText(
+                data: LocaleKeys.create_an_account.tr(),
+              ),
+              Gap(screenheight * 0.02),
+              UserNameTextField(
+                textEditingController: userNameController,
+              ),
+              Gap(screenheight * 0.02),
+              PhoneNumberTextField(
+                controller: phoneNumberController,
+              ),
+              Gap(screenheight * 0.02),
+              PasswordTextField(
+                showPass: showPass,
+                onTap: () {
+                  showPass = !showPass;
+                  setState(() {});
+                },
+                controller: passwordController,
+              ),
+              Gap(screenheight * 0.02),
+              ConfirmPasswordTextField(
+                controller: confirmPasswordController,
+                showPass: confShowPass,
+                onTap: () {
+                  confShowPass = !confShowPass;
+                  setState(() {});
+                },
+              ),
+              Gap(screenheight * .04),
+              BlocConsumer<SignUpCubit, SignUpState>(
+                listener: (context, state) {
+                  if (state is SignUpSuccess) {
+                    isLoading = false;
+
+                    GoRouter.of(context)
+                        .pushReplacement(AppRouter.kVerifySignUpView, extra: {
+                      'userId': state.registerModel.userId,
+                      'userName': name,
+                      'phoneNumber': phoneNumber,
+                      'password': password,
+                      'confirmPassword': confirmPassword,
+                    });
+                  } else if (state is SignUpFailure) {
+                    isLoading = false;
+
+                    customSnackBar(context, state.errMessage);
+                  } else {
+                    isLoading = true;
+                  }
+                },
+                builder: (context, state) {
+                  return isLoading == true
+                      ? const SpinKitThreeBounce(
+                          color: kGreenColor,
+                          size: 40,
+                        )
+                      : CustomAuthButton(
+                          text: LocaleKeys.sign_up.tr(),
+                          width: screenWidth * .80,
+                          onTap: () {
+                            BlocProvider.of<SignUpCubit>(context).signUp(
+                                name: name,
+                                phone: phoneNumber,
+                                password: password,
+                                confirmPassword: confirmPassword);
+                          },
+                        );
+                },
+              ),
+              Gap(screenheight * .03),
+              const ORDivider(),
+              Gap(screenheight * .02),
+             BlocListener<GetUserInfoCubit, GetUserInfoState>(
       listener: (context, state) {
         if (state is GetUserInfoSuccess) {
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
@@ -98,103 +178,20 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           isLoading = true;
         }
       },
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
-          child: Column(
-            children: [
-              Gap(screenheight * 0.05),
-              EartLogoWithText(
-                data: LocaleKeys.create_an_account.tr(),
+                child: const ActiveSignUpWithGoogleButton(),
               ),
-              Gap(screenheight * 0.02),
-              UserNameTextField(
-                textEditingController: userNameController,
-              ),
-              Gap(screenheight * 0.02),
-              PhoneNumberTextField(
-                controller: phoneNumberController,
-              ),
-              Gap(screenheight * 0.02),
-              PasswordTextField(
-                showPass: showPass,
-                onTap: () {
-                  showPass = !showPass;
-                  setState(() {});
-                },
-                controller: passwordController,
-              ),
-              Gap(screenheight * 0.02),
-              ConfirmPasswordTextField(
-                controller: confirmPasswordController,
-                showPass: confShowPass,
-                onTap: () {
-                  confShowPass = !confShowPass;
-                  setState(() {});
-                },
-              ),
-              Gap(screenheight * .04),
-              activeSignUpButton(isLoading, screenWidth),
               Gap(screenheight * .03),
-              const ORDivider(),
-              Gap(screenheight * .02),
-              const ActiveSignUpWithGoogleButton(),
-              Gap(screenheight * .02),
-              TextWithTextButton(
+              CustomTextButton(
                   data: LocaleKeys.already_have_an_account.tr(),
                   textButtondata: LocaleKeys.sign_in.tr(),
                   onPressed: () {
-                    GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
-                  }),
+                    GoRouter.of(context).push(AppRouter.kSignIN);
+                  }, mainAxisAlignment: MainAxisAlignment.center,),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  BlocConsumer<SignUpCubit, SignUpState> activeSignUpButton(
-      bool isLoading, double screenWidth) {
-    return BlocConsumer<SignUpCubit, SignUpState>(
-      listener: (context, state) {
-        if (state is SignUpSuccess) {
-          isLoading = false;
-
-          GoRouter.of(context)
-              .pushReplacement(AppRouter.kVerifySignUpView, extra: {
-            'userId': state.registerModel.userId,
-            'userName': name,
-            'phoneNumber': phoneNumber,
-            'password': password,
-            'confirmPassword': confirmPassword,
-          });
-        } else if (state is SignUpFailure) {
-          isLoading = false;
-
-          customSnackBar(context, state.errMessage);
-        } else {
-          isLoading = true;
-        }
-      },
-      builder: (context, state) {
-        return isLoading == true
-            ? const SpinKitThreeBounce(
-                color: kGreenColor,
-                size: 40,
-              )
-            : CustomAuthButton(
-                text: LocaleKeys.sign_up.tr(),
-                width: screenWidth * .80,
-                onTap: () {
-                  BlocProvider.of<SignUpCubit>(context).signUp(
-                      name: name,
-                      phone: phoneNumber,
-                      password: password,
-                      confirmPassword: confirmPassword);
-                },
-              );
-      },
-    );
+      );
+    
   }
 
   void listenController() {

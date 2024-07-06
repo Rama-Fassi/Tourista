@@ -162,6 +162,13 @@ abstract class AppStyles {
       fontWeight: FontWeight.w600,
     );
   }
+ static TextStyle styleQuickBold20(BuildContext context) {
+    return GoogleFonts.quicksand(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 20, context),
+      fontWeight: FontWeight.w700,
+    );
+  }
 
   static TextStyle styleQuickBold22(BuildContext context) {
     return GoogleFonts.quicksand(

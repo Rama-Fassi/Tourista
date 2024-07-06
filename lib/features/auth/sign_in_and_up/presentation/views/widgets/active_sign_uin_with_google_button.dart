@@ -1,11 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sent_google_user_info_cubit/sent_google_user_info_cubit.dart';
@@ -24,7 +21,6 @@ class ActiveSigninWithGoogleButton extends StatelessWidget {
       listener: (context, state) async {
         if (state is SentGoogleUserInfoSuccess) {
           await BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
         } else if (state is SentGoogleUserInfoFailure) {
           customSnackBar(context, state.errMessage);
         }

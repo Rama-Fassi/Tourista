@@ -14,10 +14,10 @@ import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
-import 'package:tourista/core/widgets/custom_text_button.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/widgets/enter_verify_code_section.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/verify_sign_up_cubit/verify_signup_cubit.dart';
+import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
 
 import '../../../../../profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 
@@ -117,7 +117,7 @@ class _VerifySignUpBodyState extends State<VerifySignUpBody> {
                   phone: widget.phoneNumber,
                   password: widget.password,
                   confirmPassword: widget.confirmPassword);
-            },
+            }, mainAxisAlignment: MainAxisAlignment.center,
           ),
           Gap(screenheight * .25),
           BlocConsumer<VerifySignUpCubit, VerifySignUpState>(
