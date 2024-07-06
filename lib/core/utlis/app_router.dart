@@ -124,7 +124,7 @@ abstract class AppRouter {
       GoRoute(
         path: kReviewsView,
         builder: (context, state) => BlocProvider(
-          create: (context) => AllReviewsCubit(getIt.get<ProfileRepoImpl>()),
+          create: (context) => AllReviewsCubit(getIt.get<ProfileRepoImpl>())..getAllReviews(),
           child: const ReviewsView(),
         ),
       ),

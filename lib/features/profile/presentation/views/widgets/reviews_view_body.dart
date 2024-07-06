@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tourista/features/profile/presentation/manager/all_reviews_cubit/all_reviews_cubit.dart';
 import '../../../../../core/utlis/styles.dart';
 import 'display_all_user_reviews.dart';
 import 'rating_column.dart';
@@ -14,7 +12,6 @@ class ReviewsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AllReviewsCubit>(context).getAllReviews();
     double screenWidth = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
