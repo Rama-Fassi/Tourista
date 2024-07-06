@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class QuestionAnswerWidget extends StatefulWidget {
@@ -23,10 +24,13 @@ class QuestionAnswerWidgetState extends State<QuestionAnswerWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(.3)),
-          borderRadius: BorderRadius.circular(20)),
+        color:
+            isAnswerVisible ? Colors.green.withOpacity(.1) : Colors.transparent,
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 25,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,17 +41,15 @@ class QuestionAnswerWidgetState extends State<QuestionAnswerWidget> {
                 });
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                       width: widget.screedWidth * .7,
                       child: Text(
-                        /// maxLines: 5,
-                        ///   overflow: TextOverflow.ellipsis,
                         widget.question,
-                        style: AppStyles.styleInterSemiBold20(context),
+                        style: AppStyles.styleInterSemiBold18(context),
                       ),
                     ),
                     Icon(
@@ -63,9 +65,22 @@ class QuestionAnswerWidgetState extends State<QuestionAnswerWidget> {
             if (isAnswerVisible)
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
-                child: Text(
-                  widget.answer,
-                  style: AppStyles.styleInterRegular18(context),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        width: widget.screedWidth * .8,
+                        child: Divider(
+                          color: Colors.black.withOpacity(.1),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.answer,
+                      style: AppStyles.styleInterRegular18(context),
+                    ),
+                  ],
                 ),
               ),
           ],

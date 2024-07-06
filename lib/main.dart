@@ -8,8 +8,6 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/simple_bloc_observer.dart';
-import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
-import 'package:tourista/features/auth/sign_in_and_up/presentation/manager/sign_out_cubit/sign_out_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';

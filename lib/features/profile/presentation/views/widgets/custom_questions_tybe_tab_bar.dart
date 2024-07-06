@@ -1,6 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/faq_tab_bar_view.dart';
+
+import '../../../../../core/translations/locale_keys.g.dart';
+import '../../../../../core/utlis/app_assets.dart';
+import '../../../../private_trip/main/presentation/views/widgets/custom_tab_TabBar.dart';
 
 class CustomQuestionsTybeTabBar extends StatelessWidget {
   const CustomQuestionsTybeTabBar({
@@ -32,11 +37,49 @@ class CustomQuestionsTybeTabBar extends StatelessWidget {
         indicator: BoxDecoration(
             border: Border.all(color: Colors.black.withOpacity(.5)),
             borderRadius: BorderRadius.circular(5)),
-        tabs: const [
-          AllTab(),
-          FlightsTab(),
-          StaysTab(),
-          ActivitiesTab(),
+        tabs: [
+          Tab(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 13, vertical: 3.5),
+              child: CustomTabForTabBar(
+                data: LocaleKeys.all.tr(),
+                assetName: Assets.imagesIconsAllIcon,
+              ),
+            ),
+          ),
+          Tab(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 13, vertical: 3.5),
+              child: CustomTabForTabBar(
+                data: LocaleKeys.Flights.tr(),
+                assetName: Assets.imagesIconsFlightsSupportIcon,
+              ),
+            ),
+          ),
+          Tab(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 13, vertical: 3.5),
+              child: CustomTabForTabBar(
+                data: LocaleKeys.Stays.tr(),
+                assetName: Assets.imagesIconsStays,
+                iconColor: Colors.black,
+              ),
+            ),
+          ),
+          Tab(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 13, vertical: 3.5),
+              child: CustomTabForTabBar(
+                data: LocaleKeys.Activities.tr(),
+                assetName: Assets.imagesIconsActivities,
+                iconColor: Colors.black,
+              ),
+            ),
+          ),
         ]);
   }
 }

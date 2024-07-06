@@ -10,11 +10,9 @@ import 'package:tourista/features/my_trips/presentation/views/my_trips_view_body
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
-import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
-import '../../features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 
 class NavigationBArScaffold extends StatefulWidget {
   const NavigationBArScaffold({super.key});

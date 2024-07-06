@@ -20,23 +20,21 @@ class AllQuestionsSection extends StatelessWidget {
     return BlocBuilder<AllQuestionsCubit, AllQuestionsState>(
       builder: (context, state) {
         if (state is AllQuestionsSuccess) {
-          return Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: ListView.builder(
-                itemCount: state.allQuestionsModel.quastionAndAnswers!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: QuestionAnswerWidget(
-                      question: state.allQuestionsModel
-                          .quastionAndAnswers![index].quastion!,
-                      answer: state
-                          .allQuestionsModel.quastionAndAnswers![index].answer!,
-                      screedWidth: screenWidth,
-                    ),
-                  );
-                },
-              ));
+          return ListView.builder(
+            itemCount: state.allQuestionsModel.quastionAndAnswers!.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: QuestionAnswerWidget(
+                  question: state
+                      .allQuestionsModel.quastionAndAnswers![index].quastion!,
+                  answer: state
+                      .allQuestionsModel.quastionAndAnswers![index].answer!,
+                  screedWidth: screenWidth,
+                ),
+              );
+            },
+          );
         } else if (state is AllQuestionsFailure) {
           return Align(
             alignment: Alignment.center,
