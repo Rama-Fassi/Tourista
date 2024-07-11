@@ -21,7 +21,10 @@ class HotelInfoCubit extends Cubit<HotelInfoState> {
     state.rooms?.forEach((key, value) {
       price += value[key][1] * value[key][0];
     });
-    price *= (state.checkOut!.day - state.checkIn!.day);
+
+    price *=
+        (state.checkOut?.difference(state.checkIn ?? DateTime.now()).inDays) ??
+            1;
     emit(state.copyWith(price: price));
   }
 
@@ -32,5 +35,14 @@ class HotelInfoCubit extends Cubit<HotelInfoState> {
         rooms; // Overwrite the previous value with the new value
 
     emit(state.copyWith(rooms: updatedRoom));
+  }
+
+  void resetCubit() {
+    emit(const HotelInfoState(
+      checkIn: null,
+      checkOut: null,
+      rooms: null,
+      price: 0,
+    ));
   }
 }

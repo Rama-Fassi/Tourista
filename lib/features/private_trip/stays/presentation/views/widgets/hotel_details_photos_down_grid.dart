@@ -24,7 +24,8 @@ class HotelDetailsPhotosDownGrid extends StatelessWidget {
         (index) {
           if (index == 2 && hotel.images!.length >= 5) {
             return GestureDetector(
-                onTap: () => GoRouter.of(context).push(AppRouter.kAllPhotoView),
+                onTap: () => GoRouter.of(context)
+                    .push(AppRouter.kAllPhotoView, extra: hotel),
                 child: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
                     return Stack(
@@ -56,7 +57,8 @@ class HotelDetailsPhotosDownGrid extends StatelessWidget {
                 ));
           } else {
             return GestureDetector(
-              onTap: () => GoRouter.of(context).push(AppRouter.kAllPhotoView),
+              onTap: () => GoRouter.of(context)
+                  .push(AppRouter.kAllPhotoView, extra: hotel),
               child: CachedNetworkImage(
                   fit: BoxFit.fill,
                   imageUrl: '$kBaseUrl${hotel.images![index + 3]}'),
