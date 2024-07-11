@@ -13,9 +13,9 @@ class CompactCalendarWidget extends StatefulWidget {
 }
 
 class _CompactCalendarWidgetState extends State<CompactCalendarWidget> {
+  CalendarFormat calendarFormat = CalendarFormat.week;
   @override
   Widget build(BuildContext context) {
-    CalendarFormat _calendarFormat = CalendarFormat.week;
     String date1String = widget.readyTripsDetailsModel.publicTrip!.dateOfTrip!;
     DateTime dateOfTrip = DateFormat('yyyy-MM-dd').parse(date1String);
     String date2String =
@@ -28,10 +28,11 @@ class _CompactCalendarWidgetState extends State<CompactCalendarWidget> {
 
     return TableCalendar(
       onFormatChanged: (format) {
-        _calendarFormat = format;
-        setState(() {});
+        setState(() {
+          calendarFormat = format;
+        });
       },
-      calendarFormat: _calendarFormat,
+      calendarFormat: calendarFormat,
       firstDay: rangeStart,
       lastDay: rangeEnd,
       focusedDay: rangeStart,

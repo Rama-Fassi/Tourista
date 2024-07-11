@@ -4,13 +4,13 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
-import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/tourism_place.dart';
+import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/cities_hotel.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/places_image_page_view.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/places_text_desc.dart';
 
-class EveryPlaceDetailBody extends StatelessWidget {
-  const EveryPlaceDetailBody({super.key, required this.tourismPlace});
-  final TourismPlace tourismPlace;
+class ReadyTripHotelDtailsViewBody extends StatelessWidget {
+  const ReadyTripHotelDtailsViewBody({super.key, required this.citiesHotel});
+  final CitiesHotel citiesHotel;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -18,12 +18,12 @@ class EveryPlaceDetailBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PlacesImagePageView(
-            images: tourismPlace.images!,
+            images: citiesHotel.images!,
           ),
           PlacesTextDesc(
-            title: tourismPlace.name!,
-            desc: tourismPlace.description!,
-            openingHour: tourismPlace.openingHours,
+            title: citiesHotel.hotel!.name!,
+            desc: citiesHotel.description!,
+            features: citiesHotel.hotel!.rate.toString(),
           ),
           Padding(
             padding: const EdgeInsets.all(36),

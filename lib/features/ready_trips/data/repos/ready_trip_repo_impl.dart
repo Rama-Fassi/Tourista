@@ -6,6 +6,7 @@ import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/ready_trips/data/models/add_favourite_model.dart';
 import 'package:tourista/features/ready_trips/data/models/all_ready_trips_model/all_ready_trips_model.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/ready_trips_details_model.dart';
+import 'package:tourista/features/ready_trips/data/models/ready_trips_point_model/ready_trips_point_model.dart';
 import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo.dart';
 
 class ReadyTripsRepoImpl implements ReadyTripsRepo {
@@ -59,6 +60,24 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
           .post(endPoint: 'faveOrNot/$tripId', token: kToken, body: {});
       AddFavouriteModel addFavouriteModel = AddFavouriteModel.fromJson(data);
       return right(addFavouriteModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ReadyTripsPointModel>> getReadyTripPoints(
+      {required int tripId}) async {
+    try {
+      var data = await apiServer.get(
+        endPoint: 'getPublicTripPoints/$tripId',
+      );
+      ReadyTripsPointModel readyTripsPoint =
+          ReadyTripsPointModel.fromJson(data);
+      return right(readyTripsPoint);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

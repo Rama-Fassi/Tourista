@@ -13,8 +13,8 @@ import 'package:tourista/features/ready_trips/presentation/views/widgets/vip_che
 import 'package:tourista/features/ready_trips/presentation/views/widgets/vip_features.dart';
 
 class ApplyTheTripViewBody extends StatelessWidget {
-  const ApplyTheTripViewBody({super.key});
-
+  const ApplyTheTripViewBody({super.key, required this.tripId});
+  final int tripId;
   @override
   Widget build(BuildContext context) {
     List<String> features = [
@@ -40,7 +40,9 @@ class ApplyTheTripViewBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FlightsPointBox(),
+                child: FlightsPointBox(
+                  tripId: tripId,
+                ),
               )),
           Gap(40),
           Text(

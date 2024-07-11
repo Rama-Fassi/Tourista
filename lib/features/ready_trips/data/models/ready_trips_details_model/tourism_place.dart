@@ -1,6 +1,6 @@
 class TourismPlace {
   int? id;
-  dynamic images;
+  List<dynamic>? images;
   String? name;
   String? description;
   String? openingHours;
@@ -21,7 +21,7 @@ class TourismPlace {
 
   factory TourismPlace.fromJson(Map<String, dynamic> json) => TourismPlace(
         id: json['id'] as int?,
-        images: json['images'] as dynamic,
+        images: json['images'] as List<dynamic>?,
         name: json['name'] as String?,
         description: json['description'] as String?,
         openingHours: json['openingHours'] as String?,

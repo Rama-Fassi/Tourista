@@ -44,8 +44,8 @@ class ReadyTripHotel extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                GoRouter.of(context)
-                    .push(AppRouter.kEveryPlaceDetail, extra: citiesHotel);
+                GoRouter.of(context).push(AppRouter.kreadyTripHotelDetailsview,
+                    extra: citiesHotel);
               },
               child: Text(
                 LocaleKeys.seeMore.tr(),

@@ -1,11 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class PlacesImagePageView extends StatefulWidget {
-  const PlacesImagePageView({super.key});
-
+  const PlacesImagePageView({super.key, required this.images});
+  final List<dynamic> images;
   @override
   State<PlacesImagePageView> createState() => _PlacesImagePageViewState();
 }
@@ -22,25 +22,26 @@ class _PlacesImagePageViewState extends State<PlacesImagePageView> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    List<String> images = [
-      Assets.imagesHotelTest,
-      Assets.imagesPlacesTest,
-      Assets.imagesReadyTripsTest2
-    ];
+
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .6,
       child: Stack(
         children: [
           PageView.builder(
             controller: pageController,
-            itemCount: images.length,
+            itemCount: widget.images.length,
             itemBuilder: (context, index) {
               return Container(
                   width: screenWidth,
-                  child: Image.asset(
-                    images[index],
-                    fit: BoxFit.fill,
-                  ));
+                  child: CachedNetworkImage(
+                      imageUrl: "$kBaseUrl ${widget.images[index]}",
+                      imageBuilder: (context, imageProvider) => Image(
+                            image: imageProvider,
+                            fit: BoxFit.fill,
+                          ),
+                      errorWidget: (context, url, error) {
+                        return Icon(Icons.error_outline);
+                      }));
             },
             onPageChanged: (index) {
               setState(() {
@@ -89,7 +90,7 @@ class _PlacesImagePageViewState extends State<PlacesImagePageView> {
                       },
                     ),
                     Text(
-                      '${currentPage + 1} of ${images.length}',
+                      '${currentPage + 1} of ${widget.images.length}',
                       style: AppStyles.styleInterBold20(context).copyWith(
                         color: Colors.white,
                       ),

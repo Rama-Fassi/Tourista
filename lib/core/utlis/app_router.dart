@@ -42,6 +42,10 @@ import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.
 import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/cities_hotel.dart';
+import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/tourism_place.dart';
+import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/ready_trip_point_cubit/ready_trip_point_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/apply_the_trip_view.dart';
 import 'package:tourista/features/ready_trips/presentation/views/every_place_detail.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
@@ -52,6 +56,7 @@ import 'package:tourista/features/profile/presentation/views/customer_support_vi
 import 'package:tourista/features/profile/presentation/views/personal_details_view.dart';
 import 'package:tourista/features/profile/presentation/views/password_and_security_view.dart';
 import 'package:tourista/features/profile/presentation/views/reviews_view.dart';
+import 'package:tourista/features/ready_trips/presentation/views/ready_trip_hotel_details_view.dart';
 import 'package:tourista/features/splash/views/splash_view.dart';
 
 import '../../features/private_trip/activities/data/repos/activities_repo_impl.dart';
@@ -93,6 +98,7 @@ abstract class AppRouter {
   static const kEveryPlaceDetail = '/EveryPlaceDetail';
   static const kApplyTheTripView = '/ApplyTheTripView';
   static const kverifyNewPhoneview = '/verifyNewPhoneview';
+  static const kreadyTripHotelDetailsview = '/readyTripHotelDetailsview';
 
   static final router = GoRouter(
     routes: [
@@ -420,11 +426,26 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kEveryPlaceDetail,
-        builder: (context, state) => const EveryPlaceDetail(),
+        builder: (context, state) => EveryPlaceDetail(
+          tourismPlace: state.extra as TourismPlace,
+        ),
       ),
       GoRoute(
         path: kApplyTheTripView,
-        builder: (context, state) => const ApplyTheTripView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ReadyTripPointCubit(getIt.get<ReadyTripsRepoImpl>())
+                ..getReadyTripPointsFun(tripId: state.extra as int),
+          child: ApplyTheTripView(
+            tripId: state.extra as int,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: kreadyTripHotelDetailsview,
+        builder: (context, state) => ReadyTripHotelDtailsView(
+          citiesHotel: state.extra as CitiesHotel,
+        ),
       ),
     ],
   );

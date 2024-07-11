@@ -31,6 +31,7 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     const ProfileViewBody(),
   ];
   int activeIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     var iconList = [
@@ -39,31 +40,39 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
       Icons.widgets_outlined,
       Icons.account_circle_outlined
     ];
+
     return SafeArea(
-        child: MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
-                ..getAllReadyTripsFun(),
-        ),
-        BlocProvider(
-          create: (context) =>
-              AddFavoritTripCubit(getIt.get<ReadyTripsRepoImpl>()),
-        ),
-      ],
-      child: Scaffold(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                AddFavoritTripCubit(getIt.get<ReadyTripsRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
+                  ..getAllReadyTripsFun(),
+          ),
+        ],
+        child: Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: floatingActionButton(),
           bottomNavigationBar: animatedBottomNavigationaBar(iconList),
           body: activeIndex == -1
-              ? const ReadyTripMainViewBody()
-              : navList.elementAt(activeIndex)),
-    ));
+              ? BlocProvider(
+                  create: (context) =>
+                      AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
+                        ..getAllReadyTripsFun(),
+                  child: const ReadyTripMainViewBody(),
+                )
+              : navList.elementAt(activeIndex),
+        ),
+      ),
+    );
   }
 
   FloatingActionButton floatingActionButton() {

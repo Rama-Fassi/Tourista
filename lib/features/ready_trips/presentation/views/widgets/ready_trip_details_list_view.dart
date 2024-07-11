@@ -53,7 +53,8 @@ class ReadyTripDetailsListView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
             child: CustomButton(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.kApplyTheTripView);
+                  GoRouter.of(context).push(AppRouter.kApplyTheTripView,
+                      extra: readyTripsDetailsModel.publicTrip!.id);
                 },
                 text: LocaleKeys.apply_for_this_trip.tr(),
                 width: MediaQuery.sizeOf(context).width,
