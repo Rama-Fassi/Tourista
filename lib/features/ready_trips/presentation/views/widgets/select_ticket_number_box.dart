@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/trip_info_cubit/trip_info_cubit.dart';
 
 class SelectTicketNumberBox extends StatefulWidget {
   const SelectTicketNumberBox({
@@ -16,6 +18,8 @@ class _SelectTicketNumberBoxState extends State<SelectTicketNumberBox> {
   int selectedNumber = 0;
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<TripInfoCubit>();
+
     return Container(
       decoration: BoxDecoration(
           border: Border.all(width: 4, color: kYellowColor),
@@ -30,6 +34,7 @@ class _SelectTicketNumberBoxState extends State<SelectTicketNumberBox> {
                   setState(() {
                     selectedNumber--;
                   });
+                  cubit.setTicketNumber(selectedNumber);
                 }
               },
               icon: const Icon(
@@ -46,6 +51,7 @@ class _SelectTicketNumberBoxState extends State<SelectTicketNumberBox> {
                 setState(() {
                   selectedNumber++;
                 });
+                cubit.setTicketNumber(selectedNumber);
               },
               icon: const Icon(
                 Icons.add_circle_outline_outlined,

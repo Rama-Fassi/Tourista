@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/apply_to_trip_app_bar.dart';
+import 'package:tourista/features/ready_trips/presentation/views/widgets/confirm_button.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/flights_point_box.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trip_total_price.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/select_ticket_number_box.dart';
@@ -75,15 +75,7 @@ class ApplyTheTripViewBody extends StatelessWidget {
             children: [
               ReadyTripTotalPrice(),
               Spacer(),
-              CustomButton(
-                  onTap: () {},
-                  text: LocaleKeys.confirm.tr(),
-                  width: 120,
-                  borderRadius: 24,
-                  height: 50,
-                  style: AppStyles.styleInterBold20(context)
-                      .copyWith(color: Colors.white),
-                  color: kPrimaryColor),
+              ConfirmButton(),
             ],
           )
         ],

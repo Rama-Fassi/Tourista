@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/ready_trips/presentation/manager/ready_trip_point_cubit/ready_trip_point_cubit.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/trip_info_cubit/trip_info_cubit.dart';
 
 class FlightsPointBox extends StatelessWidget {
   const FlightsPointBox({
@@ -15,11 +16,19 @@ class FlightsPointBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<TripInfoCubit>();
+
     return Row(
       children: [
-        Text(
-          'Choose a place to go',
-          style: AppStyles.styleInterSemiBold18(context),
+        BlocBuilder<TripInfoCubit, TripInfoState>(
+          builder: (context, state) {
+            return Text(
+              state.pointName == null
+                  ? 'Choose a place to go'
+                  : state.pointName!,
+              style: AppStyles.styleInterSemiBold18(context),
+            );
+          },
         ),
         Spacer(),
         BlocBuilder<ReadyTripPointCubit, ReadyTripPointState>(
@@ -40,7 +49,17 @@ class FlightsPointBox extends StatelessWidget {
                   itemBuilder: (context) => List.generate(
                       state.readyTripsPointModel.publicTripPoints!.length,
                       (index) => PopupMenuItem(
-                              child: Padding(
+                          onTap: () {
+                            cubit.setPointId(
+                              state.readyTripsPointModel
+                                  .publicTripPoints![index].id!,
+                            );
+                            cubit.setPrice(state.readyTripsPointModel
+                                .publicTripPoints![index].price!);
+                            cubit.setPointName(
+                                '${state.readyTripsPointModel.publicTripPoints![index].city!.name!} , ${state.readyTripsPointModel.publicTripPoints![index].city!.country!}');
+                          },
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

@@ -7,6 +7,7 @@ import 'package:tourista/features/ready_trips/data/models/add_favourite_model.da
 import 'package:tourista/features/ready_trips/data/models/all_ready_trips_model/all_ready_trips_model.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/ready_trips_details_model.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_point_model/ready_trips_point_model.dart';
+import 'package:tourista/features/ready_trips/data/models/trip_booking_model/trip_booking_model.dart';
 import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo.dart';
 
 class ReadyTripsRepoImpl implements ReadyTripsRepo {
@@ -78,6 +79,28 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
       ReadyTripsPointModel readyTripsPoint =
           ReadyTripsPointModel.fromJson(data);
       return right(readyTripsPoint);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TripBookingModel>> bookReadyTrip(
+      {required int tripPointId,
+      required int ticketsNumber,
+      required bool vipTicket}) async {
+    try {
+      var data = await apiServer
+          .post(endPoint: 'bookingPublicTrip', token: kToken, body: {
+        'tripPoint_id': tripPointId,
+        'numberOfTickets': ticketsNumber,
+        'VIP': vipTicket ? 1 : 0
+      });
+      TripBookingModel tripBookingModel = TripBookingModel.fromJson(data);
+      return right(tripBookingModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
