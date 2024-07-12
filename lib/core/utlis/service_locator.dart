@@ -7,6 +7,7 @@ import 'package:tourista/features/private_trip/activities/data/repos/activities_
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
+import 'package:tourista/features/private_trip/the_plan/data/repos/the_plan_repo_impl.dart';
 import 'package:tourista/features/profile/data/repos/profile_repo_impl.dart';
 
 final getIt = GetIt.instance;
@@ -34,6 +35,13 @@ void setUpServiceLocator() {
 
    getIt.registerSingleton<ActivitiesRepoImpl>(
     ActivitiesRepoImpl(
+      getIt.get<ApiServer>(),
+    ),
+  );
+
+
+ getIt.registerSingleton<ThePlanRepoImpl>(
+    ThePlanRepoImpl(
       getIt.get<ApiServer>(),
     ),
   );

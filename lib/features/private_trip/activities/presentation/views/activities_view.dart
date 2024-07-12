@@ -10,6 +10,7 @@ class ActivitiesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    print('activitiesdaysInfo: ${activitiesdaysInfo.toString()}');
     return SafeArea(
       child: DefaultTabController(
         length: 6,
@@ -45,7 +46,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: '',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
               //Sports
@@ -53,7 +54,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Sports',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
               //Entertainment
@@ -61,7 +62,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Entertainment',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
               //Culitural
@@ -69,7 +70,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Culitural',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
               //Natural
@@ -77,7 +78,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Natural',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
               //Relaxation
@@ -85,7 +86,7 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Relaxation',
-                dayIndex: activitiesdaysInfo['index'],
+                dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),
             ],

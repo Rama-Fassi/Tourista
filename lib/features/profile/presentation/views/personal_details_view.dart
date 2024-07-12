@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'widgets/personal_details_view_body.dart';
 
 class PersonalDetailsView extends StatelessWidget {
@@ -20,7 +21,7 @@ class PersonalDetailsView extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            GoRouter.of(context).pop();
+            GoRouter.of(context).push(AppRouter.kHomeView);
           },
         ),
         iconTheme: const IconThemeData(color: Colors.white, size: 25),

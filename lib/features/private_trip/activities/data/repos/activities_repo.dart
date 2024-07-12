@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:tourista/features/private_trip/activities/data/models/get_trip_days/get_trip_days.dart';
 
 import '../../../../../core/errors/failures.dart';
 import '../models/activities_plan_model/activities_plan_model.dart';
@@ -10,8 +11,11 @@ abstract class ActivitiesRepo {
     required int tripId,
   });
 
-
   Future<Either<Failure, ActivitiesPlanModel>> postActivitiesPlan({
-    required Map<String,dynamic> body,
+    required Map<String, dynamic> body,
+  });
+
+  Future<Either<Failure, GetTripDaysModel>> getTripDays({
+    required int tripId,
   });
 }

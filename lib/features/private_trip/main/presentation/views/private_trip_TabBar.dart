@@ -9,6 +9,7 @@ import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_plan_cubit/activities_plan_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/get_trip_days_cubit/get_trip_days_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/add_activities_view_body.dart';
 import 'package:tourista/features/private_trip/flights/presentation/views/flights_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
@@ -16,11 +17,13 @@ import 'package:tourista/features/private_trip/main/presentation/views/widgets/c
 import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotels_cubit/hotels_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
+import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 import '../../../../../core/utlis/service_locator.dart';
 import '../../../flights/data/repos/flights_repo_impl.dart';
 import '../../../flights/presentation/manager/flights/flights_cubit.dart';
 import '../../../flights/presentation/manager/tickets_cubit/tickets_cubit.dart';
+import '../../../the_plan/data/repos/the_plan_repo_impl.dart';
 
 class PrivateTripTapBar extends StatelessWidget {
   const PrivateTripTapBar({super.key, required this.createTripModel});
@@ -42,13 +45,21 @@ class PrivateTripTapBar extends StatelessWidget {
               create: (context) =>
                   ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
             ),
-             BlocProvider(
+            BlocProvider(
               create: (context) =>
-ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
-
-           BlocProvider(
+                  ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+            BlocProvider(
                 create: (context) => HotelsCubit(getIt.get<StaysRepoImpl>())
-                  ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id))
+                  ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id)),
+            BlocProvider(
+              create: (context) =>
+                  GetTripDaysCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+               BlocProvider(
+              create: (context) =>
+                  GetUserPrivatePlanCubit(getIt.get<ThePlanRepoImpl>()),
+            ),
           ],
           child: Scaffold(
             appBar: AppBar(
@@ -107,7 +118,9 @@ ActivitiesPlanCubit(getIt.get<ActivitiesRepoImpl>()) ,           ),
                 AddActivitiesViewBody(
                   createTripModel: createTripModel,
                 ),
-                 ThePlanViewBody(createTripModel:  createTripModel,),
+                ThePlanViewBody(
+                  createTripModel: createTripModel,
+                ),
               ],
             ),
           ),

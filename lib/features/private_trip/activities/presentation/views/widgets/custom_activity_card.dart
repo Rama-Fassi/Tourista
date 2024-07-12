@@ -20,7 +20,8 @@ class CustomActivityCard extends StatefulWidget {
     required this.activityDescription,
     required this.activityImages,
     required this.activityModel,
-    required this.dayIndex, required this.dayDate,
+    required this.dayId,
+    required this.dayDate,
   });
 
   final double screenWidth;
@@ -28,7 +29,7 @@ class CustomActivityCard extends StatefulWidget {
   final String? activityName;
   final String? activityDescription;
   final ActivityModel? activityModel;
-  final int? dayIndex;
+  final int? dayId;
   final String dayDate;
 
   @override
@@ -42,8 +43,8 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
     super.initState();
 
     final cubit = context.read<ActivityCardCubit>();
-    final activityData = cubit.getActivityCardData(
-        widget.dayIndex!, widget.activityModel?.id ?? 0);
+    final activityData =
+        cubit.getActivityCardData(widget.dayId!, widget.activityModel?.id ?? 0);
 
     if (activityData.isNotEmpty) {
       isChecked = true;
@@ -73,7 +74,7 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                   setState(() {
                     if (isChecked) {
                       // Add the activity data to the state
-                      cubit.setactivitiesCardData(widget.dayIndex!, {
+                      cubit.setactivitiesCardData(widget.dayId!, {
                         'id': widget.activityModel?.id,
                         'name': widget.activityName,
                         'description': widget.activityDescription,
@@ -82,7 +83,7 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                     } else {
                       // Remove the activity data from the state
                       cubit.removeActivityCardData(
-                          widget.dayIndex!, widget.activityModel?.id ?? 0);
+                          widget.dayId!, widget.activityModel?.id ?? 0);
                     }
                   });
                 },
@@ -107,41 +108,53 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                     width: MediaQuery.of(context).size.width * .3,
                   ),
                   const Gap(8),
-                  AspectRatio(
-                    aspectRatio: 1.35,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * .5,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          maxLines: 2,
-                          widget.activityName!,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppStyles.styleQuickBold22(context),
+                        const Gap(5),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              maxLines: 2,
+                              widget.activityName!,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppStyles.styleQuickBold22(context),
+                            ),
+                            const Gap(5),
+                            Text(
+                              maxLines: 3,
+                              widget.activityDescription!,
+                              style: AppStyles.styleInterRegular14(context),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
-                        Text(
-                          maxLines: 3,
-                          widget.activityDescription!,
-                          style: AppStyles.styleInterRegular14(context),
-                          overflow: TextOverflow.ellipsis,
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: CustomButton(
+                                onTap: () {
+                                  GoRouter.of(context).push(
+                                      AppRouter.kActivityDetailsView,
+                                      extra: {
+                                        'activityModel': widget.activityModel,
+                                        'dayDate': widget.dayDate,
+                                        'dayIndex': widget.dayId
+                                      });
+                                },
+                                text: LocaleKeys.details.tr(),
+                                width: 55,
+                                borderRadius: 10,
+                                height: 23,
+                                style: AppStyles.styleSourceBold12(context),
+                                color: kPrimaryColor),
+                          ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: CustomButton(
-                              onTap: () {
-                                GoRouter.of(context).push(
-                                    AppRouter.kActivityDetailsView,
-                                    extra:{ 'activityModel': widget.activityModel, 
-                                    'dayDate':widget.dayDate,
-                                    'dayIndex' : widget.dayIndex});
-                              },
-                              text: LocaleKeys.details.tr(),
-                              width: 55,
-                              borderRadius: 10,
-                              height: 23,
-                              style: AppStyles.styleSourceBold12(context),
-                              color: kPrimaryColor),
-                        ),
+                        const Gap(5),
                       ],
                     ),
                   ),

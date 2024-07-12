@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_button.dart';
 import '../../../../../../core/utlis/styles.dart';
-import '../../../../../../core/widgets/add_to_plan_button.dart';
 import '../../manager/activities_cubit/activities_cubit.dart';
 import 'activities_list_view.dart';
 import 'custom_shimmer_activity.dart';
@@ -13,14 +13,14 @@ class ActivitiesTabBarView extends StatelessWidget {
     required this.screenWidth,
     required this.tripId,
     required this.tourismTybe,
-    required this.dayIndex,
+    required this.dayId,
     required this.dayDate,
   });
 
   final double screenWidth;
   final int tripId;
   final String tourismTybe;
-  final int dayIndex;
+  final int dayId;
   final String dayDate;
   @override
   Widget build(BuildContext context) {
@@ -33,14 +33,14 @@ class ActivitiesTabBarView extends StatelessWidget {
         if (state is ActivitiesSuccess) {
           return Stack(children: [
             ActivitiesListView(
-              dayIndex: dayIndex,
-              dayDate:dayDate,
+              dayId: dayId,
+              dayDate: dayDate,
               screenWidth: screenWidth,
               tourismActivitiesModel: state.tourismActivitiesModel,
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: AddToPlanButton(
+              child: ActivitiesButton(
                 screenWidth: screenWidth,
                 onTap: () {
                   Navigator.pop(context);

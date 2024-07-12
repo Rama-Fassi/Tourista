@@ -23,11 +23,11 @@ class RoundTripTicket extends StatelessWidget {
   final double height;
   final CreateTripModel createTripModel;
   final String airFrom, airTo;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
+
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       width: width,
       decoration: BoxDecoration(
           color: Colors.white, boxShadow: [boxShadow(4, 4), boxShadow(-4, 4)]),
@@ -35,7 +35,7 @@ class RoundTripTicket extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SortByTicketsRow(),
-          Gap(12),
+          const Gap(12),
           TicketTimeAndAirline(
             width: width,
             ticket: ticket,

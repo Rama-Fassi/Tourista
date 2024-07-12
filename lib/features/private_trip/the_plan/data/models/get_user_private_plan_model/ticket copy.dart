@@ -1,7 +1,8 @@
 
-import 'package:tourista/features/private_trip/flights/data/models/tickets_model/air_line.dart';
 
-class Ticket {
+import 'package:tourista/features/private_trip/the_plan/data/models/get_user_private_plan_model/air_line_copy.dart';
+
+class TicketCopy { 
 	int? id;
 	int? airlineId;
 	int? airportId1;
@@ -14,9 +15,9 @@ class Ticket {
 	String? duration;
 	double? price;
 	int? numOfTickets;
-	AirLine? airLine;
+	AirLineCopy? airLine;
 
-	Ticket({
+	TicketCopy({
 		this.id, 
 		this.airlineId, 
 		this.airportId1, 
@@ -32,7 +33,7 @@ class Ticket {
 		this.airLine, 
 	});
 
-	factory Ticket.fromJson(Map<String, dynamic> json) => Ticket(
+	factory TicketCopy.fromJson(Map<String, dynamic> json) => TicketCopy(
 				id: json['id'] as int?,
 				airlineId: json['airline_id'] as int?,
 				airportId1: json['airport_id1'] as int?,
@@ -47,7 +48,7 @@ class Ticket {
 				numOfTickets: json['numOfTickets'] as int?,
 				airLine: json['air_line'] == null
 						? null
-						: AirLine.fromJson(json['air_line'] as Map<String, dynamic>),
+						: AirLineCopy.fromJson(json['air_line'] as Map<String, dynamic>),
 			);
 
 	Map<String, dynamic> toJson() => {
@@ -65,4 +66,5 @@ class Ticket {
 				'numOfTickets': numOfTickets,
 				'air_line': airLine?.toJson(),
 			};
+      
 }

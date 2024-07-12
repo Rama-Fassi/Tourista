@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/activities/data/models/tourism_activities/activity_model.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_button.dart';
 
-import '../../../../../../core/widgets/add_to_plan_button.dart';
 import '../../manager/activity_card_cubit/activity_card_cubit.dart';
 import 'activity_texts_details.dart';
 
@@ -64,11 +66,14 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
                 activityAbout: widget.activityModel.description,
               ),
             ),
-            const Gap(100),
+            const Gap(500),
           ],
         ),
       ),
-      AddToPlanButton(
+      SizedBox(
+        height: MediaQuery.of(context).size.height,
+      ),
+      ActivitiesButton(
         screenWidth: screenWidth,
         onTap: () {
           cubit.setactivitiesCardData(widget.dayIndex, {
