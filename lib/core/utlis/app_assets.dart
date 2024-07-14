@@ -359,6 +359,10 @@ class Assets {
   static const String imagesLottieTicketsLoading =
       "assets/images/lottie/ticketsLoading.json";
 
+  /// Assets for imagesMytripsTest
+  /// assets/images/mytripsTest.png
+  static const String imagesMytripsTest = "assets/images/mytripsTest.png";
+
   /// Assets for imagesPlacesTest
   /// assets/images/placesTest.png
   static const String imagesPlacesTest = "assets/images/placesTest.png";

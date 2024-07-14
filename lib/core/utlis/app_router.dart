@@ -47,6 +47,7 @@ import 'package:tourista/features/ready_trips/data/models/ready_trips_details_mo
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/tourism_place.dart';
 import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
 import 'package:tourista/features/ready_trips/presentation/manager/ready_trip_point_cubit/ready_trip_point_cubit.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/trip_info_cubit/trip_info_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/apply_the_trip_view.dart';
 import 'package:tourista/features/ready_trips/presentation/views/every_place_detail.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_details_view.dart';
@@ -435,10 +436,17 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kApplyTheTripView,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              ReadyTripPointCubit(getIt.get<ReadyTripsRepoImpl>())
-                ..getReadyTripPointsFun(tripId: state.extra as int),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  ReadyTripPointCubit(getIt.get<ReadyTripsRepoImpl>())
+                    ..getReadyTripPointsFun(tripId: state.extra as int),
+            ),
+            BlocProvider(
+              create: (context) => TripInfoCubit(),
+            ),
+          ],
           child: ApplyTheTripView(
             tripId: state.extra as int,
           ),

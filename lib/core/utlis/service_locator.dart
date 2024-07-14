@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/auth/forget_password/data/repos/forget_password_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
+import 'package:tourista/features/my_trips/data/repos/my_trips_repo_impl.dart';
 import 'package:tourista/features/private_trip/activities/data/repos/activities_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
@@ -59,6 +60,11 @@ void setUpServiceLocator() {
   );
   getIt.registerSingleton<ReadyTripsRepoImpl>(
     ReadyTripsRepoImpl(
+      getIt.get<ApiServer>(),
+    ),
+  );
+  getIt.registerSingleton<MyTripsRepoImpl>(
+    MyTripsRepoImpl(
       getIt.get<ApiServer>(),
     ),
   );

@@ -19,12 +19,14 @@ class ApiServer {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    var response = await _dio.get(
-      '$baseUrl$endPoint',
-      options: Options(
-        headers: headers,
-      ),
-    );
+    var response = await _dio
+        .get(
+          '$baseUrl$endPoint',
+          options: Options(
+            headers: headers,
+          ),
+        )
+        .timeout(Duration(seconds: 10));
     return response.data;
   }
 
@@ -39,13 +41,15 @@ class ApiServer {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    var response = await _dio.post(
-      '$baseUrl$endPoint',
-      data: body,
-      options: Options(
-        headers: headersfromRepo ?? headers,
-      ),
-    );
+    var response = await _dio
+        .post(
+          '$baseUrl$endPoint',
+          data: body,
+          options: Options(
+            headers: headersfromRepo ?? headers,
+          ),
+        )
+        .timeout(Duration(seconds: 10));
     return response.data;
   }
 
@@ -60,13 +64,15 @@ class ApiServer {
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
-    var response = await _dio.put(
-      '$baseUrl$endPoint',
-      data: body,
-      options: Options(
-        headers: headers,
-      ),
-    );
+    var response = await _dio
+        .put(
+          '$baseUrl$endPoint',
+          data: body,
+          options: Options(
+            headers: headers,
+          ),
+        )
+        .timeout(Duration(seconds: 10));
     return response.data;
   }
 
@@ -80,12 +86,14 @@ class ApiServer {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
 
-    var response = await _dio.delete(
-      '$baseUrl$endPoint',
-      options: Options(
-        headers: headers,
-      ),
-    );
+    var response = await _dio
+        .delete(
+          '$baseUrl$endPoint',
+          options: Options(
+            headers: headers,
+          ),
+        )
+        .timeout(Duration(seconds: 10));
 
     return response.data;
   }

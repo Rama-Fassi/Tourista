@@ -1,6 +1,3 @@
-import 'cities_hotel.dart';
-import 'public_trip_place.dart';
-
 class PublicTrip {
   int? id;
   String? name;
@@ -11,8 +8,6 @@ class PublicTrip {
   String? dateEndOfTrip;
   int? display;
   int? discountType;
-  List<PublicTripPlace>? publicTripPlace;
-  CitiesHotel? citiesHotel;
 
   PublicTrip({
     this.id,
@@ -24,8 +19,6 @@ class PublicTrip {
     this.dateEndOfTrip,
     this.display,
     this.discountType,
-    this.publicTripPlace,
-    this.citiesHotel,
   });
 
   factory PublicTrip.fromJson(Map<String, dynamic> json) => PublicTrip(
@@ -38,13 +31,6 @@ class PublicTrip {
         dateEndOfTrip: json['dateEndOfTrip'] as String?,
         display: json['display'] as int?,
         discountType: json['discountType'] as int?,
-        publicTripPlace: (json['public_trip_place'] as List<dynamic>?)
-            ?.map((e) => PublicTripPlace.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        citiesHotel: json['cities_hotel'] == null
-            ? null
-            : CitiesHotel.fromJson(
-                json['cities_hotel'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,7 +43,5 @@ class PublicTrip {
         'dateEndOfTrip': dateEndOfTrip,
         'display': display,
         'discountType': discountType,
-        'public_trip_place': publicTripPlace?.map((e) => e.toJson()).toList(),
-        'cities_hotel': citiesHotel?.toJson(),
       };
 }
