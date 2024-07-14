@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:tourista/core/utlis/app_assets.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/my_trips/data/models/favorit_trips_model/public_trip.dart';
 
@@ -22,7 +23,8 @@ class MyTripsFavoritCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: AssetImage(Assets.imagesMytripsTest))),
+                  image: CachedNetworkImageProvider(
+                      '$kBaseUrl${publicTrip.image}'))),
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
