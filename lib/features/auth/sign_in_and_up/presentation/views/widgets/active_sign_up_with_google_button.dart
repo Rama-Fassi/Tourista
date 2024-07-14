@@ -19,14 +19,12 @@ class ActiveSignUpWithGoogleButton extends StatelessWidget {
     return BlocListener<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
       listener: (context, state) async {
         if (state is SentGoogleUserInfoSuccess) {
-          await BlocProvider.of<GetUserInfoCubit>(context)
-              .getUserInfo();
+          await BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
         } else if (state is SentGoogleUserInfoFailure) {
           customSnackBar(context, state.errMessage);
         }
       },
-      child: BlocBuilder<SentgoogleUserinfoCubit,
-          SentGoogleUserInfoState>(
+      child: BlocBuilder<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
         builder: (context, state) {
           if (state is SentGoogleUserInfoLoading) {
             return const SpinKitThreeBounce(
@@ -34,8 +32,7 @@ class ActiveSignUpWithGoogleButton extends StatelessWidget {
               size: 40,
             );
           } else {
-            return BlocListener<SignInWithGoogleCubit,
-                SignInWithGoogleState>(
+            return BlocListener<SignInWithGoogleCubit, SignInWithGoogleState>(
               listener: (context, state) {
                 if (state is SignInWithGoogleSuccess) {
                   BlocProvider.of<SentgoogleUserinfoCubit>(context)

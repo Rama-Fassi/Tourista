@@ -7,20 +7,21 @@ import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_button.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/final_booking_private_trip/final_booking_private_trip_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
 
 class FinalBookingButton extends StatelessWidget {
   const FinalBookingButton({
     super.key,
     required this.screenWidth,
     required this.screenHeight,
-    required this.widget, required this.finalPrice,
+    required this.widget,
+    required this.finalPrice, this.showConfirmationDialog,
   });
 
   final double screenWidth;
   final double screenHeight;
   final ThePlanViewBody widget;
   final double finalPrice;
+  final dynamic showConfirmationDialog;
   @override
   Widget build(BuildContext context) {
     return BlocListener<FinalBookingPrivateTripCubit,
@@ -45,7 +46,7 @@ class FinalBookingButton extends StatelessWidget {
         screenWidth: screenWidth,
         screenheight: screenHeight,
         onTap: () {
-          ShowConfirmationDialog().showConfirmationDialog(
+          showConfirmationDialog.showConfirmationDialog(
               context: context,
               titleText: LocaleKeys.Confirmation.tr(),
               contentText: 'Are You sure?',

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:tourista/features/private_trip/the_plan/data/models/delete_models/delete_model.dart';
 import 'package:tourista/features/private_trip/the_plan/data/models/final_booking_private_trip_model/final_booking_private_trip_model.dart';
 import 'package:tourista/features/private_trip/the_plan/data/repos/the_plan_repo.dart';
 
@@ -48,4 +49,42 @@ class ThePlanRepoImpl implements ThePlanRepo
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, DeleteFromPlanModel>> deleteBookingHotel({required int tripId, required int citiesHotelId}) async {
+     try {
+      var deletedata = await apiServer.delete(
+        endPoint: 'deleteBookingHotel/$tripId/$citiesHotelId}',
+       
+      );
+      DeleteFromPlanModel deleteFromPlanModel =
+          DeleteFromPlanModel.fromJson(deletedata);
+      return right(deleteFromPlanModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, DeleteFromPlanModel>> deleteTicket({required int bookingTicketId}) async {
+     try {
+      var deletedata = await apiServer.delete(
+        endPoint: 'deleteBookingHotel/$bookingTicketId}',
+       
+      );
+      DeleteFromPlanModel deleteFromPlanModel =
+          DeleteFromPlanModel.fromJson(deletedata);
+      return right(deleteFromPlanModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+  
+
  }

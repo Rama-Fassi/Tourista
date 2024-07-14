@@ -54,7 +54,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       listener: (context, state) {
         if (state is GetUserInfoSuccess) {
           isLoading = false;
-        
+          print('the token: ${Hive.box(kTokenBox).get(kTokenRef)}'.toString());
+
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
 
           Hive.box(kUserInfoBox)
@@ -156,7 +157,8 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   textButtondata: LocaleKeys.sign_up.tr(),
                   onPressed: () {
                     GoRouter.of(context).push(AppRouter.kSignUp);
-                  }, mainAxisAlignment: MainAxisAlignment.center,
+                  },
+                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
               ],
             ),

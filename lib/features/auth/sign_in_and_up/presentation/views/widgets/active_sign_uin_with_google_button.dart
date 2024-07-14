@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
@@ -20,6 +20,9 @@ class ActiveSigninWithGoogleButton extends StatelessWidget {
     return BlocListener<SentgoogleUserinfoCubit, SentGoogleUserInfoState>(
       listener: (context, state) async {
         if (state is SentGoogleUserInfoSuccess) {
+          Hive.box(kTokenBox).put(kTokenRef, state.signInWithGoogleModel.token);
+          print(Hive.box(kTokenBox)
+              .put(kTokenRef, state.signInWithGoogleModel.token));
           await BlocProvider.of<GetUserInfoCubit>(context).getUserInfo();
         } else if (state is SentGoogleUserInfoFailure) {
           customSnackBar(context, state.errMessage);
