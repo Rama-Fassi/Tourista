@@ -1,17 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/stars_main_row.dart';
 
+import '../../../../stays/presentation/views/widgets/hotel_main_card_price_and_description.dart';
 import '../../manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 
 class HotelsListView extends StatelessWidget {
   const HotelsListView({
     super.key,
     required this.state,
+    required this.tripId,
+    required this.width,
+    required this.height,
   });
   final GetUserPrivatePlanSuccess state;
+  final int tripId;
+  final double width;
+  final double height;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -30,12 +39,12 @@ class HotelsListView extends StatelessWidget {
                     child: Image.network(
                         '$kBaseUrl${state.getUserPrivatePlanModel.hotels![hotelindex].images![0]}',
                         fit: BoxFit.cover,
-                        height: 245,
+                        height: 200,
                         width: MediaQuery.of(context).size.width * .35),
                   ),
                   const Gap(8),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .4,
+                    width: MediaQuery.of(context).size.width * .5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,10 +60,22 @@ class HotelsListView extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: AppStyles.styleQuickBold22(context),
                             ),
-                            const Gap(8),
+                            const Gap(10),
                             StarsMainRow(
                               hotel: state
                                   .getUserPrivatePlanModel.hotels![hotelindex],
+                            ),
+                            const Gap(10),
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: HotelMainCardPriceAndDescription(
+                                tripId: tripId,
+                                width: width,
+                                height: height,
+                                hotel: state.getUserPrivatePlanModel
+                                    .hotels![hotelindex],
+                                showButton: false,
+                              ),
                             )
                           ],
                         ),

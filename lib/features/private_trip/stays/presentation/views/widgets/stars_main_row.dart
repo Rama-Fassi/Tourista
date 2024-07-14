@@ -12,8 +12,12 @@ class StarsMainRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(hotel.hotelInfo!.rate!,
-          (index) => SvgPicture.asset(Assets.imagesIconsYellowStars)),
+      children: List.generate(
+          hotel.hotelInfo!.rate!,
+          (index) => Padding(
+                padding: const EdgeInsets.only(right: 5.0),
+                child: SvgPicture.asset(Assets.imagesIconsYellowStars),
+              )),
     );
   }
 }

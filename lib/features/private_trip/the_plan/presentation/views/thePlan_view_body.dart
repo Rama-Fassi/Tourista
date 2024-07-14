@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -8,13 +7,8 @@ import 'package:tourista/core/widgets/snak_bar_widget.dart';
 import 'package:tourista/features/private_trip/main/data/models/create_trip_model/create_trip_model.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/the_plan_container.dart';
-
-import '../../../../../core/translations/locale_keys.g.dart';
-import '../../../../../core/utlis/functions/custom_snack_bar.dart';
-import '../../../../profile/presentation/views/functions/show_confirmation_dialog.dart';
-import '../../../activities/presentation/views/widgets/activities_button.dart';
-import '../manager/final_booking_private_trip/final_booking_private_trip_cubit.dart';
 import 'widgets/display_all_activities.dart';
+import 'widgets/final_booking_button.dart';
 import 'widgets/hotels_list_view.dart';
 
 class ThePlanViewBody extends StatefulWidget {
@@ -51,12 +45,27 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
                   SliverList(
                     delegate: SliverChildListDelegate(
                       [
+                        //Ticket
+                        ThePlanContainer(
+                            data: 'The Ticket',
+                            screenwidth: screenWidth,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
+                              child: Text(
+                                'there is no ticket ui',
+                                style: AppStyles.styleInterRegular18(context),
+                              ),
+                            )),
                         //Hotels
                         ThePlanContainer(
                           data: 'The Hotels',
                           screenwidth: screenWidth,
-                          child: displayHotelsList(state),
+                          child: displayHotelsList(state,
+                              tripId: widget.createTripModel.tripId!.id,
+                              width: screenWidth,
+                              height: screenHeight),
                         ),
+
                         // Activities
                         ThePlanContainer(
                           data: 'The Activities',
@@ -64,50 +73,17 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
                           child: displayActivitiesList(state),
                         ),
                         Gap(screenHeight * .15),
-
-                        // Button
                       ],
                     ),
                   ),
                 ],
               ),
               const SizedBox(),
-              BlocListener<FinalBookingPrivateTripCubit,
-                  FinalBookingPrivateTripState>(
-                listener: (context, state) {
-                  if (state is FinalBookingPrivateTripSuccess) {
-                    Navigator.of(context).popUntil((route) => route.isFirst);
-                  } else if (state is FinalBookingPrivateTripFailure) {
-                    customSnackBar(context, state.errMessage);
-                  } else {
-                    showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (BuildContext context) {
-                        return const LoadingWidget();
-                      },
-                    );
-                  }
-                },
-                child: CustomAddButton(
-                  finalPrice: state.getUserPrivatePlanModel.finalPrice,
-                  screenWidth: screenWidth,
-                  screenheight: screenHeight,
-                  onTap: () {
-                    ShowConfirmationDialog().showConfirmationDialog(
-                        context: context,
-                        titleText: LocaleKeys.Confirmation.tr(),
-                        contentText: 'Are You sure?',
-                        onConfirmPressed: () {
-                          BlocProvider.of<FinalBookingPrivateTripCubit>(context)
-                              .finalBookingPrivateTrip(
-                                  tripId: widget.createTripModel.tripId!.id);
-                        },
-                        cancel: true);
-                  },
-                  text: 'Submit this trip',
-                  theplan: true,
-                ),
+              FinalBookingButton(
+                screenWidth: screenWidth,
+                screenHeight: screenHeight,
+                widget: widget,
+                finalPrice: state.getUserPrivatePlanModel.finalPrice!,
               )
             ]),
           );
@@ -144,14 +120,17 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
     );
   }
 
-  dynamic displayHotelsList(GetUserPrivatePlanSuccess state) {
+  dynamic displayHotelsList(GetUserPrivatePlanSuccess state,
+      {tripId, width, height}) {
     state.getUserPrivatePlanModel.hotels!.isEmpty
         ? isEmpty = true
         : isEmpty = false;
-    print(isEmpty.toString());
     return isEmpty == false
         ? HotelsListView(
             state: state,
+            tripId: tripId,
+            height: height,
+            width: width,
           )
         : Padding(
             padding: const EdgeInsets.only(top: 15.0),
