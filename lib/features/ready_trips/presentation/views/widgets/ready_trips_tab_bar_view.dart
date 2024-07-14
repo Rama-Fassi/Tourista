@@ -28,7 +28,9 @@ class ReadyTripsTabBarView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         children: [
-          const ReadyTripsSortBy(),
+          ReadyTripsSortBy(
+            classificationId: value,
+          ),
           BlocBuilder<AllReadyTripsCubit, AllReadyTripsState>(
             builder: (context, state) {
               if (state is AllReadyTripsSuccess) {

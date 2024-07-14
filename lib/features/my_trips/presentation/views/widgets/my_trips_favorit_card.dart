@@ -31,15 +31,21 @@ class MyTripsFavoritCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  publicTrip.name!,
-                  style: AppStyles.styleInterBold25(context)
-                      .copyWith(color: Colors.white),
+                Container(
+                  color: Colors.black26,
+                  child: Text(
+                    publicTrip.name!,
+                    style: AppStyles.styleInterBold25(context)
+                        .copyWith(color: Colors.white),
+                  ),
                 ),
-                Text(
-                  '${getSeason(DateTime.parse(publicTrip.dateOfTrip!))} ${DateTime.parse(publicTrip.dateOfTrip!).year}  ${DateTime.parse(publicTrip.dateOfTrip!).difference(DateTime.parse(publicTrip.dateEndOfTrip!)).inDays} days',
-                  style: AppStyles.styleInterMedium18(context)
-                      .copyWith(color: Colors.white),
+                Container(
+                  color: Colors.black26,
+                  child: Text(
+                    '${getSeason(DateTime.parse(publicTrip.dateOfTrip!))} ${DateTime.parse(publicTrip.dateOfTrip!).year} - ${DateTime.parse(publicTrip.dateOfTrip!).difference(DateTime.parse(publicTrip.dateEndOfTrip!)).inDays.toString().substring(1)} days',
+                    style: AppStyles.styleInterMedium18(context)
+                        .copyWith(color: Colors.white),
+                  ),
                 )
               ],
             ),

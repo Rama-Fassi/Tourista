@@ -11,27 +11,33 @@ class FavoritShimmerLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
-    return Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[200]!,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey[300]!,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16))),
-              width: screenWidth,
-              height: height * 0.21,
-              child: Container(
-                color: Colors.white,
-              ),
-            ),
-            const Gap(10),
-            Gap(26)
-          ],
-        ));
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[200]!,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300]!,
+                        borderRadius: BorderRadius.circular(15)),
+                    width: screenWidth,
+                    height: height * 0.21,
+                    child: Container(
+                      color: Colors.white,
+                    ),
+                  ),
+                  const Gap(10),
+                  Gap(26)
+                ],
+              ));
+        },
+      ),
+    );
   }
 }

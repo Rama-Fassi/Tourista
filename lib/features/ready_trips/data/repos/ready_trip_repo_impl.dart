@@ -17,14 +17,21 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
 
   @override
   Future<Either<Failure, AllReadyTripsModel>> getAllReadyTrips(
-      {int? classificationId}) async {
+      {int? classificationId, String? sortBy}) async {
     try {
       var data = await apiServer.post(
-          endPoint: 'allPublicTrips',
+          endPoint: 'publicTripSortBy',
           token: kToken,
-          body: classificationId == null
+          body: classificationId == null && sortBy == null
               ? {}
-              : {'classification_id': classificationId});
+              : sortBy == null
+                  ? {'classification_id': classificationId}
+                  : classificationId == null
+                      ? {'sortBy': sortBy}
+                      : {
+                          'classification_id': classificationId,
+                          'sortBy': sortBy
+                        });
       AllReadyTripsModel allReadyTripsModel = AllReadyTripsModel.fromJson(data);
       return right(allReadyTripsModel);
     } catch (e) {

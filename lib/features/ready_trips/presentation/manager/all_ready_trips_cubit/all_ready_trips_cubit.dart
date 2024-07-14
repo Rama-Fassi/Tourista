@@ -8,10 +8,10 @@ part 'all_ready_trips_state.dart';
 class AllReadyTripsCubit extends Cubit<AllReadyTripsState> {
   AllReadyTripsCubit(this.readyTripsRepoImpl) : super(AllReadyTripsInitial());
   ReadyTripsRepoImpl readyTripsRepoImpl;
-  Future<void> getAllReadyTripsFun({int? classificationId}) async {
+  Future<void> getAllReadyTripsFun({int? classificationId,String? sortBy}) async {
     emit(AllReadyTripsLoading());
     var result = await readyTripsRepoImpl.getAllReadyTrips(
-        classificationId: classificationId);
+        classificationId: classificationId,sortBy: sortBy);
 
     result.fold((failure) {
       emit(AllReadyTripsFailure(errMessage: failure.errMessage));
