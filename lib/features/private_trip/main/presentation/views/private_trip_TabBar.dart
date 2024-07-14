@@ -17,6 +17,7 @@ import 'package:tourista/features/private_trip/main/presentation/views/widgets/c
 import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.dart';
 import 'package:tourista/features/private_trip/stays/presentation/manager/hotels_cubit/hotels_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/stays_view_body.dart';
+import 'package:tourista/features/private_trip/the_plan/presentation/manager/final_booking_private_trip/final_booking_private_trip_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/thePlan_view_body.dart';
 import '../../../../../core/utlis/service_locator.dart';
@@ -56,10 +57,13 @@ class PrivateTripTapBar extends StatelessWidget {
               create: (context) =>
                   GetTripDaysCubit(getIt.get<ActivitiesRepoImpl>()),
             ),
-               BlocProvider(
+            BlocProvider(
               create: (context) =>
                   GetUserPrivatePlanCubit(getIt.get<ThePlanRepoImpl>()),
             ),
+            BlocProvider(
+                create: (context) =>
+                    FinalBookingPrivateTripCubit(getIt.get<ThePlanRepoImpl>())),
           ],
           child: Scaffold(
             appBar: AppBar(

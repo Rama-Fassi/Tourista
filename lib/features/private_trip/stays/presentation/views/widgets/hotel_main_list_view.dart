@@ -25,7 +25,7 @@ class HotelMainListView extends StatelessWidget {
             tripId: tripId,
             width: width,
             height: height,
-            hotel: hotels[index],
+            hotel: hotels[index], showButton: true,
           ),
         );
       },

@@ -40,7 +40,7 @@ class ActivitiesTabBarView extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: ActivitiesButton(
+              child: CustomAddButton(theplan: false,
                 screenWidth: screenWidth,
                 onTap: () {
                   Navigator.pop(context);

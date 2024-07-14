@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'widgets/custom_colorful_tabBar.dart';
 import 'widgets/custom_search_text_field.dart';
 import 'widgets/activities_tabbar_view.dart';
@@ -30,9 +32,13 @@ class ActivitiesView extends StatelessWidget {
               },
             ),
             toolbarHeight: 100,
-            title: const SizedBox(
+            title: SizedBox(
               height: 55,
-              child: CustomSearchTextField(),
+              child: CustomSearchTextField(
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kSearchActivityView);
+                },
+              ),
             ),
             bottom: const PreferredSize(
               preferredSize: Size.fromHeight(30),

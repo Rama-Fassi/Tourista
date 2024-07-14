@@ -4,13 +4,15 @@ import 'package:tourista/core/utlis/styles.dart';
 
 class DateText extends StatelessWidget {
   const DateText({
-    super.key, required this.theDate,
+    super.key, required this.theDateString,
   });
 
-  final DateTime theDate;
+  final String theDateString;
 
   @override
   Widget build(BuildContext context) {
+       DateTime     theDate = DateFormat('yyyy-MM-dd').parse(theDateString);
+
     return Align(
         alignment: Alignment.centerLeft,
         child: Text(

@@ -15,13 +15,13 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotel,
-    required this.tripId,
+    required this.tripId, required this.showButton,
   });
   final Hotel hotel;
   final double width;
   final double height;
   final int tripId;
-
+  final bool showButton;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +45,7 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
           style: AppStyles.styleSourceBold25(context),
         ),
         const Gap(4),
-        CustomButton(
+     showButton == true?   CustomButton(
             onTap: () => GoRouter.of(context).push(AppRouter.kHotelDetailsView,
                 extra: {'tripId': tripId, 'hotel': hotel}),
             text: LocaleKeys.show.tr(),
@@ -54,7 +54,7 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
             height: height * .035,
             style: AppStyles.styleSourceBold16(context)
                 .copyWith(color: Colors.white),
-            color: kPrimaryColor.withOpacity(.8))
+            color: kPrimaryColor.withOpacity(.8)) : const SizedBox()
       ],
     );
   }

@@ -24,6 +24,7 @@ import 'package:tourista/features/auth/forget_password/presentation/views/verify
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/views/search_activity_view.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_to_cubit/airport_where_to_cubit.dart';
@@ -78,6 +79,8 @@ abstract class AppRouter {
   static const kWhereFromAirportView = '/whereFromAirportView';
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
+    static const kSearchActivityView = '/SearchActivityView';
+
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
@@ -365,6 +368,10 @@ abstract class AppRouter {
           child: ActivitiesView(
               activitiesdaysInfo: state.extra as Map<String, dynamic>),
         ),
+      ),
+         GoRoute(
+        path: kSearchActivityView,
+        builder: (context, state) => const SearchActivityView(),
       ),
       GoRoute(
         path: kActivityDetailsView,

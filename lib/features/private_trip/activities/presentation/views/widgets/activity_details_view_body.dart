@@ -73,7 +73,7 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
       SizedBox(
         height: MediaQuery.of(context).size.height,
       ),
-      ActivitiesButton(
+      CustomAddButton(theplan: false,
         screenWidth: screenWidth,
         onTap: () {
           cubit.setactivitiesCardData(widget.dayIndex, {

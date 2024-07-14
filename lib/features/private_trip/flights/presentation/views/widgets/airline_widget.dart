@@ -20,7 +20,7 @@ class AirlineWidget extends StatelessWidget {
           width: 20,
           height: 20,
 
-          imageUrl: '$kBaseUrl${ticket.airLine?.image}'??'',
+          imageUrl: '$kBaseUrl${ticket.airLine?.image}',
           // placeholder: (context, url) => Center(
           //   child: CircularProgressIndicator(),
           // ),

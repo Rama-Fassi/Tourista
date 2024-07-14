@@ -1,5 +1,6 @@
+import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
+
 import 'get_tourism_places/get_tourism_places.dart';
-import 'hotel.dart';
 import 'ticket.dart';
 
 class GetUserPrivatePlanModel {

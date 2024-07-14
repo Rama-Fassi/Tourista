@@ -154,7 +154,7 @@ class _CustomActivityCardState extends State<CustomActivityCard> {
                                 color: kPrimaryColor),
                           ),
                         ),
-                        const Gap(5),
+                        const Gap(15),
                       ],
                     ),
                   ),

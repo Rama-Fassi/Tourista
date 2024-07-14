@@ -71,12 +71,10 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                         dayId = state.getTripDaysModel.days![index].id!;
                         theDateString =
                             state.getTripDaysModel.days![index].date;
-                        theDate =
-                            DateFormat('yyyy-MM-dd').parse(theDateString!);
                         return Column(
                           children: [
                             const Gap(20),
-                            DateText(theDate: theDate),
+                            DateText(theDateString: theDateString!),
                             const Gap(20),
                             BlocBuilder<ActivityCardCubit, ActivityCardState>(
                               builder: (context, state) {
@@ -143,12 +141,12 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                             if (state is ActivitiesPlanLoading) {
                               return const LoadingWidget();
                             } else {
-                              return ActivitiesButton(
+                              return CustomAddButton(
                                 screenWidth: screenWidth,
                                 onTap: () {
                                   BlocProvider.of<ActivitiesPlanCubit>(context)
                                       .postActivitiesPlan(body: activitiesPlan);
-                                },
+                                }, theplan: false,
                               );
                             }
                           },
