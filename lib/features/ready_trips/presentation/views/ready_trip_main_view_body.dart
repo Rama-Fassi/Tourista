@@ -14,9 +14,15 @@ class ReadyTripMainViewBody extends StatefulWidget {
 class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
     with TickerProviderStateMixin {
   late TabController tabController;
+  int activeTabIndex = 0;
   @override
   void initState() {
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 5, vsync: this)
+      ..addListener(() {
+        setState(() {
+          activeTabIndex = tabController.index;
+        });
+      });
     super.initState();
   }
 
@@ -30,9 +36,11 @@ class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: ReadyTripsAppBar(),
+          child: ReadyTripsAppBar(
+            index: activeTabIndex,
+          ),
         ),
         ReadyTripsTabBar(tabController: tabController),
         Expanded(

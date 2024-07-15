@@ -17,21 +17,35 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
 
   @override
   Future<Either<Failure, AllReadyTripsModel>> getAllReadyTrips(
-      {int? classificationId, String? sortBy}) async {
+      {int? classificationId, String? sortBy, String? search}) async {
     try {
+      Map<String, dynamic> queryParams = {};
+      if (classificationId == null &&
+          sortBy == null &&
+          (search == null || search.isEmpty)) {
+        queryParams = {};
+      } else if (sortBy == null && (search == null || search.isEmpty)) {
+        queryParams = {'classification_id': classificationId};
+      } else if (classificationId == null &&
+          (search == null || search.isEmpty)) {
+        queryParams = {'sortBy': sortBy};
+      } else if (classificationId == null && sortBy == null) {
+        queryParams = {'search': search};
+      } else if (sortBy == null) {
+        queryParams = {'classification_id': classificationId, 'search': search};
+      } else if (classificationId == null) {
+        queryParams = {'sortBy': sortBy, 'search': search};
+      } else if (search == null || search.isEmpty) {
+        queryParams = {'classification_id': classificationId, 'sortBy': sortBy};
+      } else {
+        queryParams = {
+          'classification_id': classificationId,
+          'sortBy': sortBy,
+          'search': search
+        };
+      }
       var data = await apiServer.post(
-          endPoint: 'publicTripSortBy',
-          token: kToken,
-          body: classificationId == null && sortBy == null
-              ? {}
-              : sortBy == null
-                  ? {'classification_id': classificationId}
-                  : classificationId == null
-                      ? {'sortBy': sortBy}
-                      : {
-                          'classification_id': classificationId,
-                          'sortBy': sortBy
-                        });
+          endPoint: 'publicTripSortBy', token: kToken, body: queryParams);
       AllReadyTripsModel allReadyTripsModel = AllReadyTripsModel.fromJson(data);
       return right(allReadyTripsModel);
     } catch (e) {

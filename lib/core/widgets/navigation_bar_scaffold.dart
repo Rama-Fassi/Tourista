@@ -58,6 +58,7 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
           ),
         ],
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: floatingActionButton(),

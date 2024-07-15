@@ -8,7 +8,7 @@ import 'package:tourista/features/ready_trips/data/models/trip_booking_model/tri
 
 abstract class ReadyTripsRepo {
   Future<Either<Failure, AllReadyTripsModel>> getAllReadyTrips(
-      {int? classificationId, String? sortBy});
+      {int? classificationId, String? sortBy, String? search});
   Future<Either<Failure, ReadyTripsDetailsModel>> getReadyTripDetails(
       {required int tripId});
   Future<Either<Failure, ReadyTripsPointModel>> getReadyTripPoints(
