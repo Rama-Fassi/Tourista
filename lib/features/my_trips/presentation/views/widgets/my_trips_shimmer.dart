@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shimmer/shimmer.dart';
 
-class FavoritShimmerLoading extends StatelessWidget {
-  const FavoritShimmerLoading({
+class MyTripsShimmerLoading extends StatelessWidget {
+  const MyTripsShimmerLoading({
     super.key,
   });
 
