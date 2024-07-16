@@ -51,11 +51,6 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
             create: (context) =>
                 AddFavoritTripCubit(getIt.get<ReadyTripsRepoImpl>()),
           ),
-          BlocProvider(
-            create: (context) =>
-                AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
-                  ..getAllReadyTripsFun(),
-          ),
         ],
         child: Scaffold(
           resizeToAvoidBottomInset: false,

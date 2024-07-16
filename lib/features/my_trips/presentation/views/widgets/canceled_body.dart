@@ -28,8 +28,7 @@ class CanceledBody extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: EmptyTrips(
-                  desc:
-                      'Go And Book Your Trip And Experience The World With Us!!',
+                  desc: 'Go, Book Your Trip And Experience The World With Us!!',
                 ),
               );
             } else {

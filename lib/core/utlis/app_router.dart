@@ -22,6 +22,9 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/active_public_trip_details_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/canceled_public_trip_details_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/past_public_trip_details_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
@@ -101,6 +104,10 @@ abstract class AppRouter {
   static const kApplyTheTripView = '/ApplyTheTripView';
   static const kverifyNewPhoneview = '/verifyNewPhoneview';
   static const kreadyTripHotelDetailsview = '/readyTripHotelDetailsview';
+  static const kpastPublicTripDetailsview = '/pastPublicTripDetailsview';
+  static const kActivePublicTripDetailsview = '/activePublicTripDetailsview';
+  static const kCanceledPublicTripDetailsview =
+      '/canceledPublicTripDetailsview';
 
   static final router = GoRouter(
     routes: [
@@ -456,6 +463,54 @@ abstract class AppRouter {
         path: kreadyTripHotelDetailsview,
         builder: (context, state) => ReadyTripHotelDtailsView(
           citiesHotel: state.extra as CitiesHotel,
+        ),
+      ),
+      GoRoute(
+        path: kpastPublicTripDetailsview,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: PastPublicTripDetailsView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kActivePublicTripDetailsview,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: ActivePublicTripDetailsView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kCanceledPublicTripDetailsview,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: CanceledPublicTripDetailsView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
         ),
       ),
     ],
