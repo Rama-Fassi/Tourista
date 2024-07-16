@@ -24,18 +24,21 @@ class ThePlanContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Container(
         width: screenwidth,
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(
-              spreadRadius: 2,
-              blurRadius: 5,
-              color: Colors.grey.shade300,
-              offset: const Offset(-3, 3)),
-          BoxShadow(
-              spreadRadius: 2,
-              blurRadius: 5,
-              color: Colors.grey.shade300,
-              offset: const Offset(3, -3))
-        ]),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  color: Colors.grey.shade300,
+                  offset: const Offset(-2, 2)),
+              BoxShadow(
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  color: Colors.grey.shade300,
+                  offset: const Offset(2, -2))
+            ],
+            borderRadius: BorderRadius.circular(2)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
           child: Column(

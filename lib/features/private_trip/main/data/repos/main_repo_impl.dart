@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
@@ -45,7 +46,8 @@ class MainRepoImpl implements MainRepo {
             'dateEndOfTrip': dateEndOfTrip,
             'numOfPersons': personNumber
           },
-          token: kToken);
+          token: Hive.box(kTokenBox).get(kTokenRef));
+      print(Hive.box(kTokenBox).get(kTokenRef));
 
       CreateTripModel createTripModel = CreateTripModel.fromJson(data);
       return right(createTripModel);
