@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/widgets/err_animation.dart';
 import 'package:tourista/features/my_trips/data/repos/my_trips_repo_impl.dart';
@@ -7,6 +9,7 @@ import 'package:tourista/features/my_trips/presentation/manager/canceled_trips_c
 import 'package:tourista/features/my_trips/presentation/views/widgets/empty_trips.dart';
 import 'package:tourista/features/my_trips/presentation/views/widgets/my_trips_card.dart';
 import 'package:tourista/features/my_trips/presentation/views/widgets/my_trips_shimmer.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/ready_trip_details_cubit/ready_trip_details_cubit.dart';
 
 class CanceledBody extends StatelessWidget {
   const CanceledBody({
@@ -38,7 +41,17 @@ class CanceledBody extends StatelessWidget {
                   itemCount: state.allTripsModel.allTrips!.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        if (state.allTripsModel.allTrips![index].type ==
+                            'public') {
+                          BlocProvider.of<ReadyTripDetailsCubit>(context)
+                              .getReadyTripDetailsFun(
+                                  tripId:
+                                      state.allTripsModel.allTrips![index].id!);
+                          GoRouter.of(context)
+                              .push(AppRouter.kCanceledPublicTripDetailsview);
+                        }
+                      },
                       child: MyTripsCard(
                         allTrip: state.allTripsModel.allTrips![index],
                       ),
