@@ -27,15 +27,6 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        SizedBox(
-          width: width * .3,
-          child: Text(
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            hotel.description!,
-            style: AppStyles.styleSourceRegular14(context),
-          ),
-        ),
         Text(
           LocaleKeys.averagePrice.tr(),
           style: AppStyles.styleSourceSemiBold18(context),

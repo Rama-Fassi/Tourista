@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_card_title.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_review_row.dart';
@@ -30,7 +31,17 @@ class HotelMainCardTitleAndReviewColumn extends StatelessWidget {
         const Gap(4),
         HotelMainReviewRow(
           hotel: hotel,
-        )
+        ),
+        const Gap(4),
+        SizedBox(
+          width: width * .3,
+          child: Text(
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            hotel.description!,
+            style: AppStyles.styleSourceRegular14(context),
+          ),
+        ),
       ],
     );
   }

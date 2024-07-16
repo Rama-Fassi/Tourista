@@ -56,25 +56,21 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
           resizeToAvoidBottomInset: false,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: floatingActionButton(),
+          floatingActionButton: floatingActionButton(context),
           bottomNavigationBar: animatedBottomNavigationaBar(iconList),
           body: activeIndex == -1
-              ? BlocProvider(
-                  create: (context) =>
-                      AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
-                        ..getAllReadyTripsFun(),
-                  child: const ReadyTripMainViewBody(),
-                )
+              ? const ReadyTripMainViewBody()
               : navList.elementAt(activeIndex),
         ),
       ),
     );
   }
 
-  FloatingActionButton floatingActionButton() {
+  FloatingActionButton floatingActionButton(BuildContext context) {
     return FloatingActionButton(
       shape: const CircleBorder(),
       onPressed: () {
+        BlocProvider.of<AllReadyTripsCubit>(context).getAllReadyTripsFun();
         setState(() {
           activeIndex = -1;
         });
