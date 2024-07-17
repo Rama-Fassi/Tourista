@@ -19,21 +19,12 @@ class SignInCubit extends Cubit<SignInState> {
   }) async {
     emit(SignInLoading());
     var result = await authRepo.signIn(phone: phone, password: password);
-
     result.fold((failure) {
-      if (kDebugMode) {
-        print(failure.errMessage.toString());
-      }
       emit(SignInFailure(failure.errMessage));
     }, (signInModel) async {
       Hive.box(kTokenBox).put(kTokenRef, signInModel.token);
       Hive.box(kUserInfoBox).deleteAll(
           [kUserNameRef, kUserPhoneRef, kUserEmailRef, kUserPointsRef]);
-
-      if (kDebugMode) {
-         print(Hive.box(kTokenBox).get(kTokenRef));
-      }
-
       emit(SignInSuccess(signInModel: signInModel));
     });
   }

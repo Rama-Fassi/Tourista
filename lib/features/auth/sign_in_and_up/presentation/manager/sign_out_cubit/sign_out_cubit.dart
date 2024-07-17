@@ -21,9 +21,6 @@ class SignOutCubit extends Cubit<SignOutState> {
 
     result.fold((failure) {
       emit(SignOutFailure(failure.errMessage));
-      if (kDebugMode) {
-        print(failure.errMessage.toString());
-      }
     }, (signOutModel) {
       emit(SignOutSuccess(signOutModel));
     });

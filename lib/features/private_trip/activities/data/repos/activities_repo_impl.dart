@@ -18,7 +18,7 @@ class ActivitiesRepoImpl implements ActivitiesRepo {
       {required String? tourismTybe, required int tripId}) async {
     try {
       var activitiesData = await apiServer.post(
-        endPoint: 'getTourismPlaces/${tripId}}',
+        endPoint: 'getTourismPlaces/$tripId}',
         body: {
           "type": tourismTybe,
         },

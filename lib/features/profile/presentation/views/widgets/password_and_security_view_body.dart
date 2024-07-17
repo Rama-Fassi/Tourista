@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/widgets/custom_auth_button.dart';
@@ -112,32 +111,29 @@ class _PasswordAndSecurityViewBodyState
             listener: (context, state) {
               if (state is ChangePasswordSuccess) {
                 customSuccessSnackBar(context, LocaleKeys.password_update.tr());
-                GoRouter.of(context).pop();
               } else if (state is ChangePasswordFailure) {
                 customSnackBar(context, state.errMessage);
               }
             },
-          
-              builder: (context, state) {
-                return state is ChangePasswordLoading
-                    ? const SpinKitThreeBounce(
-                        color: kGreenColor,
-                        size: 30,
-                      )
-                    : CustomAuthButton(
-                        text: LocaleKeys.confirm.tr(),
-                        width: scereenWidth,
-                        onTap: () {
-                          BlocProvider.of<ChangePasswordCubit>(context)
-                              .changePassword(
-                                  password: currentPassword,
-                                  newPassword: password,
-                                  confirnPassword: confirmPassword);
-                        },
-                      );
-              },
-            ),
-          
+            builder: (context, state) {
+              return state is ChangePasswordLoading
+                  ? const SpinKitThreeBounce(
+                      color: kGreenColor,
+                      size: 30,
+                    )
+                  : CustomAuthButton(
+                      text: LocaleKeys.confirm.tr(),
+                      width: scereenWidth,
+                      onTap: () {
+                        BlocProvider.of<ChangePasswordCubit>(context)
+                            .changePassword(
+                                password: currentPassword,
+                                newPassword: password,
+                                confirnPassword: confirmPassword);
+                      },
+                    );
+            },
+          ),
         ],
       ),
     );
