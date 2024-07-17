@@ -1,27 +1,38 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/ready_trips_details_model.dart';
 
 class CompactCalendarWidget extends StatefulWidget {
-  const CompactCalendarWidget({super.key});
-
+  const CompactCalendarWidget(
+      {super.key, required this.readyTripsDetailsModel});
+  final ReadyTripsDetailsModel readyTripsDetailsModel;
   @override
   State<CompactCalendarWidget> createState() => _CompactCalendarWidgetState();
 }
 
 class _CompactCalendarWidgetState extends State<CompactCalendarWidget> {
-  CalendarFormat _calendarFormat = CalendarFormat.week;
-  DateTime rangeStart = DateTime(2024, 6, 15);
-  DateTime rangeEnd = DateTime(2024, 6, 20);
-
+  CalendarFormat calendarFormat = CalendarFormat.week;
   @override
   Widget build(BuildContext context) {
+    String date1String = widget.readyTripsDetailsModel.publicTrip!.dateOfTrip!;
+    DateTime dateOfTrip = DateFormat('yyyy-MM-dd').parse(date1String);
+    String date2String =
+        widget.readyTripsDetailsModel.publicTrip!.dateEndOfTrip!;
+    DateTime dateEndOfTrip = DateFormat('yyyy-MM-dd').parse(date2String);
+    DateTime rangeStart =
+        DateTime(dateOfTrip.year, dateOfTrip.month, dateOfTrip.day);
+    DateTime rangeEnd =
+        DateTime(dateEndOfTrip.year, dateEndOfTrip.month, dateEndOfTrip.day);
+
     return TableCalendar(
       onFormatChanged: (format) {
-        _calendarFormat = format;
-        setState(() {});
+        setState(() {
+          calendarFormat = format;
+        });
       },
-      calendarFormat: _calendarFormat,
+      calendarFormat: calendarFormat,
       firstDay: rangeStart,
       lastDay: rangeEnd,
       focusedDay: rangeStart,

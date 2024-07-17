@@ -1,13 +1,13 @@
 class SignOutModel {
-	String? message;
+  String? message;
 
-	SignOutModel({this.message});
+  SignOutModel({this.message});
 
-	factory SignOutModel.fromJson(Map<String, dynamic> json) => SignOutModel(
-				message: json['message'] as String?,
-			);
+  factory SignOutModel.fromJson(Map<String, dynamic> json) => SignOutModel(
+        message: json['message'] as String?,
+      );
 
-	Map<String, dynamic> toJson() => {
-				'message': message,
-			};
+  Map<String, dynamic> toJson() => {
+        'message': message,
+      };
 }

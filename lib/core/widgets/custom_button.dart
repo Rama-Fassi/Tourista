@@ -11,7 +11,8 @@ class CustomButton extends StatelessWidget {
       this.padding,
       required this.height,
       required this.style,
-      required this.color, this.boxShadow});
+      required this.color,
+      this.boxShadow});
   String text;
   Function()? onTap;
   final double width;

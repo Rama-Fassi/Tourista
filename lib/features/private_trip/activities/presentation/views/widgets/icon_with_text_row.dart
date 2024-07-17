@@ -5,15 +5,17 @@ import 'package:gap/gap.dart';
 import '../../../../../../core/utlis/styles.dart';
 
 class IconWithTextRow extends StatelessWidget {
-  const IconWithTextRow({
-    super.key,
-    required this.assetName,
-    required this.data,
-    this.color,
-  });
+  const IconWithTextRow(
+      {super.key,
+      required this.assetName,
+      required this.data,
+      this.color,
+      this.style,
+      this.imagePhoto});
   final String assetName;
   final String data;
-  final Color? color;
+  final Color? color, imagePhoto;
+  final TextStyle? style;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,13 +24,15 @@ class IconWithTextRow extends StatelessWidget {
           assetName,
           width: 18,
           height: 18,
+          color: imagePhoto,
         ),
         const Gap(13),
         Text(
           data,
-          style: AppStyles.styleQuickBold16(context).copyWith(
-            color: color,
-          ),
+          style: style ??
+              AppStyles.styleQuickBold16(context).copyWith(
+                color: color,
+              ),
         ),
       ],
     );

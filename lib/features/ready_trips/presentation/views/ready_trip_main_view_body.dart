@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_app_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar_view.dart';
@@ -13,9 +14,15 @@ class ReadyTripMainViewBody extends StatefulWidget {
 class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
     with TickerProviderStateMixin {
   late TabController tabController;
+  int activeTabIndex = 0;
   @override
   void initState() {
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 5, vsync: this)
+      ..addListener(() {
+        setState(() {
+          activeTabIndex = tabController.index;
+        });
+      });
     super.initState();
   }
 
@@ -29,20 +36,22 @@ class _ReadyTripMainViewBodyState extends State<ReadyTripMainViewBody>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: ReadyTripsAppBar(),
+          child: ReadyTripsAppBar(
+            index: activeTabIndex,
+          ),
         ),
         ReadyTripsTabBar(tabController: tabController),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height - 187,
+        Expanded(
           child: TabBarView(
               physics: NeverScrollableScrollPhysics(),
               controller: tabController,
               children: List.generate(
                 5,
-                (index) => ReadyTripsTabBarView(),
+                (index) => ReadyTripsTabBarView(
+                  value: index,
+                ),
               )),
         )
       ],

@@ -16,7 +16,6 @@ class AllQuestionsWithTybeCubit extends Cubit<AllQuestionsWithTybeState> {
     emit(AllQuestionsWithTybeLoading());
     var result = await profileRepo.getAllQuestionsWithtybe(tybe: tybe);
 
-
     result.fold((failure) {
       emit(AllQuestionsWithTybeFailure(failure.errMessage));
       if (kDebugMode) {

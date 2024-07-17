@@ -9,7 +9,7 @@ class EnterVerifyCodeSection extends StatelessWidget {
   const EnterVerifyCodeSection({
     super.key,
     required this.screenWidth,
-     required this.controller,
+    required this.controller,
     required this.screenheight,
   });
 

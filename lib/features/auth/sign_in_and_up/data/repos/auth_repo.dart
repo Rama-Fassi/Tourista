@@ -29,11 +29,11 @@ abstract class AuthRepo {
     required String code,
   });
 
- // Future<UserCredential> signInWithGoogle();
+  // Future<UserCredential> signInWithGoogle();
 
   Future<Either<Failure, SignInWithGoogleModel>> sentSignInWithGoogleUserInfo({
-  required  String name,
-   required String email,
-   required String googleUserId,
+    required String name,
+    required String email,
+    required String googleUserId,
   });
 }

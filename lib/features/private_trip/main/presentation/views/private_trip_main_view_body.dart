@@ -33,7 +33,6 @@ class PrivatTripMainViewBody extends StatelessWidget {
             onTap: () {
               GoRouter.of(context).push(AppRouter.kSelectLocationView);
             },
-
             text: state.selectedcity?['city'] == null
                 ? LocaleKeys.selectYourLocation.tr()
                 : "${state.selectedcity['city']}",

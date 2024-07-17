@@ -11,6 +11,9 @@ import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.da
 import 'package:tourista/features/private_trip/main/presentation/manager/create_trip_cubit/create_trip_cubit.dart';
 import 'package:tourista/features/private_trip/main/presentation/views/private_trip_main_view_body.dart';
 import 'package:tourista/features/profile/presentation/views/profile_view_body.dart';
+import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/add_favorit_trip_cubit/add_favorit_trip_cubit.dart';
+import 'package:tourista/features/ready_trips/presentation/manager/all_ready_trips_cubit/all_ready_trips_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
 
@@ -27,8 +30,10 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     const AttractionsViewBody(),
     const PrivatTripMainViewBody(),
     const ProfileViewBody(),
+    const ProfileViewBody(),
   ];
   int activeIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     var iconList = [
@@ -37,28 +42,37 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
       Icons.widgets_outlined,
       Icons.account_circle_outlined
     ];
+
     return SafeArea(
-        child: MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
-        ),
-      ],
-      child: Scaffold(
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CreateTripCubit(getIt.get<MainRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                AddFavoritTripCubit(getIt.get<ReadyTripsRepoImpl>()),
+          ),
+        ],
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: floatingActionButton(),
+          floatingActionButton: floatingActionButton(context),
           bottomNavigationBar: animatedBottomNavigationaBar(iconList),
           body: activeIndex == -1
               ? const ReadyTripMainViewBody()
-              : navList.elementAt(activeIndex)),
-    ));
+              : navList.elementAt(activeIndex),
+        ),
+      ),
+    );
   }
 
-  FloatingActionButton floatingActionButton() {
+  FloatingActionButton floatingActionButton(BuildContext context) {
     return FloatingActionButton(
       shape: const CircleBorder(),
       onPressed: () {
+        BlocProvider.of<AllReadyTripsCubit>(context).getAllReadyTripsFun();
         setState(() {
           activeIndex = -1;
         });

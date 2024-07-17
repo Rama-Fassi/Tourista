@@ -69,8 +69,8 @@ class _PersonalDetailsViewBodyState extends State<EditPhoneRow> {
                       isEditing = false;
                       FocusScope.of(context).unfocus();
                     });
-                       BlocProvider.of<UpdatePhoneCubit>(context)
-                          .updatePhone(phone: userPhone);
+                    BlocProvider.of<UpdatePhoneCubit>(context)
+                        .updatePhone(phone: userPhone);
                   },
                 )
               : Text(

@@ -6,7 +6,11 @@ import 'package:tourista/core/utlis/styles.dart';
 
 class ShowPasswordRow extends StatelessWidget {
   const ShowPasswordRow(
-      {super.key, required this.onChanged, required this.shoPass, this.color, this.horizontal});
+      {super.key,
+      required this.onChanged,
+      required this.shoPass,
+      this.color,
+      this.horizontal});
   final ValueChanged<bool?> onChanged;
   final bool shoPass;
   final Color? color;
@@ -14,7 +18,7 @@ class ShowPasswordRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal:horizontal?? 10),
+      padding: EdgeInsets.symmetric(horizontal: horizontal ?? 10),
       child: Row(
         children: [
           Checkbox(

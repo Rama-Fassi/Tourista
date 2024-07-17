@@ -4,7 +4,11 @@ import 'package:gap/gap.dart';
 
 class CustomTabForTabBar extends StatelessWidget {
   const CustomTabForTabBar(
-      {super.key, this.assetName, required this.data, this.color, this.iconColor});
+      {super.key,
+      this.assetName,
+      required this.data,
+      this.color,
+      this.iconColor});
   final String? assetName;
   final String data;
   final Color? color;

@@ -137,4 +137,23 @@ abstract class LocaleKeys {
   static const email = 'email';
   static const Frequently_asked_questions = 'Frequently_asked_questions';
   static const all = 'all';
+  static const mountain = 'mountain';
+  static const jungle = 'jungle';
+  static const beach = 'beach';
+  static const water = 'water';
+  static const newest = 'newest';
+  static const closet = 'closet';
+  static const pricehightolow = 'pricehightolow';
+  static const pricelowtohigh = 'pricelowtohigh';
+  static const seeMore = 'seeMore';
+  static const apply_for_this_trip = 'apply_for_this_trip';
+  static const seeOnGoogleMap = 'seeOnGoogleMap';
+  static const toApply = 'toApply';
+  static const choose_the_closet_point = 'choose_the_closet_point';
+  static const selectTicketNumber = 'selectTicketNumber';
+  static const vipTicket = ' vipTicket';
+  static const businessClassFlightTicket = 'businessClassFlightTicket';
+  static const sweetAndBeautifulView = 'sweetAndBeautifulView';
+  static const privateTransportation = 'privateTransportation';
+  static const totalPrice = 'totalPrice';
 }

@@ -12,9 +12,6 @@ part 'update_phone_state.dart';
 class UpdatePhoneCubit extends Cubit<UpdatePhoneState> {
   UpdatePhoneCubit(this.profileRepo) : super(UpdatePhoneInitial());
 
-
-
-
   final ProfileRepo profileRepo;
 
   Future<void> updatePhone({
@@ -22,7 +19,7 @@ class UpdatePhoneCubit extends Cubit<UpdatePhoneState> {
   }) async {
     emit(UpdatePhoneLoading());
     var result = await profileRepo.updatePhone(
-        token: Hive.box(kTokenBox).get(kTokenRef),phone: phone);
+        token: Hive.box(kTokenBox).get(kTokenRef), phone: phone);
 
     result.fold((failure) {
       emit(UpdatePhoneFailure(failure.errMessage));

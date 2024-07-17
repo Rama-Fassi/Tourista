@@ -58,11 +58,7 @@ class StaysRepoImpl implements StaysRepo {
     try {
       var data = await apiServer.post(
         endPoint: 'addBookingHotel/$tripId',
-        body: {
-          "checkIn":checkIn,
-          "checkOut":checkOut,
-          "rooms":rooms
-        },
+        body: {"checkIn": checkIn, "checkOut": checkOut, "rooms": rooms},
       );
 
       AddHotelModel addHotelModel = AddHotelModel.fromJson(data);

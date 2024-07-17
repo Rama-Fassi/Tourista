@@ -27,37 +27,40 @@ class AddToPlanButton extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           kboxShadow,
         ]),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            price == null
-                ? const SizedBox()
-                : Text(
-                    'Total Price $price',
-                    style: AppStyles.styleInterRegular14(context)
-                        .copyWith(fontSize: 12),
-                  ),
-            price == null
-                ? const SizedBox()
-                : Text(
-                    'For All Nights',
-                    style: AppStyles.styleInterRegular12(context)
-                        .copyWith(fontSize: 12),
-                  ),
-            Gap(6),
-            Center(
-              child: CustomButton(
-                text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
-                width: screenWidth,
-                borderRadius: 5,
-                height: 50,
-                style: AppStyles.styleSourceBold20(context)
-                    .copyWith(color: Colors.white),
-                color: kPrimaryColor,
-                onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              price == null
+                  ? const SizedBox()
+                  : Text(
+                      'Total Price $price',
+                      style: AppStyles.styleInterRegular14(context)
+                          .copyWith(fontSize: 12),
+                    ),
+              price == null
+                  ? const SizedBox()
+                  : Text(
+                      'For All Nights',
+                      style: AppStyles.styleInterRegular12(context)
+                          .copyWith(fontSize: 12),
+                    ),
+              Gap(6),
+              Center(
+                child: CustomButton(
+                  text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,
+                  width: screenWidth,
+                  borderRadius: 5,
+                  height: 50,
+                  style: AppStyles.styleSourceBold20(context)
+                      .copyWith(color: Colors.white),
+                  color: kPrimaryColor,
+                  onTap: onTap,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }

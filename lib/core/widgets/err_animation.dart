@@ -18,7 +18,9 @@ class ErrAnimation extends StatelessWidget {
       children: [
         Lottie.asset(Assets.imagesLottieErrAnimation),
         Text(errMessage),
-        TextButton(onPressed: onPressed, child: Text('Retry'))
+        onPressed == null
+            ? SizedBox()
+            : TextButton(onPressed: onPressed, child: Text('Retry'))
       ],
     );
   }

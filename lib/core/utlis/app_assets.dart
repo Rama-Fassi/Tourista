@@ -9,6 +9,10 @@ class Assets {
   /// assets/images/earth_logo.svg
   static const String imagesEarthLogo = "assets/images/earth_logo.svg";
 
+  /// Assets for imagesEllipse
+  /// assets/images/Ellipse.svg
+  static const String imagesEllipse = "assets/images/Ellipse.svg";
+
   /// Assets for imagesForegetPassword
   /// assets/images/foreget_password.svg
   static const String imagesForegetPassword = "assets/images/foreget_password.svg";
@@ -28,6 +32,15 @@ class Assets {
   /// Assets for imagesHotelTest
   /// assets/images/hotelTest.png
   static const String imagesHotelTest = "assets/images/hotelTest.png";
+
+  /// Assets for imagesHotelTestMap
+  /// assets/images/hotelTestMap.svg
+  static const String imagesHotelTestMap = "assets/images/hotelTestMap.svg";
+
+  /// Assets for imagesIconsAboutCircleIcon
+  /// assets/images/icons/about_circle_icon.svg
+  static const String imagesIconsAboutCircleIcon =
+      "assets/images/icons/about_circle_icon.svg";
 
   /// Assets for imagesHotelTestMap
   /// assets/images/hotelTestMap.svg
@@ -93,6 +106,11 @@ class Assets {
   /// assets/images/icons/cityviewRoom.svg
   static const String imagesIconsCityviewRoom = "assets/images/icons/cityviewRoom.svg";
 
+  /// Assets for imagesIconsCityviewRoom
+  /// assets/images/icons/cityviewRoom.svg
+  static const String imagesIconsCityviewRoom =
+      "assets/images/icons/cityviewRoom.svg";
+
   /// Assets for imagesIconsCustomerSupportIcon
   /// assets/images/icons/Customer_Support_icon.svg
   static const String imagesIconsCustomerSupportIcon = "assets/images/icons/Customer_Support_icon.svg";
@@ -103,6 +121,9 @@ class Assets {
 
   /// Assets for imagesIconsDeleteAccountIcon
   /// assets/images/icons/Delete_Account_icon.svg
+  static const String imagesIconsDeleteAccountIcon =
+      "assets/images/icons/Delete_Account_icon.svg";
+
   static const String imagesIconsDeleteAccountIcon = "assets/images/icons/Delete_Account_icon.svg";
 
   /// Assets for imagesIconsEnterDestination
@@ -175,6 +196,9 @@ class Assets {
 
   /// Assets for imagesIconsInstagramIcon
   /// assets/images/icons/instagram_icon.svg
+  static const String imagesIconsInstagramIcon =
+      "assets/images/icons/instagram_icon.svg";
+
   static const String imagesIconsInstagramIcon = "assets/images/icons/instagram_icon.svg";
 
   /// Assets for imagesIconsLandmarkviewRoom
@@ -184,6 +208,11 @@ class Assets {
   /// Assets for imagesIconsLanguageIcon
   /// assets/images/icons/Language_icon.svg
   static const String imagesIconsLanguageIcon = "assets/images/icons/Language_icon.svg";
+
+  /// Assets for imagesIconsLanguageIcon
+  /// assets/images/icons/Language_icon.svg
+  static const String imagesIconsLanguageIcon =
+      "assets/images/icons/Language_icon.svg";
 
   /// Assets for imagesIconsLockBlack
   /// assets/images/icons/lockBlack.svg
@@ -345,8 +374,19 @@ class Assets {
   /// assets/images/lottie/errAnimation.json
   static const String imagesLottieErrAnimation = "assets/images/lottie/errAnimation.json";
 
+  /// Assets for imagesLottieReadyTrips
+  /// assets/images/lottie/readyTrips.json
+  static const String imagesLottieReadyTrips =
+      "assets/images/lottie/readyTrips.json";
+
   /// Assets for imagesLottieTicketsLoading
   /// assets/images/lottie/ticketsLoading.json
+  static const String imagesLottieTicketsLoading =
+      "assets/images/lottie/ticketsLoading.json";
+
+  /// Assets for imagesMytripsTest
+  /// assets/images/mytripsTest.png
+  static const String imagesMytripsTest = "assets/images/mytripsTest.png";
   static const String imagesLottieTicketsLoading = "assets/images/lottie/ticketsLoading.json";
 
   /// Assets for imagesPlacesTest

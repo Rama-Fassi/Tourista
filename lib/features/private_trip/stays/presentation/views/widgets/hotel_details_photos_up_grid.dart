@@ -21,7 +21,8 @@ class HotelDetailsPhotosUpGrid extends StatelessWidget {
       crossAxisCount: 2,
       children: List.generate(2, (index) {
         return GestureDetector(
-          onTap: () => GoRouter.of(context).push(AppRouter.kAllPhotoView),
+          onTap: () =>
+              GoRouter.of(context).push(AppRouter.kAllPhotoView, extra: hotel),
           child: CachedNetworkImage(
               fit: BoxFit.fill,
               imageUrl: '$kBaseUrl${hotel.images![index + 1]}'),

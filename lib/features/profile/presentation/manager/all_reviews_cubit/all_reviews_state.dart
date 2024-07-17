@@ -5,25 +5,16 @@ sealed class AllReviewsState {}
 
 final class AllReviewsInitial extends AllReviewsState {}
 
+class AllReviewsLoading extends AllReviewsState {}
 
-
-class   AllReviewsLoading extends AllReviewsState {}
-
-class   AllReviewsSuccess extends AllReviewsState {
+class AllReviewsSuccess extends AllReviewsState {
   final AllReviewsModel allReviewsModel;
 
   AllReviewsSuccess(this.allReviewsModel);
-
-
-
-
 }
 
-class  AllReviewsFailure extends AllReviewsState {
+class AllReviewsFailure extends AllReviewsState {
   final String errMessage;
 
   AllReviewsFailure(this.errMessage);
-
-
-
 }

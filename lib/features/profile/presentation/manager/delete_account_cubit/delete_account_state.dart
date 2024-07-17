@@ -5,21 +5,16 @@ sealed class DeleteAccountState {}
 
 final class DeleteAccountInitial extends DeleteAccountState {}
 
+class DeleteAccountLoading extends DeleteAccountState {}
 
-class  DeleteAccountLoading extends DeleteAccountState {}
-
-class  DeleteAccountSuccess extends DeleteAccountState {
+class DeleteAccountSuccess extends DeleteAccountState {
   final DeleteAccountModel deleteAccountModel;
 
   DeleteAccountSuccess(this.deleteAccountModel);
-
-
 }
 
-class  DeleteAccountFailure extends DeleteAccountState {
+class DeleteAccountFailure extends DeleteAccountState {
   final String errMessage;
 
   DeleteAccountFailure(this.errMessage);
-
-
 }

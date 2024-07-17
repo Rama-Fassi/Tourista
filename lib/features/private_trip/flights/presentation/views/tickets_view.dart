@@ -3,13 +3,15 @@ import 'package:tourista/features/private_trip/flights/presentation/views/widget
 
 class TicketsView extends StatelessWidget {
   const TicketsView({super.key, required this.ticketsinfo});
-final Map<String,dynamic> ticketsinfo;
+  final Map<String, dynamic> ticketsinfo;
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
         child: Scaffold(
-      backgroundColor:const Color(0xffF2F2F2),
-      body: TicketsViewBody(ticketsInfo: ticketsinfo,),
+      backgroundColor: const Color(0xffF2F2F2),
+      body: TicketsViewBody(
+        ticketsInfo: ticketsinfo,
+      ),
     ));
   }
 }

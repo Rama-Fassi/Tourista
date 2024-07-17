@@ -4,7 +4,10 @@ import 'customer_support_tab_bar.dart';
 import 'faq_tab_bar_view.dart';
 
 class CusrtomerSupportViewBody extends StatefulWidget {
-  const CusrtomerSupportViewBody({super.key, required this.scereenWidth, });
+  const CusrtomerSupportViewBody({
+    super.key,
+    required this.scereenWidth,
+  });
   final double scereenWidth;
   @override
   State<CusrtomerSupportViewBody> createState() =>
@@ -39,7 +42,9 @@ class _CusrtomerSupportViewBodyState extends State<CusrtomerSupportViewBody>
           child: TabBarView(
             controller: tabController1,
             children: [
-              FaqTabBarView(tabController2: tabController2, ),
+              FaqTabBarView(
+                tabController2: tabController2,
+              ),
               const ContactUsTabBarView(),
             ],
           ),

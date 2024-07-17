@@ -15,7 +15,6 @@ class AllQuestionsCubit extends Cubit<AllQuestionsState> {
     emit(AllQuestionsLoading());
     var result = await profileRepo.getAllQuestions();
 
-
     result.fold((failure) {
       emit(AllQuestionsFailure(failure.errMessage));
       if (kDebugMode) {
