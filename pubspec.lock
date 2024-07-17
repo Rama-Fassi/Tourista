@@ -261,10 +261,18 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "11e40df547d418cc0c4900a9318b26304e665da6fa4755399a9ff9efd09034b5"
+      sha256: e17f6b3097b8c51b72c74c9f071a605c47bcc8893839bd66732457a5ebe73714
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.3+1"
+    version: "5.5.0+1"
+  dio_web_adapter:
+    dependency: transitive
+    description:
+      name: dio_web_adapter
+      sha256: "36c5b2d79eb17cdae41e974b7a8284fec631651d2a6f39a8a2ff22327e90aeac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   easy_localization:
     dependency: "direct main"
     description:
@@ -419,6 +427,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.0"
+  flutter_sticky_header:
+    dependency: "direct main"
+    description:
+      name: flutter_sticky_header
+      sha256: "017f398fbb45a589e01491861ca20eb6570a763fd9f3888165a978e11248c709"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.5"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -1118,10 +1134,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_ios
-      sha256: e43b677296fadce447e987a2f519dcf5f6d1e527dc35d01ffab4fff5b8a7063e
+      sha256: "7068716403343f6ba4969b4173cbf3b84fc768042124bc2c011e5d782b24fe89"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.1"
+    version: "6.3.0"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1170,6 +1186,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.0"
+  value_layout_builder:
+    dependency: transitive
+    description:
+      name: value_layout_builder
+      sha256: "98202ec1807e94ac72725b7f0d15027afde513c55c69ff3f41bcfccb950831bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.1"
   vector_graphics:
     dependency: transitive
     description:
