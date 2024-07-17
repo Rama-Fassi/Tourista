@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_button.dart';
@@ -14,7 +16,8 @@ class FinalBookingButton extends StatelessWidget {
     required this.screenWidth,
     required this.screenHeight,
     required this.widget,
-    required this.finalPrice, this.showConfirmationDialog,
+    required this.finalPrice,
+    this.showConfirmationDialog,
   });
 
   final double screenWidth;
@@ -28,7 +31,7 @@ class FinalBookingButton extends StatelessWidget {
         FinalBookingPrivateTripState>(
       listener: (context, state) {
         if (state is FinalBookingPrivateTripSuccess) {
-          Navigator.of(context).popUntil((route) => route.isFirst);
+          GoRouter.of(context).push(AppRouter.kHomeView);
         } else if (state is FinalBookingPrivateTripFailure) {
           customSnackBar(context, state.errMessage);
         } else {

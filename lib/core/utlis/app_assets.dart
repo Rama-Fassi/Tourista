@@ -44,11 +44,9 @@ class Assets {
 
   /// Assets for imagesHotelTestMap
   /// assets/images/hotelTestMap.svg
-  static const String imagesHotelTestMap = "assets/images/hotelTestMap.svg";
 
   /// Assets for imagesIconsAboutCircleIcon
   /// assets/images/icons/about_circle_icon.svg
-  static const String imagesIconsAboutCircleIcon = "assets/images/icons/about_circle_icon.svg";
 
   /// Assets for imagesIconsActivities
   /// assets/images/icons/activities.svg
@@ -108,8 +106,7 @@ class Assets {
 
   /// Assets for imagesIconsCityviewRoom
   /// assets/images/icons/cityviewRoom.svg
-  static const String imagesIconsCityviewRoom =
-      "assets/images/icons/cityviewRoom.svg";
+ 
 
   /// Assets for imagesIconsCustomerSupportIcon
   /// assets/images/icons/Customer_Support_icon.svg
@@ -124,7 +121,6 @@ class Assets {
   static const String imagesIconsDeleteAccountIcon =
       "assets/images/icons/Delete_Account_icon.svg";
 
-  static const String imagesIconsDeleteAccountIcon = "assets/images/icons/Delete_Account_icon.svg";
 
   /// Assets for imagesIconsEnterDestination
   /// assets/images/icons/enterDestination.svg
@@ -199,7 +195,6 @@ class Assets {
   static const String imagesIconsInstagramIcon =
       "assets/images/icons/instagram_icon.svg";
 
-  static const String imagesIconsInstagramIcon = "assets/images/icons/instagram_icon.svg";
 
   /// Assets for imagesIconsLandmarkviewRoom
   /// assets/images/icons/landmarkviewRoom.svg
@@ -211,8 +206,7 @@ class Assets {
 
   /// Assets for imagesIconsLanguageIcon
   /// assets/images/icons/Language_icon.svg
-  static const String imagesIconsLanguageIcon =
-      "assets/images/icons/Language_icon.svg";
+
 
   /// Assets for imagesIconsLockBlack
   /// assets/images/icons/lockBlack.svg
@@ -387,7 +381,6 @@ class Assets {
   /// Assets for imagesMytripsTest
   /// assets/images/mytripsTest.png
   static const String imagesMytripsTest = "assets/images/mytripsTest.png";
-  static const String imagesLottieTicketsLoading = "assets/images/lottie/ticketsLoading.json";
 
   /// Assets for imagesPlacesTest
   /// assets/images/placesTest.png

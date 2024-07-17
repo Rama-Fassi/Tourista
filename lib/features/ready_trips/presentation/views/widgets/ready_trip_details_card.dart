@@ -36,7 +36,7 @@ class ReadyTripDetailsCard extends StatelessWidget {
             ),
             Gap(4),
             Text(
-              tourismPlace.type!,
+              tourismPlace.type ?? "",
               style: AppStyles.styleSourceBold18(context),
             ),
             SizedBox(

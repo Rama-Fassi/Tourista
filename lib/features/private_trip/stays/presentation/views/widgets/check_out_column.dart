@@ -26,7 +26,7 @@ class CheckOutColumn extends StatelessWidget {
           value: [],
           borderRadius: BorderRadius.circular(15),
         );
-        cubit.setCheckOut(value![0]);
+        cubit.setCheckOut(value?[0] ?? DateTime.now());
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class CheckOutColumn extends StatelessWidget {
             builder: (context, state) {
               return Text(
                 state.checkOut == null
-                    ? '${DateTime.now()}'.substring(0, 10)
+                    ? 'Select date'
                     : '${state.checkOut}'.substring(0, 10),
                 style: AppStyles.styleInterSemiBold18(context)
                     .copyWith(color: kPrimaryColor),

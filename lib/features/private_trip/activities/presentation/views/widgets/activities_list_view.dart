@@ -35,7 +35,6 @@ class ActivitiesListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return CustomActivityCard(
               dayDate: dayDate,
-              dayDate: dayDate,
               screenWidth: screenWidth,
               activityName: tourismActivitiesModel.activities![index].name,
               activityDescription:

@@ -26,7 +26,7 @@ class CheckInColumn extends StatelessWidget {
           value: [],
           borderRadius: BorderRadius.circular(15),
         );
-        cubit.setCheckIn(value![0]);
+        cubit.setCheckIn(value?[0] ?? DateTime.now());
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class CheckInColumn extends StatelessWidget {
             builder: (context, state) {
               return Text(
                 state.checkIn == null
-                    ? '${DateTime.now()}'.substring(0, 10)
+                    ? 'Select date'
                     : '${state.checkIn}'.substring(0, 10),
                 style: AppStyles.styleInterSemiBold18(context)
                     .copyWith(color: kPrimaryColor),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
-import 'package:tourista/core/widgets/custom_text_button.dart';
+
+import 'custom_text_button.dart';
 
 class TextWithTextButton extends StatelessWidget {
   const TextWithTextButton({
@@ -29,7 +30,7 @@ class TextWithTextButton extends StatelessWidget {
           data: textButtondata,
           style: AppStyles.styleSourceBold20(context)
               .copyWith(color: kPrimaryColor, fontSize: 18),
-          onPressed: onPressed,
+          onPressed: onPressed, mainAxisAlignment: MainAxisAlignment.center,
         ),
       ],
     );

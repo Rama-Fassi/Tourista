@@ -11,7 +11,6 @@ class CustomAddedActivityCard extends StatelessWidget {
   });
 
   final dynamic activitiesForDay;
-  final dynamic activitiesForDay;
 
   @override
   Widget build(BuildContext context) {

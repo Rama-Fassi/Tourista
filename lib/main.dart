@@ -21,7 +21,6 @@ import 'package:tourista/firebase_options.dart';
 import './core/translations/codegen_loader.g.dart';
 import 'features/profile/data/repos/profile_repo_impl.dart';
 import 'features/profile/presentation/manager/add_review_cubit/add_review_cubit.dart';
-import 'features/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 
 void main() async {
   setUpServiceLocator();
@@ -72,11 +71,6 @@ class Tourista extends StatelessWidget {
           create: (context) => HotelInfoCubit(),
         ),
         BlocProvider(
-          create: (context) => AddReviewCubit(
-            getIt.get<ProfileRepoImpl>(),
-          ),
-        ),
-        BlocProvider(
             create: (context) => AddReviewCubit(getIt.get<ProfileRepoImpl>())),
         BlocProvider(
           create: (context) => GetUserInfoCubit(getIt.get<ProfileRepoImpl>()),
@@ -90,10 +84,8 @@ class Tourista extends StatelessWidget {
               AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
                 ..getAllReadyTripsFun(),
         ),
-          create: (context) => GetUserInfoCubit(
-            getIt.get<ProfileRepoImpl>(),
-          ),
-        ),
+        
+        
       ],
       child: MaterialApp.router(
         theme: themeData(),
