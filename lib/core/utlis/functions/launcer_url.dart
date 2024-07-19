@@ -14,7 +14,6 @@ Future<void> launchCustomUrl(context, String url) async {
   );
 
   Uri uri = Uri.parse(url);
-  await launchUrl(uri);
 
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
