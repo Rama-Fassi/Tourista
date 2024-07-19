@@ -5,7 +5,6 @@ import 'package:tourista/constants.dart';
 class ApiServer {
   final baseUrl = '$kBaseUrl/api/';
 
-
   final Dio _dio;
   ApiServer(this._dio);
 
