@@ -70,7 +70,7 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
                             screenWidth: screenWidth,
                             screenHeight: screenHeight,
                             state: state,
-                            tripId: widget.createTripModel.tripId!.id,
+                            tripId: widget.createTripModel.tripId!.id, numOfPerson: widget.createTripModel.tripId!.numOfPersons!,
                           ),
                           //Hotels
                           DisplayTheHotels(

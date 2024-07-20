@@ -8,8 +8,9 @@ import 'package:tourista/features/private_trip/the_plan/presentation/manager/del
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/the_plan_container.dart';
 import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
-
 import '../../../../../../core/widgets/loading_widget.dart';
+import 'dispay_one_way_ticket.dart';
+import 'display_round_ticket.dart';
 import 'empty_text_widget.dart';
 
 class DisplayTheTicket extends StatefulWidget {
@@ -19,13 +20,14 @@ class DisplayTheTicket extends StatefulWidget {
     required this.tripId,
     required this.screenHeight,
     required this.state,
+    required this.numOfPerson,
   });
 
   final double screenWidth;
   final int tripId;
   final double screenHeight;
   final GetUserPrivatePlanSuccess state;
-
+  final int numOfPerson;
   @override
   State<DisplayTheTicket> createState() => _DisplayTheTicketState();
 }
@@ -88,11 +90,19 @@ class _DisplayTheTicketState extends State<DisplayTheTicket> {
               )
             : Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: widget.state.getUserPrivatePlanModel.ticket!
-                            .ticket!.roundOrOneTrip! ==
+                child: widget.state.getUserPrivatePlanModel.ticket!.ticket!
+                            .roundOrOneTrip! ==
                         'OneWay'
-                    ? Text('OneWay')
-                    : Text('round'),
+                    ? DisplayOneWayTicket(
+                        width: widget.screenWidth,
+                        state: widget.state,
+                        numOfPerson: widget.numOfPerson,
+                      )
+                    : DisplayRoundTicket(
+                        width: widget.screenWidth,
+                        state: widget.state,
+                        numOfPerson: widget.numOfPerson,
+                      ),
               ),
       ),
     );

@@ -51,8 +51,9 @@ class FinalBookingButton extends StatelessWidget {
         onTap: () {
           showConfirmationDialog.showConfirmationDialog(
               context: context,
-              titleText: LocaleKeys.Confirmation.tr(),
-              contentText: 'Are You sure?',
+              titleText: LocaleKeys.are_you_sure.tr(),
+              contentText:
+                  'Are you sure you want to confirm this tour plan with all the costs involved?',
               onConfirmPressed: () {
                 BlocProvider.of<FinalBookingPrivateTripCubit>(context)
                     .finalBookingPrivateTrip(
