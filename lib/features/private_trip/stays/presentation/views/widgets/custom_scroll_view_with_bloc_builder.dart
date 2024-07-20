@@ -20,7 +20,7 @@ class CustomScrollViewWithBlocBuilder extends StatelessWidget {
   final double height;
   final int tripId;
 
-  Future<void> _refreshData(BuildContext context) async {
+  Future<void> _refreshData(context) async {
     await Future.delayed(Duration(seconds: 2));
 
     BlocProvider.of<HotelsCubit>(context).fetchHotelsCubitFun(tripId: tripId);

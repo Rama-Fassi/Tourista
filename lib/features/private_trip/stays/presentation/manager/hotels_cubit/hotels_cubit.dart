@@ -8,9 +8,12 @@ part 'hotels_state.dart';
 class HotelsCubit extends Cubit<HotelsState> {
   HotelsCubit(this.staysRepoImpl) : super(HotelsInitial());
   StaysRepoImpl staysRepoImpl;
-  Future<void> fetchHotelsCubitFun({required int tripId}) async {
+  Future<void> fetchHotelsCubitFun(
+      {required int tripId, String? sortBy, String? search}) async {
     emit(HotelsLoading());
-    var result = await staysRepoImpl.fetchHotels(tripId: tripId);
+    print(sortBy);
+    var result = await staysRepoImpl.fetchHotels(
+        tripId: tripId, sortBy: sortBy, search: search);
 
     result.fold((failure) {
       print(failure.errMessage);

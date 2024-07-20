@@ -13,11 +13,17 @@ class StaysRepoImpl implements StaysRepo {
   StaysRepoImpl(this.apiServer);
   @override
   Future<Either<Failure, HotelsModel>> fetchHotels(
-      {required int tripId}) async {
+      {required int tripId, String? sortBy, String? search}) async {
     try {
-      var data = await apiServer.get(
-        endPoint: 'cityHotels/$tripId',
-      );
+      var data = await apiServer.post(
+          endPoint: 'cityHotelsSortBy/$tripId',
+          body: sortBy == null && search == null
+              ? {}
+              : search == null
+                  ? {'sortBy': sortBy}
+                  : sortBy == null
+                      ? {'search': search}
+                      : {'sortBy': sortBy, 'search': search});
 
       HotelsModel hotelsModel = HotelsModel.fromJson(data);
 
