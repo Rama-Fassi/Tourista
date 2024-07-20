@@ -1,10 +1,9 @@
 import 'package:tourista/features/private_trip/stays/data/models/hotels_model/hotel.dart';
-
-import '../../../../flights/data/models/tickets_model/ticket.dart';
+import 'package:tourista/features/private_trip/the_plan/data/models/get_user_private_plan_model/get_ticket.dart';
 import 'get_tourism_places/get_tourism_places.dart';
 
 class GetUserPrivatePlanModel {
-  Ticket? ticket;
+  GetTicket? ticket;
   List<Hotel>? hotels;
   int? totalRoomPrice;
   List<GetTourismPlaces>? tourismPlaces;
@@ -22,7 +21,7 @@ class GetUserPrivatePlanModel {
     return GetUserPrivatePlanModel(
       ticket: json['Ticket'] == null
           ? null
-          : Ticket.fromJson(json['Ticket'] as Map<String, dynamic>),
+          : GetTicket.fromJson(json['Ticket'] as Map<String, dynamic>),
       hotels: (json['Hotels'] as List<dynamic>?)
           ?.map((e) => Hotel.fromJson(e as Map<String, dynamic>))
           .toList(),

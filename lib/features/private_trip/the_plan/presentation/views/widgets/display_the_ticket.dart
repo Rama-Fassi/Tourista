@@ -82,10 +82,17 @@ class _DisplayTheTicketState extends State<DisplayTheTicket> {
         },
         screenwidth: widget.screenWidth,
         withDeleteIcon: true,
-        child: isTicketEmpty == false
-            ? Text('data')
-            : const EmptyTextWidget(
+        child: isTicketEmpty == true
+            ? const EmptyTextWidget(
                 data: 'Go To Flight and add The perfect Ticket for you',
+              )
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: widget.state.getUserPrivatePlanModel.ticket!
+                            .ticket!.roundOrOneTrip! ==
+                        'OneWay'
+                    ? Text('OneWay')
+                    : Text('round'),
               ),
       ),
     );
