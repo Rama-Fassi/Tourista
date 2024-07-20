@@ -15,7 +15,7 @@ class ActivitiesView extends StatelessWidget {
     print('activitiesdaysInfo: ${activitiesdaysInfo.toString()}');
     return SafeArea(
       child: DefaultTabController(
-        length: 6,
+        length: 7,
         child: Scaffold(
           backgroundColor: Colors.white.withOpacity(0.95),
           appBar: AppBar(
@@ -36,6 +36,9 @@ class ActivitiesView extends StatelessWidget {
               height: 55,
               child: CustomSearchTextField(
                 onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kSearchActivityView);
+                },
+                onSubmitted: (value) {
                   GoRouter.of(context).push(AppRouter.kSearchActivityView);
                 },
               ),
@@ -60,6 +63,14 @@ class ActivitiesView extends StatelessWidget {
                 screenWidth: screenWidth,
                 tripId: activitiesdaysInfo['tripId'],
                 tourismTybe: 'Sports',
+                dayId: activitiesdaysInfo['dayId'],
+                dayDate: activitiesdaysInfo['dayDate'],
+              ),
+              //Restaurant
+              ActivitiesTabBarView(
+                screenWidth: screenWidth,
+                tripId: activitiesdaysInfo['tripId'],
+                tourismTybe: 'Restaurants',
                 dayId: activitiesdaysInfo['dayId'],
                 dayDate: activitiesdaysInfo['dayDate'],
               ),

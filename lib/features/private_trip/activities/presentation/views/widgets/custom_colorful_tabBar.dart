@@ -33,18 +33,21 @@ class CustomColorfulTabBar extends StatelessWidget {
             color: kGreenColor.withOpacity(0.9),
           ),
           const CustomTabForTabBar(
-            data: "Entertainment",
+            data: "Restaurant",
             color: Color(0xffF5F3A9),
           ),
           const CustomTabForTabBar(
-            data: "Cultural",
+            data: "Entertainment",
             color: kBlueColor,
           ),
           CustomTabForTabBar(
-              data: "Natural", color: kGreenColor.withOpacity(0.7)),
+            data: "Cultural",
+            color: const Color(0xffEEBBCC).withOpacity(.9),
+          ),
           CustomTabForTabBar(
-              data: "Relaxation",
-              color: const Color(0xffEEBBCC).withOpacity(.9)),
+              data: "Natural", color: kGreenColor.withOpacity(0.7)),
+          const CustomTabForTabBar(
+              data: "Relaxation", color: Color(0xffF5F3A9)),
         ]);
   }
 }
