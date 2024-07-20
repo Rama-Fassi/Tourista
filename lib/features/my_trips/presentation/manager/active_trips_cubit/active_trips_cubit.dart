@@ -8,15 +8,31 @@ part 'active_trips_state.dart';
 class ActiveTripsCubit extends Cubit<ActiveTripsState> {
   ActiveTripsCubit(this.myTripsRepoImpl) : super(ActiveTripsInitial());
   MyTripsRepoImpl myTripsRepoImpl;
+  bool _isCubitClosed = false;
 
   Future<void> getActiveTripsFun() async {
-    emit(ActiveTripsLoading());
-    var result = await myTripsRepoImpl.getActiveTrips();
+    if (!_isCubitClosed) {
+      emit(ActiveTripsLoading());
+      var result = await myTripsRepoImpl.getActiveTrips();
 
-    result.fold((failure) {
-      emit(ActiveTripsFailure(errMessage: failure.errMessage));
-    }, (allTripsModel) {
-      emit(ActiveTripsSuccess(allTripsModel: allTripsModel));
-    });
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(ActiveTripsFailure(errMessage: failure.errMessage));
+          }
+        },
+        (allTripsModel) {
+          if (!_isCubitClosed) {
+            emit(ActiveTripsSuccess(allTripsModel: allTripsModel));
+          }
+        },
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _isCubitClosed = true;
+    return super.close();
   }
 }

@@ -8,14 +8,31 @@ part 'room_hotel_state.dart';
 class RoomHotelCubit extends Cubit<RoomHotelState> {
   RoomHotelCubit(this.staysRepoImpl) : super(RoomHotelInitial());
   StaysRepoImpl staysRepoImpl;
-  Future<void> fetchRoomHotelsCubitFun({required int hotelId}) async {
-    emit(RoomHotelLoading());
-    var result = await staysRepoImpl.fetchRoomHotels(hotelId: hotelId);
+  bool _isCubitClosed = false;
 
-    result.fold((failure) {
-      emit(RoomHotelFailure(errMessage: failure.errMessage));
-    }, (roomHotelModel) {
-      emit(RoomHotelSuccess(roomHotelModel: roomHotelModel));
-    });
+  Future<void> fetchRoomHotelsCubitFun({required int hotelId}) async {
+    if (!_isCubitClosed) {
+      emit(RoomHotelLoading());
+      var result = await staysRepoImpl.fetchRoomHotels(hotelId: hotelId);
+
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(RoomHotelFailure(errMessage: failure.errMessage));
+          }
+        },
+        (roomHotelModel) {
+          if (!_isCubitClosed) {
+            emit(RoomHotelSuccess(roomHotelModel: roomHotelModel));
+          }
+        },
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _isCubitClosed = true;
+    return super.close();
   }
 }

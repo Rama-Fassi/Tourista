@@ -21,6 +21,7 @@ class DisplayTheTicket extends StatefulWidget {
     required this.screenHeight,
     required this.state,
     required this.numOfPerson,
+    required this.text,
   });
 
   final double screenWidth;
@@ -28,6 +29,7 @@ class DisplayTheTicket extends StatefulWidget {
   final double screenHeight;
   final GetUserPrivatePlanSuccess state;
   final int numOfPerson;
+  final String text;
   @override
   State<DisplayTheTicket> createState() => _DisplayTheTicketState();
 }
@@ -85,8 +87,8 @@ class _DisplayTheTicketState extends State<DisplayTheTicket> {
         screenwidth: widget.screenWidth,
         withDeleteIcon: true,
         child: isTicketEmpty == true
-            ? const EmptyTextWidget(
-                data: 'Go To Flight and add The perfect Ticket for you',
+            ? EmptyTextWidget(
+                data: widget.text,
               )
             : Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),

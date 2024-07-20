@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
@@ -31,12 +30,12 @@ class ThePlanContainer extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   spreadRadius: 2,
-                  blurRadius: 5,
+                  blurRadius: 4,
                   color: Colors.grey.shade300,
                   offset: const Offset(-2, 2)),
               BoxShadow(
                   spreadRadius: 2,
-                  blurRadius: 5,
+                  blurRadius: 4,
                   color: Colors.grey.shade300,
                   offset: const Offset(2, -2))
             ],

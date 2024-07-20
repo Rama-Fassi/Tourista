@@ -70,7 +70,7 @@ class CustomAddButton extends StatelessWidget {
                     '$finalPrice \$'.toString(),
                     style: AppStyles.styleSourceRegular23(context),
                   ),
-                  const Gap(5),
+                  //   const Gap(5),
                   CustomButton(
                     text:
                         text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,

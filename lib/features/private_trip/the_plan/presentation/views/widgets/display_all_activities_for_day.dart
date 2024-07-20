@@ -21,12 +21,14 @@ class DisplayAllActivitiesForDay extends StatefulWidget {
     required this.index,
     required this.screenWidth,
     required this.showConfirmationDialog,
+    required this.text,
   });
 
   final GetUserPrivatePlanSuccess state;
   final int index;
   final double screenWidth;
   final ShowConfirmationDialog showConfirmationDialog;
+  final String text;
 
   @override
   State<DisplayAllActivitiesForDay> createState() =>
@@ -92,8 +94,7 @@ class _DisplayAllActivitiesForDayState
                 state: widget.state,
                 index: widget.index,
               )
-            : const EmptyTextWidget(
-                data: 'Go To Activities and add The perfect Activities for you')
+            : EmptyTextWidget(data: widget.text)
       ],
     );
   }

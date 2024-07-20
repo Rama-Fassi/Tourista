@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -47,8 +46,6 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ActivityCardCubit>();
-
     print('tripId: ${widget.createTripModel.tripId!.id}'.toString());
     double screenWidth = MediaQuery.of(context).size.width;
     return BlocListener<ActivitiesPlanCubit, ActivitiesPlanState>(

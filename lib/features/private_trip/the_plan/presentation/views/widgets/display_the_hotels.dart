@@ -20,12 +20,14 @@ class DisplayTheHotels extends StatefulWidget {
     required this.screenHeight,
     required this.state,
     required this.tripId,
+    required this.text,
   });
 
   final int tripId;
   final double screenWidth;
   final double screenHeight;
   final GetUserPrivatePlanSuccess state;
+  final String text;
 
   @override
   State<DisplayTheHotels> createState() => _DisplayTheHotelsState();
@@ -88,8 +90,8 @@ class _DisplayTheHotelsState extends State<DisplayTheHotels> {
                 height: widget.screenHeight,
                 width: widget.screenWidth,
               )
-            : const EmptyTextWidget(
-                data: 'Go To Stays and add The perfect hotel for you',
+            : EmptyTextWidget(
+                data: widget.text,
               ),
       ),
     );

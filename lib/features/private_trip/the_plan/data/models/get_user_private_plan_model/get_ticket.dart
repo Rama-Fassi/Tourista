@@ -1,11 +1,10 @@
-
 import 'package:tourista/features/private_trip/flights/data/models/tickets_model/ticket.dart';
 
 class GetTicket {
   int? id;
   int? tripId;
   int? ticketId;
-  int? price;
+  double? price;
   Ticket? ticket;
 
   GetTicket({this.id, this.tripId, this.ticketId, this.price, this.ticket});
@@ -14,7 +13,7 @@ class GetTicket {
         id: json['id'] as int?,
         tripId: json['trip_id'] as int?,
         ticketId: json['ticket_id'] as int?,
-        price: json['price'] as int?,
+        price: json['price'] as double?,
         ticket: json['ticket'] == null
             ? null
             : Ticket.fromJson(json['ticket'] as Map<String, dynamic>),

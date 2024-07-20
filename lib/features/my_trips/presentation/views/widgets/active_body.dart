@@ -24,12 +24,12 @@ class ActiveBody extends StatelessWidget {
       child: BlocBuilder<ActiveTripsCubit, ActiveTripsState>(
         builder: (context, state) {
           if (state is ActiveTripsLoading) {
-            return MyTripsShimmerLoading();
+            return const MyTripsShimmerLoading();
           } else if (state is ActiveTripsSuccess) {
             if (state.allTripsModel.allTrips == null ||
                 state.allTripsModel.allTrips!.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: EmptyTrips(
                   desc: 'Go, Book Your Trip And Experience The World With Us!!',
                 ),
@@ -50,6 +50,10 @@ class ActiveBody extends StatelessWidget {
                                       state.allTripsModel.allTrips![index].id!);
                           GoRouter.of(context)
                               .push(AppRouter.kActivePublicTripDetailsview);
+                        } else {
+                          GoRouter.of(context).push(
+                              AppRouter.kActivePrivateTripDetailsview,
+                              extra: state.allTripsModel.allTrips![index].id!);
                         }
                       },
                       child: MyTripsCard(
