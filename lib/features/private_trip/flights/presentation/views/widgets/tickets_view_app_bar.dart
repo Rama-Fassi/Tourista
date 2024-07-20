@@ -60,7 +60,7 @@ class TickesViewAppBar extends StatelessWidget {
         ),
         Positioned(
             top: height * .04,
-            left: width * .12,
+            left: width * .2,
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -75,20 +75,12 @@ class TickesViewAppBar extends StatelessWidget {
                     icon: Icon(Icons.arrow_back_ios),
                   ),
                   Text(
-                    airFrom,
+                    ' ${dateFrom.substring(5)} ',
                     style: AppStyles.styleInterMedium18(context),
                   ),
                   Gap(10),
                   SvgPicture.asset(Assets.imagesIconsArrowRightLeft),
                   Gap(10),
-                  Text(
-                    '$airTo .',
-                    style: AppStyles.styleInterMedium18(context),
-                  ),
-                  Text(
-                    ' ${dateFrom.substring(5)} to',
-                    style: AppStyles.styleInterMedium18(context),
-                  ),
                   Text(
                     overflow: TextOverflow.ellipsis,
                     ' ${dateTo.substring(5)} ',
