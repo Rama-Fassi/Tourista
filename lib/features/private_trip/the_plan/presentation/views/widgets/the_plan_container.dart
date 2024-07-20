@@ -52,7 +52,7 @@ class ThePlanContainer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SvgPicture.asset(
-                        Assets.imagesIconsThePlanCir,
+                        Assets.imagesIconsTheplanIcon,
                         color: kPrimaryColor,
                       ),
                       const Gap(5),
@@ -66,10 +66,13 @@ class ThePlanContainer extends StatelessWidget {
                   withDeleteIcon == true
                       ? GestureDetector(
                           onTap: onTap,
-                          child: SvgPicture.asset(
-                            Assets.imagesIconsDelete,
-                            width: 15,
-                            height: 15,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 5.0),
+                            child: SvgPicture.asset(
+                              Assets.imagesIconsDelete,
+                              width: 16,
+                              height: 16,
+                            ),
                           ),
                         )
                       : const SizedBox()

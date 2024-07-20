@@ -73,7 +73,7 @@ class ThePlanRepoImpl implements ThePlanRepo {
       {required int bookingTicketId}) async {
     try {
       var deletedata = await apiServer.delete(
-        endPoint: 'deleteBookingHotel/$bookingTicketId',
+        endPoint: 'deleteTicket/$bookingTicketId',
       );
       DeleteFromPlanModel deleteFromPlanModel =
           DeleteFromPlanModel.fromJson(deletedata);

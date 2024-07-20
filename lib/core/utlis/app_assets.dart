@@ -293,6 +293,10 @@ class Assets {
   /// assets/images/icons/the_plan_cir.svg
   static const String imagesIconsThePlanCir = "assets/images/icons/the_plan_cir.svg";
 
+  /// Assets for imagesIconsTheplanIcon
+  /// assets/images/icons/theplanIcon.svg
+  static const String imagesIconsTheplanIcon = "assets/images/icons/theplanIcon.svg";
+
   /// Assets for imagesIconsTwitter
   /// assets/images/icons/twitter.svg
   static const String imagesIconsTwitter = "assets/images/icons/twitter.svg";
