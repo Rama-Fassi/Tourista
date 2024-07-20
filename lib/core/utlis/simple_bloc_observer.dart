@@ -9,7 +9,7 @@ class SimpleBlocObserver implements BlocObserver {
 
   @override
   void onClose(BlocBase bloc) {
-    print(bloc.close());
+    //print(bloc.close());
   }
 
   @override

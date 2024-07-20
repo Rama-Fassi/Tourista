@@ -20,7 +20,6 @@ class HotelsListView extends StatelessWidget {
   final int tripId;
   final double width;
   final double height;
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

@@ -13,12 +13,11 @@ class TicketTimeStartAndEnd extends StatelessWidget {
   });
 
   final double width;
-  final Ticket  ticket;
+  final Ticket ticket;
   final String airFrom, airTo;
 
   @override
   Widget build(BuildContext context) {
-    
     String time = ticket.timeOfticket!; // Example time string
     String date = ticket.dateOfTicket!; // Example date string
     String duration = ticket.duration!; // Example duration string

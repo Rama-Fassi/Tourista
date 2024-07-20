@@ -8,18 +8,17 @@ import '../../../../../core/errors/failures.dart';
 import '../../../../../core/utlis/api_server.dart';
 import '../models/get_user_private_plan_model/get_user_private_plan_model.dart';
 
-class ThePlanRepoImpl implements ThePlanRepo
- {
-   final ApiServer apiServer;
+class ThePlanRepoImpl implements ThePlanRepo {
+  final ApiServer apiServer;
 
   ThePlanRepoImpl(this.apiServer);
 
   @override
-  Future<Either<Failure, GetUserPrivatePlanModel>> getUserPrivatePlan({required int tripId}) async {
+  Future<Either<Failure, GetUserPrivatePlanModel>> getUserPrivatePlan(
+      {required int tripId}) async {
     try {
       var userPlanData = await apiServer.get(
-        endPoint: 'getUserPlane/$tripId}',
-       
+        endPoint: 'getUserPlane/$tripId',
       );
       GetUserPrivatePlanModel getUserPrivatePlanModel =
           GetUserPrivatePlanModel.fromJson(userPlanData);
@@ -33,11 +32,12 @@ class ThePlanRepoImpl implements ThePlanRepo
   }
 
   @override
-  Future<Either<Failure, FinalBookingPrivateTripModel>> finalBookingPrivateTrip({required int tripId}) async {
+  Future<Either<Failure, FinalBookingPrivateTripModel>> finalBookingPrivateTrip(
+      {required int tripId}) async {
     try {
-      var finalBookingData = await apiServer.get(
-        endPoint: 'getUserPlane/$tripId}',
-       
+      var finalBookingData = await apiServer.post(
+        endPoint: 'bookingTrip/$tripId',
+        body: null,
       );
       FinalBookingPrivateTripModel finalBookingPrivateTripModel =
           FinalBookingPrivateTripModel.fromJson(finalBookingData);
@@ -51,11 +51,11 @@ class ThePlanRepoImpl implements ThePlanRepo
   }
 
   @override
-  Future<Either<Failure, DeleteFromPlanModel>> deleteBookingHotel({required int tripId, required int citiesHotelId}) async {
-     try {
+  Future<Either<Failure, DeleteFromPlanModel>> deleteBookingHotel(
+      {required int tripId, required int citiesHotelId}) async {
+    try {
       var deletedata = await apiServer.delete(
-        endPoint: 'deleteBookingHotel/$tripId/$citiesHotelId}',
-       
+        endPoint: 'deleteBookingHotel/$tripId/$citiesHotelId',
       );
       DeleteFromPlanModel deleteFromPlanModel =
           DeleteFromPlanModel.fromJson(deletedata);
@@ -67,24 +67,40 @@ class ThePlanRepoImpl implements ThePlanRepo
       return left(ServerFailure(e.toString()));
     }
   }
-  
-  @override
-  Future<Either<Failure, DeleteFromPlanModel>> deleteTicket({required int bookingTicketId}) async {
-     try {
-      var deletedata = await apiServer.delete(
-        endPoint: 'deleteBookingHotel/$bookingTicketId}',
-       
-      );
-      DeleteFromPlanModel deleteFromPlanModel =
-          DeleteFromPlanModel.fromJson(deletedata);
-      return right(deleteFromPlanModel);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
-      }
-      return left(ServerFailure(e.toString()));
-    }
-  }
-  
 
- }
+  @override
+  Future<Either<Failure, DeleteFromPlanModel>> deleteTicket(
+      {required int bookingTicketId}) async {
+    try {
+      var deletedata = await apiServer.delete(
+        endPoint: 'deleteBookingHotel/$bookingTicketId',
+      );
+      DeleteFromPlanModel deleteFromPlanModel =
+          DeleteFromPlanModel.fromJson(deletedata);
+      return right(deleteFromPlanModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DeleteFromPlanModel>> deleteActivity(
+      {required int tripDayId}) async {
+    try {
+      var deletedata = await apiServer.delete(
+        endPoint: 'deleteActivities/$tripDayId',
+      );
+      DeleteFromPlanModel deleteFromPlanModel =
+          DeleteFromPlanModel.fromJson(deletedata);
+      return right(deleteFromPlanModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+}

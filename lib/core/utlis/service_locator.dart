@@ -39,8 +39,7 @@ void setUpServiceLocator() {
     ),
   );
 
-
- getIt.registerSingleton<ThePlanRepoImpl>(
+  getIt.registerSingleton<ThePlanRepoImpl>(
     ThePlanRepoImpl(
       getIt.get<ApiServer>(),
     ),

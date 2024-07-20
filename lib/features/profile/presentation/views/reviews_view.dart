@@ -4,7 +4,6 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/reviews_view_body.dart';
 
-
 class ReviewsView extends StatelessWidget {
   const ReviewsView({super.key});
 

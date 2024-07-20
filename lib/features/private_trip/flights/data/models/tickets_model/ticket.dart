@@ -1,4 +1,3 @@
-
 import 'package:tourista/features/private_trip/flights/data/models/tickets_model/air_line.dart';
 
 class Ticket {

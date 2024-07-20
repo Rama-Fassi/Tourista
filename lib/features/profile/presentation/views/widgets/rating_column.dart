@@ -28,11 +28,11 @@ class _RatingColumnState extends State<RatingColumn> {
     super.initState();
     listenController();
   }
-@override
+
+  @override
   void dispose() {
     super.dispose();
-        communtController.dispose();
-
+    communtController.dispose();
   }
 
   @override

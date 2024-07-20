@@ -14,10 +14,12 @@ class ForgetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextButton(
-        data: LocaleKeys.forget_password.tr(),
-        style: AppStyles.styleSourceSemiBold18(context),
-        onPressed: () {
-          GoRouter.of(context).push(AppRouter.kForgetPassword);
-        }, mainAxisAlignment: MainAxisAlignment.end,);
+      data: LocaleKeys.forget_password.tr(),
+      style: AppStyles.styleSourceSemiBold18(context),
+      onPressed: () {
+        GoRouter.of(context).push(AppRouter.kForgetPassword);
+      },
+      mainAxisAlignment: MainAxisAlignment.end,
+    );
   }
 }

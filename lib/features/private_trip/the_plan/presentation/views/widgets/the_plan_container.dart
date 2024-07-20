@@ -12,11 +12,13 @@ class ThePlanContainer extends StatelessWidget {
       required this.child,
       required this.data,
       required this.screenwidth,
-      this.onTap});
+      this.onTap,
+      required this.withDeleteIcon});
   final Widget child;
   final String data;
   final double screenwidth;
   final void Function()? onTap;
+  final bool withDeleteIcon;
   // final double height;
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,16 @@ class ThePlanContainer extends StatelessWidget {
                       ),
                     ],
                   ),
-                  GestureDetector(
-                    onTap: onTap,
-                    child: SvgPicture.asset(
-                      Assets.imagesIconsDelete,
-                      width: 15,
-                      height: 15,
-                    ),
-                  )
+                  withDeleteIcon == true
+                      ? GestureDetector(
+                          onTap: onTap,
+                          child: SvgPicture.asset(
+                            Assets.imagesIconsDelete,
+                            width: 15,
+                            height: 15,
+                          ),
+                        )
+                      : const SizedBox()
                 ],
               ),
               child

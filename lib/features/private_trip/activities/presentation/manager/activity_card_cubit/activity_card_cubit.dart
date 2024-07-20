@@ -60,6 +60,17 @@ class ActivityCardCubit extends Cubit<ActivityCardState> {
     emit(state.copyWith(activitiesCardData: updatedData));
   }
 
+  // New method to remove all activity card data for a specific day index
+  void removeAllActivitiesForDay(int dayIndex) {
+    final updatedData = Map<int, List<Map<String, dynamic>>>.from(
+        state.activitiesCardData ?? {});
+
+    // Remove the entire entry for the specified dayIndex
+    updatedData.remove(dayIndex);
+
+    emit(state.copyWith(activitiesCardData: updatedData));
+  }
+
   List<Map<String, dynamic>> getActivityCardData(int dayIndex, int activityId) {
     final data = state.activitiesCardData?[dayIndex] ?? [];
     return data

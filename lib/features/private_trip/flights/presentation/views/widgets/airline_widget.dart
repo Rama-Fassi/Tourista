@@ -5,7 +5,6 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/private_trip/flights/data/models/tickets_model/ticket.dart';
 
-
 class AirlineWidget extends StatelessWidget {
   const AirlineWidget({
     super.key,

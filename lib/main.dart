@@ -84,8 +84,6 @@ class Tourista extends StatelessWidget {
               AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
                 ..getAllReadyTripsFun(),
         ),
-        
-        
       ],
       child: MaterialApp.router(
         theme: themeData(),

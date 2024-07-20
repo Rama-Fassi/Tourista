@@ -117,7 +117,8 @@ class _VerifySignUpBodyState extends State<VerifySignUpBody> {
                   phone: widget.phoneNumber,
                   password: widget.password,
                   confirmPassword: widget.confirmPassword);
-            }, mainAxisAlignment: MainAxisAlignment.center,
+            },
+            mainAxisAlignment: MainAxisAlignment.center,
           ),
           Gap(screenheight * .25),
           BlocConsumer<VerifySignUpCubit, VerifySignUpState>(

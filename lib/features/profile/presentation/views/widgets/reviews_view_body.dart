@@ -17,7 +17,7 @@ class ReviewsViewBody extends StatelessWidget {
       slivers: [
         SliverToBoxAdapter(
           child: RatingColumn(
-                   scereenWidth: screenWidth,
+            scereenWidth: screenWidth,
           ),
         ),
         SliverToBoxAdapter(
