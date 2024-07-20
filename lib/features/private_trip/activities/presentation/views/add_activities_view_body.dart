@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/get_trip_days_cubit/get_trip_days_cubit.dart';
@@ -45,6 +47,8 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ActivityCardCubit>();
+
     print('tripId: ${widget.createTripModel.tripId!.id}'.toString());
     double screenWidth = MediaQuery.of(context).size.width;
     return BlocListener<ActivitiesPlanCubit, ActivitiesPlanState>(
@@ -78,7 +82,20 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                               children: [
                                 DateText(theDateString: theDateString!),
                                 GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      //    cubit.removeAllActivitiesForDay(state
+                                      //    .getTripDaysModel.days![index].id!);
+                                      GoRouter.of(context).push(
+                                          AppRouter.kActivitiesView,
+                                          extra: {
+                                            'tripId': widget
+                                                .createTripModel.tripId!.id,
+                                            'dayId': state.getTripDaysModel
+                                                .days![index].id!,
+                                            'dayDate': state.getTripDaysModel
+                                                .days![index].date
+                                          });
+                                    },
                                     child: const Icon(
                                       Icons.edit,
                                       size: 18,
