@@ -21,6 +21,7 @@ class DisplayTheHotels extends StatefulWidget {
     required this.state,
     required this.tripId,
     required this.text,
+    required this.withDeleteIcon,
   });
 
   final int tripId;
@@ -28,6 +29,7 @@ class DisplayTheHotels extends StatefulWidget {
   final double screenHeight;
   final GetUserPrivatePlanSuccess state;
   final String text;
+  final bool withDeleteIcon;
 
   @override
   State<DisplayTheHotels> createState() => _DisplayTheHotelsState();
@@ -82,7 +84,7 @@ class _DisplayTheHotelsState extends State<DisplayTheHotels> {
               cancel: true);
         },
         screenwidth: widget.screenWidth,
-        withDeleteIcon: true,
+        withDeleteIcon: widget.withDeleteIcon,
         child: isHotelEmpty == false
             ? HotelsListView(
                 state: widget.state,

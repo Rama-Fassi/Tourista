@@ -22,6 +22,7 @@ class DisplayTheTicket extends StatefulWidget {
     required this.state,
     required this.numOfPerson,
     required this.text,
+    required this.withDeleteIcon,
   });
 
   final double screenWidth;
@@ -30,6 +31,7 @@ class DisplayTheTicket extends StatefulWidget {
   final GetUserPrivatePlanSuccess state;
   final int numOfPerson;
   final String text;
+  final bool withDeleteIcon;
   @override
   State<DisplayTheTicket> createState() => _DisplayTheTicketState();
 }
@@ -85,7 +87,7 @@ class _DisplayTheTicketState extends State<DisplayTheTicket> {
               cancel: true);
         },
         screenwidth: widget.screenWidth,
-        withDeleteIcon: true,
+        withDeleteIcon: widget.withDeleteIcon,
         child: isTicketEmpty == true
             ? EmptyTextWidget(
                 data: widget.text,

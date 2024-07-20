@@ -22,6 +22,7 @@ class DisplayAllActivitiesForDay extends StatefulWidget {
     required this.screenWidth,
     required this.showConfirmationDialog,
     required this.text,
+    required this.withDeleteIcon,
   });
 
   final GetUserPrivatePlanSuccess state;
@@ -29,7 +30,7 @@ class DisplayAllActivitiesForDay extends StatefulWidget {
   final double screenWidth;
   final ShowConfirmationDialog showConfirmationDialog;
   final String text;
-
+  final bool withDeleteIcon;
   @override
   State<DisplayAllActivitiesForDay> createState() =>
       _DisplayAllActivitiesForDayState();
@@ -56,36 +57,39 @@ class _DisplayAllActivitiesForDayState
                 theDateString: widget.state.getUserPrivatePlanModel
                     .tourismPlaces![widget.index].date!,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5.0),
-                child: GestureDetector(
-                  child: SvgPicture.asset(
-                    Assets.imagesIconsDelete,
-                    width: 16,
-                    height: 16,
-                  ),
-                  onTap: () {
-                    widget.showConfirmationDialog.showConfirmationDialog(
-                        context: context,
-                        titleText: LocaleKeys.Confirmation.tr(),
-                        contentText:
-                            'Are You sure you want to delete the Activities for ${DateFormat('EEEE d MMMM ').format(theDate)}',
-                        onConfirmPressed: () {
-                          isActivitiesEmpty == true
-                              ? GoRouter.of(context).pop()
-                              : BlocProvider.of<DeleteActivitiesForDayCubit>(
-                                      context)
-                                  .deleteActivities(
-                                      tripDayId: widget
-                                          .state
-                                          .getUserPrivatePlanModel
-                                          .tourismPlaces![widget.index]
-                                          .id!);
+              widget.withDeleteIcon
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: GestureDetector(
+                        child: SvgPicture.asset(
+                          Assets.imagesIconsDelete,
+                          width: 16,
+                          height: 16,
+                        ),
+                        onTap: () {
+                          widget.showConfirmationDialog.showConfirmationDialog(
+                              context: context,
+                              titleText: LocaleKeys.Confirmation.tr(),
+                              contentText:
+                                  'Are You sure you want to delete the Activities for ${DateFormat('EEEE d MMMM ').format(theDate)}',
+                              onConfirmPressed: () {
+                                isActivitiesEmpty == true
+                                    ? GoRouter.of(context).pop()
+                                    : BlocProvider.of<
+                                                DeleteActivitiesForDayCubit>(
+                                            context)
+                                        .deleteActivities(
+                                            tripDayId: widget
+                                                .state
+                                                .getUserPrivatePlanModel
+                                                .tourismPlaces![widget.index]
+                                                .id!);
+                              },
+                              cancel: true);
                         },
-                        cancel: true);
-                  },
-                ),
-              )
+                      ),
+                    )
+                  : SizedBox(),
             ],
           ),
         ),

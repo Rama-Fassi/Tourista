@@ -65,6 +65,7 @@ class _ActivePrivateTripDetailsViewBodyState
                         [
                           //Ticket
                           DisplayTheTicket(
+                            withDeleteIcon: true,
                             text: "There is no Ticket to display",
                             screenWidth: screenWidth,
                             screenHeight: screenHeight,
@@ -80,6 +81,7 @@ class _ActivePrivateTripDetailsViewBodyState
                           ),
                           //Hotels
                           DisplayTheHotels(
+                            withDeleteIcon: true,
                             text: "There is no Hotel to display",
                             screenWidth: screenWidth,
                             screenHeight: screenHeight,
@@ -89,6 +91,7 @@ class _ActivePrivateTripDetailsViewBodyState
 
                           // Activities
                           DisplayAllActivities(
+                            withDeleteIcon: true,
                             text: "There is no Activity to display",
                             screenWidth: screenWidth,
                             state: state,

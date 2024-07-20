@@ -67,6 +67,7 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
                         [
                           //Ticket
                           DisplayTheTicket(
+                            withDeleteIcon: true,
                             text:
                                 'Go To Flight and add The perfect Ticket for you',
                             screenWidth: screenWidth,
@@ -78,6 +79,7 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
                           ),
                           //Hotels
                           DisplayTheHotels(
+                            withDeleteIcon: true,
                             text:
                                 'Go To Stays and add The perfect hotel for you',
                             screenWidth: screenWidth,
@@ -88,6 +90,7 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
 
                           // Activities
                           DisplayAllActivities(
+                            withDeleteIcon: true,
                             text:
                                 'Go To Activities and add The perfect Activities for you',
                             screenWidth: screenWidth,

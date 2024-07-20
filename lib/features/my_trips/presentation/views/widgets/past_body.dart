@@ -50,6 +50,10 @@ class PastBody extends StatelessWidget {
                                       state.allTripsModel.allTrips![index].id!);
                           GoRouter.of(context)
                               .push(AppRouter.kpastPublicTripDetailsview);
+                        } else {
+                          GoRouter.of(context).push(
+                              AppRouter.kPastPrivateTripDetailsview,
+                              extra: state.allTripsModel.allTrips![index].id!);
                         }
                       },
                       child: MyTripsCard(

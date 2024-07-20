@@ -71,6 +71,7 @@ class MyTripsRepoImpl implements MyTripsRepo {
         token: kToken,
       );
       AllTripsModel allTripsModel = AllTripsModel.fromJson(data);
+      print('${allTripsModel.allTrips}dddddddddddd');
       return right(allTripsModel);
     } catch (e) {
       if (e is DioException) {
