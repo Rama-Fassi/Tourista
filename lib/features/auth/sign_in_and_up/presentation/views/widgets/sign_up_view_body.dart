@@ -60,138 +60,142 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
-    return 
- SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
-          child: Column(
-            children: [
-              Gap(screenheight * 0.05),
-              EartLogoWithText(
-                data: LocaleKeys.create_an_account.tr(),
-              ),
-              Gap(screenheight * 0.02),
-              UserNameTextField(
-                textEditingController: userNameController,
-              ),
-              Gap(screenheight * 0.02),
-              PhoneNumberTextField(
-                controller: phoneNumberController,
-              ),
-              Gap(screenheight * 0.02),
-              PasswordTextField(
-                showPass: showPass,
-                onTap: () {
-                  showPass = !showPass;
-                  setState(() {});
-                },
-                controller: passwordController,
-              ),
-              Gap(screenheight * 0.02),
-              ConfirmPasswordTextField(
-                controller: confirmPasswordController,
-                showPass: confShowPass,
-                onTap: () {
-                  confShowPass = !confShowPass;
-                  setState(() {});
-                },
-              ),
-              Gap(screenheight * .04),
-              BlocConsumer<SignUpCubit, SignUpState>(
-                listener: (context, state) {
-                  if (state is SignUpSuccess) {
-                    isLoading = false;
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
+        child: Column(
+          children: [
+            Gap(screenheight * 0.05),
+            EartLogoWithText(
+              data: LocaleKeys.create_an_account.tr(),
+            ),
+            Gap(screenheight * 0.02),
+            UserNameTextField(
+              textEditingController: userNameController,
+            ),
+            Gap(screenheight * 0.02),
+            PhoneNumberTextField(
+              controller: phoneNumberController,
+            ),
+            Gap(screenheight * 0.02),
+            PasswordTextField(
+              showPass: showPass,
+              onTap: () {
+                showPass = !showPass;
+                setState(() {});
+              },
+              controller: passwordController,
+            ),
+            Gap(screenheight * 0.02),
+            ConfirmPasswordTextField(
+              controller: confirmPasswordController,
+              showPass: confShowPass,
+              onTap: () {
+                confShowPass = !confShowPass;
+                setState(() {});
+              },
+            ),
+            Gap(screenheight * .04),
+            BlocConsumer<SignUpCubit, SignUpState>(
+              listener: (context, state) {
+                if (state is SignUpSuccess) {
+                  isLoading = false;
 
-                    GoRouter.of(context)
-                        .pushReplacement(AppRouter.kVerifySignUpView, extra: {
-                      'userId': state.registerModel.userId,
-                      'userName': name,
-                      'phoneNumber': phoneNumber,
-                      'password': password,
-                      'confirmPassword': confirmPassword,
-                    });
-                  } else if (state is SignUpFailure) {
-                    isLoading = false;
+                  GoRouter.of(context)
+                      .pushReplacement(AppRouter.kVerifySignUpView, extra: {
+                    'userId': state.registerModel.userId,
+                    'userName': name,
+                    'phoneNumber': phoneNumber,
+                    'password': password,
+                    'confirmPassword': confirmPassword,
+                  });
+                } else if (state is SignUpFailure) {
+                  isLoading = false;
 
-                    customSnackBar(context, state.errMessage);
-                  } else {
-                    isLoading = true;
+                  customSnackBar(context, state.errMessage);
+                } else {
+                  isLoading = true;
+                }
+              },
+              builder: (context, state) {
+                return isLoading == true
+                    ? const SpinKitThreeBounce(
+                        color: kGreenColor,
+                        size: 40,
+                      )
+                    : CustomAuthButton(
+                        text: LocaleKeys.sign_up.tr(),
+                        width: screenWidth * .80,
+                        onTap: () {
+                          BlocProvider.of<SignUpCubit>(context).signUp(
+                              name: name,
+                              phone: phoneNumber,
+                              password: password,
+                              confirmPassword: confirmPassword);
+                        },
+                      );
+              },
+            ),
+            Gap(screenheight * .03),
+            const ORDivider(),
+            Gap(screenheight * .02),
+            BlocListener<GetUserInfoCubit, GetUserInfoState>(
+              listener: (context, state) {
+                if (state is GetUserInfoSuccess) {
+                  GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+
+                  isLoading = false;
+
+                  Hive.box(kUserInfoBox)
+                      .put(kUserPointsRef, state.userInfoModel.user!.points);
+                  if (kDebugMode) {
+                    print(
+                        'points: ${Hive.box(kUserInfoBox).get(kUserPointsRef)}');
                   }
-                },
-                builder: (context, state) {
-                  return isLoading == true
-                      ? const SpinKitThreeBounce(
-                          color: kGreenColor,
-                          size: 40,
-                        )
-                      : CustomAuthButton(
-                          text: LocaleKeys.sign_up.tr(),
-                          width: screenWidth * .80,
-                          onTap: () {
-                            BlocProvider.of<SignUpCubit>(context).signUp(
-                                name: name,
-                                phone: phoneNumber,
-                                password: password,
-                                confirmPassword: confirmPassword);
-                          },
-                        );
-                },
-              ),
-              Gap(screenheight * .03),
-              const ORDivider(),
-              Gap(screenheight * .02),
-             BlocListener<GetUserInfoCubit, GetUserInfoState>(
-      listener: (context, state) {
-        if (state is GetUserInfoSuccess) {
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
 
-          isLoading = false;
+                  Hive.box(kUserInfoBox)
+                      .put(kUserNameRef, state.userInfoModel.user!.name);
+                  if (kDebugMode) {
+                    print(
+                        'username: ${Hive.box(kUserInfoBox).get(kUserNameRef)}');
+                  }
+                  Hive.box(kUserInfoBox).put(kUserPhoneRef,
+                      state.userInfoModel.user?.normalUser?.phone);
+                  if (kDebugMode) {
+                    print(
+                        'phoneNumber: ${Hive.box(kUserInfoBox).get(kUserPhoneRef)}');
+                  }
+                  state.userInfoModel.user?.googleUser != null
+                      ? Hive.box(kUserInfoBox).put(kUserEmailRef,
+                          state.userInfoModel.user!.googleUser!.email)
+                      : Hive.box(kUserInfoBox).put(kUserEmailRef, null);
+                  if (kDebugMode) {
+                    print(
+                        'email: ${Hive.box(kUserInfoBox).get(kUserEmailRef)}');
+                  }
+                } else if (state is GetUserInfoFailure) {
+                  isLoading = false;
 
-          Hive.box(kUserInfoBox)
-              .put(kUserPointsRef, state.userInfoModel.user!.points);
-          if (kDebugMode) {
-            print('points: ${Hive.box(kUserInfoBox).get(kUserPointsRef)}');
-          }
-
-          Hive.box(kUserInfoBox)
-              .put(kUserNameRef, state.userInfoModel.user!.name);
-          if (kDebugMode) {
-            print('username: ${Hive.box(kUserInfoBox).get(kUserNameRef)}');
-          }
-          Hive.box(kUserInfoBox)
-              .put(kUserPhoneRef, state.userInfoModel.user?.normalUser?.phone);
-          if (kDebugMode) {
-            print('phoneNumber: ${Hive.box(kUserInfoBox).get(kUserPhoneRef)}');
-          }
-          state.userInfoModel.user?.googleUser != null
-              ? Hive.box(kUserInfoBox).put(
-                  kUserEmailRef, state.userInfoModel.user!.googleUser!.email)
-              : Hive.box(kUserInfoBox).put(kUserEmailRef, null);
-          if (kDebugMode) {
-            print('email: ${Hive.box(kUserInfoBox).get(kUserEmailRef)}');
-          }
-        } else if (state is GetUserInfoFailure) {
-          isLoading = false;
-
-          customSnackBar(context, state.errMessage);
-        } else {
-          isLoading = true;
-        }
-      },
-                child: const ActiveSignUpWithGoogleButton(),
-              ),
-              Gap(screenheight * .03),
-              CustomTextButton(
-                  data: LocaleKeys.already_have_an_account.tr(),
-                  textButtondata: LocaleKeys.sign_in.tr(),
-                  onPressed: () {
-                    GoRouter.of(context).push(AppRouter.kSignIN);
-                  }, mainAxisAlignment: MainAxisAlignment.center,),
-            ],
-          ),
+                  customSnackBar(context, state.errMessage);
+                } else {
+                  isLoading = true;
+                }
+              },
+              child: const ActiveSignUpWithGoogleButton(),
+            ),
+            Gap(screenheight * .03),
+            CustomTextButton(
+              data: LocaleKeys.already_have_an_account.tr(),
+              textButtondata: LocaleKeys.sign_in.tr(),
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kSignIN);
+              },
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
+          ],
         ),
-      );
-    
+      ),
+    );
   }
 
   void listenController() {

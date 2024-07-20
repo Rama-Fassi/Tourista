@@ -15,7 +15,8 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotel,
-    required this.tripId, required this.showButton,
+    required this.tripId,
+    required this.showButton,
   });
   final Hotel hotel;
   final double width;
@@ -36,16 +37,19 @@ class HotelMainCardPriceAndDescription extends StatelessWidget {
           style: AppStyles.styleSourceBold25(context),
         ),
         const Gap(4),
-     showButton == true?   CustomButton(
-            onTap: () => GoRouter.of(context).push(AppRouter.kHotelDetailsView,
-                extra: {'tripId': tripId, 'hotel': hotel}),
-            text: LocaleKeys.show.tr(),
-            width: width * .15,
-            borderRadius: 5,
-            height: height * .035,
-            style: AppStyles.styleSourceBold16(context)
-                .copyWith(color: Colors.white),
-            color: kPrimaryColor.withOpacity(.8)) : const SizedBox()
+        showButton == true
+            ? CustomButton(
+                onTap: () => GoRouter.of(context).push(
+                    AppRouter.kHotelDetailsView,
+                    extra: {'tripId': tripId, 'hotel': hotel}),
+                text: LocaleKeys.show.tr(),
+                width: width * .15,
+                borderRadius: 5,
+                height: height * .035,
+                style: AppStyles.styleSourceBold16(context)
+                    .copyWith(color: Colors.white),
+                color: kPrimaryColor.withOpacity(.8))
+            : const SizedBox()
       ],
     );
   }

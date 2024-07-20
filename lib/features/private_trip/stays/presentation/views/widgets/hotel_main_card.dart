@@ -10,7 +10,8 @@ class HotelMainCard extends StatelessWidget {
     required this.width,
     required this.height,
     required this.hotel,
-    required this.tripId, required this.showButton,
+    required this.tripId,
+    required this.showButton,
   });
   final Hotel hotel;
   final double width;
@@ -40,7 +41,8 @@ class HotelMainCard extends StatelessWidget {
                 tripId: tripId,
                 width: width,
                 height: height,
-                hotel: hotel, showButton: showButton,
+                hotel: hotel,
+                showButton: showButton,
               )
             ],
           ),

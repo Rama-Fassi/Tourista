@@ -16,7 +16,6 @@ import 'package:tourista/features/ready_trips/presentation/manager/add_favorit_t
 import 'package:tourista/features/ready_trips/presentation/manager/all_ready_trips_cubit/all_ready_trips_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
-
 class NavigationBArScaffold extends StatefulWidget {
   const NavigationBArScaffold({super.key});
 

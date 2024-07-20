@@ -18,7 +18,9 @@ abstract class ThePlanRepo {
   Future<Either<Failure, DeleteFromPlanModel>> deleteBookingHotel(
       {required int tripId, required int citiesHotelId});
 
-
-      Future<Either<Failure, DeleteFromPlanModel>> deleteTicket(
+  Future<Either<Failure, DeleteFromPlanModel>> deleteTicket(
       {required int bookingTicketId});
+
+  Future<Either<Failure, DeleteFromPlanModel>> deleteActivity(
+      {required int tripDayId});
 }

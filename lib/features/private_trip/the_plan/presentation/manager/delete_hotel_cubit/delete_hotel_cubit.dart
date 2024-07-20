@@ -19,8 +19,8 @@ class DeleteHotelCubit extends Cubit<DeleteHotelState> {
     result.fold((failure) {
       emit(DeleteHotelFailure(failure.errMessage));
       print(failure.errMessage);
-    }, (getUserPrivatePlanModel) {
-      emit(DeleteHotelSuccess(getUserPrivatePlanModel));
+    }, (deleteFromPlanModel) {
+      emit(DeleteHotelSuccess(deleteFromPlanModel));
     });
   }
 }

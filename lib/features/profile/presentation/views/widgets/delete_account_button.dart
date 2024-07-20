@@ -47,15 +47,15 @@ class DeleteAccountButton extends StatelessWidget {
       child: ProfileTextButton(
         onPressed: () async {
           ShowConfirmationDialog().showConfirmationDialog(
-            titleText: LocaleKeys.Confirmation.tr(),
-            contentText:
-                LocaleKeys.Are_you_sure_you_want_to_delete_your_account.tr(),
+            titleText: LocaleKeys.are_you_sure.tr(),
+            contentText: LocaleKeys.you_will_lose_all_of_your_data.tr(),
             context: context,
             onConfirmPressed: () async {
               await BlocProvider.of<DeleteAccountCubit>(context)
                   .deleteAccount();
             },
             cancel: true,
+            deleteProfile: true,
           );
         },
         width: 23,

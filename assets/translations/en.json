@@ -145,5 +145,11 @@
   "businessClassFlightTicket": "business class flight ticket",
   "sweetAndBeautifulView": "suite and beautiful view in the hotel",
   "privateTransportation": "Private Transportation",
-  "totalPrice": "Total Price"
+  "totalPrice": "Total Price",
+  "are_you_sure": "Are you sure",
+  "you_will_lose_all_of_your_data": "you will lose all of your data",
+  "all_your_trips": "All your trips will cancel",
+  "if_there_is_booking": "if there is booking trips since more than month you will lose total booking money.",
+  "booking_from_two_week": "booking from two week you will lose",
+  "less_than_2_week": "less than 2 week"
 }

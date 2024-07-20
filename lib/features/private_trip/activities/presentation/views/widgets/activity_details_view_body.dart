@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,6 +34,7 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    DateTime theDate = DateFormat('yyyy-MM-dd').parse(widget.dayDate);
 
     final cubit = context.read<ActivityCardCubit>();
 
@@ -45,47 +47,54 @@ class _ActivityDetailsViewBodyState extends State<ActivityDetailsViewBody> {
       );
     }).toList();
 
-    return Stack(alignment: Alignment.bottomCenter, children: [
-      SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 350,
-              child: imagesPageViewWithCounter(images, screenWidth, context),
-            ),
-            const Gap(10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: ActivityTextsDetails(
-                activityName: widget.activityModel.name,
-                activityOpeningHours: widget.activityModel.openingHours,
-                activityRecmmendTime: widget.activityModel.recommendedTime,
-                activityTybe: widget.activityModel.type,
-                activityAbout: widget.activityModel.description,
+    return Stack(children: [
+      Align(
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 350,
+                child: imagesPageViewWithCounter(images, screenWidth, context),
               ),
-            ),
-            const Gap(500),
-          ],
+              const Gap(10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: ActivityTextsDetails(
+                  activityName: widget.activityModel.name,
+                  activityOpeningHours: widget.activityModel.openingHours,
+                  activityRecmmendTime: widget.activityModel.recommendedTime,
+                  activityTybe: widget.activityModel.type,
+                  activityAbout: widget.activityModel.description,
+                ),
+              ),
+              const Gap(80),
+            ],
+          ),
         ),
       ),
       SizedBox(
         height: MediaQuery.of(context).size.height,
       ),
-      CustomAddButton(theplan: false,
-        screenWidth: screenWidth,
-        onTap: () {
-          cubit.setactivitiesCardData(widget.dayIndex, {
-            'id': widget.activityModel.id,
-            'name': widget.activityModel.name,
-            'description': widget.activityModel.description,
-            'images': widget.activityModel.images![0],
-          });
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: CustomAddButton(
+          theplan: false,
+          screenWidth: screenWidth,
+          onTap: () {
+            cubit.setactivitiesCardData(widget.dayIndex, {
+              'id': widget.activityModel.id,
+              'name': widget.activityModel.name,
+              'description': widget.activityModel.description,
+              'images': widget.activityModel.images![0],
+            });
 
-          Navigator.pop(context);
-        },
-        text: 'Add To ${widget.dayDate}',
+            Navigator.pop(context);
+          },
+          text: 'Add To ${DateFormat('EEEE d MMMM ').format(theDate)}',
+        ),
       ),
     ]);
   }

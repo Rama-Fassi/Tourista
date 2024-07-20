@@ -3,7 +3,7 @@ import '../../../../../core/utlis/styles.dart';
 import 'display_all_user_reviews.dart';
 import 'rating_column.dart';
 
-class ReviewsViewBody extends StatelessWidget {
+class ReviewsViewBody extends StatefulWidget {
   const ReviewsViewBody({
     super.key,
     required this.scereenWidth,
@@ -11,13 +11,18 @@ class ReviewsViewBody extends StatelessWidget {
   final double scereenWidth;
 
   @override
+  State<ReviewsViewBody> createState() => _ReviewsViewBodyState();
+}
+
+class _ReviewsViewBodyState extends State<ReviewsViewBody> {
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: RatingColumn(
-                   scereenWidth: screenWidth,
+            scereenWidth: screenWidth,
           ),
         ),
         SliverToBoxAdapter(

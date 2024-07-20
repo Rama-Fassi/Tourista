@@ -30,10 +30,10 @@ class TextWithTextButton extends StatelessWidget {
           data: textButtondata,
           style: AppStyles.styleSourceBold20(context)
               .copyWith(color: kPrimaryColor, fontSize: 18),
-          onPressed: onPressed, mainAxisAlignment: MainAxisAlignment.center,
+          onPressed: onPressed,
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
       ],
     );
   }
 }
-

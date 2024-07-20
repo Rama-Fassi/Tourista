@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +25,8 @@ class ActivitiesTabBarView extends StatelessWidget {
   final String dayDate;
   @override
   Widget build(BuildContext context) {
+    DateTime theDate = DateFormat('yyyy-MM-dd').parse(dayDate);
+
     double height = MediaQuery.of(context).size.height;
     BlocProvider.of<ActivitiesCubit>(context)
         .getTourismPlaces(tourismTybe: tourismTybe, tripId: tripId);
@@ -40,12 +43,13 @@ class ActivitiesTabBarView extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: CustomAddButton(theplan: false,
+              child: CustomAddButton(
+                theplan: false,
                 screenWidth: screenWidth,
                 onTap: () {
                   Navigator.pop(context);
                 },
-                text: 'Add To $dayDate',
+                text: 'Add To ${DateFormat('EEEE d MMMM ').format(theDate)}',
               ),
             )
           ]);

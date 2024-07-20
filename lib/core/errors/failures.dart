@@ -36,6 +36,7 @@ class ServerFailure extends Failure {
     if (statusCode == 400 ||
         statusCode == 401 ||
         statusCode == 422 ||
+        statusCode == 403 ||
         statusCode == 404) {
       return ServerFailure(response["message"]);
     }

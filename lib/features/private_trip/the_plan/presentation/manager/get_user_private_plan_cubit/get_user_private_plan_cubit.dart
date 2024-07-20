@@ -4,7 +4,6 @@ import 'package:tourista/features/private_trip/the_plan/data/repos/the_plan_repo
 
 import '../../../data/models/get_user_private_plan_model/get_user_private_plan_model.dart';
 
-
 part 'get_user_private_plan_state.dart';
 
 class GetUserPrivatePlanCubit extends Cubit<GetUserPrivatePlanState> {

@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/translations/locale_keys.g.dart';
+import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
@@ -45,6 +46,8 @@ class PriceAndAddToPlan extends StatelessWidget {
             if (state is ChooseTicketSuccess) {
               customSuccessSnackBar(
                   context, "this ticket added to your plan successfuly");
+            } else if (state is ChooseTicketFailure) {
+              customSnackBar(context, state.errMessage);
             }
           },
           builder: (context, state) {

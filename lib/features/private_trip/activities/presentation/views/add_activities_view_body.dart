@@ -1,7 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/get_trip_days_cubit/get_trip_days_cubit.dart';
@@ -45,17 +47,18 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ActivityCardCubit>();
+
     print('tripId: ${widget.createTripModel.tripId!.id}'.toString());
     double screenWidth = MediaQuery.of(context).size.width;
-    return BlocListener<GetTripDaysCubit, GetTripDaysState>(
+    return BlocListener<ActivitiesPlanCubit, ActivitiesPlanState>(
       listener: (context, state) {
-        if (state is GetTripDaysSuccess) {
-          setState(() {
-            theDateString = state.getTripDaysModel.days![1].date;
-            theDate = DateFormat('yyyy-MM-dd').parse(theDateString!);
-            activitiesPlan = {"planes": []};
-            activitiesPlan = {"planes": []};
-          });
+        if (state is ActivitiesPlanSuccess) {
+          activitiesPlan = {"planes": []};
+          customSuccessSnackBar(
+              context, "Activities Added Successfully to the plan");
+        } else if (state is ActivitiesPlanFailure) {
+          customSnackBar(context, state.errMessage);
         }
       },
       child: BlocBuilder<GetTripDaysCubit, GetTripDaysState>(
@@ -74,12 +77,35 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                         return Column(
                           children: [
                             const Gap(20),
-                            DateText(theDateString: theDateString!),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                DateText(theDateString: theDateString!),
+                                GestureDetector(
+                                    onTap: () {
+                                      //    cubit.removeAllActivitiesForDay(state
+                                      //    .getTripDaysModel.days![index].id!);
+                                      GoRouter.of(context).push(
+                                          AppRouter.kActivitiesView,
+                                          extra: {
+                                            'tripId': widget
+                                                .createTripModel.tripId!.id,
+                                            'dayId': state.getTripDaysModel
+                                                .days![index].id!,
+                                            'dayDate': state.getTripDaysModel
+                                                .days![index].date
+                                          });
+                                    },
+                                    child: const Icon(
+                                      Icons.edit,
+                                      size: 18,
+                                    ))
+                              ],
+                            ),
                             const Gap(20),
                             BlocBuilder<ActivityCardCubit, ActivityCardState>(
                               builder: (context, state) {
                                 activitiesPlan = {"planes": []};
-
                                 if (state.activitiesCardData != null) {
                                   state.activitiesCardData
                                       ?.forEach((dayId, activities) {
@@ -103,8 +129,7 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                                           screenWidth: screenWidth,
                                           tripId:
                                               widget.createTripModel.tripId!.id,
-                                          dayDate: DateFormat('EEEE d MMMM ')
-                                              .format(theDate),
+                                          dayDate: theDateString!,
                                         ),
                                       )
                                     : CustomAddedActivityCard(
@@ -123,34 +148,22 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child:
-                        BlocConsumer<ActivitiesPlanCubit, ActivitiesPlanState>(
-                      listener: (context, state) {
-                        if (state is ActivitiesPlanSuccess) {
-                          customSuccessSnackBar(context,
-                              "Activities Added Successfully to the plan");
-                        } else if (state is ActivitiesPlanFailure) {
-                          customSnackBar(context, state.errMessage);
-                        }
-                      },
+                        BlocBuilder<ActivitiesPlanCubit, ActivitiesPlanState>(
                       builder: (context, state) {
-                        print(activitiesPlan.toString());
+                        if (state is ActivitiesPlanLoading) {
+                          return const LoadingWidget();
+                        } else {
+                          return CustomAddButton(
+                            screenWidth: screenWidth,
+                            onTap: () {
+                              print(activitiesPlan.toString());
 
-                        return BlocBuilder<ActivitiesPlanCubit,
-                            ActivitiesPlanState>(
-                          builder: (context, state) {
-                            if (state is ActivitiesPlanLoading) {
-                              return const LoadingWidget();
-                            } else {
-                              return CustomAddButton(
-                                screenWidth: screenWidth,
-                                onTap: () {
-                                  BlocProvider.of<ActivitiesPlanCubit>(context)
-                                      .postActivitiesPlan(body: activitiesPlan);
-                                }, theplan: false,
-                              );
-                            }
-                          },
-                        );
+                              BlocProvider.of<ActivitiesPlanCubit>(context)
+                                  .postActivitiesPlan(body: activitiesPlan);
+                            },
+                            theplan: false,
+                          );
+                        }
                       },
                     ),
                   ),

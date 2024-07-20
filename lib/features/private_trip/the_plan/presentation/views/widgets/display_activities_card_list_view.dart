@@ -3,10 +3,11 @@ import 'package:tourista/features/private_trip/the_plan/presentation/views/widge
 
 import '../../manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 
-class DisplayActivitiesListView extends StatelessWidget {
-  const DisplayActivitiesListView({
+class DisplayActivitiesCardListView extends StatelessWidget {
+  const DisplayActivitiesCardListView({
     super.key,
-    required this.state, required this.index,
+    required this.state,
+    required this.index,
   });
   final GetUserPrivatePlanSuccess state;
   final int index;

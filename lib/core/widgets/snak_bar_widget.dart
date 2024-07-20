@@ -4,7 +4,8 @@ import 'package:tourista/constants.dart';
 
 class SnakBarWidget extends StatelessWidget {
   const SnakBarWidget({
-    super.key, required this.message,
+    super.key,
+    required this.message,
   });
   final String message;
   @override

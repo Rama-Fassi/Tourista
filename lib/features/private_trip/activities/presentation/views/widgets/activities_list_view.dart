@@ -49,7 +49,7 @@ class ActivitiesListView extends StatelessWidget {
           itemCount: tourismActivitiesModel.activities!.length,
         ),
       ),
-      //   const Gap(70)
+      const Gap(70)
     ]);
   }
 }

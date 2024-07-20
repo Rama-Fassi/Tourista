@@ -168,7 +168,14 @@ class CodegenLoader extends AssetLoader {
     "businessClassFlightTicket": "تذكرة طيران من درجة الأعمال",
     "sweetAndBeautifulView": "جناح مع إطلالة جميلة",
     "privateTransportation": "مواصلات خاصة",
-    "totalPrice": "السعر الكلي"
+    "totalPrice": "السعر الكلي",
+    "are_you_sure": "هل أنت متأكد",
+    "you_will_lose_all_of_your_data": "سوف تفقد كل البيانات المتعلقة بك",
+    "all_your_trips": "سيتم إلغاء جميع رحلاتك",
+    "if_there_is_booking":
+        "إذا كان هناك حجز لرحلات منذ أكثر من شهر، فسوف تخسر إجمالي أموال الحجز",
+    "booking_from_two_week": "إذا تم الحجز منذ أسبوعين، فسوف تخسر",
+    "less_than_2_week": "إذا تم الحجز منذ أقل من أسبوعين، فسوف تخسر"
   };
   static const Map<String, dynamic> en = {
     "create_an_account": "Create an account",
@@ -325,7 +332,14 @@ class CodegenLoader extends AssetLoader {
     "businessClassFlightTicket": "business class flight ticket",
     "sweetAndBeautifulView": "suite and beautiful view in the hotel",
     "privateTransportation": "Private Transportation",
-    "totalPrice": "Total Price"
+    "totalPrice": "Total Price",
+    "are_you_sure": "Are you sure",
+    "you_will_lose_all_of_your_data": "you will lose all of your data",
+    "all_your_trips": "All your trips will cancel",
+    "if_there_is_booking":
+        "if there is booking trips since more than month you will lose total booking money.",
+    "booking_from_two_week": "booking from two week you will lose",
+    "less_than_2_week": "less than 2 week"
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar": ar,

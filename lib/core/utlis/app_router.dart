@@ -91,7 +91,7 @@ abstract class AppRouter {
   static const kWhereFromAirportView = '/whereFromAirportView';
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
-    static const kSearchActivityView = '/SearchActivityView';
+  static const kSearchActivityView = '/SearchActivityView';
 
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
@@ -145,7 +145,8 @@ abstract class AppRouter {
       GoRoute(
         path: kReviewsView,
         builder: (context, state) => BlocProvider(
-          create: (context) => AllReviewsCubit(getIt.get<ProfileRepoImpl>())..getAllReviews(),
+          create: (context) =>
+              AllReviewsCubit(getIt.get<ProfileRepoImpl>())..getAllReviews(),
           child: const ReviewsView(),
         ),
       ),
@@ -387,7 +388,7 @@ abstract class AppRouter {
               activitiesdaysInfo: state.extra as Map<String, dynamic>),
         ),
       ),
-         GoRoute(
+      GoRoute(
         path: kSearchActivityView,
         builder: (context, state) => const SearchActivityView(),
       ),

@@ -24,8 +24,7 @@ class RoundTripTicket extends StatelessWidget {
   final CreateTripModel createTripModel;
   final String airFrom, airTo;
   @override
-  Widget build(BuildContext context) {  
-
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       width: width,

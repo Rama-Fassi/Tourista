@@ -25,7 +25,7 @@ class SignOutButton extends StatelessWidget {
       listener: (context, state) {
         if (state is SignOutSuccess) {
           Hive.box(kTokenBox).delete(kTokenRef);
-                GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
+          GoRouter.of(context).pushReplacement(AppRouter.kSignIN);
         } else if (state is SignOutFailure) {
           Navigator.of(context).popUntil((route) => route.isFirst);
           customSnackBar(context, state.errMessage);
@@ -40,14 +40,13 @@ class SignOutButton extends StatelessWidget {
         }
       },
       child: ProfileTextButton(
-        onPressed: ()  {
+        onPressed: () {
           ShowConfirmationDialog().showConfirmationDialog(
             titleText: LocaleKeys.Confirmation.tr(),
             contentText: LocaleKeys.Are_you_sure_you_want_to_sign_out.tr(),
             context: context,
-            onConfirmPressed: ()  {
-                             BlocProvider.of<SignOutCubit>(context).signOut();
-
+            onConfirmPressed: () {
+              BlocProvider.of<SignOutCubit>(context).signOut();
             },
             cancel: true,
           );

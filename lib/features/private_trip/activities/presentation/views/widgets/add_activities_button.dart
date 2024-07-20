@@ -14,7 +14,7 @@ class AddActivitiesButton extends StatelessWidget {
     required this.screenWidth,
     required this.tripId,
     required this.dayId,
-    required this.dayDate, //required this.createTripModel,
+    required this.dayDate,
   });
   final int tripId;
 
@@ -23,14 +23,14 @@ class AddActivitiesButton extends StatelessWidget {
   final String dayDate;
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       width: screenWidth * .75,
       height: 50,
       child: OutlinedButton.icon(
         onPressed: () {
           GoRouter.of(context).push(AppRouter.kActivitiesView,
-              extra: {'tripId': tripId, 'dayId': dayId, 'dayDate': dayDate});
+              extra: {
+                'tripId': tripId, 'dayId': dayId, 'dayDate': dayDate});
         },
         icon: SvgPicture.asset(
           Assets.imagesIconsRoundedPlus,

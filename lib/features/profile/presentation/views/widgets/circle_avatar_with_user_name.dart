@@ -44,7 +44,7 @@ class CircleAvatarWithUserName extends StatelessWidget {
           ),
           const Gap(10),
           Text(
-            Hive.box(kUserInfoBox).get(kUserNameRef)??'',
+            Hive.box(kUserInfoBox).get(kUserNameRef) ?? '',
             style: AppStyles.styleInterBold27(context)
                 .copyWith(color: Colors.white),
           ),
