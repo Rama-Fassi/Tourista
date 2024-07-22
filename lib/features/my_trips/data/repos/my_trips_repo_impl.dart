@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
@@ -51,7 +52,7 @@ class MyTripsRepoImpl implements MyTripsRepo {
     try {
       var data = await apiServer.get(
         endPoint: 'activeTrips',
-        token: kToken,
+        token: Hive.box(kTokenBox).get(kTokenRef),
       );
       AllTripsModel allTripsModel = AllTripsModel.fromJson(data);
       return right(allTripsModel);

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tourista/core/utlis/api_server.dart';
+import 'package:tourista/features/attractions/data/repos/attraction_repo_imp.dart';
 import 'package:tourista/features/auth/forget_password/data/repos/forget_password_impl.dart';
 import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo_impl.dart';
 import 'package:tourista/features/my_trips/data/repos/my_trips_repo_impl.dart';
@@ -72,6 +73,12 @@ void setUpServiceLocator() {
   );
   getIt.registerSingleton<MyTripsRepoImpl>(
     MyTripsRepoImpl(
+      getIt.get<ApiServer>(),
+    ),
+  );
+
+  getIt.registerSingleton<AttractionsRepoImpl>(
+    AttractionsRepoImpl(
       getIt.get<ApiServer>(),
     ),
   );

@@ -99,6 +99,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleInterSemiBold23(BuildContext context) {
+    return GoogleFonts.inter(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(fontSize: 23, context),
+      fontWeight: FontWeight.w600,
+    );
+  }
+
   static TextStyle styleInterBold20(BuildContext context) {
     return GoogleFonts.inter(
       color: Colors.black,
