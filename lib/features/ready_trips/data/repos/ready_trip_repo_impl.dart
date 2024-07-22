@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
@@ -45,7 +46,7 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
         };
       }
       var data = await apiServer.post(
-          endPoint: 'publicTripSortBy', token: kToken, body: queryParams);
+          endPoint: 'publicTripSortBy', token: Hive.box(kTokenBox).get(kTokenRef), body: queryParams);
       AllReadyTripsModel allReadyTripsModel = AllReadyTripsModel.fromJson(data);
       return right(allReadyTripsModel);
     } catch (e) {

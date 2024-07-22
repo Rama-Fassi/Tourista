@@ -6,6 +6,45 @@ import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart'
 part 'sign_in_with_google_state.dart';
 
 class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
+  SignInWithGoogleCubit(this.authRepo) : super(SignInWithGoogleInitial()) {
+    _googleSignIn = GoogleSignIn(scopes: ['email']);
+  }
+
+  final AuthRepo authRepo;
+  late final GoogleSignIn _googleSignIn;
+
+  Future<void> signInWithGoogle() async {
+    try {
+      emit(SignInWithGoogleLoading());
+
+      await _googleSignIn.signOut();
+
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser != null) {
+        emit(SignInWithGoogleSuccess(googleUser: googleUser));
+      } else {
+        emit(SignInWithGoogleFailure('Google Sign-In failed'));
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error during Google Sign-In: $e');
+      }
+      emit(SignInWithGoogleFailure('An error occurred during Google Sign-In'));
+    }
+  }
+}
+
+
+
+/*import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tourista/features/auth/sign_in_and_up/data/repos/auth_repo.dart';
+
+part 'sign_in_with_google_state.dart';
+
+class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
   SignInWithGoogleCubit(this.authRepo) : super(SignInWithGoogleInitial());
 
   final AuthRepo authRepo;
@@ -46,4 +85,4 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
       emit(SignInWithGoogleFailure('An error occurred during Google Sign-In'));
     }
   }
-}
+}*/
