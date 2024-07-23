@@ -24,7 +24,7 @@ class SignInWithGoogleCubit extends Cubit<SignInWithGoogleState> {
       if (googleUser != null) {
         emit(SignInWithGoogleSuccess(googleUser: googleUser));
       } else {
-        emit(SignInWithGoogleFailure('Google Sign-In failed'));
+        // emit(SignInWithGoogleFailure('Google Sign-In failed'));
       }
     } catch (e) {
       if (kDebugMode) {

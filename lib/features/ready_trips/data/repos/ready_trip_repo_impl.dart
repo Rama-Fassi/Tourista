@@ -46,7 +46,9 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
         };
       }
       var data = await apiServer.post(
-          endPoint: 'publicTripSortBy', token: Hive.box(kTokenBox).get(kTokenRef), body: queryParams);
+          endPoint: 'publicTripSortBy',
+          token: Hive.box(kTokenBox).get(kTokenRef),
+          body: queryParams);
       AllReadyTripsModel allReadyTripsModel = AllReadyTripsModel.fromJson(data);
       return right(allReadyTripsModel);
     } catch (e) {

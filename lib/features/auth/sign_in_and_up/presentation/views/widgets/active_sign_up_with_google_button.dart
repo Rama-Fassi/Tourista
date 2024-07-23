@@ -41,7 +41,7 @@ class ActiveSignUpWithGoogleButton extends StatelessWidget {
                           email: state.googleUser.email,
                           googleUserId: state.googleUser.id);
                 } else if (state is SignInWithGoogleFailure) {
-                  customSnackBar(context, state.errMessage);
+                //  customSnackBar(context, state.errMessage);
                 } else {
                   const LoadingWidget();
                 }
