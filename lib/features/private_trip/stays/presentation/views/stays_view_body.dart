@@ -14,7 +14,9 @@ class StaysViewBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const HotelMainAppBar(),
+        HotelMainAppBar(
+          tripId: tripId,
+        ),
         Expanded(
           child: CustomScrollViewWithBlocBuilder(
             width: width,

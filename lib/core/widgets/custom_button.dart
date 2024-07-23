@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
       required this.width,
       required this.borderRadius,
       this.padding,
-      required this.height,
+      this.height,
       required this.style,
       required this.color,
       this.boxShadow});
@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
   final double width;
   final double borderRadius;
   double? padding;
-  final double height;
+  final double? height;
   final TextStyle style;
   final Color color;
   final List<BoxShadow>? boxShadow;

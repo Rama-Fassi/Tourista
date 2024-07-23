@@ -8,15 +8,31 @@ part 'favorit_trips_state.dart';
 class FavoritTripsCubit extends Cubit<FavoritTripsState> {
   FavoritTripsCubit(this.myTripsRepoImpl) : super(FavoritTripsInitial());
   MyTripsRepoImpl myTripsRepoImpl;
+  bool _isCubitClosed = false;
 
   Future<void> getFavoritTripsFun() async {
-    emit(FavoritTripsLoading());
-    var result = await myTripsRepoImpl.getFavoritTrips();
+    if (!_isCubitClosed) {
+      emit(FavoritTripsLoading());
+      var result = await myTripsRepoImpl.getFavoritTrips();
 
-    result.fold((failure) {
-      emit(FavoritTripsFailure(errMessage: failure.errMessage));
-    }, (favoritTripsModel) {
-      emit(FavoritTripsSuccess(favoritTripsModel: favoritTripsModel));
-    });
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(FavoritTripsFailure(errMessage: failure.errMessage));
+          }
+        },
+        (favoritTripsModel) {
+          if (!_isCubitClosed) {
+            emit(FavoritTripsSuccess(favoritTripsModel: favoritTripsModel));
+          }
+        },
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _isCubitClosed = true;
+    return super.close();
   }
 }

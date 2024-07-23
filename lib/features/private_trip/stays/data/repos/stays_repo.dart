@@ -5,7 +5,8 @@ import 'package:tourista/features/private_trip/stays/data/models/hotels_model/ho
 import 'package:tourista/features/private_trip/stays/data/models/room_hotel_model/room_hotel_model.dart';
 
 abstract class StaysRepo {
-  Future<Either<Failure, HotelsModel>> fetchHotels({required int tripId});
+  Future<Either<Failure, HotelsModel>> fetchHotels(
+      {required int tripId, String? sortBy, String? search});
   Future<Either<Failure, AddHotelModel>> addHotels(
       {required int tripId,
       required String checkIn,

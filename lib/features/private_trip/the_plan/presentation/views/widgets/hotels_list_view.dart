@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/styles.dart';
+import 'package:tourista/features/private_trip/stays/presentation/views/widgets/hotel_main_review_row.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/widgets/stars_main_row.dart';
 
 import '../../../../stays/presentation/views/widgets/hotel_main_card_price_and_description.dart';
@@ -41,7 +42,7 @@ class HotelsListView extends StatelessWidget {
                         height: 200,
                         width: MediaQuery.of(context).size.width * .35),
                   ),
-                  const Gap(8),
+                  Gap(MediaQuery.of(context).size.width * .01),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .5,
                     child: Column(
@@ -65,6 +66,22 @@ class HotelsListView extends StatelessWidget {
                                   .getUserPrivatePlanModel.hotels![hotelindex],
                             ),
                             const Gap(10),
+                            HotelMainReviewRow(
+                              hotel: state
+                                  .getUserPrivatePlanModel.hotels![hotelindex],
+                            ),
+                            const Gap(10),
+                            SizedBox(
+                              width: width * .3,
+                              child: Text(
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                state.getUserPrivatePlanModel
+                                    .hotels![hotelindex].description!,
+                                style: AppStyles.styleSourceRegular18(context),
+                              ),
+                            ),
+                            const Gap(14),
                             Align(
                               alignment: Alignment.bottomRight,
                               child: HotelMainCardPriceAndDescription(

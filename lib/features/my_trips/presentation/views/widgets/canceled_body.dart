@@ -28,8 +28,8 @@ class CanceledBody extends StatelessWidget {
           } else if (state is CanceledTripsSuccess) {
             if (state.allTripsModel.allTrips == null ||
                 state.allTripsModel.allTrips!.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 child: EmptyTrips(
                   desc: 'Go, Book Your Trip And Experience The World With Us!!',
                 ),
@@ -50,6 +50,10 @@ class CanceledBody extends StatelessWidget {
                                       state.allTripsModel.allTrips![index].id!);
                           GoRouter.of(context)
                               .push(AppRouter.kCanceledPublicTripDetailsview);
+                        } else {
+                          GoRouter.of(context).push(
+                              AppRouter.kCanceledPrivateTripDetailsview,
+                              extra: state.allTripsModel.allTrips![index].id!);
                         }
                       },
                       child: MyTripsCard(

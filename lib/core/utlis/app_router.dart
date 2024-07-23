@@ -22,8 +22,11 @@ import 'package:tourista/features/auth/sign_in_and_up/presentation/views/sign_up
 import 'package:tourista/features/auth/forget_password/presentation/views/reset_password_view.dart';
 import 'package:tourista/features/auth/forget_password/presentation/views/verify_view.dart';
 import 'package:tourista/features/auth/sign_in_and_up/presentation/views/verify_sign_up_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/active_private_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/active_public_trip_details_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/canceled_private_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/canceled_public_trip_details_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/past_private_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/past_public_trip_details_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
@@ -109,6 +112,10 @@ abstract class AppRouter {
   static const kreadyTripHotelDetailsview = '/readyTripHotelDetailsview';
   static const kpastPublicTripDetailsview = '/pastPublicTripDetailsview';
   static const kActivePublicTripDetailsview = '/activePublicTripDetailsview';
+  static const kActivePrivateTripDetailsview = '/activePrivateTripDetailsview';
+  static const kPastPrivateTripDetailsview = '/pastPrivateTripDetailsview';
+  static const kCanceledPrivateTripDetailsview =
+      '/CanceledPrivateTripDetailsview';
   static const kCanceledPublicTripDetailsview =
       '/canceledPublicTripDetailsview';
 
@@ -121,6 +128,24 @@ abstract class AppRouter {
       GoRoute(
         path: kLanguageView,
         builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kActivePrivateTripDetailsview,
+        builder: (context, state) => ActivePrivateTripDetailsView(
+          tripId: state.extra as int,
+        ),
+      ),
+      GoRoute(
+        path: kCanceledPrivateTripDetailsview,
+        builder: (context, state) => CanceledPrivateTripDetailsView(
+          tripId: state.extra as int,
+        ),
+      ),
+      GoRoute(
+        path: kPastPrivateTripDetailsview,
+        builder: (context, state) => PastPrivateTripDetailsView(
+          tripId: state.extra as int,
+        ),
       ),
       GoRoute(
         path: kAboutUsView,

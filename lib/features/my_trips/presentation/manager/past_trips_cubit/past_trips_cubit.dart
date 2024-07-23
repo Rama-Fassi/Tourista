@@ -8,15 +8,31 @@ part 'past_trips_state.dart';
 class PastTripsCubit extends Cubit<PastTripsState> {
   PastTripsCubit(this.myTripsRepoImpl) : super(PastTripsInitial());
   MyTripsRepoImpl myTripsRepoImpl;
+  bool _isCubitClosed = false;
 
   Future<void> getPastTripsFun() async {
-    emit(PastTripsLoading());
-    var result = await myTripsRepoImpl.getPastTrips();
+    if (!_isCubitClosed) {
+      emit(PastTripsLoading());
+      var result = await myTripsRepoImpl.getPastTrips();
 
-    result.fold((failure) {
-      emit(PastTripsFailure(errMessage: failure.errMessage));
-    }, (allTripsModel) {
-      emit(PastTripsSuccess(allTripsModel: allTripsModel));
-    });
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(PastTripsFailure(errMessage: failure.errMessage));
+          }
+        },
+        (allTripsModel) {
+          if (!_isCubitClosed) {
+            emit(PastTripsSuccess(allTripsModel: allTripsModel));
+          }
+        },
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _isCubitClosed = true;
+    return super.close();
   }
 }

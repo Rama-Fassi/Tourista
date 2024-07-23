@@ -48,11 +48,11 @@ class DisplayOneWayTicket extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'US\$${state.getUserPrivatePlanModel.ticket!.price}',
+                  'US\$${state.getUserPrivatePlanModel.ticket!.ticket!.price}',
                   style: AppStyles.styleSourceSemiBold22(context),
                 ),
                 Text(
-                  'US\$${state.getUserPrivatePlanModel.ticket!.price! * numOfPerson} ${LocaleKeys.forAllTravellers.tr()}',
+                  'US\$${state.getUserPrivatePlanModel.ticket!.ticket!.price! * numOfPerson} ${LocaleKeys.forAllTravellers.tr()}',
                   style: AppStyles.styleInterMedium14(context)
                       .copyWith(color: Colors.black.withOpacity(.5)),
                 ),

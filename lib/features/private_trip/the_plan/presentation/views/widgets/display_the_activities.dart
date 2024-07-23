@@ -17,11 +17,14 @@ class DisplayAllActivities extends StatelessWidget {
     required this.screenWidth,
     required this.state,
     required this.showConfirmationDialog,
+    required this.text,
+    required this.withDeleteIcon,
   });
-
+  final bool withDeleteIcon;
   final double screenWidth;
   final GetUserPrivatePlanSuccess state;
   final ShowConfirmationDialog showConfirmationDialog;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,8 @@ class DisplayAllActivities extends StatelessWidget {
           itemCount: state.getUserPrivatePlanModel.tourismPlaces!.length,
           itemBuilder: (context, index) {
             return DisplayAllActivitiesForDay(
+              withDeleteIcon: withDeleteIcon,
+              text: text,
               state: state,
               index: index,
               screenWidth: screenWidth,

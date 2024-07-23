@@ -52,7 +52,9 @@ class PrivateTripTapBar extends StatelessWidget {
             ),
             BlocProvider(
                 create: (context) => HotelsCubit(getIt.get<StaysRepoImpl>())
-                  ..fetchHotelsCubitFun(tripId: createTripModel.tripId!.id)),
+                  ..fetchHotelsCubitFun(
+                    tripId: createTripModel.tripId!.id,
+                  )),
             BlocProvider(
               create: (context) =>
                   GetTripDaysCubit(getIt.get<ActivitiesRepoImpl>()),
@@ -66,6 +68,7 @@ class PrivateTripTapBar extends StatelessWidget {
                     FinalBookingPrivateTripCubit(getIt.get<ThePlanRepoImpl>())),
           ],
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: SvgPicture.asset(
