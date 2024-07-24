@@ -7,7 +7,7 @@ class HotelsModel {
   HotelsModel({this.numberOfHotel, this.hotel});
 
   factory HotelsModel.fromJson(Map<String, dynamic> json) => HotelsModel(
-        numberOfHotel: json['numberOfHotel:'] as int?,
+        numberOfHotel: json['numberOfHotel'] as int?,
         hotel: (json['hotel'] as List<dynamic>?)
             ?.map((e) => Hotel.fromJson(e as Map<String, dynamic>))
             .toList(),
