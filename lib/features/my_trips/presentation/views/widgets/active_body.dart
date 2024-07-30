@@ -49,7 +49,11 @@ class ActiveBody extends StatelessWidget {
                                   tripId:
                                       state.allTripsModel.allTrips![index].id!);
                           GoRouter.of(context)
-                              .push(AppRouter.kActivePublicTripDetailsview);
+                              .push(AppRouter.kActivePublicTripDetailsview)
+                              .then((value) {
+                            BlocProvider.of<ActiveTripsCubit>(context)
+                                .getActiveTripsFun();
+                          });
                         } else {
                           GoRouter.of(context)
                               .push(AppRouter.kActivePrivateTripDetailsview,

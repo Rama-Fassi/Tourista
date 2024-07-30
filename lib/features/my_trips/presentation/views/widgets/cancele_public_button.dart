@@ -7,34 +7,31 @@ import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
 import 'package:tourista/features/my_trips/data/repos/my_trips_repo_impl.dart';
-import 'package:tourista/features/my_trips/presentation/manager/cancele_private_trip_cubit/cancel_private_trip_cubit.dart';
+import 'package:tourista/features/my_trips/presentation/manager/cancele_public_trip_cubit/cancele_public_trip_cubit.dart';
 
-class CancelePrivateButton extends StatelessWidget {
-  const CancelePrivateButton({
-    super.key,
-    required this.tripId,
-  });
+class CancelePublicButton extends StatelessWidget {
+  const CancelePublicButton({super.key, required this.tripId});
   final int tripId;
   @override
   Widget build(BuildContext context) {
     bool? isLoading;
     return BlocProvider(
-      create: (context) => CancelPrivateTripCubit(getIt.get<MyTripsRepoImpl>()),
-      child: BlocConsumer<CancelPrivateTripCubit, CancelPrivateTripState>(
+      create: (context) => CancelePublicTripCubit(getIt.get<MyTripsRepoImpl>()),
+      child: BlocConsumer<CancelePublicTripCubit, CancelePublicTripState>(
         listener: (context, state) {
-          if (state is CancelPrivateTripSuccess) {
+          if (state is CancelePublicTripSuccess) {
             isLoading = false;
             Navigator.of(context).pop();
             Navigator.of(context).pop();
 
             customSuccessSnackBar(context,
-                'This Trip Has Been Canceled and you restore ${state.cancelPrivateTripModel.theReturnPrice} from your money');
+                'This Trip Has Been Canceled and you restore ${state.cancelePublicTripModel.refundAmount} from your money');
           }
-          if (state is CancelPrivateTripFailure) {
+          if (state is CancelePublicTripFailure) {
             isLoading = false;
             customSnackBar(context, state.errMessage);
           }
-          if (state is CancelPrivateTripLoading) {
+          if (state is CancelePublicTripLoading) {
             isLoading = true;
           }
         },
@@ -43,12 +40,12 @@ class CancelePrivateButton extends StatelessWidget {
               ? CircularProgressIndicator()
               : CustomButton(
                   onTap: () {
-                    BlocProvider.of<CancelPrivateTripCubit>(context)
-                        .cancelePrivateTripsFun(tripId: tripId);
+                    BlocProvider.of<CancelePublicTripCubit>(context)
+                        .cancelePublicTripsFun(tripId: tripId);
                   },
                   text: 'Yes',
                   width: 73,
-                  borderRadius: 5,
+                  borderRadius: 25,
                   height: 31,
                   style: AppStyles.styleSourceBold20(context)
                       .copyWith(color: Colors.white),

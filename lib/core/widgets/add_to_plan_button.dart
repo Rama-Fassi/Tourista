@@ -46,7 +46,7 @@ class AddToPlanButton extends StatelessWidget {
                       style: AppStyles.styleInterRegular12(context)
                           .copyWith(fontSize: 12),
                     ),
-              Gap(6),
+              const Gap(6),
               Center(
                 child: CustomButton(
                   text: text == null ? LocaleKeys.Add_To_The_plan.tr() : text!,

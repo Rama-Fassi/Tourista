@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/my_trips/presentation/views/widgets/cancele_public_button.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/ready_trips_details_model.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trip_details_without_button.dart';
 
@@ -24,6 +26,14 @@ class ActivePublicDetailsBody extends StatelessWidget {
             ),
             Gap(8),
             CustomButton(
+                onTap: () {
+                  CustomShowDialog().canceleTripDialog(
+                      context,
+                      CancelePublicButton(
+                        tripId: readyTripsDetailsModel.publicTrip!.id!,
+                      ),
+                      25);
+                },
                 text: "Cancele This Trip",
                 width: MediaQuery.sizeOf(context).width,
                 borderRadius: 24,
