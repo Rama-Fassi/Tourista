@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/translations/locale_keys.g.dart';
 import '../../../../../core/utlis/app_assets.dart';
@@ -41,7 +41,7 @@ class SignOutButton extends StatelessWidget {
       },
       child: ProfileTextButton(
         onPressed: () {
-          ShowConfirmationDialog().showConfirmationDialog(
+          CustomShowDialog().showConfirmationDialog(
             titleText: LocaleKeys.Confirmation.tr(),
             contentText: LocaleKeys.Are_you_sure_you_want_to_sign_out.tr(),
             context: context,

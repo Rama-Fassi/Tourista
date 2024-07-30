@@ -7,7 +7,7 @@ import 'package:tourista/features/private_trip/the_plan/presentation/views/widge
 
 import '../../../../../../core/utlis/functions/custom_snack_bar.dart';
 import '../../../../../../core/widgets/loading_widget.dart';
-import '../../../../../profile/presentation/views/functions/show_confirmation_dialog.dart';
+import '../../../../../../core/utlis/functions/show_dialog.dart';
 import '../../../../activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import '../../manager/delete_activities_for_day_cubit/delete_activities_for_day_cubit.dart';
 
@@ -23,7 +23,7 @@ class DisplayAllActivities extends StatelessWidget {
   final bool withDeleteIcon;
   final double screenWidth;
   final GetUserPrivatePlanSuccess state;
-  final ShowConfirmationDialog showConfirmationDialog;
+  final CustomShowDialog showConfirmationDialog;
   final String text;
 
   @override

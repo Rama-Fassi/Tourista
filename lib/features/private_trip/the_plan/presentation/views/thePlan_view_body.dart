@@ -10,7 +10,7 @@ import 'package:tourista/features/private_trip/the_plan/presentation/manager/del
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/delete_hotel_cubit/delete_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/delete_ticket/delete_ticket_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 import 'widgets/display_the_activities.dart';
 import 'widgets/display_the_hotels.dart';
 import 'widgets/display_the_ticket.dart';
@@ -29,7 +29,7 @@ class _ThePlanViewBodyState extends State<ThePlanViewBody> {
   DateTime theDate = DateTime.now();
   bool isActivitiesEmpty = false;
   bool isHotelEmpty = false;
-  ShowConfirmationDialog showConfirmationDialog = ShowConfirmationDialog();
+  CustomShowDialog showConfirmationDialog = CustomShowDialog();
   @override
   void initState() {
     super.initState();

@@ -5,6 +5,7 @@ import 'package:tourista/constants.dart';
 import 'package:tourista/core/errors/failures.dart';
 import 'package:tourista/core/utlis/api_server.dart';
 import 'package:tourista/features/my_trips/data/models/all_trips_model/all_trips_model.dart';
+import 'package:tourista/features/my_trips/data/models/cancel_private_trip_model.dart';
 import 'package:tourista/features/my_trips/data/models/favorit_trips_model/favorit_trips_model.dart';
 import 'package:tourista/features/my_trips/data/repos/my_trips_repo.dart';
 
@@ -72,8 +73,24 @@ class MyTripsRepoImpl implements MyTripsRepo {
         token: kToken,
       );
       AllTripsModel allTripsModel = AllTripsModel.fromJson(data);
-      print('${allTripsModel.allTrips}dddddddddddd');
       return right(allTripsModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, CancelPrivateTripModel>> cancelPrivateTrip(
+      {required int tripId}) async {
+    try {
+      var data = await apiServer
+          .post(endPoint: 'cancelePrivateTripe/$tripId', body: {});
+      CancelPrivateTripModel cancelPrivateTripModel =
+          CancelPrivateTripModel.fromJson(data);
+      return right(cancelPrivateTripModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

@@ -2,13 +2,65 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
+import 'package:tourista/features/my_trips/presentation/views/widgets/cancele_text_column.dart';
+import 'package:tourista/features/profile/presentation/views/widgets/custom_rich_text.dart';
 
-import '../../../../../core/translations/locale_keys.g.dart';
+import '../../translations/locale_keys.g.dart';
 
-class ShowConfirmationDialog {
+class CustomShowDialog {
+  Future<dynamic> canceleTripDialog(
+      BuildContext context, Widget widget, double radius) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusDirectional.circular(radius),
+          ),
+          title: Text(
+            'To Cancel This Trip:',
+            style: AppStyles.styleSourceBold18(context)
+                .copyWith(color: kPrimaryColor, fontSize: 18),
+          ),
+          content: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CanceleTextColumn(),
+              Gap(16),
+              // Add some spacing between the options and the question
+              Text('Are you sure from canceling this trip?'),
+            ],
+          ),
+          actions: <Widget>[
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  widget,
+                  CustomButton(
+                    onTap: () => Navigator.of(context).pop(),
+                    text: 'No',
+                    width: 73,
+                    borderRadius: radius,
+                    height: 31,
+                    style: AppStyles.styleSourceBold20(context)
+                        .copyWith(color: Colors.white),
+                    color: kPrimaryColor,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<void> showConfirmationDialog({
     required BuildContext context,
     required String titleText,
@@ -115,29 +167,6 @@ class ShowConfirmationDialog {
                 ],
         );
       },
-    );
-  }
-}
-
-class CustomRichText extends StatelessWidget {
-  const CustomRichText({
-    super.key,
-    required this.text,
-  });
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(color: Colors.black),
-        children: <TextSpan>[
-          const TextSpan(text: '• ', style: TextStyle(fontSize: 20)), // Bullet
-          TextSpan(
-            text: text,
-            style: AppStyles.styleInterRegular16(context),
-          ),
-        ],
-      ),
     );
   }
 }

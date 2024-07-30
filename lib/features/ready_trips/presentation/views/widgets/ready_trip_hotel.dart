@@ -23,9 +23,14 @@ class ReadyTripHotel extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Moraine Lake',
-              style: AppStyles.styleQuickBold22(context),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width * .45,
+              child: Text(
+                maxLines: 2,
+                citiesHotel.hotel!.name!,
+                style: AppStyles.styleQuickBold22(context),
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             Gap(4),
             Text(

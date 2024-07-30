@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/core/widgets/snak_bar_widget.dart';
+import 'package:tourista/features/my_trips/presentation/views/widgets/cancele_private_trip_button.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/widgets/activities_button.dart';
 import 'package:tourista/features/private_trip/the_plan/data/repos/the_plan_repo_impl.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/delete_activities_for_day_cubit/delete_activities_for_day_cubit.dart';
@@ -13,7 +14,7 @@ import 'package:tourista/features/private_trip/the_plan/presentation/manager/get
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/display_the_activities.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/display_the_hotels.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/display_the_ticket.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 
 class ActivePrivateTripDetailsViewBody extends StatefulWidget {
   const ActivePrivateTripDetailsViewBody({super.key, required this.tripId});
@@ -26,10 +27,9 @@ class ActivePrivateTripDetailsViewBody extends StatefulWidget {
 class _ActivePrivateTripDetailsViewBodyState
     extends State<ActivePrivateTripDetailsViewBody> {
   String? theDateString;
-  DateTime theDate = DateTime.now();
   bool isActivitiesEmpty = false;
   bool isHotelEmpty = false;
-  ShowConfirmationDialog showConfirmationDialog = ShowConfirmationDialog();
+  CustomShowDialog showConfirmationDialog = CustomShowDialog();
 
   @override
   Widget build(BuildContext context) {
@@ -72,11 +72,11 @@ class _ActivePrivateTripDetailsViewBodyState
                             state: state,
                             tripId: widget.tripId,
                             numOfPerson:
-                                (state.getUserPrivatePlanModel.ticket?.price ??
-                                        1 /
-                                            (state.getUserPrivatePlanModel
-                                                    .ticket?.ticket!.price ??
-                                                1))
+                                ((state.getUserPrivatePlanModel.ticket?.price ??
+                                            1) /
+                                        (state.getUserPrivatePlanModel.ticket
+                                                ?.ticket!.price ??
+                                            1))
                                     .toInt(),
                           ),
                           //Hotels
@@ -105,7 +105,14 @@ class _ActivePrivateTripDetailsViewBodyState
                 ),
                 CustomAddButton(
                   screenWidth: screenWidth,
-                  onTap: () {},
+                  onTap: () {
+                    CustomShowDialog().canceleTripDialog(
+                        context,
+                        CancelePrivateButton(
+                          tripId: widget.tripId,
+                        ),
+                        5);
+                  },
                   theplan: false,
                   text: 'Cancele This Trip',
                 )

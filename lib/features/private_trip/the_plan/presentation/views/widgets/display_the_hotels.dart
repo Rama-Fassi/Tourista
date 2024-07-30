@@ -8,7 +8,7 @@ import 'package:tourista/core/widgets/loading_widget.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/delete_hotel_cubit/delete_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/hotels_list_view.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/the_plan_container.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 
 import '../../manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'empty_text_widget.dart';
@@ -69,7 +69,7 @@ class _DisplayTheHotelsState extends State<DisplayTheHotels> {
       child: ThePlanContainer(
         data: 'The Hotels',
         onTap: () {
-          ShowConfirmationDialog().showConfirmationDialog(
+          CustomShowDialog().showConfirmationDialog(
               context: context,
               titleText: LocaleKeys.Confirmation.tr(),
               contentText: 'Are You sure you want to delete the hotels?',

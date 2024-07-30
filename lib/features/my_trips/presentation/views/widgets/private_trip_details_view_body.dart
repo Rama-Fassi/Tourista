@@ -9,14 +9,14 @@ import 'package:tourista/features/my_trips/presentation/views/widgets/hotel_priv
 import 'package:tourista/features/my_trips/presentation/views/widgets/tickets_private_container.dart';
 import 'package:tourista/features/private_trip/the_plan/data/repos/the_plan_repo_impl.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 
 class PrivateTripDetailsViewBody extends StatelessWidget {
   const PrivateTripDetailsViewBody({super.key, required this.tripId});
   final int tripId;
   @override
   Widget build(BuildContext context) {
-    ShowConfirmationDialog showConfirmationDialog = ShowConfirmationDialog();
+    CustomShowDialog showConfirmationDialog = CustomShowDialog();
 
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;

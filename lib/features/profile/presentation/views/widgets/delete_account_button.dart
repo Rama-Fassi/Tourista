@@ -12,7 +12,7 @@ import '../../../../../core/utlis/app_assets.dart';
 import '../../../../../core/utlis/functions/custom_snack_bar.dart';
 import '../../../../../core/widgets/loading_widget.dart';
 import '../../manager/delete_account_cubit/delete_account_cubit.dart';
-import '../functions/show_confirmation_dialog.dart';
+import '../../../../../core/utlis/functions/show_dialog.dart';
 import 'profile_text_button.dart';
 
 class DeleteAccountButton extends StatelessWidget {
@@ -46,7 +46,7 @@ class DeleteAccountButton extends StatelessWidget {
       },
       child: ProfileTextButton(
         onPressed: () async {
-          ShowConfirmationDialog().showConfirmationDialog(
+          CustomShowDialog().showConfirmationDialog(
             titleText: LocaleKeys.are_you_sure.tr(),
             contentText: LocaleKeys.you_will_lose_all_of_your_data.tr(),
             context: context,

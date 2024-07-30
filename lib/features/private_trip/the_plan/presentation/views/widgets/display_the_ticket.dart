@@ -7,7 +7,7 @@ import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/delete_ticket/delete_ticket_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/the_plan_container.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 import '../../../../../../core/widgets/loading_widget.dart';
 import 'dispay_one_way_ticket.dart';
 import 'display_round_ticket.dart';
@@ -72,7 +72,7 @@ class _DisplayTheTicketState extends State<DisplayTheTicket> {
       child: ThePlanContainer(
         data: 'The Ticket',
         onTap: () {
-          ShowConfirmationDialog().showConfirmationDialog(
+          CustomShowDialog().showConfirmationDialog(
               context: context,
               titleText: LocaleKeys.Confirmation.tr(),
               contentText: 'Are You sure you want to delete the Ticket?',

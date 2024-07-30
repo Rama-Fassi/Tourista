@@ -9,7 +9,7 @@ import 'package:tourista/features/private_trip/the_plan/presentation/manager/del
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/display_activities_card_list_view.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/empty_text_widget.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 
 import '../../../../../../core/translations/locale_keys.g.dart';
 import '../../../../../../core/utlis/app_assets.dart';
@@ -28,7 +28,7 @@ class DisplayAllActivitiesForDay extends StatefulWidget {
   final GetUserPrivatePlanSuccess state;
   final int index;
   final double screenWidth;
-  final ShowConfirmationDialog showConfirmationDialog;
+  final CustomShowDialog showConfirmationDialog;
   final String text;
   final bool withDeleteIcon;
   @override

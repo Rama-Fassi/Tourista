@@ -34,22 +34,20 @@ class TicketsPrivateContainer extends StatelessWidget {
                       width: screenWidth,
                       state: state,
                       numOfPerson:
-                          (state.getUserPrivatePlanModel.ticket?.price ??
-                                  1 /
-                                      (state.getUserPrivatePlanModel.ticket
-                                              ?.ticket!.price ??
-                                          1))
+                          ((state.getUserPrivatePlanModel.ticket?.price ?? 1) /
+                                  (state.getUserPrivatePlanModel.ticket?.ticket!
+                                          .price ??
+                                      1))
                               .toInt(),
                     )
                   : DisplayRoundTicket(
                       width: screenWidth,
                       state: state,
                       numOfPerson:
-                          (state.getUserPrivatePlanModel.ticket?.price ??
-                                  1 /
-                                      (state.getUserPrivatePlanModel.ticket
-                                              ?.ticket!.price ??
-                                          1))
+                          ((state.getUserPrivatePlanModel.ticket?.price ?? 1) /
+                                  (state.getUserPrivatePlanModel.ticket?.ticket!
+                                          .price ??
+                                      1))
                               .toInt(),
                     ),
             ),

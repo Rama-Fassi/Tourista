@@ -16,7 +16,7 @@ import 'package:tourista/features/profile/presentation/manager/update_phone_cubi
 import 'package:tourista/features/profile/presentation/manager/verify_new_phone_cubit/verify_new_phone_cubit.dart';
 
 import '../../../../auth/sign_in_and_up/presentation/views/widgets/custom_text_button.dart';
-import '../functions/show_confirmation_dialog.dart';
+import '../../../../../core/utlis/functions/show_dialog.dart';
 
 class VerifyNewPhoneViewBody extends StatefulWidget {
   const VerifyNewPhoneViewBody({
@@ -76,7 +76,7 @@ class _VerifySignUpBodyState extends State<VerifyNewPhoneViewBody> {
           listener: (context, state) {
             if (state is VerifyNewPhoneSuccess) {
               isLoading = false;
-              ShowConfirmationDialog().showConfirmationDialog(
+              CustomShowDialog().showConfirmationDialog(
                   context: context,
                   titleText: LocaleKeys.congratulations.tr(),
                   contentText:

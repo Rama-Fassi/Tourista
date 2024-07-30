@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/manager/get_user_private_plan_cubit/get_user_private_plan_cubit.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/display_all_activities_for_day.dart';
 import 'package:tourista/features/private_trip/the_plan/presentation/views/widgets/the_plan_container.dart';
-import 'package:tourista/features/profile/presentation/views/functions/show_confirmation_dialog.dart';
+import 'package:tourista/core/utlis/functions/show_dialog.dart';
 
 class ActivitiesPrivateContainer extends StatelessWidget {
   const ActivitiesPrivateContainer({
@@ -13,7 +13,7 @@ class ActivitiesPrivateContainer extends StatelessWidget {
   });
 
   final double screenWidth;
-  final ShowConfirmationDialog showConfirmationDialog;
+  final CustomShowDialog showConfirmationDialog;
   final GetUserPrivatePlanSuccess state;
   @override
   Widget build(BuildContext context) {

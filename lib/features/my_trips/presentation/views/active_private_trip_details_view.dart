@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/constants.dart';
-import 'package:tourista/features/my_trips/presentation/views/widgets/active_private_trip_deetails_view_body.dart';
+import 'package:tourista/features/my_trips/presentation/views/widgets/active_private_trip_details_view_body.dart';
 
 class ActivePrivateTripDetailsView extends StatelessWidget {
   const ActivePrivateTripDetailsView({super.key, required this.tripId});

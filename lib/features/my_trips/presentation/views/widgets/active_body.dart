@@ -51,9 +51,14 @@ class ActiveBody extends StatelessWidget {
                           GoRouter.of(context)
                               .push(AppRouter.kActivePublicTripDetailsview);
                         } else {
-                          GoRouter.of(context).push(
-                              AppRouter.kActivePrivateTripDetailsview,
-                              extra: state.allTripsModel.allTrips![index].id!);
+                          GoRouter.of(context)
+                              .push(AppRouter.kActivePrivateTripDetailsview,
+                                  extra:
+                                      state.allTripsModel.allTrips![index].id!)
+                              .then((value) {
+                            BlocProvider.of<ActiveTripsCubit>(context)
+                                .getActiveTripsFun();
+                          });
                         }
                       },
                       child: MyTripsCard(
