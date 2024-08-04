@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 
 const kName = 'Tourista';
 
-const kBaseUrl = 'http://192.168.137.231:8000';
+const kBaseUrl = 'http://192.168.1.36:8000';
 
 const kOnboarding = 'onboarding';
 const kTokenBox = 'token';
