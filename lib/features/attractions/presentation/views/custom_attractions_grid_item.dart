@@ -19,7 +19,7 @@ class CustomAttractionsGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String attractionIndexTybe =
-        attractionsModel.attractions![attractionIndex].type!;
+        attractionsModel.attraction![attractionIndex].type!;
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Container(
@@ -36,6 +36,7 @@ class CustomAttractionsGridItem extends StatelessWidget {
         ),
         width: MediaQuery.of(context).size.width * .5,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
               borderRadius: const BorderRadius.only(
@@ -49,7 +50,7 @@ class CustomAttractionsGridItem extends StatelessWidget {
                           color: Colors.red,
                           child: Center(
                             child: Text(
-                              '${attractionsModel.attractions![attractionIndex].discount!} % ${attractionsModel.attractions![attractionIndex].type!}',
+                              '${attractionsModel.attraction![attractionIndex].discount!} % ${attractionsModel.attraction![attractionIndex].type!}',
                               style: AppStyles.styleSourceBold12(context),
                             ),
                           ),
@@ -61,14 +62,14 @@ class CustomAttractionsGridItem extends StatelessWidget {
                           color: kYellowColor,
                           child: Center(
                             child: Text(
-                              '${attractionsModel.attractions![attractionIndex].discount!} % ${attractionsModel.attractions![attractionIndex].type!}',
+                              '${attractionsModel.attraction![attractionIndex].discount!} % ${attractionsModel.attraction![attractionIndex].type!}',
                               style: AppStyles.styleSourceBold12(context),
                             ),
                           ),
                         )
                       : const SizedBox(),
                   Image.network(
-                    '$kBaseUrl${attractionsModel.attractions![attractionIndex].image!}',
+                    '$kBaseUrl${attractionsModel.attraction![attractionIndex].image!}',
                     fit: BoxFit.cover,
                     width: MediaQuery.of(context).size.width * .5,
                     height: 170,
@@ -81,7 +82,7 @@ class CustomAttractionsGridItem extends StatelessWidget {
                           child: Center(
                             child: Text(
                               attractionsModel
-                                  .attractions![attractionIndex].type!,
+                                  .attraction![attractionIndex].type!,
                               style: AppStyles.styleSourceBold16(context)
                                   .copyWith(color: Colors.white),
                             ),
@@ -103,15 +104,15 @@ class CustomAttractionsGridItem extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 const Gap(5),
-                Text('To Paris',
+                Text(attractionsModel.attraction![attractionIndex].diraction!,
                     style: AppStyles.styleInterSemiBold20(context)),
               ],
             ),
-            const Gap(2),
+            const Gap(5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                  attractionsModel.attractions![attractionIndex].description!,
+                  attractionsModel.attraction![attractionIndex].description!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: AppStyles.styleInterRegular14(context)),
@@ -122,7 +123,7 @@ class CustomAttractionsGridItem extends StatelessWidget {
                 BlocProvider.of<ReadyTripDetailsCubit>(context)
                     .getReadyTripDetailsFun(
                         tripId: attractionsModel
-                            .attractions![attractionIndex].publicTripId!);
+                            .attraction![attractionIndex].publicTripId!);
                 GoRouter.of(context).push(AppRouter.kReadyTripDetailsView);
               },
               child: Row(

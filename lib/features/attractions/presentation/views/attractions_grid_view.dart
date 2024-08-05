@@ -16,11 +16,11 @@ class AttractionsGridView extends StatelessWidget {
           childAspectRatio: 0.55, // Aspect ratio for the custom widget
           crossAxisSpacing: 20.0,
         ),
-        itemCount: attractionsModel.attractions!.length,
+        itemCount: attractionsModel.attraction!.length,
         itemBuilder: (context, index) {
-          
           return CustomAttractionsGridItem(
-           attractionsModel: attractionsModel, attractionIndex: index,
+            attractionsModel: attractionsModel,
+            attractionIndex: index,
           );
         },
       ),

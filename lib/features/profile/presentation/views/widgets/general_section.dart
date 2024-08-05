@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/features/profile/presentation/views/widgets/profile_text_button.dart';
+import 'package:tourista/features/profile/presentation/views/widgets/wallet_button.dart';
 import '../../../../../core/translations/locale_keys.g.dart';
 import '../../../../../core/utlis/app_assets.dart';
 import '../../../../../core/utlis/styles.dart';
@@ -30,10 +31,7 @@ class GeneralSection extends StatelessWidget {
               const Gap(25),
               const PasswordAndSecurityButton(),
               const Gap(25),
-              ProfileTextButton(
-                data: LocaleKeys.your_Wallet.tr(),
-                assetName: Assets.imagesIconsWalletIcon,
-              ),
+              const WalletButton(),
             ],
           )
         : Column(

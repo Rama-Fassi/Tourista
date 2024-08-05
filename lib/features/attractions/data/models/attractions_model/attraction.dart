@@ -5,8 +5,9 @@ class Attraction {
 	String? description;
 	int? display;
 	String? type;
+	dynamic discount;
 	int? discountPoints;
-	int? discount;
+	String? diraction;
 
 	Attraction({
 		this.id, 
@@ -15,8 +16,9 @@ class Attraction {
 		this.description, 
 		this.display, 
 		this.type, 
-		this.discountPoints, 
 		this.discount, 
+		this.discountPoints, 
+		this.diraction, 
 	});
 
 	factory Attraction.fromJson(Map<String, dynamic> json) => Attraction(
@@ -26,8 +28,9 @@ class Attraction {
 				description: json['description'] as String?,
 				display: json['display'] as int?,
 				type: json['type'] as String?,
+				discount: json['discount'] as dynamic,
 				discountPoints: json['discount_points'] as int?,
-				discount: json['discount'] as int?,
+				diraction: json['diraction'] as String?,
 			);
 
 	Map<String, dynamic> toJson() => {
@@ -37,7 +40,8 @@ class Attraction {
 				'description': description,
 				'display': display,
 				'type': type,
-				'discount_points': discountPoints,
 				'discount': discount,
+				'discount_points': discountPoints,
+				'diraction': diraction,
 			};
 }

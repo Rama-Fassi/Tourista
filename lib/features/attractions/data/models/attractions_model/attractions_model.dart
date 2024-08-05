@@ -1,13 +1,13 @@
 import 'attraction.dart';
 
 class AttractionsModel {
-	List<Attraction>? attractions;
+	List<Attraction>? attraction;
 
-	AttractionsModel({this.attractions});
+	AttractionsModel({this.attraction});
 
 	factory AttractionsModel.fromJson(Map<String, dynamic> json) {
 		return AttractionsModel(
-			attractions: (json['attractions'] as List<dynamic>?)
+			attraction: (json['Attraction'] as List<dynamic>?)
 						?.map((e) => Attraction.fromJson(e as Map<String, dynamic>))
 						.toList(),
 		);
@@ -16,6 +16,6 @@ class AttractionsModel {
 
 
 	Map<String, dynamic> toJson() => {
-				'attractions': attractions?.map((e) => e.toJson()).toList(),
+				'Attraction': attraction?.map((e) => e.toJson()).toList(),
 			};
 }

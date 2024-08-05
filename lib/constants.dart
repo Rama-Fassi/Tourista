@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 
 const kName = 'Tourista';
 
-const kBaseUrl = 'http://192.168.1.36:8000';
+const kBaseUrl = 'http://192.168.1.38:8000';
 
 const kOnboarding = 'onboarding';
 const kTokenBox = 'token';
@@ -12,6 +12,8 @@ const kUserNameRef = 'userNameRef';
 const kUserPhoneRef = 'userphpneRef';
 const kUserEmailRef = 'userEmailRef';
 const kUserPointsRef = 'userUserPointsRef';
+const kUserWalletRef = 'userWalletRef';
+
 
 const kTokenRef = 'tokenRef';
 const kFontIntro = "source-serif-pro";

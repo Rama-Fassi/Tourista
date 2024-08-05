@@ -47,6 +47,7 @@ import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.
 import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/views/wallet_view.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/cities_hotel.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/tourism_place.dart';
 import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
@@ -92,13 +93,13 @@ abstract class AppRouter {
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
   static const kSearchActivityView = '/SearchActivityView';
-
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
   static const kReadyTripDetailsView = '/readyTripDetailsView';
   static const kLanguageView = '/languageView';
   static const kPersonalDetailsView = '/personalDetailsView';
+  static const kWalletView = '/walletView';
   static const kPasswordAndSecurityView = '/passwordAndSecurity';
   static const kAboutUsView = '/aboutUsView';
   static const kCustomerSupportView = '/customerSupportview';
@@ -173,6 +174,10 @@ abstract class AppRouter {
           ],
           child: const PersonalDetailsView(),
         ),
+      ),
+      GoRoute(
+        path: kWalletView,
+        builder: (context, state) => const WalletView(),
       ),
       GoRoute(
         path: kverifyNewPhoneview,
