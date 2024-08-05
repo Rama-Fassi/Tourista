@@ -44,10 +44,7 @@ class GeneralSection extends StatelessWidget {
               const Gap(15),
               const PersonalDetailsButton(),
               const Gap(25),
-              ProfileTextButton(
-                data: LocaleKeys.your_Wallet.tr(),
-                assetName: Assets.imagesIconsWalletIcon,
-              ),
+              const WalletButton(),
             ],
           );
   }
