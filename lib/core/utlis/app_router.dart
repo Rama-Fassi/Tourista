@@ -28,6 +28,8 @@ import 'package:tourista/features/my_trips/presentation/views/canceled_private_t
 import 'package:tourista/features/my_trips/presentation/views/canceled_public_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/past_private_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/past_public_trip_details_view.dart';
+import 'package:tourista/features/my_trips/presentation/views/points_view.dart';
+import 'package:tourista/features/notification/presentation/views/from_notifications_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/search_activity_view.dart';
@@ -114,6 +116,8 @@ abstract class AppRouter {
   static const kActivePublicTripDetailsview = '/activePublicTripDetailsview';
   static const kActivePrivateTripDetailsview = '/activePrivateTripDetailsview';
   static const kPastPrivateTripDetailsview = '/pastPrivateTripDetailsview';
+  static const kPointsview = '/pointsview';
+  static const kFromNotificationview = '/FromNotificationview';
   static const kCanceledPrivateTripDetailsview =
       '/CanceledPrivateTripDetailsview';
   static const kCanceledPublicTripDetailsview =
@@ -128,6 +132,10 @@ abstract class AppRouter {
       GoRoute(
         path: kLanguageView,
         builder: (context, state) => const LanguageView(),
+      ),
+      GoRoute(
+        path: kFromNotificationview,
+        builder: (context, state) => const FromNotificationsView(),
       ),
       GoRoute(
         path: kActivePrivateTripDetailsview,
@@ -536,6 +544,24 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: kTransitionDuration,
           child: CanceledPublicTripDetailsView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0), // Slide in from left
+                end: Offset.zero, // Slide up to top
+              ).animate(animation),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kPointsview,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: kTransitionDuration,
+          child: PointsView(
+            tripId: state.extra as int,
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

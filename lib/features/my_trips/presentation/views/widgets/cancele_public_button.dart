@@ -10,8 +10,8 @@ import 'package:tourista/features/my_trips/data/repos/my_trips_repo_impl.dart';
 import 'package:tourista/features/my_trips/presentation/manager/cancele_public_trip_cubit/cancele_public_trip_cubit.dart';
 
 class CancelePublicButton extends StatelessWidget {
-  const CancelePublicButton({super.key, required this.tripId});
-  final int tripId;
+  const CancelePublicButton({super.key, required this.userPointId});
+  final int userPointId;
   @override
   Widget build(BuildContext context) {
     bool? isLoading;
@@ -41,7 +41,7 @@ class CancelePublicButton extends StatelessWidget {
               : CustomButton(
                   onTap: () {
                     BlocProvider.of<CancelePublicTripCubit>(context)
-                        .cancelePublicTripsFun(tripId: tripId);
+                        .cancelePublicTripsFun(userTripPoint: userPointId);
                   },
                   text: 'Yes',
                   width: 73,

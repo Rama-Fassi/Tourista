@@ -9,9 +9,10 @@ class CancelePublicTripCubit extends Cubit<CancelePublicTripState> {
   CancelePublicTripCubit(this.myTripsRepoImpl)
       : super(CancelePublicTripInitial());
   final MyTripsRepoImpl myTripsRepoImpl;
-  Future<void> cancelePublicTripsFun({required int tripId}) async {
+  Future<void> cancelePublicTripsFun({required int userTripPoint}) async {
     emit(CancelePublicTripLoading());
-    var result = await myTripsRepoImpl.cancelPublicTrip(tripId: tripId);
+    var result =
+        await myTripsRepoImpl.cancelPublicTrip(userTripPoint: userTripPoint);
 
     result.fold((failure) {
       emit(CancelePublicTripFailure(errMessage: failure.errMessage));

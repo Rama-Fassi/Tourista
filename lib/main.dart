@@ -6,6 +6,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
+import 'package:tourista/features/notification/data/services/notification_services.dart';
+import 'package:tourista/features/notification/data/services/pusher_service.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/simple_bloc_observer.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
@@ -25,12 +27,14 @@ import 'features/profile/presentation/manager/add_review_cubit/add_review_cubit.
 void main() async {
   setUpServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
+
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(kOnboarding);
   await Hive.openBox(kTokenBox);
   await Hive.openBox(kUserInfoBox);
-
+  await LocalNotificationService.init();
+  WebSocketService().connect();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

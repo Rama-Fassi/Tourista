@@ -12,6 +12,7 @@ class TripId {
   int? completed;
   FromCity? fromCity;
   ToCity? toCity;
+  String? image;
 
   TripId({
     required this.id,
@@ -24,6 +25,7 @@ class TripId {
     this.completed,
     this.fromCity,
     this.toCity,
+    this.image,
   });
 
   factory TripId.fromJson(Map<String, dynamic> json) => TripId(
@@ -35,6 +37,7 @@ class TripId {
         dateEndOfTrip: json['dateEndOfTrip'] as String?,
         numOfPersons: json['numOfPersons'] as int?,
         completed: json['completed'] as int?,
+        image: json["image"] as String?,
         fromCity: json['from_city'] == null
             ? null
             : FromCity.fromJson(json['from_city'] as Map<String, dynamic>),

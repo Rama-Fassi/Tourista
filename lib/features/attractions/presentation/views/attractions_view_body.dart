@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:tourista/constants.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/styles.dart';
 
 class AttractionsViewBody extends StatelessWidget {
@@ -29,7 +31,9 @@ class AttractionsViewBody extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kFromNotificationview);
+                  },
                   child: const Icon(
                     Icons.notifications_outlined,
                     size: 25,

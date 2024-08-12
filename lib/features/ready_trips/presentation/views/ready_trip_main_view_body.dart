@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_app_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_tab_bar_view.dart';

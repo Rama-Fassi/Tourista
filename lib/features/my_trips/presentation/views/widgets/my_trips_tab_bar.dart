@@ -44,6 +44,9 @@ class MyTripsTabBar extends StatelessWidget {
             Tab(
               text: 'Favorit',
             ),
+            Tab(
+              text: 'Uncompleted',
+            ),
           ]),
     );
   }

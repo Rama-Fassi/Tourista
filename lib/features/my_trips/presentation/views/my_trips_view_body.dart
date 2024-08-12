@@ -5,6 +5,7 @@ import 'package:tourista/features/my_trips/presentation/views/widgets/favorit_bo
 import 'package:tourista/features/my_trips/presentation/views/widgets/my_trips_app_bar.dart';
 import 'package:tourista/features/my_trips/presentation/views/widgets/my_trips_tab_bar.dart';
 import 'package:tourista/features/my_trips/presentation/views/widgets/past_body.dart';
+import 'package:tourista/features/my_trips/presentation/views/widgets/uncompleted_body.dart';
 
 class MyTripsViewBody extends StatefulWidget {
   const MyTripsViewBody({super.key});
@@ -18,7 +19,7 @@ class _MyTripsViewBodyState extends State<MyTripsViewBody>
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 5, vsync: this);
     super.initState();
   }
 
@@ -39,7 +40,8 @@ class _MyTripsViewBodyState extends State<MyTripsViewBody>
             ActiveBody(),
             PastBody(),
             CanceledBody(),
-            FavoritBody()
+            FavoritBody(),
+            UncompletedBody()
           ]),
         )
       ],
