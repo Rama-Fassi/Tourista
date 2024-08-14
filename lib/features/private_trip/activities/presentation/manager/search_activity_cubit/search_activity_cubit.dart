@@ -8,19 +8,36 @@ class SearchActivityCubit extends Cubit<SearchActivityState> {
   SearchActivityCubit(this.activitiesRepo) : super(SearchActivityInitial());
 
   final ActivitiesRepo activitiesRepo;
+  bool _isCubitClosed = false;
 
   Future<void> searchActivity({
     required String search,
     String? type,
     required int tripId,
   }) async {
-    emit(SearchActivityLoading());
-    var result = await activitiesRepo.searchTourismPlaces(
-        tripId: tripId, search: search, type: type);
-    result.fold((failure) {
-      emit(SearchActivityFailure(failure.errMessage));
-    }, (getTripDaysModel) {
-      emit(SearchActivitySuccess(getTripDaysModel));
-    });
+    if (!_isCubitClosed) {
+      emit(SearchActivityLoading());
+      var result = await activitiesRepo.searchTourismPlaces(
+          tripId: tripId, search: search, type: type);
+
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(SearchActivityFailure(failure.errMessage));
+          }
+        },
+        (searchTourismPlacesModel) {
+          if (!_isCubitClosed) {
+            emit(SearchActivitySuccess(searchTourismPlacesModel));
+          }
+        },
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    _isCubitClosed = true;
+    return super.close();
   }
 }

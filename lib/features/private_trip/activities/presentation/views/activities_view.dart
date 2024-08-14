@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/search_activity_cubit/search_activity_cubit.dart';
+import 'widgets/activity_search_result_tabbar_view.dart';
 import 'widgets/custom_colorful_tabBar.dart';
 import 'widgets/custom_search_text_field.dart';
 import 'widgets/activities_tabbar_view.dart';
@@ -43,7 +42,16 @@ class _ActivitiesViewState extends State<ActivitiesView> {
             title: SizedBox(
               height: 55,
               child: CustomSearchTextField(
-                onPressed: () {},
+                onChanged: (value) {
+                  search = value;
+                  print(search);
+                  setState(() {
+                    BlocProvider.of<SearchActivityCubit>(context)
+                        .searchActivity(
+                            search: search,
+                            tripId: widget.activitiesdaysInfo['tripId']);
+                  });
+                },
                 onSubmitted: (value) {
                   search = value;
                   print(search);
@@ -64,12 +72,23 @@ class _ActivitiesViewState extends State<ActivitiesView> {
           body: TabBarView(
             children: [
               //General
-              ActivitiesTabBarView(
-                screenWidth: screenWidth,
-                tripId: widget.activitiesdaysInfo['tripId'],
-                tourismTybe: '',
-                dayId: widget.activitiesdaysInfo['dayId'],
-                dayDate: widget.activitiesdaysInfo['dayDate'],
+              BlocBuilder<SearchActivityCubit, SearchActivityState>(
+                builder: (context, state) {
+                  return state is SearchActivitySuccess
+                      ? ActivitiesSearchResultTabBarView(
+                          screenWidth: screenWidth,
+                          tripId: widget.activitiesdaysInfo['tripId'],
+                          dayId: widget.activitiesdaysInfo['dayId'],
+                          dayDate: widget.activitiesdaysInfo['dayDate'],
+                        )
+                      : ActivitiesTabBarView(
+                          screenWidth: screenWidth,
+                          tripId: widget.activitiesdaysInfo['tripId'],
+                          tourismTybe: '',
+                          dayId: widget.activitiesdaysInfo['dayId'],
+                          dayDate: widget.activitiesdaysInfo['dayDate'],
+                        );
+                },
               ),
               //Sports
               ActivitiesTabBarView(

@@ -1,14 +1,15 @@
-import 'activity.dart';
+
+import '../tourism_activities/activity_model.dart';
 
 class SearchTourismPlacesModel {
-	List<Activity>? activities;
+	List<ActivityModel>? activities;
 
 	SearchTourismPlacesModel({this.activities});
 
 	factory SearchTourismPlacesModel.fromJson(Map<String, dynamic> json) {
 		return SearchTourismPlacesModel(
 			activities: (json['activities'] as List<dynamic>?)
-						?.map((e) => Activity.fromJson(e as Map<String, dynamic>))
+						?.map((e) => ActivityModel.fromJson(e as Map<String, dynamic>))
 						.toList(),
 		);
 	}
