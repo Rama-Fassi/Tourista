@@ -24,8 +24,6 @@ abstract class ActivitiesRepo {
    Future<Either<Failure, SearchTourismPlacesModel>> searchTourismPlaces({
     required String search,
          String? type,
-             required int tripId,
-
-
+     required int tripId,
   });
 }

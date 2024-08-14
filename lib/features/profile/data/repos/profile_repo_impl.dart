@@ -6,6 +6,7 @@ import 'package:tourista/features/profile/data/models/add_review_model/add_revie
 import 'package:tourista/features/profile/data/models/all_questions_model/all_questions_model.dart';
 import 'package:tourista/features/profile/data/models/all_questions_with_tybe_model/all_questions_with_tybe_model.dart';
 import 'package:tourista/features/profile/data/models/all_reviews_model/all_reviews_model.dart';
+import 'package:tourista/features/profile/data/models/change_language_model/change_language_model.dart';
 import 'package:tourista/features/profile/data/models/change_password_model.dart';
 import 'package:tourista/features/profile/data/models/delete_account_model.dart';
 import 'package:tourista/features/profile/data/models/update_name_model.dart';
@@ -214,6 +215,27 @@ class ProfileRepoImpl implements ProfileRepo {
           AllQuestionsWithTybeModel.fromJson(allQuestionsWithTybeData);
 
       return right(allQuestionsWithTybeModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ChangeLanguageModel>> changeLanguage(
+      {required String token, required String language}) async {
+    try {
+      var changeLangData = await apiService.post(
+          endPoint: 'choseLanguage',
+          token: token,
+          body: {'language': language});
+
+      ChangeLanguageModel changeLanguageModel =
+          ChangeLanguageModel.fromJson(changeLangData);
+
+      return right(changeLanguageModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

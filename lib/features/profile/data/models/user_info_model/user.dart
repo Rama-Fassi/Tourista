@@ -7,6 +7,7 @@ class User {
   int? points;
   int? wallet;
   String? type;
+  String? language;
   DateTime? createdAt;
   DateTime? updatedAt;
   GoogleUser? googleUser;
@@ -18,6 +19,7 @@ class User {
     this.points,
     this.wallet,
     this.type,
+    this.language,
     this.createdAt,
     this.updatedAt,
     this.googleUser,
@@ -30,6 +32,7 @@ class User {
         points: json['points'] as int?,
         wallet: json['wallet'] as int?,
         type: json['type'] as String?,
+        language: json['language'] as String?,
         createdAt: json['created_at'] == null
             ? null
             : DateTime.parse(json['created_at'] as String),
@@ -50,6 +53,7 @@ class User {
         'points': points,
         'wallet': wallet,
         'type': type,
+        'language': language,
         'created_at': createdAt?.toIso8601String(),
         'updated_at': updatedAt?.toIso8601String(),
         'google_user': googleUser?.toJson(),

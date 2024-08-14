@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tourista/core/utlis/app_router.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/search_activity_cubit/search_activity_cubit.dart';
 import 'widgets/custom_colorful_tabBar.dart';
 import 'widgets/custom_search_text_field.dart';
 import 'widgets/activities_tabbar_view.dart';
 
-class ActivitiesView extends StatelessWidget {
+class ActivitiesView extends StatefulWidget {
   const ActivitiesView({super.key, required this.activitiesdaysInfo});
   final Map<String, dynamic> activitiesdaysInfo;
 
   @override
+  State<ActivitiesView> createState() => _ActivitiesViewState();
+}
+
+class _ActivitiesViewState extends State<ActivitiesView> {
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    print('activitiesdaysInfo: ${activitiesdaysInfo.toString()}');
+    String search;
+    print('activitiesdaysInfo: ${widget.activitiesdaysInfo.toString()}');
     return SafeArea(
       child: DefaultTabController(
         length: 7,
@@ -35,11 +43,16 @@ class ActivitiesView extends StatelessWidget {
             title: SizedBox(
               height: 55,
               child: CustomSearchTextField(
-                onPressed: () {
-                  GoRouter.of(context).push(AppRouter.kSearchActivityView);
-                },
+                onPressed: () {},
                 onSubmitted: (value) {
-                  GoRouter.of(context).push(AppRouter.kSearchActivityView);
+                  search = value;
+                  print(search);
+                  setState(() {
+                    BlocProvider.of<SearchActivityCubit>(context)
+                        .searchActivity(
+                            search: search,
+                            tripId: widget.activitiesdaysInfo['tripId']);
+                  });
                 },
               ),
             ),
@@ -53,58 +66,58 @@ class ActivitiesView extends StatelessWidget {
               //General
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: '',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Sports
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Sports',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Restaurant
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Restaurants',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Entertainment
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Entertainment',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Culitural
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Culitural',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Natural
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Natural',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
               //Relaxation
               ActivitiesTabBarView(
                 screenWidth: screenWidth,
-                tripId: activitiesdaysInfo['tripId'],
+                tripId: widget.activitiesdaysInfo['tripId'],
                 tourismTybe: 'Relaxation',
-                dayId: activitiesdaysInfo['dayId'],
-                dayDate: activitiesdaysInfo['dayDate'],
+                dayId: widget.activitiesdaysInfo['dayId'],
+                dayDate: widget.activitiesdaysInfo['dayDate'],
               ),
             ],
           ),
