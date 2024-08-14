@@ -19,6 +19,7 @@ class VIPFeatures extends StatelessWidget {
         Text(
           text,
           style: AppStyles.styleSourceRegular20(context),
+          maxLines: 2,
         )
       ],
     );

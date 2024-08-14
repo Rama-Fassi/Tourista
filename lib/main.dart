@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -8,6 +9,8 @@ import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/utlis/functions/theme_data.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/simple_bloc_observer.dart';
+import 'package:tourista/features/attractions/data/repos/attraction_repo_imp.dart';
+import 'package:tourista/features/attractions/presentation/manager/public_attraction_cubit/public_attraction_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
@@ -34,6 +37,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseMessaging.instance.getToken().then((value) {
+    print("${value}dddddddddddd");
+    deviceToken = value;
+  });
   Bloc.observer = SimpleBlocObserver();
 
   runApp(
@@ -83,6 +90,10 @@ class Tourista extends StatelessWidget {
           create: (context) =>
               AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
                 ..getAllReadyTripsFun(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              PublicAttractionCubit(getIt.get<AttractionsRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

@@ -36,8 +36,8 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.4.3+1
   easy_localization: ^3.0.6
-  firebase_auth: ^4.19.5
-  firebase_core: ^2.31.0
+  firebase_core: ^3.3.0
+  firebase_messaging: ^15.0.4
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
@@ -89,9 +89,9 @@ flutter:
     - assets/images/icons/
     - assets/translations/
     - assets/images/lottie/
-flutter_launcher_icons:  
-  android: true  
-  ios: true  
+flutter_launcher_icons:
+  android: true
+  ios: true
   remove_alpha_ios: true
   image_path: "assets/images/516EarthLogo.png"
   #   - images/a_dot_ham.jpeg

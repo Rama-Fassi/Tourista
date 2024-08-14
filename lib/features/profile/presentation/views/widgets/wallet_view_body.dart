@@ -44,7 +44,9 @@ class WalletViewBody extends StatelessWidget {
                 ),
                 const Gap(10),
                 Text(
-                  '${Hive.box(kUserInfoBox).get(kUserWalletRef)} \$',
+                  Hive.box(kUserInfoBox).get(kUserWalletRef) == null
+                      ? '0'
+                      : '${Hive.box(kUserInfoBox).get(kUserWalletRef)} \$',
                   style: AppStyles.styleInterBold25(context),
                 )
               ],
