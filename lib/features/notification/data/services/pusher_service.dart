@@ -29,15 +29,15 @@ class WebSocketService {
             },
           }));
         }
-        if (decodedMessage['event'] !=
-                    'pusher_internal:subscription_succeeded' &&
-                decodedMessage['event'] != 'pusher:connection_established' &&
-                jsonDecode(decodedMessage['data'])['userId'] == '1'
-            //   kUserId.toString()
-            ) {
-          LocalNotificationService.showSchduledNotification(
-              decodedMessage.toString());
-        }
+        // if (decodedMessage['event'] !=
+        //             'pusher_internal:subscription_succeeded' &&
+        //         decodedMessage['event'] != 'pusher:connection_established' &&
+        //         jsonDecode(decodedMessage['data'])['userId'] == '1'
+        //     //   kUserId.toString()
+        //     ) {
+        //   LocalNotificationService.showSchduledNotification(
+        //       decodedMessage.toString());
+        // }
       },
       onError: (error) {
         print('Error: $error');
