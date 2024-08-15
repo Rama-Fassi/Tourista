@@ -16,7 +16,6 @@ const kUserWalletRef = 'userWalletRef';
 
 const kTokenRef = 'tokenRef';
 const kUserIdRef = 'userIdRef';
-String? deviceToken;
 const kFontIntro = "source-serif-pro";
 String kToken = Hive.box(kTokenBox).get(kTokenRef);
 int kUserId = Hive.box(kTokenBox).get(kUserIdRef);

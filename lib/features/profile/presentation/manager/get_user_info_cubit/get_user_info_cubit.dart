@@ -25,6 +25,7 @@ class GetUserInfoCubit extends Cubit<GetUserInfoState> {
         print(failure.errMessage.toString());
       }
     }, (userInfoModel) {
+      Hive.box(kTokenBox).put(kUserIdRef, userInfoModel.user!.id);
       emit(GetUserInfoSuccess(userInfoModel));
     });
   }

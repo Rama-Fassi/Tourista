@@ -20,17 +20,17 @@ class ColumnDetailsReview extends StatelessWidget {
         const Gap(22),
         PercentReviewWithTitle(
           title: LocaleKeys.cleanless.tr(),
-          review: hotel.review!.cleanliness!,
+          review: double.parse(hotel.review!.cleanliness!),
         ),
         const Gap(15),
         PercentReviewWithTitle(
           title: LocaleKeys.comfort.tr(),
-          review: hotel.review!.comfort!,
+          review: double.parse(hotel.review!.comfort!),
         ),
         const Gap(15),
         PercentReviewWithTitle(
           title: LocaleKeys.facilities.tr(),
-          review: hotel.review!.facilities!.toDouble(),
+          review: double.parse(hotel.review!.facilities!),
         ),
         const Gap(32),
       ],

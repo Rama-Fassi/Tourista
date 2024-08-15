@@ -12,10 +12,9 @@ class HotelMainReviewRow extends StatelessWidget {
   final Hotel hotel;
   @override
   Widget build(BuildContext context) {
-    double rate = (hotel.review!.cleanliness! +
-            hotel.review!.comfort! +
-            hotel.review!.facilities!) /
-        3;
+    double rate = double.parse(hotel.review!.cleanliness!) +
+        double.parse(hotel.review!.comfort!) +
+        double.parse(hotel.review!.facilities!) / 3;
     return Row(
       children: [
         Container(
