@@ -113,7 +113,7 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
 
   @override
   Future<Either<Failure, TripBookingModel>> bookReadyTrip(
-      {required int tripPointId,
+      {required int tripPointId, required bool pointsOrNot,
       required int ticketsNumber,
       required bool vipTicket}) async {
     try {
@@ -121,7 +121,9 @@ class ReadyTripsRepoImpl implements ReadyTripsRepo {
           .post(endPoint: 'bookingPublicTrip', token: kToken, body: {
         'tripPoint_id': tripPointId,
         'numberOfTickets': ticketsNumber,
-        'VIP': vipTicket ? 1 : 0
+        'VIP': vipTicket ? 1 : 0,
+        'pointsOrNot': pointsOrNot ? 1 : 0
+
       });
       TripBookingModel tripBookingModel = TripBookingModel.fromJson(data);
       return right(tripBookingModel);

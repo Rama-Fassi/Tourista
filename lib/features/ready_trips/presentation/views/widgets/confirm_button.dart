@@ -41,11 +41,14 @@ class ConfirmButton extends StatelessWidget {
                     ))
                   : CustomButton(
                       onTap: () {
+                        print(tripState.pointsOrNot);
                         BlocProvider.of<TripBookingCubit>(context)
                             .bookReadyTripFun(
-                                tripPointId: tripState.pointId ?? 0,
-                                ticketsNumber: tripState.ticketNumber ?? 0,
-                                vipTicket: tripState.vipTicket!);
+                          pointsOrNot: tripState.pointsOrNot!,
+                          tripPointId: tripState.pointId ?? 0,
+                          ticketsNumber: tripState.ticketNumber ?? 0,
+                          vipTicket: tripState.vipTicket!,
+                        );
                       },
                       text: LocaleKeys.confirm.tr(),
                       width: 120,

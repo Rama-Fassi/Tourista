@@ -63,7 +63,11 @@ class _SignInViewBodyState extends State<SignInViewBody> {
           if (kDebugMode) {
             print('points: ${Hive.box(kUserInfoBox).get(kUserPointsRef)}');
           }
-
+          Hive.box(kUserInfoBox)
+              .put(kUserWalletRef, state.userInfoModel.user!.wallet);
+          if (kDebugMode) {
+            print('wallet: ${Hive.box(kUserInfoBox).get(kUserWalletRef)}');
+          }
           Hive.box(kUserInfoBox)
               .put(kUserNameRef, state.userInfoModel.user!.name);
           if (kDebugMode) {

@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 
 const kName = 'Tourista';
 
-const kBaseUrl = 'http://192.168.1.113:8000';
+const kBaseUrl = 'http://192.168.82.197:8000';
 
 const kOnboarding = 'onboarding';
 const kTokenBox = 'token';
@@ -12,10 +12,14 @@ const kUserNameRef = 'userNameRef';
 const kUserPhoneRef = 'userphpneRef';
 const kUserEmailRef = 'userEmailRef';
 const kUserPointsRef = 'userUserPointsRef';
+const kUserWalletRef = 'userWalletRef';
 
 const kTokenRef = 'tokenRef';
+const kUserIdRef = 'userIdRef';
+String? deviceToken;
 const kFontIntro = "source-serif-pro";
 String kToken = Hive.box(kTokenBox).get(kTokenRef);
+int kUserId = Hive.box(kTokenBox).get(kUserIdRef);
 const kTransitionDuration = Duration(milliseconds: 200);
 const kPrimaryColor = Color(0xff338E63);
 const kGreenColor = Color(0xffA0D8B3);

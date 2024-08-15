@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tourista/constants.dart';
 import 'package:tourista/core/utlis/app_assets.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
+import 'package:tourista/features/attractions/data/repos/attraction_repo_imp.dart';
+import 'package:tourista/features/attractions/presentation/manager/get_attractions_cubit/get_attractions_cubit.dart';
 import 'package:tourista/features/attractions/presentation/views/attractions_view_body.dart';
 import 'package:tourista/features/my_trips/presentation/views/my_trips_view_body.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
@@ -26,7 +28,11 @@ class NavigationBArScaffold extends StatefulWidget {
 class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
   List<Widget> navList = [
     const MyTripsViewBody(),
-    const AttractionsViewBody(),
+    BlocProvider(
+      create: (context) =>
+          GetAttractionsCubit(getIt.get<AttractionsRepoImpl>()),
+      child: const AttractionsViewBody(),
+    ),
     const PrivatTripMainViewBody(),
     const ProfileViewBody(),
     const ProfileViewBody(),

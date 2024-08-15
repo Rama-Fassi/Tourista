@@ -10,6 +10,7 @@ import 'package:tourista/features/profile/data/models/update_name_model.dart';
 import 'package:tourista/features/profile/data/models/user_info_model/user_info_model.dart';
 import 'package:tourista/features/profile/data/models/verify_new_phone_model.dart';
 
+import '../models/change_language_model/change_language_model.dart';
 import '../models/update_phone_model.dart';
 
 abstract class ProfileRepo {
@@ -58,5 +59,10 @@ abstract class ProfileRepo {
 
   Future<Either<Failure, AllQuestionsWithTybeModel>> getAllQuestionsWithtybe({
     required String tybe,
+  });
+
+  Future<Either<Failure, ChangeLanguageModel>> changeLanguage({
+    required String token,
+    required String language,
   });
 }

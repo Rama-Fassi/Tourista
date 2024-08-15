@@ -8,10 +8,13 @@ import 'package:tourista/features/ready_trips/presentation/manager/trip_info_cub
 class ReadyTripTotalPrice extends StatelessWidget {
   const ReadyTripTotalPrice({
     super.key,
+    required this.pointDiscount,
   });
-
+  final int pointDiscount;
   @override
   Widget build(BuildContext context) {
+    print('PPPPP$pointDiscount');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,8 +24,13 @@ class ReadyTripTotalPrice extends StatelessWidget {
         ),
         BlocBuilder<TripInfoCubit, TripInfoState>(
           builder: (context, state) {
+            var totalwithvip = state.vipTicket!
+                ? (state.price ?? 0) * (state.ticketNumber ?? 0)
+                : (state.price ?? 0) *
+                    (state.ticketNumber ?? 0) *
+                    0.3; // 200 20%  totale= totale - total*20/100
             return Text(
-              '${state.vipTicket! ? (state.price ?? 0) * (state.ticketNumber ?? 0) : (state.price ?? 0) * (state.ticketNumber ?? 0) * 0.3} \$',
+              '${state.pointsOrNot! ? totalwithvip - totalwithvip * 20 / 100 : totalwithvip}  \$',
               style: AppStyles.styleInterSemiBold20(context)
                   .copyWith(fontSize: 20),
             );

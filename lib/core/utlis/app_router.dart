@@ -32,6 +32,7 @@ import 'package:tourista/features/my_trips/presentation/views/points_view.dart';
 import 'package:tourista/features/notification/presentation/views/from_notifications_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
+import 'package:tourista/features/private_trip/activities/presentation/manager/search_activity_cubit/search_activity_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/views/search_activity_view.dart';
 import 'package:tourista/features/private_trip/flights/data/repos/flights_repo_impl.dart';
 import 'package:tourista/features/private_trip/flights/presentation/manager/airport_where_from_cubit/airport_where_from_cubit.dart';
@@ -52,6 +53,8 @@ import 'package:tourista/features/private_trip/stays/data/repos/stays_repo_impl.
 import 'package:tourista/features/private_trip/stays/presentation/manager/room_hotel_cubit/room_hotel_cubit.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/all_photo_view.dart';
 import 'package:tourista/features/private_trip/stays/presentation/views/hotel_detail_view.dart';
+import 'package:tourista/features/profile/presentation/manager/change_language_cubit/change_language_cubit.dart';
+import 'package:tourista/features/profile/presentation/views/wallet_view.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/cities_hotel.dart';
 import 'package:tourista/features/ready_trips/data/models/ready_trips_details_model/tourism_place.dart';
 import 'package:tourista/features/ready_trips/data/repos/ready_trip_repo_impl.dart';
@@ -97,13 +100,13 @@ abstract class AppRouter {
   static const kWhereToAirportView = '/whereToAirportView';
   static const kActivitiesView = '/ActivitiesView';
   static const kSearchActivityView = '/SearchActivityView';
-
   static const kActivityDetailsView = '/ActivityDetailsView';
   static const kHotelDetailsView = '/hotelDetailsView';
   static const kAllPhotoView = '/allPhotoView';
   static const kReadyTripDetailsView = '/readyTripDetailsView';
   static const kLanguageView = '/languageView';
   static const kPersonalDetailsView = '/personalDetailsView';
+  static const kWalletView = '/walletView';
   static const kPasswordAndSecurityView = '/passwordAndSecurity';
   static const kAboutUsView = '/aboutUsView';
   static const kCustomerSupportView = '/customerSupportview';
@@ -131,7 +134,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kLanguageView,
-        builder: (context, state) => const LanguageView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ChangeLanguageCubit(getIt.get<ProfileRepoImpl>()),
+          child: const LanguageView(),
+        ),
       ),
       GoRoute(
         path: kFromNotificationview,
@@ -206,6 +213,10 @@ abstract class AppRouter {
           ],
           child: const PersonalDetailsView(),
         ),
+      ),
+      GoRoute(
+        path: kWalletView,
+        builder: (context, state) => const WalletView(),
       ),
       GoRoute(
         path: kverifyNewPhoneview,
@@ -415,8 +426,17 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kActivitiesView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  ActivitiesCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  SearchActivityCubit(getIt.get<ActivitiesRepoImpl>()),
+            ),
+          ],
           child: ActivitiesView(
               activitiesdaysInfo: state.extra as Map<String, dynamic>),
         ),

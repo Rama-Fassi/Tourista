@@ -10,6 +10,8 @@ import 'package:tourista/features/notification/data/services/notification_servic
 import 'package:tourista/features/notification/data/services/pusher_service.dart';
 import 'package:tourista/core/utlis/service_locator.dart';
 import 'package:tourista/core/utlis/simple_bloc_observer.dart';
+import 'package:tourista/features/attractions/data/repos/attraction_repo_imp.dart';
+import 'package:tourista/features/attractions/presentation/manager/public_attraction_cubit/public_attraction_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activity_card_cubit/activity_card_cubit.dart';
 import 'package:tourista/features/private_trip/main/data/repos/main_repo_impl.dart';
 import 'package:tourista/features/private_trip/main/presentation/manager/all_city_cubit/all_city_cubit.dart';
@@ -87,6 +89,10 @@ class Tourista extends StatelessWidget {
           create: (context) =>
               AllReadyTripsCubit(getIt.get<ReadyTripsRepoImpl>())
                 ..getAllReadyTripsFun(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              PublicAttractionCubit(getIt.get<AttractionsRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

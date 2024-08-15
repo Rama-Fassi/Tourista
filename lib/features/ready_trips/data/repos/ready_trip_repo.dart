@@ -18,5 +18,6 @@ abstract class ReadyTripsRepo {
   Future<Either<Failure, TripBookingModel>> bookReadyTrip(
       {required int tripPointId,
       required int ticketsNumber,
-      required bool vipTicket});
+      required bool vipTicket,
+       required bool pointsOrNot});
 }
