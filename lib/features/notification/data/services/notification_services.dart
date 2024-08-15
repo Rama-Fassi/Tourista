@@ -47,7 +47,8 @@ class LocalNotificationService {
   }
 
   //showSchduledNotification
-  static void showSchduledNotification(String title) async {
+  static void showSchduledNotification(
+      String title, String event, int id) async {
     const AndroidNotificationDetails android = AndroidNotificationDetails(
       'schduled notification',
       'id 3',
@@ -66,8 +67,8 @@ class LocalNotificationService {
     log(tz.local.name);
     log("After ${tz.TZDateTime.now(tz.local).hour}");
     await flutterLocalNotificationsPlugin.zonedSchedule(
-      2,
-      'Schduled Notification',
+      id,
+      event,
       title,
       tz.TZDateTime.now(tz.local).add(const Duration(seconds: 1)),
       // tz.TZDateTime(
@@ -79,7 +80,7 @@ class LocalNotificationService {
       //   30,
       // ),
       details,
-      payload: 'zonedSchedule',
+      payload: event,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
     );

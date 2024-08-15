@@ -30,6 +30,7 @@ import 'package:tourista/features/my_trips/presentation/views/past_private_trip_
 import 'package:tourista/features/my_trips/presentation/views/past_public_trip_details_view.dart';
 import 'package:tourista/features/my_trips/presentation/views/points_view.dart';
 import 'package:tourista/features/notification/presentation/views/from_notifications_view.dart';
+import 'package:tourista/features/notification/presentation/views/notification_view.dart';
 import 'package:tourista/features/onboarding/views/onboarding_view.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/activities_cubit/activities_cubit.dart';
 import 'package:tourista/features/private_trip/activities/presentation/manager/search_activity_cubit/search_activity_cubit.dart';
@@ -120,6 +121,7 @@ abstract class AppRouter {
   static const kActivePrivateTripDetailsview = '/activePrivateTripDetailsview';
   static const kPastPrivateTripDetailsview = '/pastPrivateTripDetailsview';
   static const kPointsview = '/pointsview';
+  static const kNotificationsView = '/notificationsView';
   static const kFromNotificationview = '/FromNotificationview';
   static const kCanceledPrivateTripDetailsview =
       '/CanceledPrivateTripDetailsview';
@@ -143,6 +145,10 @@ abstract class AppRouter {
       GoRoute(
         path: kFromNotificationview,
         builder: (context, state) => const FromNotificationsView(),
+      ),
+      GoRoute(
+        path: kNotificationsView,
+        builder: (context, state) => const NotificationView(),
       ),
       GoRoute(
         path: kActivePrivateTripDetailsview,
@@ -321,7 +327,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const NavigationBArScaffold(),
+        builder: (context, state) => NavigationBArScaffold(
+          index: state.extra == null ? -1 : state.extra as int,
+        ),
       ),
       GoRoute(
         path: kPrivateTripTapBar,

@@ -38,7 +38,7 @@ class AttractionsViewBody extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).push(AppRouter.kFromNotificationview);
+                    GoRouter.of(context).push(AppRouter.kNotificationsView);
                   },
                   child: const Icon(
                     Icons.notifications_outlined,

@@ -1,25 +1,53 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tourista/core/utlis/app_router.dart';
 import 'package:tourista/core/widgets/err_animation.dart';
+import 'package:tourista/features/notification/data/services/notification_services.dart';
 import 'package:tourista/features/ready_trips/presentation/manager/all_ready_trips_cubit/all_ready_trips_cubit.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_card.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/ready_trips_sort_by.dart';
 import 'package:tourista/features/ready_trips/presentation/views/widgets/shimmer_ready_trips_loading.dart';
 
-class ReadyTripsTabBarView extends StatelessWidget {
+class ReadyTripsTabBarView extends StatefulWidget {
   const ReadyTripsTabBarView({super.key, required this.value});
   final int value;
 
+  @override
+  State<ReadyTripsTabBarView> createState() => _ReadyTripsTabBarViewState();
+}
+
+class _ReadyTripsTabBarViewState extends State<ReadyTripsTabBarView> {
   Future<void> _refreshData(BuildContext context) async {
     await Future.delayed(Duration(seconds: 2));
 
-    if (value == 0) {
+    if (widget.value == 0) {
       BlocProvider.of<AllReadyTripsCubit>(context).getAllReadyTripsFun();
     } else {
       BlocProvider.of<AllReadyTripsCubit>(context)
-          .getAllReadyTripsFun(classificationId: value);
+          .getAllReadyTripsFun(classificationId: widget.value);
     }
+  }
+
+  @override
+  void initState() {
+    listenToNotificationStream();
+    super.initState();
+  }
+
+  void listenToNotificationStream() {
+    LocalNotificationService.streamController.stream.listen(
+      (notificationResponse) {
+        log(notificationResponse.id!.toString());
+        log(notificationResponse.payload!.toString());
+
+        if (notificationResponse.payload!.toString() == 'new-attraction') {
+          GoRouter.of(context).push(AppRouter.kHomeView, extra: 1);
+        }
+      },
+    );
   }
 
   @override
@@ -29,7 +57,7 @@ class ReadyTripsTabBarView extends StatelessWidget {
       child: Column(
         children: [
           ReadyTripsSortBy(
-            classificationId: value,
+            classificationId: widget.value,
           ),
           BlocBuilder<AllReadyTripsCubit, AllReadyTripsState>(
             builder: (context, state) {
@@ -47,7 +75,7 @@ class ReadyTripsTabBarView extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 18),
                           child: ReadyTripsCard(
-                            value: value,
+                            value: widget.value,
                             theTrip: state.allReadyTripsModel.theTrips![index],
                           ),
                         );
@@ -70,24 +98,26 @@ class ReadyTripsTabBarView extends StatelessWidget {
                 return ErrAnimation(
                     errMessage: state.errMessage,
                     onPressed: () {
-                      if (value == 0) {
+                      if (widget.value == 0) {
                         BlocProvider.of<AllReadyTripsCubit>(context)
                             .getAllReadyTripsFun();
                       } else {
                         BlocProvider.of<AllReadyTripsCubit>(context)
-                            .getAllReadyTripsFun(classificationId: value);
+                            .getAllReadyTripsFun(
+                                classificationId: widget.value);
                       }
                     });
               } else {
                 return ErrAnimation(
                     errMessage: 'Please Try Again ',
                     onPressed: () {
-                      if (value == 0) {
+                      if (widget.value == 0) {
                         BlocProvider.of<AllReadyTripsCubit>(context)
                             .getAllReadyTripsFun();
                       } else {
                         BlocProvider.of<AllReadyTripsCubit>(context)
-                            .getAllReadyTripsFun(classificationId: value);
+                            .getAllReadyTripsFun(
+                                classificationId: widget.value);
                       }
                     });
               }

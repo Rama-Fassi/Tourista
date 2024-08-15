@@ -19,8 +19,8 @@ import 'package:tourista/features/ready_trips/presentation/manager/all_ready_tri
 import 'package:tourista/features/ready_trips/presentation/views/ready_trip_main_view_body.dart';
 
 class NavigationBArScaffold extends StatefulWidget {
-  const NavigationBArScaffold({super.key});
-
+  const NavigationBArScaffold({super.key, this.index});
+  final int? index;
   @override
   State<NavigationBArScaffold> createState() => _NavigationBArScaffoldState();
 }
@@ -37,7 +37,16 @@ class _NavigationBArScaffoldState extends State<NavigationBArScaffold> {
     const ProfileViewBody(),
     const ProfileViewBody(),
   ];
-  int activeIndex = -1;
+  late int activeIndex;
+  @override
+  void initState() {
+    super.initState();
+    if (widget.index == null) {
+      activeIndex = -1;
+    } else {
+      activeIndex = widget.index!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

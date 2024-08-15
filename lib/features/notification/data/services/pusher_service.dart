@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:tourista/features/notification/data/services/notification_services.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -7,6 +8,7 @@ class WebSocketService {
   final String cluster = 'ap1';
   final String appKey = '645e69e0cf30d1ca3934';
   final String channelName = 'popup-channel';
+  final String attractionChannelName = 'popup-channel';
 
   late WebSocketChannel channel;
 
@@ -19,8 +21,24 @@ class WebSocketService {
       (message) {
         final decodedMessage = jsonDecode(message);
         print(decodedMessage);
-        LocalNotificationService.showSchduledNotification(
-            decodedMessage.toString());
+        log(decodedMessage['event']);
+        if (decodedMessage['event'] != 'pusher:connection_established' &&
+            decodedMessage['event'] !=
+                'pusher_internal:subscription_succeeded') {
+          if (decodedMessage['event'] == 'new-attraction') {
+            log(decodedMessage['event']);
+            LocalNotificationService.showSchduledNotification(
+                jsonDecode(decodedMessage['data'])['message'].toString(),
+                decodedMessage['event'],
+                0);
+          }
+        }
+        // LocalNotificationService.showSchduledNotification(
+        //     jsonDecode(decodedMessage['data'])['message'].toString(),
+        //     decodedMessage['event'],
+        //     0
+        //     // jsonDecode(decodedMessage['data'])['message'].toInt()
+        //     );
         if (decodedMessage['event'] == 'pusher:connection_established') {
           channel.sink.add(jsonEncode({
             'event': 'pusher:subscribe',
