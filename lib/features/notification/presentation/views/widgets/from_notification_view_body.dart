@@ -5,8 +5,8 @@ import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/features/notification/presentation/views/widgets/cancele_delay_trip_button.dart';
 
 class FromNotificationsViewBody extends StatelessWidget {
-  const FromNotificationsViewBody({super.key});
-
+  const FromNotificationsViewBody({super.key, required this.tripId});
+  final int tripId;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -29,7 +29,9 @@ class FromNotificationsViewBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Gap(32),
-                CanceleDelayTripButton()
+                CanceleDelayTripButton(
+                  tripId: tripId,
+                )
               ],
             ),
           ),

@@ -20,10 +20,9 @@ abstract class ActivitiesRepo {
     required int tripId,
   });
 
-
-   Future<Either<Failure, SearchTourismPlacesModel>> searchTourismPlaces({
+  Future<Either<Failure, SearchTourismPlacesModel>> searchTourismPlaces({
     required String search,
-         String? type,
-     required int tripId,
+    String? type,
+    required int tripId,
   });
 }

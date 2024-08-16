@@ -1,17 +1,15 @@
 class CancelDelayTrips {
-	String? message;
+  String? message;
 
-	CancelDelayTrips({this.message});
+  CancelDelayTrips({this.message});
 
-	factory CancelDelayTrips.fromJson(Map<String, dynamic> json) {
-		return CancelDelayTrips(
-			message: json['message'] as String?,
-		);
-	}
+  factory CancelDelayTrips.fromJson(Map<String, dynamic> json) {
+    return CancelDelayTrips(
+      message: json['message'] as String?,
+    );
+  }
 
-
-
-	Map<String, dynamic> toJson() => {
-				'message': message,
-			};
+  Map<String, dynamic> toJson() => {
+        'message': message,
+      };
 }

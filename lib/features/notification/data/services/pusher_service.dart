@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 
+import 'package:tourista/constants.dart';
 import 'package:tourista/features/notification/data/services/notification_services.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -20,25 +20,31 @@ class WebSocketService {
     channel.stream.listen(
       (message) {
         final decodedMessage = jsonDecode(message);
-        print(decodedMessage);
-        log(decodedMessage['event']);
+
         if (decodedMessage['event'] != 'pusher:connection_established' &&
             decodedMessage['event'] !=
                 'pusher_internal:subscription_succeeded') {
           if (decodedMessage['event'] == 'new-attraction') {
-            log(decodedMessage['event']);
-            LocalNotificationService.showSchduledNotification(
+            LocalNotificationService.showScheduledNotification(
                 jsonDecode(decodedMessage['data'])['message'].toString(),
                 decodedMessage['event'],
                 0);
+          } else if (decodedMessage['event'] != 'new-attraction' &&
+              jsonDecode(decodedMessage['data'])['userId'] == kUserId) {
+            if (jsonDecode(decodedMessage['data'])['tripId'] == null) {
+              LocalNotificationService.showScheduledNotification(
+                  jsonDecode(decodedMessage['data'])['name'].toString(),
+                  decodedMessage['event'],
+                  jsonDecode(decodedMessage['data'])['userId']);
+            } else {
+              LocalNotificationService.showScheduledNotification(
+                  jsonDecode(decodedMessage['data'])['name'].toString(),
+                  decodedMessage['event'],
+                  jsonDecode(decodedMessage['data'])['tripId']);
+            }
           }
         }
-        // LocalNotificationService.showSchduledNotification(
-        //     jsonDecode(decodedMessage['data'])['message'].toString(),
-        //     decodedMessage['event'],
-        //     0
-        //     // jsonDecode(decodedMessage['data'])['message'].toInt()
-        //     );
+
         if (decodedMessage['event'] == 'pusher:connection_established') {
           channel.sink.add(jsonEncode({
             'event': 'pusher:subscribe',
@@ -47,15 +53,6 @@ class WebSocketService {
             },
           }));
         }
-        // if (decodedMessage['event'] !=
-        //             'pusher_internal:subscription_succeeded' &&
-        //         decodedMessage['event'] != 'pusher:connection_established' &&
-        //         jsonDecode(decodedMessage['data'])['userId'] == '1'
-        //     //   kUserId.toString()
-        //     ) {
-        //   LocalNotificationService.showSchduledNotification(
-        //       decodedMessage.toString());
-        // }
       },
       onError: (error) {
         print('Error: $error');

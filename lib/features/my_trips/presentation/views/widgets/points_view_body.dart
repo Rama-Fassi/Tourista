@@ -7,8 +7,10 @@ import 'package:tourista/features/my_trips/presentation/manager/active_user_poin
 import 'package:tourista/features/my_trips/presentation/views/widgets/points_list_view.dart';
 
 class PointsViewBody extends StatelessWidget {
-  const PointsViewBody({super.key, required this.tripId});
+  const PointsViewBody(
+      {super.key, required this.tripId, required this.isDelay});
   final int tripId;
+  final bool isDelay;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -24,6 +26,7 @@ class PointsViewBody extends StatelessWidget {
           }
           if (state is ActiveUserPointSuccess) {
             return PointListView(
+              isDelay: isDelay,
               activeUserPointModel: state.activeUserPointModel,
             );
           } else if (state is ActiveUserPointFailure) {

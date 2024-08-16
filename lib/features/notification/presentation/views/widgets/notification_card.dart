@@ -13,7 +13,7 @@ class NotificationCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: kPrimaryColor, width: 2),
-          borderRadius: BorderRadius.circular(50)),
+          borderRadius: BorderRadius.circular(24)),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: Row(

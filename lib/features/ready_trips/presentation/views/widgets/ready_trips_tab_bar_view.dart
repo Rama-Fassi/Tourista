@@ -31,9 +31,14 @@ class _ReadyTripsTabBarViewState extends State<ReadyTripsTabBarView> {
     }
   }
 
+  bool notificationListenerSet = false;
+
   @override
   void initState() {
-    listenToNotificationStream();
+    if (!notificationListenerSet) {
+      listenToNotificationStream();
+      notificationListenerSet = true;
+    }
     super.initState();
   }
 
@@ -45,6 +50,31 @@ class _ReadyTripsTabBarViewState extends State<ReadyTripsTabBarView> {
 
         if (notificationResponse.payload!.toString() == 'new-attraction') {
           GoRouter.of(context).push(AppRouter.kHomeView, extra: 1);
+        } else if (notificationResponse.payload!.toString() ==
+                'updatePublicTrip' ||
+            notificationResponse.payload!.toString() ==
+                'public-deducatedPoints') {
+          GoRouter.of(context).push(AppRouter.kFromNotificationview,
+              extra: notificationResponse.id);
+        } else if (notificationResponse.payload!.toString() ==
+                'deletePublicTrip' ||
+            notificationResponse.payload!.toString() ==
+                'deletePublicTripPoint' ||
+            notificationResponse.payload!.toString() == 'add_to_wallet' ||
+            notificationResponse.payload!.toString() ==
+                'restore_money_publicTrip' ||
+            notificationResponse.payload!.toString() == 'deletePublicTrip' ||
+            notificationResponse.payload!.toString() == 'canceledPrivateTrip' ||
+            notificationResponse.payload!.toString() == 'canceledPuplicTrip' ||
+            notificationResponse.payload!.toString() ==
+                'delete_booking_hotel' ||
+            notificationResponse.payload!.toString() ==
+                'booking_private_trip' ||
+            notificationResponse.payload!.toString() ==
+                'private_distroyedAirport' ||
+            notificationResponse.payload!.toString() ==
+                'public-deducatedWallett') {
+          //Rama Here I want to go route to profile or wlaaet same is ok
         }
       },
     );

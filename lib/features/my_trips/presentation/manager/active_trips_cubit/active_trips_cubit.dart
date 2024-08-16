@@ -10,25 +10,25 @@ class ActiveTripsCubit extends Cubit<ActiveTripsState> {
   MyTripsRepoImpl myTripsRepoImpl;
   bool _isCubitClosed = false;
 
-    Future<void> getActiveTripsFun() async {
-      if (!_isCubitClosed) {
-        emit(ActiveTripsLoading());
-        var result = await myTripsRepoImpl.getActiveTrips();
+  Future<void> getActiveTripsFun() async {
+    if (!_isCubitClosed) {
+      emit(ActiveTripsLoading());
+      var result = await myTripsRepoImpl.getActiveTrips();
 
-        result.fold(
-          (failure) {
-            if (!_isCubitClosed) {
-              emit(ActiveTripsFailure(errMessage: failure.errMessage));
-            }
-          },
-          (allTripsModel) {
-            if (!_isCubitClosed) {
-              emit(ActiveTripsSuccess(allTripsModel: allTripsModel));
-            }
-          },
-        );
-      }
+      result.fold(
+        (failure) {
+          if (!_isCubitClosed) {
+            emit(ActiveTripsFailure(errMessage: failure.errMessage));
+          }
+        },
+        (allTripsModel) {
+          if (!_isCubitClosed) {
+            emit(ActiveTripsSuccess(allTripsModel: allTripsModel));
+          }
+        },
+      );
     }
+  }
 
   @override
   Future<void> close() {

@@ -19,5 +19,5 @@ abstract class ReadyTripsRepo {
       {required int tripPointId,
       required int ticketsNumber,
       required bool vipTicket,
-       required bool pointsOrNot});
+      required bool pointsOrNot});
 }

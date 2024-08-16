@@ -10,11 +10,12 @@ class TripBookingCubit extends Cubit<TripBookingState> {
   ReadyTripsRepoImpl readyTripsRepoImpl;
   Future<void> bookReadyTripFun(
       {required int tripPointId,
-      required int ticketsNumber,required bool pointsOrNot,
+      required int ticketsNumber,
+      required bool pointsOrNot,
       required bool vipTicket}) async {
     emit(TripBookingLoading());
     var result = await readyTripsRepoImpl.bookReadyTrip(
-      pointsOrNot: pointsOrNot,
+        pointsOrNot: pointsOrNot,
         tripPointId: tripPointId,
         ticketsNumber: ticketsNumber,
         vipTicket: vipTicket);

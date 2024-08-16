@@ -10,7 +10,8 @@ class TripInfoCubit extends Cubit<TripInfoState> {
             ticketNumber: null,
             pointId: null,
             price: null,
-            pointName: null, pointsOrNot: false));
+            pointName: null,
+            pointsOrNot: false));
   void setTicketNumber(int? ticketNumber) {
     emit(state.copyWith(ticketNumber: ticketNumber));
   }
@@ -31,7 +32,7 @@ class TripInfoCubit extends Cubit<TripInfoState> {
     emit(state.copyWith(vipTicket: vipTicket));
   }
 
-    void setPointsOrNot(bool? pointsOrNot) {
+  void setPointsOrNot(bool? pointsOrNot) {
     emit(state.copyWith(pointsOrNot: pointsOrNot));
   }
 
@@ -41,7 +42,8 @@ class TripInfoCubit extends Cubit<TripInfoState> {
       price: null,
       pointId: null,
       ticketNumber: null,
-      pointName: null, pointsOrNot: false,
+      pointName: null,
+      pointsOrNot: false,
     ));
   }
 }

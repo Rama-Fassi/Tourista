@@ -19,6 +19,7 @@ class PointsView extends StatelessWidget {
               )),
         ),
         body: PointsViewBody(
+          isDelay: false,
           tripId: tripId,
         ),
       ),

@@ -5,13 +5,14 @@ import 'package:tourista/core/utlis/functions/custom_snack_bar.dart';
 import 'package:tourista/core/utlis/functions/custom_success_snack_bar.dart';
 import 'package:tourista/core/utlis/styles.dart';
 import 'package:tourista/core/widgets/custom_button.dart';
-import 'package:tourista/features/notification/presentation/manager/cubit/cnacele_delay_trip_cubit.dart';
+import 'package:tourista/features/notification/presentation/manager/cancele_delay_trip_cubit/cnacele_delay_trip_cubit.dart';
 
 class CanceleDelayTripButton extends StatelessWidget {
   const CanceleDelayTripButton({
     super.key,
+    required this.tripId,
   });
-
+  final int tripId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,15 +30,18 @@ class CanceleDelayTripButton extends StatelessWidget {
         builder: (context, state) {
           return state is CnaceleDelayTripLoading
               ? CircularProgressIndicator(
-                  color: Colors.white,
+                  color: kPrimaryColor,
                 )
               : CustomButton(
-                  onTap: () {},
-                  text: 'Cnacele',
-                  width: 140,
-                  height: 40,
+                  onTap: () {
+                    BlocProvider.of<CnaceleDelayTripCubit>(context)
+                        .canceleDelayTripsFun(tripId: tripId);
+                  },
+                  text: 'Cancele',
+                  width: 73,
+                  height: 31,
                   borderRadius: 12,
-                  style: AppStyles.styleInterBold20(context)
+                  style: AppStyles.styleInterBold16(context)
                       .copyWith(color: Colors.white),
                   color: kPrimaryColor);
         },

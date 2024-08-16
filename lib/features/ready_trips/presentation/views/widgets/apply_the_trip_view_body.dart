@@ -82,7 +82,10 @@ class ApplyTheTripViewBody extends StatelessWidget {
               builder: (context, state) {
                 if (state is PublicAttractionSuccess) {
                   pointDiscount =
-                      state.publicTripAttractionsModel.attractions![0].discount;
+                      state.publicTripAttractionsModel.attractions!.isEmpty
+                          ? 0
+                          : state.publicTripAttractionsModel.attractions![0]
+                              .discount;
                   return state.publicTripAttractionsModel.attractions!.isEmpty
                       ? const SizedBox()
                       : PublicTripAttractionsSection(

@@ -11,12 +11,10 @@ class ChangeLanguageSuccess extends ChangeLanguageState {
   final ChangeLanguageModel changeLanguageModel;
 
   ChangeLanguageSuccess(this.changeLanguageModel);
-
 }
 
 class ChangeLanguageFailure extends ChangeLanguageState {
   final String errMessage;
 
   ChangeLanguageFailure(this.errMessage);
-
 }

@@ -5,9 +5,7 @@ import '../models/public_trip_attractions/public_trip_attractions_model.dart';
 
 abstract class AttractionRepo {
   Future<Either<Failure, AttractionsModel>> getAttraction();
-  Future<Either<Failure, PublicTripAttractionsModel>> getPublicTripAttraction(
-{
-  required int publicTripId,
-}
-  );
+  Future<Either<Failure, PublicTripAttractionsModel>> getPublicTripAttraction({
+    required int publicTripId,
+  });
 }

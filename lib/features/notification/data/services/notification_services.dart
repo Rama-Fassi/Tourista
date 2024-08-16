@@ -10,13 +10,13 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static StreamController<NotificationResponse> streamController =
-      StreamController();
+      StreamController.broadcast();
 
   static onTap(NotificationResponse notificationResponse) {
     streamController.add(notificationResponse);
   }
 
-  static Future init() async {
+  static Future<void> init() async {
     InitializationSettings settings = const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
       iOS: DarwinInitializationSettings(),
@@ -46,18 +46,16 @@ class LocalNotificationService {
     );
   }
 
-  //showSchduledNotification
-  static void showSchduledNotification(
+  // showScheduledNotification
+  static void showScheduledNotification(
       String title, String event, int id) async {
     const AndroidNotificationDetails android = AndroidNotificationDetails(
-      'schduled notification',
+      'scheduled notification',
       'id 3',
       importance: Importance.max,
       priority: Priority.high,
     );
-    NotificationDetails details = const NotificationDetails(
-      android: android,
-    );
+    NotificationDetails details = NotificationDetails(android: android);
     tz.initializeTimeZones();
     log(tz.local.name);
     log("Before ${tz.TZDateTime.now(tz.local).hour}");
@@ -71,14 +69,6 @@ class LocalNotificationService {
       event,
       title,
       tz.TZDateTime.now(tz.local).add(const Duration(seconds: 1)),
-      // tz.TZDateTime(
-      //   tz.local,
-      //   2024,
-      //   2,
-      //   10,
-      //   21,
-      //   30,
-      // ),
       details,
       payload: event,
       uiLocalNotificationDateInterpretation:

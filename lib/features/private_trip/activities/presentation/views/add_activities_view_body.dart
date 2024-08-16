@@ -46,7 +46,7 @@ class _AddActivitiesViewBodyState extends State<AddActivitiesViewBody> {
 
   @override
   Widget build(BuildContext context) {
-   // final cubit = context.read<ActivityCardCubit>();
+    // final cubit = context.read<ActivityCardCubit>();
 
     print('tripId: ${widget.createTripModel.tripId!.id}'.toString());
     double screenWidth = MediaQuery.of(context).size.width;

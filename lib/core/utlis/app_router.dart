@@ -144,7 +144,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kFromNotificationview,
-        builder: (context, state) => const FromNotificationsView(),
+        builder: (context, state) => FromNotificationsView(
+          tripId: state.extra as int,
+        ),
       ),
       GoRoute(
         path: kNotificationsView,

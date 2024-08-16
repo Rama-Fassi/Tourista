@@ -6,8 +6,10 @@ class PointListView extends StatelessWidget {
   const PointListView({
     super.key,
     required this.activeUserPointModel,
+    required this.isDelay,
   });
   final ActiveUserPointModel activeUserPointModel;
+  final bool isDelay;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -16,6 +18,7 @@ class PointListView extends StatelessWidget {
         return Padding(
           padding: EdgeInsets.all(6.0),
           child: TripPointCard(
+            isDelay: isDelay,
             activeUserPublicTrip:
                 activeUserPointModel.activeUserPublicTrip![index],
           ),
