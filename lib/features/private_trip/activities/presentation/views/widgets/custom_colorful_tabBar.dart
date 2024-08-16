@@ -7,11 +7,14 @@ import '../../../../main/presentation/views/widgets/custom_tab_TabBar.dart';
 class CustomColorfulTabBar extends StatelessWidget {
   const CustomColorfulTabBar({
     super.key,
+    this.controller,
   });
+  final TabController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TabBar(
+        controller: controller,
         labelPadding: const EdgeInsets.symmetric(horizontal: 6),
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: Colors.black,

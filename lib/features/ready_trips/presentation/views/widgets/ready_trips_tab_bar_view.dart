@@ -74,7 +74,7 @@ class _ReadyTripsTabBarViewState extends State<ReadyTripsTabBarView> {
                 'private_distroyedAirport' ||
             notificationResponse.payload!.toString() ==
                 'public-deducatedWallett') {
-          //Rama Here I want to go route to profile or wlaaet same is ok
+      GoRouter.of(context).push(AppRouter.kHomeView , extra: 3);
         }
       },
     );

@@ -33,6 +33,9 @@ class FinalBookingButton extends StatelessWidget {
         if (state is FinalBookingPrivateTripSuccess) {
           GoRouter.of(context).push(AppRouter.kHomeView);
         } else if (state is FinalBookingPrivateTripFailure) {
+          GoRouter.of(context).pop();
+          GoRouter.of(context).pop();
+
           customSnackBar(context, state.errMessage);
         } else {
           showDialog(

@@ -1,7 +1,7 @@
 class Review {
-  String? cleanliness;
-  String? comfort;
-  String? facilities;
+  dynamic? cleanliness;
+  dynamic? comfort;
+  dynamic? facilities;
 
   Review({this.cleanliness, this.comfort, this.facilities});
 
